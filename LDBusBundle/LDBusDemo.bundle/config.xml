@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<bundle name="LDBusDemo" connectorClass="">
+    <UIBus>
+        <!--个人账户首页-->
+        <ViewController name="mainTab" class="MyTabController" type="share">
+        </ViewController>
+        <ViewController name="menu/(initWithMenu:)" class="MenuController" type="share">
+        </ViewController>
+        <ViewController name="food" class="ContentController" type="push">
+            <URLPattern name="foo/(initWithFood:)"/>
+            <URLPattern name="type/(initWithType:)"/>
+            <URLPattern name="popover/(initWithFood:)" type="pop"/>
+            <URLPattern name="modeview/(initWithModeController:)" type="modal"/>
+            <URLPattern name="about/(initWithUs:)/(others:)" parent="LDBusDemo://menu/5" type="push"/>
+        </ViewController>
+    </UIBus>
+    <ServiceBus>
+        <Service name="loginService" class="LDLoginServiceImpl" />
+    </ServiceBus>
+    <MessageBus>
+        <Message name="LocationModified" class="MenuController" />
+    </MessageBus>
+</bundle>
+<!--
+ （1）当bundle没有开发之前，可以优先开发wap页面,并在应用中打开； 但是可以根据业务要求确定bundle得UI总线导航配置；
+ (2) bus会自动判定当前有没有这个viewController的实现类，如果没有，targetclass＝nil；
+ (3) 如果能够跟JSBridge合用，将会有很大用处；
+ -->

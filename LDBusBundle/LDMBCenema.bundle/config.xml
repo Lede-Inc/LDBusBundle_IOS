@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<bundle name="LDMBCenema">
+    <UIBus>
+        <!--如果没有配置URLPattern，则默认以initNavigationURL:query打开-->
+        <!--电影院列表首页-->
+        <ViewController name="tabCenema" webpath="http://piao.163.com/wap/cinemaList.html" class="CinemaViewController" type="share">
+            <URLPattern name="list" type="push" />
+            <URLPattern name="p1" webquery="cityCode=(initWithCityCode:)" type="share"/>
+        </ViewController>
+        
+        <!--电影院详细信息页面-->
+        <ViewController name="CinemaDetail" webpath="http://piao.163.com/wap/cinemaDetail.html" class="CinemaDetailViewController">
+            <URLPattern name="p1" webquery="cinemaId=(initWithCinemaId:)" />
+        </ViewController>
+        
+        
+        <!--电影院放映时间页面-->
+        <ViewController name="CinemaTimes" webpath="http://piao.163.com/wap/schedule.html" class="CinemaTimesViewController">
+            <URLPattern name="p1" webquery="movieId=(initWithMovieID:);cinemaId=(cityCode:)"/>
+        </ViewController>
+        
+        
+        <!--电影院地图模式页面-->
+        <ViewController name="CinemaMap" webpath="" class="CinemaMapViewController">
+        </ViewController>
+        
+        <!---->
+    </UIBus>
+    <ServiceBus></ServiceBus>
+    <MessageBus></MessageBus>
+</bundle>
+<!--
+ （1）当bundle没有开发之前，可以优先开发wap页面,并在应用中打开； 但是可以根据业务要求确定bundle得UI总线导航配置；
+ (2) bus会自动判定当前有没有这个viewController的实现类，如果没有，targetclass＝nil；
+ (3) 如果能够跟JSBridge合用，将会有很大用处；
+ -->

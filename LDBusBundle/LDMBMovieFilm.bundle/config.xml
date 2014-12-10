@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bundle name="LDMBMovieFilm" update="http://piao.163.com/bundles/LDMBMovieFilem.bundle" istallLevel="wifi" connectorClass="LDShareMakeKit">
+    <UIBus>
+        <!--如果没有配置URLPattern，则默认以initNavigationURL:query打开-->
+        <!--电影票电影列表首页-->
+        <ViewController name="tabMovie" webpath="http://piao.163.com/wap/index.html" class="MovieViewController" type="share" parent="">
+            <URLPattern name="p1" webquery="cityCode=(initWithCityCode:)" webfrage="" type="share" parent=""/>
+        </ViewController>
+        
+        <!--电影票详细页面-->
+        <ViewController name="MovieDetail" webpath="http://piao.163.com/wap/movie/detail.html" class="MovieDetailController">
+            <URLPattern name="p1" webquery="movieId=(initWithMovieID:);cityCode=(cityCode:)" webfrage="" type="push" parent=""/>
+        </ViewController>
+        
+        <!--不知道是什么页面-->
+        <ViewController name="MovieStill" webpath="" class="MovieStillViewController" type="share" parent=""></ViewController>
+    </UIBus>
+    <ServiceBus>
+        <Service name="loginService" class="LDLoginServiceImpl" />
+    </ServiceBus>
+    <MessageBus>
+        <Message name="LocationModified" class="MovieViewController" />
+    </MessageBus>
+</bundle>
+
+<!--
+ （1）当bundle没有开发之前，可以优先开发wap页面,并在应用中打开； 但是可以根据业务要求确定bundle得UI总线导航配置；
+ (2) bus会自动判定当前有没有这个viewController的实现类，如果没有，targetclass＝nil；
+ (3) 如果能够跟JSBridge合用，将会有很大用处；
+ -->

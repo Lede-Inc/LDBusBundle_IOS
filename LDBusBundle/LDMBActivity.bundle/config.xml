@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<bundle name="LDMBActivity">
+    <UIBus>
+        <!--如果没有配置URLPattern，则默认以initNavigationURL:query打开-->
+        <!--活动首页-->
+        <ViewController name="tabPromotion" webpath="" class="NMVPromotionViewController" type="share">
+        </ViewController>
+        
+        <!--团购详细信息页面-->
+        <ViewController name="GrouponDetail" class="GrouponDetailViewController">
+        </ViewController>
+        
+        
+        <!--优惠卷详细信息页面-->
+        <ViewController name="Voucher" class="VoucherViewController">
+        </ViewController>
+        
+    </UIBus>
+    <ServiceBus></ServiceBus>
+    <MessageBus></MessageBus>
+</bundle>
+<!--
+ （1）当bundle没有开发之前，可以优先开发wap页面,并在应用中打开； 但是可以根据业务要求确定bundle得UI总线导航配置；
+ (2) bus会自动判定当前有没有这个viewController的实现类，如果没有，targetclass＝nil；
+ (3) 如果能够跟JSBridge合用，将会有很大用处；
+ -->
