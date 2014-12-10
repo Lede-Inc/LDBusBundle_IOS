@@ -64,7 +64,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIViewController*)popViewControllerAnimated:(BOOL)animated {
   if (animated) {
-    NSString* URL = self.topViewController.originalNavigatorURL;
     UIViewAnimationTransition transition = UIViewAnimationTransitionNone;
     if (transition) {
       UIViewAnimationTransition inverseTransition = [self invertTransition:transition];

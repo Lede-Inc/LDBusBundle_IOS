@@ -22,9 +22,6 @@
                   parentController: (UIViewController*)parentController
                               mode: (TTNavigationMode)mode
                             action: (TTURLAction*)action;
-
-- (UIViewController*)getVisibleChildController:(UIViewController*)controller;
-
 - (Class)navigationControllerClass;
 
 @end

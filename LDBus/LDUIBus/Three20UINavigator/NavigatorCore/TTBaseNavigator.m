@@ -155,10 +155,17 @@ static TTBaseNavigator* gNavigator = nil;
     UINavigationController* navController = (UINavigationController*)controller;
     controller = navController.topViewController;
   }
-    
+ 
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
   if (controller.modalViewController) {
     return [TTBaseNavigator frontViewControllerForController:controller.modalViewController];
-  } else {
+  }
+#else
+    if(controller.presentedViewController){
+        return [TTBaseNavigator frontViewControllerForController:controller.presentedViewController];
+    }
+#endif
+  else {
     return controller;
   }
 }
@@ -290,8 +297,14 @@ static TTBaseNavigator* gNavigator = nil;
   controller.modalTransitionStyle = transition;
 
   if ([controller isKindOfClass:[UINavigationController class]]) {
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
     [parentController presentModalViewController: controller
                                         animated: animated];
+#else
+      [parentController presentViewController:controller
+                                     animated:animated
+                                   completion:nil];
+#endif
 
   } else {
     UINavigationController* navController = [[[[self navigationControllerClass] alloc] init]
@@ -300,8 +313,14 @@ static TTBaseNavigator* gNavigator = nil;
     navController.modalPresentationStyle = controller.modalPresentationStyle;
     [navController pushViewController: controller
                              animated: NO];
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
     [parentController presentModalViewController: navController
                                         animated: animated];
+#else
+      [parentController presentViewController:navController
+                                     animated:animated
+                                   completion:nil];
+#endif
   }
 }
 
@@ -327,10 +346,10 @@ static TTBaseNavigator* gNavigator = nil;
     TT_RELEASE_SAFELY(_popoverController);
   }
 
-  _popoverController =  [[TTUIPopoverControllerClass() alloc]
+  _popoverController =  [[UIPopoverController alloc]
                          initWithContentViewController: controller];
   if (_popoverController != nil) {
-    [_popoverController setDelegate:self];
+      [(UIPopoverController *)_popoverController setDelegate:self];
   }
 
   if (nil != sourceButton) {
@@ -476,7 +495,11 @@ static TTBaseNavigator* gNavigator = nil;
 - (UIViewController*)visibleViewController {
   UIViewController* controller = _rootViewController;
   while (nil != controller) {
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
     UIViewController* child = controller.modalViewController;
+#else
+    UIViewController* child = controller.presentedViewController;
+#endif
 
     if (nil == child) {
       child = [self getVisibleChildController:controller];
@@ -516,7 +539,11 @@ static TTBaseNavigator* gNavigator = nil;
   while (controller) {
     UIViewController* child = controller.popupViewController;
     if (!child || ![child canBeTopViewController]) {
-      child = controller.modalViewController;
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
+        child = controller.modalViewController;
+#else
+        child = controller.presentedViewController;
+#endif
     }
     if (!child) {
       child = controller.topSubcontroller;

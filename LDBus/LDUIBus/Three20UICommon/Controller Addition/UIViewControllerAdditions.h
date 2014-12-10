@@ -126,10 +126,6 @@
  */
 - (void)restoreView:(NSDictionary*)state;
 
-/**
- * XXXjoe Not documenting this in the hopes that I can eliminate it ;)
- */
-- (void)persistNavigationPath:(NSMutableArray*)path;
 
 /**
  * Finishes initializing the controller after a TTNavigator-coordinated delay.

@@ -90,8 +90,9 @@
   // You would think UIViewController would call this in dealloc, but it doesn't!
   // I would prefer not to have to redundantly put all view releases in dealloc and
   // viewDidUnload, so my solution is just to call viewDidUnload here.
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
   [self viewDidUnload];
-
+#endif
   [super dealloc];
 }
 
@@ -104,14 +105,14 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)resizeForKeyboard:(NSNotification*)notification appearing:(BOOL)appearing {
-	CGRect keyboardBounds;
-	[[notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardBounds];
-
-	CGPoint keyboardStart;
-	[[notification.userInfo objectForKey:UIKeyboardCenterBeginUserInfoKey] getValue:&keyboardStart];
-
-	CGPoint keyboardEnd;
-	[[notification.userInfo objectForKey:UIKeyboardCenterEndUserInfoKey] getValue:&keyboardEnd];
+    CGRect keyboardBounds;
+    [[notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardBounds];
+    
+    CGPoint keyboardStart;
+    [[notification.userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] getValue:&keyboardStart];
+    
+    CGPoint keyboardEnd;
+    [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardEnd];
 
 	BOOL animated = keyboardStart.y != keyboardEnd.y;
   if (animated) {
@@ -293,7 +294,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)keyboardDidShow:(NSNotification*)notification {
-#ifdef __IPHONE_3_21
+#ifdef __IPHONE_3_2
   CGRect frameStart;
   [[notification.userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] getValue:&frameStart];
 
@@ -317,7 +318,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)keyboardWillHide:(NSNotification*)notification {
-#ifdef __IPHONE_3_21
+#ifdef __IPHONE_3_2
   CGRect frameEnd;
   [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&frameEnd];
 

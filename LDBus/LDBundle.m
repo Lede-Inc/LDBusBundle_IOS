@@ -89,7 +89,7 @@
  * 统一加载Bundle的Config配置到bundle中
  */
 -(BOOL) loadStaticBundleConfigToMap:(NSString *)bundlePath{
-    NSString  *configPath = [bundlePath stringByAppendingString:@"/config.xml"];
+    NSString  *configPath = [bundlePath stringByAppendingPathComponent:@"busconfig.xml"];
     if([[NSFileManager defaultManager] fileExistsAtPath:configPath]){
         TTBundleConfigParser *delegate = [[TTBundleConfigParser alloc] init];
         NSXMLParser *configParser = [[NSXMLParser alloc] initWithContentsOfURL:[NSURL fileURLWithPath:configPath]];

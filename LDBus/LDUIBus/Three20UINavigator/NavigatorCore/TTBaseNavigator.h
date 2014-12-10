@@ -62,6 +62,8 @@
  * Removes all view controllers from the window and releases them.
  */
 - (void)removeAllViewControllers;
+- (UIViewController*)getVisibleChildController:(UIViewController*)controller;
+
 
 
 

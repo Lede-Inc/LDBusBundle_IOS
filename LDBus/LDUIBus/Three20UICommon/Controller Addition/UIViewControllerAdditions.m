@@ -288,11 +288,6 @@ TT_FIX_CATEGORY_BUG(UIViewControllerAdditions)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)persistNavigationPath:(NSMutableArray*)path {
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)delayDidEnd {
 }
 
@@ -323,7 +318,11 @@ TT_FIX_CATEGORY_BUG(UIViewControllerAdditions)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dismissModalViewController {
-  [self dismissModalViewControllerAnimated:YES];
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
+    [self dismissModalViewControllerAnimated:YES];
+#else
+    [self dismissViewControllerAnimated:YES completion:nil];
+#endif
 }
 
 

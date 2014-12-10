@@ -130,13 +130,4 @@ TT_FIX_CATEGORY_BUG(UINavigationControllerAdditions)
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)persistNavigationPath:(NSMutableArray*)path {
-  for (UIViewController* controller in self.viewControllers) {
-    [[TTNavigator navigator] persistController:controller path:path];
-  }
-}
-
-
 @end

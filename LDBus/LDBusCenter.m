@@ -92,7 +92,7 @@ static LDBusCenter* busCenter = nil;
     NSArray *bundlePaths = [[NSBundle mainBundle] pathsForResourcesOfType:@"bundle" inDirectory:nil];
     for(int i =0; i<bundlePaths.count; i++){
         NSString *fromPath = [bundlePaths objectAtIndex:i];
-        NSString  *configPath = [fromPath stringByAppendingString:@"/config.xml"];
+        NSString  *configPath = [fromPath stringByAppendingPathComponent:@"busconfig.xml"];
         if([fileManager fileExistsAtPath:configPath]){
             NSString *toPath = [bundleCacheDir stringByAppendingPathComponent:[fromPath lastPathComponent]];
             NSLog(@"toBundleCacheDir>>>>%@", toPath);
