@@ -1,7 +1,7 @@
 #import "ContentController.h"
 
 #import "LDMessageBusCenter.h"
-#import "UIViewController+TTNavigator.h"
+#import "UIViewController+LDNavigator.h"
 
 @implementation ContentController
 

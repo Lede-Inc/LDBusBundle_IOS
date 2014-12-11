@@ -31,7 +31,7 @@ typedef enum {
  * 2. 如果编译成动态库，可以直接通过NSBundle进行管理, 为了方便以后扩展，直接继承NSBundle
  */
 
-@class TTNavigator;
+@class LDNavigator;
 @class TTFrameworkBundleObj;
 @class LDUIBusConnector;
 @interface LDBundle : NSBundle {
@@ -51,7 +51,7 @@ typedef enum {
     //bundle的UIBus connetor
     //如果自定义connector，必须继承busconnetor并遵循busconnetor的服务协议；
     LDUIBusConnector *_uibusConnetor;
-    TTNavigator *_navigator;
+    LDNavigator *_navigator;
 }
 
 @property (readonly, copy) NSString *updateURL;
@@ -71,7 +71,7 @@ typedef enum {
  */
 -(id) initBundleWithPath:(NSString *)path;
 
--(void)setNavigator:(TTNavigator *)navigator;
+-(void)setNavigator:(LDNavigator *)navigator;
 
 /**
  * 从config中获取服务总线配置

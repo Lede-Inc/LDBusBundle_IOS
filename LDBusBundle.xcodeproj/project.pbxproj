@@ -82,10 +82,10 @@
 		62E8B9CE1A39AA85001993A9 /* TTGlobalNavigatorMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B98E1A39AA85001993A9 /* TTGlobalNavigatorMetrics.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		62E8B9CF1A39AA85001993A9 /* TTWebController.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B98F1A39AA85001993A9 /* TTWebController.h */; };
 		62E8B9D01A39AA85001993A9 /* TTWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9901A39AA85001993A9 /* TTWebController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62E8B9D11A39AA85001993A9 /* TTNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9911A39AA85001993A9 /* TTNavigator.h */; };
-		62E8B9D21A39AA85001993A9 /* TTNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9921A39AA85001993A9 /* TTNavigator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62E8B9D31A39AA85001993A9 /* UIViewController+TTNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9931A39AA85001993A9 /* UIViewController+TTNavigator.h */; };
-		62E8B9D41A39AA85001993A9 /* UIViewController+TTNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9941A39AA85001993A9 /* UIViewController+TTNavigator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		62E8B9D11A39AA85001993A9 /* LDNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9911A39AA85001993A9 /* LDNavigator.h */; };
+		62E8B9D21A39AA85001993A9 /* LDNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9921A39AA85001993A9 /* LDNavigator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		62E8B9D31A39AA85001993A9 /* UIViewController+LDNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9931A39AA85001993A9 /* UIViewController+LDNavigator.h */; };
+		62E8B9D41A39AA85001993A9 /* UIViewController+LDNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9941A39AA85001993A9 /* UIViewController+LDNavigator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		62E8B9D51A39AA85001993A9 /* LDBundleConfigParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9951A39AA85001993A9 /* LDBundleConfigParser.h */; };
 		62E8B9D61A39AA85001993A9 /* LDBundleConfigParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9961A39AA85001993A9 /* LDBundleConfigParser.m */; };
 		62E8B9D91A39AB16001993A9 /* TTURLArguments.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9D71A39AB16001993A9 /* TTURLArguments.h */; };
@@ -223,10 +223,10 @@
 		62E8B98E1A39AA85001993A9 /* TTGlobalNavigatorMetrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalNavigatorMetrics.m; sourceTree = "<group>"; };
 		62E8B98F1A39AA85001993A9 /* TTWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTWebController.h; sourceTree = "<group>"; };
 		62E8B9901A39AA85001993A9 /* TTWebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTWebController.m; sourceTree = "<group>"; };
-		62E8B9911A39AA85001993A9 /* TTNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTNavigator.h; sourceTree = "<group>"; };
-		62E8B9921A39AA85001993A9 /* TTNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTNavigator.m; sourceTree = "<group>"; };
-		62E8B9931A39AA85001993A9 /* UIViewController+TTNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+TTNavigator.h"; sourceTree = "<group>"; };
-		62E8B9941A39AA85001993A9 /* UIViewController+TTNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+TTNavigator.m"; sourceTree = "<group>"; };
+		62E8B9911A39AA85001993A9 /* LDNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDNavigator.h; sourceTree = "<group>"; };
+		62E8B9921A39AA85001993A9 /* LDNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDNavigator.m; sourceTree = "<group>"; };
+		62E8B9931A39AA85001993A9 /* UIViewController+LDNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LDNavigator.h"; sourceTree = "<group>"; };
+		62E8B9941A39AA85001993A9 /* UIViewController+LDNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LDNavigator.m"; sourceTree = "<group>"; };
 		62E8B9951A39AA85001993A9 /* LDBundleConfigParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDBundleConfigParser.h; sourceTree = "<group>"; };
 		62E8B9961A39AA85001993A9 /* LDBundleConfigParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDBundleConfigParser.m; sourceTree = "<group>"; };
 		62E8B9D71A39AB16001993A9 /* TTURLArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTURLArguments.h; sourceTree = "<group>"; };
@@ -410,10 +410,10 @@
 				62E8B9571A39AA85001993A9 /* LDUIBusCenter.m */,
 				62E8B9581A39AA85001993A9 /* LDUIBusConnector.h */,
 				62E8B9591A39AA85001993A9 /* LDUIBusConnector.m */,
-				62E8B9911A39AA85001993A9 /* TTNavigator.h */,
-				62E8B9921A39AA85001993A9 /* TTNavigator.m */,
-				62E8B9931A39AA85001993A9 /* UIViewController+TTNavigator.h */,
-				62E8B9941A39AA85001993A9 /* UIViewController+TTNavigator.m */,
+				62E8B9911A39AA85001993A9 /* LDNavigator.h */,
+				62E8B9921A39AA85001993A9 /* LDNavigator.m */,
+				62E8B9931A39AA85001993A9 /* UIViewController+LDNavigator.h */,
+				62E8B9941A39AA85001993A9 /* UIViewController+LDNavigator.m */,
 				62E8B95A1A39AA85001993A9 /* NavigatorCore */,
 				62E8B98A1A39AA85001993A9 /* NavigatorUI */,
 			);
@@ -557,7 +557,7 @@
 				62E8B9CA1A39AA85001993A9 /* TTURLPatternText.h in Headers */,
 				62E8B9A71A39AA85001993A9 /* UIPopoverControllerAdditions.h in Headers */,
 				62E8B9B31A39AA85001993A9 /* TTGlobalCore.h in Headers */,
-				62E8B9D31A39AA85001993A9 /* UIViewController+TTNavigator.h in Headers */,
+				62E8B9D31A39AA85001993A9 /* UIViewController+LDNavigator.h in Headers */,
 				62E8B9B71A39AA85001993A9 /* TTBaseNavigator.h in Headers */,
 				62E8B9C51A39AA85001993A9 /* TTURLArgumentType.h in Headers */,
 				62E8B9D91A39AB16001993A9 /* TTURLArguments.h in Headers */,
@@ -577,7 +577,7 @@
 				62E8B9BA1A39AA85001993A9 /* TTURLAction.h in Headers */,
 				62E8B9B51A39AA85001993A9 /* TTGlobalCoreRects.h in Headers */,
 				62E8B9971A39AA85001993A9 /* LDBundle.h in Headers */,
-				62E8B9D11A39AA85001993A9 /* TTNavigator.h in Headers */,
+				62E8B9D11A39AA85001993A9 /* LDNavigator.h in Headers */,
 				62E8B9B91A39AA85001993A9 /* TTBaseNavigatorInternal.h in Headers */,
 				62E8B9A91A39AA85001993A9 /* UITabBarControllerAdditions.h in Headers */,
 				62E8B99D1A39AA85001993A9 /* LDMessageBusCenter.h in Headers */,
@@ -779,7 +779,7 @@
 			files = (
 				62E8B99C1A39AA85001993A9 /* LDBusContext.m in Sources */,
 				62E8B9AA1A39AA85001993A9 /* UITabBarControllerAdditions.m in Sources */,
-				62E8B9D21A39AA85001993A9 /* TTNavigator.m in Sources */,
+				62E8B9D21A39AA85001993A9 /* LDNavigator.m in Sources */,
 				62E8B9BE1A39AA85001993A9 /* TTURLMap.m in Sources */,
 				62E8B9981A39AA85001993A9 /* LDBundle.m in Sources */,
 				62E8B9C41A39AA85001993A9 /* TTURLPattern.m in Sources */,
@@ -801,7 +801,7 @@
 				62E8B9C71A39AA85001993A9 /* TTURLWildcard.m in Sources */,
 				62E8B9AE1A39AA85001993A9 /* NSStringAdditions.m in Sources */,
 				62E8B9B11A39AA85001993A9 /* TTDebug.m in Sources */,
-				62E8B9D41A39AA85001993A9 /* UIViewController+TTNavigator.m in Sources */,
+				62E8B9D41A39AA85001993A9 /* UIViewController+LDNavigator.m in Sources */,
 				62E8B9A61A39AA85001993A9 /* UINavigationControllerAdditions.m in Sources */,
 				62E8B9D61A39AA85001993A9 /* LDBundleConfigParser.m in Sources */,
 				62E8B9AC1A39AA85001993A9 /* UIViewControllerAdditions.m in Sources */,

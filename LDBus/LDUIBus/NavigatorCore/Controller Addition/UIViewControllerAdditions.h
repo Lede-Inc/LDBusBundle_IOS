@@ -29,7 +29,7 @@
  * The view controller that contains this view controller.
  *
  * This is just like parentViewController, except that it is not readonly.  This property offers
- * custom UIViewController subclasses the chance to tell TTNavigator how to follow the hierarchy
+ * custom UIViewController subclasses the chance to tell Navigator how to follow the hierarchy
  * of view controllers.
  */
 @property (nonatomic, retain) UIViewController* superController;
@@ -39,7 +39,7 @@
  *
  * This would be the selected view controller of a tab bar controller, or the top
  * view controller of a navigation controller.  This property offers custom UIViewController
- * subclasses the chance to tell TTNavigator how to follow the hierarchy of view controllers.
+ * subclasses the chance to tell Navigator how to follow the hierarchy of view controllers.
  */
 - (UIViewController*)topSubcontroller;
 

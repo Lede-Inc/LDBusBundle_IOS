@@ -11,16 +11,16 @@
 #import "LDUIBusCenter.h"
 #import "LDBusContext.h"
 
-#import "TTNavigator.h"
+#import "LDNavigator.h"
 #import "TTURLMap.h"
 #import "TTURLAction.h"
 #import "TTURLNavigatorPattern.h"
-#import "UIViewController+TTNavigator.h"
+#import "UIViewController+LDNavigator.h"
 #import "UIViewControllerAdditions.h"
 
 @interface LDUIBusConnector() {
     TTURLMap *_bundleMap;
-    TTNavigator *_navigator;
+    LDNavigator *_navigator;
 }
 
 @end
@@ -31,7 +31,7 @@
     _bundleMap = map;
 }
 
--(void) setGlobalNavigator:(TTNavigator*) navigator{
+-(void) setGlobalNavigator:(LDNavigator*) navigator{
     _navigator = navigator;
 }
 

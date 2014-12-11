@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@class TTNavigator;
+@class LDNavigator;
 @class TTURLMap;
 @class TTURLAction;
 @class TTURLPattern;
@@ -35,7 +35,7 @@
 /**
  * 从buscenter 赋值, 继承者可以重载自己加载map；
  */
--(void) setGlobalNavigator:(TTNavigator*) navigator;
+-(void) setGlobalNavigator:(LDNavigator*) navigator;
 
 
 //可以在继承类中重定向

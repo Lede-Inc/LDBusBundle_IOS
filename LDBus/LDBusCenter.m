@@ -13,14 +13,14 @@
 #import "LDServiceBusCenter.h"
 #import "LDMessageBusCenter.h"
 
-#import "TTNavigator.h"
+#import "LDNavigator.h"
 #import "TTGlobalNavigatorMetrics.h"
 
 
 static LDBusCenter* busCenter = nil;
 
 @interface LDBusCenter () {
-    TTNavigator *_mainNavigator;
+    LDNavigator *_mainNavigator;
 }
 
 @property (nonatomic, retain) NSString *bundleCacheDir;
@@ -49,7 +49,7 @@ static LDBusCenter* busCenter = nil;
     self = [super init];
     if(self) {
         //全局初始化一个navigator
-        _mainNavigator = [TTNavigator navigator];
+        _mainNavigator = [LDNavigator navigator];
         _mainNavigator.window = [[UIWindow alloc] initWithFrame:TTScreenBounds()];
         _bundlesMap = [[NSMutableDictionary alloc] initWithCapacity:5];
     }

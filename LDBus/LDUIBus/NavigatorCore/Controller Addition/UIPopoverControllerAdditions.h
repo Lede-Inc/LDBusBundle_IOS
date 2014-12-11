@@ -28,7 +28,7 @@
  * The view controller that contains this view controller.
  *
  * This is just like parentViewController, except that it is not readonly.  This property offers
- * custom UIViewController subclasses the chance to tell TTNavigator how to follow the hierarchy
+ * custom UIViewController subclasses the chance to tell Navigator how to follow the hierarchy
  * of view controllers.
  */
 @property (nonatomic, retain) UIViewController* superController;

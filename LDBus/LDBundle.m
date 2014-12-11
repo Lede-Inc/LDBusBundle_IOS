@@ -77,7 +77,7 @@
     }
 }
 
--(void)setNavigator:(TTNavigator *)navigator{
+-(void)setNavigator:(LDNavigator *)navigator{
     _navigator = navigator;
     if(_uibusConnetor){
         [_uibusConnetor setGlobalNavigator:_navigator];

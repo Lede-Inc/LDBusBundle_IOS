@@ -6,7 +6,7 @@
 #import "TTWebController.h"
 
 // UI
-#import "TTNavigator.h"
+#import "LDNavigator.h"
 
 // UINavigator
 #import "TTGlobalNavigatorMetrics.h"

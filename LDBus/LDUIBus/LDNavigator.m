@@ -4,7 +4,7 @@
 //
 
 
-#import "TTNavigator.h"
+#import "LDNavigator.h"
 
 // UINavigator
 #import "TTNavigationMode.h"
@@ -22,22 +22,22 @@
 #import "TTDebug.h"
 
 
-@implementation TTNavigator
+@implementation LDNavigator
 
 /**
  * 获取App target中全局导航的navigator
  */
-+ (TTNavigator*)navigator {
++ (LDNavigator*)navigator {
   TTBaseNavigator* navigator = [TTBaseNavigator globalNavigator];
   if (nil == navigator) {
-    navigator = [[[TTNavigator alloc] init] autorelease];
+    navigator = [[[LDNavigator alloc] init] autorelease];
     // setNavigator: retains.
     [super setGlobalNavigator:navigator];
   }
   // If this asserts, it's likely that you're attempting to use two different navigator
   // implementations simultaneously. Be consistent!
-  TTDASSERT([navigator isKindOfClass:[TTNavigator class]]);
-  return (TTNavigator*)navigator;
+  TTDASSERT([navigator isKindOfClass:[LDNavigator class]]);
+  return (LDNavigator*)navigator;
 }
 
 

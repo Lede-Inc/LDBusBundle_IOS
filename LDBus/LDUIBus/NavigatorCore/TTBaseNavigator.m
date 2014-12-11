@@ -11,7 +11,7 @@
 #import "TTURLAction.h"
 #import "TTURLMap.h"
 #import "TTURLNavigatorPattern.h"
-#import "UIViewController+TTNavigator.h"
+#import "UIViewController+LDNavigator.h"
 
 // UINavigator (private)
 #import "TTBaseNavigatorInternal.h"

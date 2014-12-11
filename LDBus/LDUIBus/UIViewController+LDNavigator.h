@@ -9,15 +9,15 @@
 
 
 /**
- * @category UIViewController (TTNavigator)
+ * @category UIViewController (LDNavigator)
  * 主要用作ViewController继承，给基本viewController添加initWithNavigationURL:query供继承
  * 也可以不继承，另外提供整个navigator的垃圾回收：
  * 在收到内存搞紧之后，通过调用[UIViewController doNavigatorGarbageCollection]
  */
-@interface UIViewController (TTNavigator)
+@interface UIViewController (LDNavigator)
 
 /**
- * The default initializer sent to view controllers opened through TTNavigator.
+ * The default initializer sent to view controllers opened through Navigator.
  */
 - (id)initWithNavigatorURL:(NSURL*)URL query:(NSDictionary*)query;
 
@@ -27,7 +27,7 @@
 @property (nonatomic, readonly) NSString* navigatorURL;
 
 /**
- * The URL that was used to load this controller through TTNavigator.
+ * The URL that was used to load this controller through Navigator.
  * 这个是参加Navigator导航生成ViewController的最原始的URL，不允许改变
  */
 @property (nonatomic, copy) NSString* originalNavigatorURL;

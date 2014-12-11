@@ -9,7 +9,7 @@
 // UINavigator
 #import "TTURLNavigatorPattern.h"
 // UINavigator (private)
-#import "UIViewController+TTNavigator.h"
+#import "UIViewController+LDNavigator.h"
 
 // Core
 #import "TTGlobalCore.h"

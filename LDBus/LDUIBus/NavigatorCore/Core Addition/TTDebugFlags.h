@@ -9,7 +9,6 @@
  * These flags are used primarily by TTDCONDITIONLOG.
  * Example:
  *
- *    TTDCONDITIONLOG(TTDFLAG_NAVIGATOR, @"TTNavigator activated");
  *
  * This will only write to the log if the TTDFLAG_NAVIGATOR is set to non-zero.
  */
