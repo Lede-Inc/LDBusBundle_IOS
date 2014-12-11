@@ -10,7 +10,7 @@
 #import "LDBundle.h"
 #import "LDUIBusConnector.h"
 #import "TTURLMap.h"
-#import "TTBundleConfigParser.h"
+#import "LDBundleConfigParser.h"
 #import "TTWebController.h"
 
 //获取系统版本
@@ -91,7 +91,7 @@
 -(BOOL) loadStaticBundleConfigToMap:(NSString *)bundlePath{
     NSString  *configPath = [bundlePath stringByAppendingPathComponent:@"busconfig.xml"];
     if([[NSFileManager defaultManager] fileExistsAtPath:configPath]){
-        TTBundleConfigParser *delegate = [[TTBundleConfigParser alloc] init];
+        LDBundleConfigParser *delegate = [[LDBundleConfigParser alloc] init];
         NSXMLParser *configParser = [[NSXMLParser alloc] initWithContentsOfURL:[NSURL fileURLWithPath:configPath]];
         if (configParser == nil) {
             NSLog(@"Failed to initialize XML parser:>>>path=%@", configPath);

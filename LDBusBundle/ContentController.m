@@ -1,6 +1,4 @@
 #import "ContentController.h"
-#import "Three20UICommon.h"
-#import "Three20Core.h"
 
 #import "LDMessageBusCenter.h"
 #import "UIViewController+TTNavigator.h"
@@ -11,7 +9,6 @@
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)orderAction:(NSString*)action {
-  TTDINFO(@"ACTION: %@", action);
 }
 
 - (void)showNutrition {
@@ -61,8 +58,6 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
         initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered
         target:self action:@selector(dismiss)];
-
-    TTDINFO(@"ORDER REFERRED FROM %@", [query objectForKey:@"ref"]);
   }
   return self;
 }
