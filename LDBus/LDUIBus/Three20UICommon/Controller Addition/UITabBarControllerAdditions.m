@@ -21,7 +21,7 @@
 
 // UI
 #import "TTNavigator.h"
-#import "TTNavigationController.h"
+#import "TTBaseNavigationController.h"
 
 // UICommon
 #import "UIViewControllerAdditions.h"
@@ -50,7 +50,7 @@ TT_FIX_CATEGORY_BUG(UITabBarControllerAdditions)
     return controller;
 
   } else {
-    TTNavigationController* navController = [[[TTNavigationController alloc] init] autorelease];
+    TTBaseNavigationController* navController = [[[TTBaseNavigationController alloc] init] autorelease];
     [navController pushViewController:controller animated:NO];
     return navController;
   }

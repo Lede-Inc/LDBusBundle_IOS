@@ -6,7 +6,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@protocol TTNavigatorRootContainer;
 @class TTURLAction;
 @class TTURLMap;
 @class TTURLPattern;
@@ -20,14 +19,10 @@
   UIViewController*           _rootViewController;
   id        _popoverController;
   BOOL                        _opensExternalURLs;
-  id<TTNavigatorRootContainer>  _rootContainer;
 }
 
 //The window that contains the view controller hierarchy
 @property (nonatomic, retain) UIWindow* window;
-
-//A container that holds the root view controller.
-@property (nonatomic, assign) id<TTNavigatorRootContainer> rootContainer;
 
 //The controller that is at the root of the view controller hierarchy.
 @property (nonatomic, readonly) UIViewController* rootViewController;
@@ -44,7 +39,6 @@
 @property (nonatomic) BOOL opensExternalURLs;
 
 
-+ (TTBaseNavigator*)navigatorForView:(UIView*)view;
 + (TTBaseNavigator*)globalNavigator;
 + (void)setGlobalNavigator:(TTBaseNavigator*)navigator;
 

@@ -16,9 +16,4 @@
 
 + (TTNavigator*)navigator;
 
-/**
- * Reloads the content in the visible view controller.
- */
-- (void)reload;
-
 @end

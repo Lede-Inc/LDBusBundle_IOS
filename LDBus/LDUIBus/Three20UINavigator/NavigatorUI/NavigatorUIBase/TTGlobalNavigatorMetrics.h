@@ -16,9 +16,8 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
 /**
- * @return the current orientation of the visible view controller.
+ * 返回当前ViewControlelr的InterfaceOrientation
  */
 UIInterfaceOrientation TTInterfaceOrientation();
 
@@ -28,36 +27,9 @@ UIInterfaceOrientation TTInterfaceOrientation();
 CGRect TTScreenBounds();
 
 /**
- * @return the application frame below the navigation bar.
- */
-CGRect TTNavigationFrame();
-
-/**
- * @return the application frame below the navigation bar and above a toolbar.
- */
-CGRect TTToolbarNavigationFrame();
-
-/**
- * @return the application frame below the navigation bar and above the keyboard.
- */
-CGRect TTKeyboardNavigationFrame();
-
-/**
  * @return the height of the area containing the status bar and possibly the in-call status bar.
  */
 CGFloat TTStatusHeight();
 
-/**
- * @return the height of the area containing the status bar and navigation bar.
- */
-CGFloat TTBarsHeight();
 
-/**
- * @return the height of a toolbar considering the current orientation.
- */
-CGFloat TTToolbarHeight();
 
-/**
- * @return the height of the keyboard considering the current orientation.
- */
-CGFloat TTKeyboardHeight();

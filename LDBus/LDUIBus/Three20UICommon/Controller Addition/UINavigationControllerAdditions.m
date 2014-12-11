@@ -21,7 +21,7 @@
 
 // UI
 #import "TTNavigator.h"
-#import "TTNavigationController.h"
+#import "TTBaseNavigationController.h"
 
 // UINavigator
 #import "TTURLMap.h"
@@ -84,8 +84,8 @@ TT_FIX_CATEGORY_BUG(UINavigationControllerAdditions)
 - (void)addSubcontroller:(UIViewController*)controller animated:(BOOL)animated
         transition:(UIViewAnimationTransition)transition {
   if (animated && transition) {
-    if ([self isKindOfClass:[TTNavigationController class]]) {
-      [(TTNavigationController*)self pushViewController: controller
+    if ([self isKindOfClass:[TTBaseNavigationController class]]) {
+      [(TTBaseNavigationController*)self pushViewController: controller
                                  animatedWithTransition: transition];
 
     } else {

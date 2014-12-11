@@ -1,9 +1,9 @@
 #import "ContentController.h"
-#import "Three20UINavigator.h"
 #import "Three20UICommon.h"
 #import "Three20Core.h"
 
 #import "LDMessageBusCenter.h"
+#import "UIViewController+TTNavigator.h"
 
 @implementation ContentController
 
@@ -16,6 +16,15 @@
 
 - (void)showNutrition {
   //TTOpenURL([NSString stringWithFormat:@"tt://food/%@/nutrition", self.content]);
+}
+
+
+-(id) initWithNavigatorURL:(NSURL *)URL query:(NSDictionary *)query {
+    self =[super init];
+    if(self){
+        
+    }
+    return self;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

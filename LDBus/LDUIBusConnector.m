@@ -93,18 +93,23 @@
                                   pattern: (TTURLPattern**)pattern {
     NSRange fragmentRange = [URL rangeOfString:@"#" options:NSBackwardsSearch];
     if (fragmentRange.location != NSNotFound) {
+        //如果带有fragement，先截取baseURL
         NSString* baseURL = [URL substringToIndex:fragmentRange.location];
+        //如果当前navigator的topViewController是baseURL
         if ([_navigator.URL isEqualToString:baseURL]) {
             UIViewController* controller = _navigator.visibleViewController;
             id result = [_bundleMap dispatchURL:URL toTarget:controller query:query];
             if ([result isKindOfClass:[UIViewController class]]) {
                 return result;
-                
             } else {
                 return controller;
             }
             
-        } else {
+        }
+        
+        //否则，通过BaseURL生成一个ViewController
+        //如果该URL能够处理，那么BaseURL一定是在该bundleMap下
+        else {
             id object = [_bundleMap objectForURL:baseURL query:nil pattern:(TTURLNavigatorPattern**)pattern];
             if (object) {
                 id result = [_bundleMap dispatchURL:URL toTarget:object query:query];

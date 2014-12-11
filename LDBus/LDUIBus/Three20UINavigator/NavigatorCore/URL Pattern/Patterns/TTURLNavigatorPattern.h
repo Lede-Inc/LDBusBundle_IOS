@@ -1,30 +1,20 @@
 //
-// Copyright 2009-2011 Facebook
+//  Created by 庞辉 on 12/5/14.
+//  Copyright (c) 2014 庞辉. All rights reserved.
 //
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//    http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-//
+
 
 // UI
 #import "TTURLPattern.h"
 #import "TTNavigationMode.h"
 
 @interface TTURLNavigatorPattern : TTURLPattern {
-  Class             _targetClass;
-  id                _targetObject;
-  TTNavigationMode  _navigationMode;
-  NSString*         _parentURL;
-  NSInteger         _transition;
-  NSInteger         _argumentCount;
+    Class             _targetClass;  //url对应的class
+    id                _targetObject; //url对应的object
+    TTNavigationMode  _navigationMode; //导航方式
+    NSString*         _parentURL;   //parenturl
+    NSInteger         _transition;  //配置的默认动画方式
+    NSInteger         _argumentCount; //配置初始化selector的参数个数
 }
 
 @property (nonatomic, assign)   Class             targetClass;
@@ -39,15 +29,23 @@
 - (id)initWithTarget:(id)target;
 - (id)initWithTarget:(id)target mode:(TTNavigationMode)navigationMode;
 
+/**
+ * 解析URLPattern
+ */
 - (void)compile;
 
+/**
+ * 判断调用URL是否喝pattern匹配
+ */
 - (BOOL)matchURL:(NSURL*)URL;
 
+/*
+ * 通过url生成object，直接通过object invoke一个object
+ */
 - (id)invoke:(id)target withURL:(NSURL*)URL query:(NSDictionary*)query;
 
 /**
- * either instantiates an object or delegates object creation
- * depending on current configuration
+ * 通过target class alloc init 或者调用selector初始化一个object
  * @return the newly created object or nil if something went wrong
  */
 - (id)createObjectFromURL:(NSURL*)URL query:(NSDictionary*)query;

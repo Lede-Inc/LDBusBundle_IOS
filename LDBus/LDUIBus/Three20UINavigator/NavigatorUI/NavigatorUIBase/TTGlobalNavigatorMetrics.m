@@ -15,14 +15,8 @@
 //
 
 #import "TTGlobalNavigatorMetrics.h"
-
 // UINavigator
 #import "TTBaseNavigator.h"
-
-
-// UICommon
-#import "TTGlobalUICommon.h"
-
 // Core
 #import "TTGlobalCoreRects.h"
 
@@ -51,25 +45,6 @@ CGRect TTScreenBounds() {
 }
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-CGRect TTNavigationFrame() {
-  CGRect frame = [UIScreen mainScreen].applicationFrame;
-  return CGRectMake(0, 0, frame.size.width, frame.size.height - TTToolbarHeight());
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-CGRect TTToolbarNavigationFrame() {
-  CGRect frame = [UIScreen mainScreen].applicationFrame;
-  return CGRectMake(0, 0, frame.size.width, frame.size.height - TTToolbarHeight()*2);
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-CGRect TTKeyboardNavigationFrame() {
-  return TTRectContract(TTNavigationFrame(), 0, TTKeyboardHeight());
-}
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 CGFloat TTStatusHeight() {
@@ -83,28 +58,4 @@ CGFloat TTStatusHeight() {
   } else {
     return [UIScreen mainScreen].applicationFrame.origin.y;
   }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-CGFloat TTBarsHeight() {
-  CGRect frame = [UIApplication sharedApplication].statusBarFrame;
-  if (UIInterfaceOrientationIsPortrait(TTInterfaceOrientation())) {
-    return frame.size.height + TT_ROW_HEIGHT;
-
-  } else {
-    return frame.size.width + (TTIsPad() ? TT_ROW_HEIGHT : TT_LANDSCAPE_TOOLBAR_HEIGHT);
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-CGFloat TTToolbarHeight() {
-  return TTToolbarHeightForOrientation(TTInterfaceOrientation());
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-CGFloat TTKeyboardHeight() {
-  return TTKeyboardHeightForOrientation(TTInterfaceOrientation());
 }

@@ -1,113 +1,95 @@
 //
-// Copyright 2009-2011 Facebook
+//  Created by 庞辉 on 12/5/14.
+//  Copyright (c) 2014 庞辉. All rights reserved.
 //
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//    http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-//
+
 
 #import "TTBaseNavigationController.h"
 
-// UINavigator
-#import "TTBaseNavigator.h"
-#import "TTURLMap.h"
+#define LD_FLIP_TRANSITION_DURATION 0.7f
 
-// UINavigator (Additions)
-#import "UIViewController+TTNavigator.h"
-
-// UICommon
-#import "TTGlobalUICommon.h"
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTBaseNavigationController
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UIViewAnimationTransition)invertTransition:(UIViewAnimationTransition)transition {
-  switch (transition) {
-    case UIViewAnimationTransitionCurlUp:
-      return UIViewAnimationTransitionCurlDown;
-    case UIViewAnimationTransitionCurlDown:
-      return UIViewAnimationTransitionCurlUp;
-    case UIViewAnimationTransitionFlipFromLeft:
-      return UIViewAnimationTransitionFlipFromRight;
-    case UIViewAnimationTransitionFlipFromRight:
-      return UIViewAnimationTransitionFlipFromLeft;
-    default:
-      return UIViewAnimationTransitionNone;
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)pushAnimationDidStop {
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark UINavigationController
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * 重载Navigaiton Pop ViewController的方法
+ */
 - (UIViewController*)popViewControllerAnimated:(BOOL)animated {
-  if (animated) {
-    UIViewAnimationTransition transition = UIViewAnimationTransitionNone;
-    if (transition) {
-      UIViewAnimationTransition inverseTransition = [self invertTransition:transition];
-      return [self popViewControllerAnimatedWithTransition:inverseTransition];
+    if (animated) {
+        UIViewAnimationTransition transition = UIViewAnimationTransitionNone;
+        if (transition) {
+            UIViewAnimationTransition inverseTransition = [self invertTransition:transition];
+            return [self popViewControllerAnimatedWithTransition:inverseTransition];
+        }
     }
-  }
-
-  return [super popViewControllerAnimated:animated];
+    
+    return [super popViewControllerAnimated:animated];
 }
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * 获取某个动画的反转动画
+ */
+- (UIViewAnimationTransition)invertTransition:(UIViewAnimationTransition)transition {
+    switch (transition) {
+        case UIViewAnimationTransitionCurlUp:
+            return UIViewAnimationTransitionCurlDown;
+        case UIViewAnimationTransitionCurlDown:
+            return UIViewAnimationTransitionCurlUp;
+        case UIViewAnimationTransitionFlipFromLeft:
+            return UIViewAnimationTransitionFlipFromRight;
+        case UIViewAnimationTransitionFlipFromRight:
+            return UIViewAnimationTransitionFlipFromLeft;
+        default:
+            return UIViewAnimationTransitionNone;
+    }
+}
+
+
+
 #pragma mark -
 #pragma mark Public
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * 定制动画push
+ */
 - (void)pushViewController: (UIViewController*)controller
     animatedWithTransition: (UIViewAnimationTransition)transition {
-  [self pushViewController:controller animated:NO];
-
-  [UIView beginAnimations:nil context:nil];
-  [UIView setAnimationDuration:TT_FLIP_TRANSITION_DURATION];
-  [UIView setAnimationDelegate:self];
-  [UIView setAnimationDidStopSelector:@selector(pushAnimationDidStop)];
-  [UIView setAnimationTransition:transition forView:self.view cache:YES];
-  [UIView commitAnimations];
+    [self pushViewController:controller animated:NO];
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:LD_FLIP_TRANSITION_DURATION];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(pushAnimationDidStop)];
+    [UIView setAnimationTransition:transition forView:self.view cache:YES];
+    [UIView commitAnimations];
 }
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * 定制动画pop
+ */
 - (UIViewController*)popViewControllerAnimatedWithTransition:(UIViewAnimationTransition)transition {
-  UIViewController* poppedController = [self popViewControllerAnimated:NO];
-
-  [UIView beginAnimations:nil context:NULL];
-  [UIView setAnimationDuration:TT_FLIP_TRANSITION_DURATION];
-  [UIView setAnimationDelegate:self];
-  [UIView setAnimationDidStopSelector:@selector(pushAnimationDidStop)];
-  [UIView setAnimationTransition:transition forView:self.view cache:NO];
-  [UIView commitAnimations];
-
-  return poppedController;
+    UIViewController* poppedController = [self popViewControllerAnimated:NO];
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:LD_FLIP_TRANSITION_DURATION];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(pushAnimationDidStop)];
+    [UIView setAnimationTransition:transition forView:self.view cache:NO];
+    [UIView commitAnimations];
+    
+    return poppedController;
 }
+
+
+/**
+ * 动画结束时响应
+ */
+- (void)pushAnimationDidStop {
+}
+
 
 
 @end

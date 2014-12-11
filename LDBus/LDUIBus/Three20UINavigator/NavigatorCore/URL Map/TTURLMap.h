@@ -1,18 +1,8 @@
 //
-// Copyright 2009-2011 Facebook
+//  Created by 庞辉 on 12/5/14.
+//  Copyright (c) 2014 庞辉. All rights reserved.
 //
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//    http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-//
+
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
@@ -20,25 +10,20 @@
 #import "TTNavigationMode.h"
 
 @class TTURLNavigatorPattern;
-@class TTURLGeneratorPattern;
 
 @interface TTURLMap : NSObject {
-  NSMutableDictionary*    _objectMappings;
-
-  NSMutableArray*         _objectPatterns;
-  NSMutableArray*         _fragmentPatterns;
-  NSMutableDictionary*    _stringPatterns;
-
-  NSMutableDictionary*    _schemes;
-
-  TTURLNavigatorPattern*  _defaultObjectPattern;
-  TTURLNavigatorPattern*  _hashPattern;
-
-  BOOL                    _invalidPatterns;
+    NSMutableDictionary*    _objectMappings; //存储通过URL初始化的Object
+    NSMutableArray*         _objectPatterns; //存储URLPattern
+    NSMutableArray*         _fragmentPatterns; //存储带fragement的URLPattern
+    NSMutableDictionary*    _schemes;  //存储支持的scheme
+    
+    TTURLNavigatorPattern*  _defaultObjectPattern; //当找不到匹配时的URLPattern，一般配置一个WebViewController
+    BOOL                    _invalidPatterns; //是否有不合法的Pattern
 }
 
 /**
  * Adds a URL pattern which will perform a selector on an object when loaded.
+ * 在一个已初始化的Object中打开一个ViewController
  */
 - (void)from:(NSString*)URL toObject:(id)object withWebURL:(NSString *)webURL;
 - (void)from:(NSString*)URL toObject:(id)object selector:(SEL)selector withWebURL:(NSString *)webURL;
@@ -85,37 +70,12 @@
 - (void)from:(NSString*)URL toPopoverViewController:(id)target withWebURL:(NSString *)webURL;
 - (void)from:(NSString*)URL toPopoverViewController:(id)target selector:(SEL)selector withWebURL:(NSString *)webURL;
 
-/**
- * Adds a mapping from a class to a generated URL.
- */
-- (void)from:(Class)cls toURL:(NSString*)URL;
-
-/**
- * Adds a mapping from a class and a special name to a generated URL.
- */
-- (void)from:(Class)cls name:(NSString*)name toURL:(NSString*)URL;
-
-/**
- * Adds a direct mapping from a literal URL to an object.
- *
- * The URL must not be a pattern - it must be the a literal URL. All requests to open this URL will
- * return the object bound to it, rather than going through the pattern matching process to create
- * a new object.
- *
- * Mapped objects are not retained.  You are responsible for removing the mapping when the object
- * is destroyed, or risk crashes.
- */
-- (void)setObject:(id)object forURL:(NSString*)URL;
 
 /**
  * Removes all objects and patterns mapped to a URL.
  */
 - (void)removeURL:(NSString*)URL;
 
-/**
- * Removes all URLs bound to an object.
- */
-- (void)removeObject:(id)object;
 
 /**
  * Removes objects bound literally to the URL.
@@ -160,11 +120,6 @@
  */
 - (BOOL)isAppURL:(NSURL*)URL;
 
-/**
- * Gets a URL that has been mapped to the object.
- */
-- (NSString*)URLForObject:(id)object;
-- (NSString*)URLForObject:(id)object withName:(NSString*)name;
 
 /**
  * 根据url获取匹配的pattern

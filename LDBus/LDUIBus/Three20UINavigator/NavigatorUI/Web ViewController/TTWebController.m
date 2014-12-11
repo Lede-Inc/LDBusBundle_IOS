@@ -51,7 +51,7 @@
   return self;
 }
 
-- (BOOL)isWebURL:(NSURL*)URL {
+- (BOOL)isLDWebURL:(NSURL*)URL {
     return [URL.scheme caseInsensitiveCompare:@"http"] == NSOrderedSame
     || [URL.scheme caseInsensitiveCompare:@"https"] == NSOrderedSame
     || [URL.scheme caseInsensitiveCompare:@"ftp"] == NSOrderedSame
@@ -71,7 +71,7 @@
 
     } else {
         //判断URL是否是webURL
-        if([self isWebURL:URL]){
+        if([self isLDWebURL:URL]){
             [self openURL:URL];
         }else {
             //判定是否重新传递URL，优先级在前面

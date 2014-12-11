@@ -1,5 +1,4 @@
 #import <UIKit/UIKit.h>
-#import "TTViewController.h"
 
 typedef enum {
   ContentTypeNone,

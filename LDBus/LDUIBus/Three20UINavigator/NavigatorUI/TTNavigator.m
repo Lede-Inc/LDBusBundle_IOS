@@ -6,11 +6,8 @@
 
 #import "TTNavigator.h"
 
-// UI
-#import "TTPopupViewController.h"
-
 // UINavigator
-#import "TTURLMap.h"
+#import "TTNavigationMode.h"
 #import "TTURLAction.h"
 
 // UINavigator (private)
@@ -19,6 +16,7 @@
 
 // UICommon
 #import "UIViewControllerAdditions.h"
+#import "UIPopoverControllerAdditions.h"
 
 // Core
 #import "TTDebug.h"
@@ -52,18 +50,18 @@
  *
  * @private
  */
-- (void)presentPopupController: (TTPopupViewController*)controller
+- (void)presentPopupController: (UIPopoverController*)controller
               parentController: (UIViewController*)parentController
                         action: (TTURLAction*)action {
   if (nil != action.sourceButton) {
-    [controller showFromBarButtonItem: action.sourceButton
-                             animated: action.animated];
-
+      [controller presentPopoverFromBarButtonItem:action.sourceButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:action.animated];
   } else {
-    parentController.popupViewController = controller;
+    parentController.popupViewController = (UIViewController *)controller;
     controller.superController = parentController;
-    [controller showInView: parentController.view
-                  animated: action.animated];
+      [controller presentPopoverFromRect:action.sourceRect
+                                  inView:parentController.view
+                permittedArrowDirections:UIPopoverArrowDirectionAny
+                                animated:action.animated];
   }
 }
 
@@ -80,8 +78,8 @@
                               mode: (TTNavigationMode)mode
                             action: (TTURLAction*)action {
 
-  if ([controller isKindOfClass:[TTPopupViewController class]]) {
-    TTPopupViewController* popupViewController = (TTPopupViewController*)controller;
+  if ([controller isKindOfClass:[UIPopoverController class]]) {
+    UIPopoverController* popupViewController = (UIPopoverController*)controller;
     [self presentPopupController: popupViewController
                 parentController: parentController
                           action: action];
@@ -108,19 +106,6 @@
     return [super getVisibleChildController:controller];
 }
 
-
-/**
- * 重载保存的ModelViewController
- *
- * @public
- */
-- (void)reload {
-  UIViewController* controller = self.visibleViewController;
-  if ([controller isKindOfClass:[TTModelViewController class]]) {
-    TTModelViewController* ttcontroller = (TTModelViewController*)controller;
-    [ttcontroller reload];
-  }
-}
 
 
 /**

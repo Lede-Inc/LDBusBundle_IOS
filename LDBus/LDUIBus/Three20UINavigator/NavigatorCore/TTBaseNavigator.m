@@ -7,7 +7,6 @@
 
 // UINavigator
 #import "TTGlobalNavigatorMetrics.h"
-#import "TTNavigatorRootContainer.h"
 #import "TTBaseNavigationController.h"
 #import "TTURLAction.h"
 #import "TTURLMap.h"
@@ -39,7 +38,6 @@ static TTBaseNavigator* gNavigator = nil;
 @synthesize window                    = _window;
 @synthesize rootViewController        = _rootViewController;
 @synthesize opensExternalURLs         = _opensExternalURLs;
-@synthesize rootContainer             = _rootContainer;
 
 
 /**
@@ -85,46 +83,6 @@ static TTBaseNavigator* gNavigator = nil;
     gNavigator = [navigator retain];
   }
 }
-
-
-
-/**
- * 通过当前所在的view获取全局navigator：
- * 如果是BarButtonItem，直接返回当前的全局navigator；
- * 否则通过controller的层次栈找到支持RootContainer协议的实现者, 通过其单签controller找到navigator
- *
- * @public
- */
-+ (TTBaseNavigator*)navigatorForView:(UIView*)view {
-  // If this is called with a UIBarButtonItem, we can't traverse a view hierarchy to find the
-  // navigator, return the global navigator as a fallback.
-  if (![view isKindOfClass:[UIView class]]) {
-    return [TTBaseNavigator globalNavigator];
-  }
-
-  id<TTNavigatorRootContainer>  container = nil;
-  UIViewController*             controller = nil;      // The iterator.
-  UIViewController*             childController = nil; // The last iterated controller.
-
-  for (controller = view.viewController;
-       nil != controller;
-       controller = controller.parentViewController) {
-    if ([controller conformsToProtocol:@protocol(TTNavigatorRootContainer)]) {
-      container = (id<TTNavigatorRootContainer>)controller;
-      break;
-    }
-
-    childController = controller;
-  }
-
-  TTBaseNavigator* navigator = [container getNavigatorForController:childController];
-  if (nil == navigator) {
-    navigator = [TTBaseNavigator globalNavigator];
-  }
-
-  return navigator;
-}
-
 
 
 
@@ -224,22 +182,16 @@ static TTBaseNavigator* gNavigator = nil;
  * @public
  */
 - (void)setRootViewController:(UIViewController*)controller {
-  if (controller != _rootViewController) {
-    [_rootViewController release];
-    _rootViewController = [controller retain];
-
-    //重新设置当前导航器的rootViewController
-    if (nil != _rootContainer) {
-      [_rootContainer navigator:self setRootViewController:_rootViewController];
-
-    } else {
-      [self.window setRootViewController:_rootViewController];
-      [self.window addSubview:_rootViewController.view];
-       
-      //当setroot的时候，显示window
-     [self.window makeKeyAndVisible];
+    if (controller != _rootViewController) {
+        [_rootViewController release];
+        _rootViewController = [controller retain];
+        
+        [self.window setRootViewController:_rootViewController];
+        [self.window addSubview:_rootViewController.view];
+        
+        //当setroot的时候，显示window
+        [self.window makeKeyAndVisible];
     }
-  }
 }
 
 
