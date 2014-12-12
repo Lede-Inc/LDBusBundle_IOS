@@ -1,8 +1,5 @@
 #import "ContentController.h"
 
-#import "LDMessageBusCenter.h"
-#import "UIViewController+LDNavigator.h"
-
 @implementation ContentController
 
 @synthesize content = _content, text = _text;

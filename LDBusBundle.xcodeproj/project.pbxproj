@@ -27,69 +27,69 @@
 		62E8B8A91A39A75A001993A9 /* LDBusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B8A81A39A75A001993A9 /* LDBusTests.m */; };
 		62E8B8AC1A39A75A001993A9 /* LDBus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62E8B8951A39A75A001993A9 /* LDBus.framework */; };
 		62E8B8AD1A39A75A001993A9 /* LDBus.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 62E8B8951A39A75A001993A9 /* LDBus.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		62E8B9971A39AA85001993A9 /* LDBundle.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9491A39AA85001993A9 /* LDBundle.h */; };
+		62E8B9971A39AA85001993A9 /* LDBundle.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9491A39AA85001993A9 /* LDBundle.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9981A39AA85001993A9 /* LDBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B94A1A39AA85001993A9 /* LDBundle.m */; };
-		62E8B9991A39AA85001993A9 /* LDBusCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B94B1A39AA85001993A9 /* LDBusCenter.h */; };
+		62E8B9991A39AA85001993A9 /* LDBusCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B94B1A39AA85001993A9 /* LDBusCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		62E8B99A1A39AA85001993A9 /* LDBusCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B94C1A39AA85001993A9 /* LDBusCenter.m */; };
-		62E8B99B1A39AA85001993A9 /* LDBusContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B94D1A39AA85001993A9 /* LDBusContext.h */; };
+		62E8B99B1A39AA85001993A9 /* LDBusContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B94D1A39AA85001993A9 /* LDBusContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		62E8B99C1A39AA85001993A9 /* LDBusContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B94E1A39AA85001993A9 /* LDBusContext.m */; };
-		62E8B99D1A39AA85001993A9 /* LDMessageBusCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9501A39AA85001993A9 /* LDMessageBusCenter.h */; };
+		62E8B99D1A39AA85001993A9 /* LDMessageBusCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9501A39AA85001993A9 /* LDMessageBusCenter.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B99E1A39AA85001993A9 /* LDMessageBusCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9511A39AA85001993A9 /* LDMessageBusCenter.m */; };
-		62E8B99F1A39AA85001993A9 /* LDServiceBusCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9531A39AA85001993A9 /* LDServiceBusCenter.h */; };
+		62E8B99F1A39AA85001993A9 /* LDServiceBusCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9531A39AA85001993A9 /* LDServiceBusCenter.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9A01A39AA85001993A9 /* LDServiceBusCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9541A39AA85001993A9 /* LDServiceBusCenter.m */; };
-		62E8B9A11A39AA85001993A9 /* LDUIBusCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9561A39AA85001993A9 /* LDUIBusCenter.h */; };
+		62E8B9A11A39AA85001993A9 /* LDUIBusCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9561A39AA85001993A9 /* LDUIBusCenter.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9A21A39AA85001993A9 /* LDUIBusCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9571A39AA85001993A9 /* LDUIBusCenter.m */; };
-		62E8B9A31A39AA85001993A9 /* LDUIBusConnector.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9581A39AA85001993A9 /* LDUIBusConnector.h */; };
+		62E8B9A31A39AA85001993A9 /* LDUIBusConnector.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9581A39AA85001993A9 /* LDUIBusConnector.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		62E8B9A41A39AA85001993A9 /* LDUIBusConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9591A39AA85001993A9 /* LDUIBusConnector.m */; };
-		62E8B9A51A39AA85001993A9 /* UINavigationControllerAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B95C1A39AA85001993A9 /* UINavigationControllerAdditions.h */; };
+		62E8B9A51A39AA85001993A9 /* UINavigationControllerAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B95C1A39AA85001993A9 /* UINavigationControllerAdditions.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9A61A39AA85001993A9 /* UINavigationControllerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B95D1A39AA85001993A9 /* UINavigationControllerAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62E8B9A71A39AA85001993A9 /* UIPopoverControllerAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B95E1A39AA85001993A9 /* UIPopoverControllerAdditions.h */; };
+		62E8B9A71A39AA85001993A9 /* UIPopoverControllerAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B95E1A39AA85001993A9 /* UIPopoverControllerAdditions.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9A81A39AA85001993A9 /* UIPopoverControllerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B95F1A39AA85001993A9 /* UIPopoverControllerAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62E8B9A91A39AA85001993A9 /* UITabBarControllerAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9601A39AA85001993A9 /* UITabBarControllerAdditions.h */; };
+		62E8B9A91A39AA85001993A9 /* UITabBarControllerAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9601A39AA85001993A9 /* UITabBarControllerAdditions.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9AA1A39AA85001993A9 /* UITabBarControllerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9611A39AA85001993A9 /* UITabBarControllerAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62E8B9AB1A39AA85001993A9 /* UIViewControllerAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9621A39AA85001993A9 /* UIViewControllerAdditions.h */; };
+		62E8B9AB1A39AA85001993A9 /* UIViewControllerAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9621A39AA85001993A9 /* UIViewControllerAdditions.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9AC1A39AA85001993A9 /* UIViewControllerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9631A39AA85001993A9 /* UIViewControllerAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62E8B9AD1A39AA85001993A9 /* NSStringAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9651A39AA85001993A9 /* NSStringAdditions.h */; };
+		62E8B9AD1A39AA85001993A9 /* NSStringAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9651A39AA85001993A9 /* NSStringAdditions.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9AE1A39AA85001993A9 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9661A39AA85001993A9 /* NSStringAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62E8B9AF1A39AA85001993A9 /* TTCorePreprocessorMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9671A39AA85001993A9 /* TTCorePreprocessorMacros.h */; };
-		62E8B9B01A39AA85001993A9 /* TTDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9681A39AA85001993A9 /* TTDebug.h */; };
+		62E8B9AF1A39AA85001993A9 /* TTCorePreprocessorMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9671A39AA85001993A9 /* TTCorePreprocessorMacros.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		62E8B9B01A39AA85001993A9 /* TTDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9681A39AA85001993A9 /* TTDebug.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9B11A39AA85001993A9 /* TTDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9691A39AA85001993A9 /* TTDebug.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62E8B9B21A39AA85001993A9 /* TTDebugFlags.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B96A1A39AA85001993A9 /* TTDebugFlags.h */; };
-		62E8B9B31A39AA85001993A9 /* TTGlobalCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B96B1A39AA85001993A9 /* TTGlobalCore.h */; };
+		62E8B9B21A39AA85001993A9 /* TTDebugFlags.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B96A1A39AA85001993A9 /* TTDebugFlags.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		62E8B9B31A39AA85001993A9 /* TTGlobalCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B96B1A39AA85001993A9 /* TTGlobalCore.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9B41A39AA85001993A9 /* TTGlobalCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B96C1A39AA85001993A9 /* TTGlobalCore.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62E8B9B51A39AA85001993A9 /* TTGlobalCoreRects.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B96D1A39AA85001993A9 /* TTGlobalCoreRects.h */; };
+		62E8B9B51A39AA85001993A9 /* TTGlobalCoreRects.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B96D1A39AA85001993A9 /* TTGlobalCoreRects.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9B61A39AA85001993A9 /* TTGlobalCoreRects.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B96E1A39AA85001993A9 /* TTGlobalCoreRects.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62E8B9B71A39AA85001993A9 /* TTBaseNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B96F1A39AA85001993A9 /* TTBaseNavigator.h */; };
+		62E8B9B71A39AA85001993A9 /* TTBaseNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B96F1A39AA85001993A9 /* TTBaseNavigator.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9B81A39AA85001993A9 /* TTBaseNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9701A39AA85001993A9 /* TTBaseNavigator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62E8B9B91A39AA85001993A9 /* TTBaseNavigatorInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9711A39AA85001993A9 /* TTBaseNavigatorInternal.h */; };
-		62E8B9BA1A39AA85001993A9 /* TTURLAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9731A39AA85001993A9 /* TTURLAction.h */; };
+		62E8B9B91A39AA85001993A9 /* TTBaseNavigatorInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9711A39AA85001993A9 /* TTBaseNavigatorInternal.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		62E8B9BA1A39AA85001993A9 /* TTURLAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9731A39AA85001993A9 /* TTURLAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		62E8B9BB1A39AA85001993A9 /* TTURLAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9741A39AA85001993A9 /* TTURLAction.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62E8B9BC1A39AA85001993A9 /* TTNavigationMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9761A39AA85001993A9 /* TTNavigationMode.h */; };
-		62E8B9BD1A39AA85001993A9 /* TTURLMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9771A39AA85001993A9 /* TTURLMap.h */; };
+		62E8B9BC1A39AA85001993A9 /* TTNavigationMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9761A39AA85001993A9 /* TTNavigationMode.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		62E8B9BD1A39AA85001993A9 /* TTURLMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9771A39AA85001993A9 /* TTURLMap.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9BE1A39AA85001993A9 /* TTURLMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9781A39AA85001993A9 /* TTURLMap.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62E8B9BF1A39AA85001993A9 /* TTURLNavigatorPattern.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B97B1A39AA85001993A9 /* TTURLNavigatorPattern.h */; };
+		62E8B9BF1A39AA85001993A9 /* TTURLNavigatorPattern.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B97B1A39AA85001993A9 /* TTURLNavigatorPattern.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9C01A39AA85001993A9 /* TTURLNavigatorPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B97C1A39AA85001993A9 /* TTURLNavigatorPattern.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62E8B9C31A39AA85001993A9 /* TTURLPattern.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9801A39AA85001993A9 /* TTURLPattern.h */; };
+		62E8B9C31A39AA85001993A9 /* TTURLPattern.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9801A39AA85001993A9 /* TTURLPattern.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9C41A39AA85001993A9 /* TTURLPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9811A39AA85001993A9 /* TTURLPattern.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62E8B9C51A39AA85001993A9 /* TTURLArgumentType.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9831A39AA85001993A9 /* TTURLArgumentType.h */; };
-		62E8B9C61A39AA85001993A9 /* TTURLWildcard.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9841A39AA85001993A9 /* TTURLWildcard.h */; };
+		62E8B9C51A39AA85001993A9 /* TTURLArgumentType.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9831A39AA85001993A9 /* TTURLArgumentType.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		62E8B9C61A39AA85001993A9 /* TTURLWildcard.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9841A39AA85001993A9 /* TTURLWildcard.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9C71A39AA85001993A9 /* TTURLWildcard.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9851A39AA85001993A9 /* TTURLWildcard.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62E8B9C81A39AA85001993A9 /* TTURLLiteral.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9871A39AA85001993A9 /* TTURLLiteral.h */; };
+		62E8B9C81A39AA85001993A9 /* TTURLLiteral.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9871A39AA85001993A9 /* TTURLLiteral.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9C91A39AA85001993A9 /* TTURLLiteral.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9881A39AA85001993A9 /* TTURLLiteral.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62E8B9CA1A39AA85001993A9 /* TTURLPatternText.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9891A39AA85001993A9 /* TTURLPatternText.h */; };
-		62E8B9CB1A39AA85001993A9 /* TTBaseNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B98B1A39AA85001993A9 /* TTBaseNavigationController.h */; };
+		62E8B9CA1A39AA85001993A9 /* TTURLPatternText.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9891A39AA85001993A9 /* TTURLPatternText.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		62E8B9CB1A39AA85001993A9 /* TTBaseNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B98B1A39AA85001993A9 /* TTBaseNavigationController.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9CC1A39AA85001993A9 /* TTBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B98C1A39AA85001993A9 /* TTBaseNavigationController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62E8B9CD1A39AA85001993A9 /* TTGlobalNavigatorMetrics.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B98D1A39AA85001993A9 /* TTGlobalNavigatorMetrics.h */; };
+		62E8B9CD1A39AA85001993A9 /* TTGlobalNavigatorMetrics.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B98D1A39AA85001993A9 /* TTGlobalNavigatorMetrics.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9CE1A39AA85001993A9 /* TTGlobalNavigatorMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B98E1A39AA85001993A9 /* TTGlobalNavigatorMetrics.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62E8B9CF1A39AA85001993A9 /* TTWebController.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B98F1A39AA85001993A9 /* TTWebController.h */; };
+		62E8B9CF1A39AA85001993A9 /* TTWebController.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B98F1A39AA85001993A9 /* TTWebController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		62E8B9D01A39AA85001993A9 /* TTWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9901A39AA85001993A9 /* TTWebController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62E8B9D11A39AA85001993A9 /* LDNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9911A39AA85001993A9 /* LDNavigator.h */; };
+		62E8B9D11A39AA85001993A9 /* LDNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9911A39AA85001993A9 /* LDNavigator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		62E8B9D21A39AA85001993A9 /* LDNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9921A39AA85001993A9 /* LDNavigator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62E8B9D31A39AA85001993A9 /* UIViewController+LDNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9931A39AA85001993A9 /* UIViewController+LDNavigator.h */; };
+		62E8B9D31A39AA85001993A9 /* UIViewController+LDNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9931A39AA85001993A9 /* UIViewController+LDNavigator.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9D41A39AA85001993A9 /* UIViewController+LDNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9941A39AA85001993A9 /* UIViewController+LDNavigator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62E8B9D51A39AA85001993A9 /* LDBundleConfigParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9951A39AA85001993A9 /* LDBundleConfigParser.h */; };
+		62E8B9D51A39AA85001993A9 /* LDBundleConfigParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9951A39AA85001993A9 /* LDBundleConfigParser.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9D61A39AA85001993A9 /* LDBundleConfigParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9961A39AA85001993A9 /* LDBundleConfigParser.m */; };
-		62E8B9D91A39AB16001993A9 /* TTURLArguments.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9D71A39AB16001993A9 /* TTURLArguments.h */; };
+		62E8B9D91A39AB16001993A9 /* TTURLArguments.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9D71A39AB16001993A9 /* TTURLArguments.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9DA1A39AB16001993A9 /* TTURLArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9D81A39AB16001993A9 /* TTURLArguments.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
@@ -554,6 +554,15 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62E8B9991A39AA85001993A9 /* LDBusCenter.h in Headers */,
+				62E8B99B1A39AA85001993A9 /* LDBusContext.h in Headers */,
+				62E8B9D11A39AA85001993A9 /* LDNavigator.h in Headers */,
+				62E8B9BA1A39AA85001993A9 /* TTURLAction.h in Headers */,
+				62E8B9CF1A39AA85001993A9 /* TTWebController.h in Headers */,
+				62E8B9A31A39AA85001993A9 /* LDUIBusConnector.h in Headers */,
+				62E8B9971A39AA85001993A9 /* LDBundle.h in Headers */,
+				62E8B9BD1A39AA85001993A9 /* TTURLMap.h in Headers */,
+				62E8B9CB1A39AA85001993A9 /* TTBaseNavigationController.h in Headers */,
 				62E8B9AD1A39AA85001993A9 /* NSStringAdditions.h in Headers */,
 				62E8B9A51A39AA85001993A9 /* UINavigationControllerAdditions.h in Headers */,
 				62E8B9B21A39AA85001993A9 /* TTDebugFlags.h in Headers */,
@@ -570,25 +579,16 @@
 				62E8B9A11A39AA85001993A9 /* LDUIBusCenter.h in Headers */,
 				62E8B9AB1A39AA85001993A9 /* UIViewControllerAdditions.h in Headers */,
 				62E8B9C31A39AA85001993A9 /* TTURLPattern.h in Headers */,
-				62E8B9A31A39AA85001993A9 /* LDUIBusConnector.h in Headers */,
 				62E8B9C61A39AA85001993A9 /* TTURLWildcard.h in Headers */,
-				62E8B9CF1A39AA85001993A9 /* TTWebController.h in Headers */,
-				62E8B9CB1A39AA85001993A9 /* TTBaseNavigationController.h in Headers */,
 				62E8B9C81A39AA85001993A9 /* TTURLLiteral.h in Headers */,
-				62E8B9991A39AA85001993A9 /* LDBusCenter.h in Headers */,
 				62E8B9CD1A39AA85001993A9 /* TTGlobalNavigatorMetrics.h in Headers */,
-				62E8B9BD1A39AA85001993A9 /* TTURLMap.h in Headers */,
 				62E8B9D51A39AA85001993A9 /* LDBundleConfigParser.h in Headers */,
-				62E8B9BA1A39AA85001993A9 /* TTURLAction.h in Headers */,
 				62E8B9B51A39AA85001993A9 /* TTGlobalCoreRects.h in Headers */,
-				62E8B9971A39AA85001993A9 /* LDBundle.h in Headers */,
-				62E8B9D11A39AA85001993A9 /* LDNavigator.h in Headers */,
 				62E8B9B91A39AA85001993A9 /* TTBaseNavigatorInternal.h in Headers */,
 				62E8B9A91A39AA85001993A9 /* UITabBarControllerAdditions.h in Headers */,
 				62E8B99D1A39AA85001993A9 /* LDMessageBusCenter.h in Headers */,
 				62E8B99F1A39AA85001993A9 /* LDServiceBusCenter.h in Headers */,
 				62E8B9BF1A39AA85001993A9 /* TTURLNavigatorPattern.h in Headers */,
-				62E8B99B1A39AA85001993A9 /* LDBusContext.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
