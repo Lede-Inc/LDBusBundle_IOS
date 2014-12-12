@@ -42,16 +42,19 @@
 //处理接收的URL消息Action
 -(BOOL) dealWithURLMessageFromBus:(TTURLAction *)action;
 
+
+@end
+
+@interface LDUIBusConnector(ToBeOverwrite)
+
 //接收消息，查看消息是否能够处理
--(BOOL) IsURLCanOpenInBundle:(NSString *)url;
+-(BOOL) canOpenInBundle:(NSString *)url;
 
 //根据URLAction生成ViewController
 - (UIViewController*)viewControllerForAction:(TTURLAction*)action;
 
-//根据指定Pattern生成ViewController
-- (UIViewController*)viewControllerForURL: (NSString*)URL
-                                    query: (NSDictionary*)query
-                                  pattern: (TTURLPattern**)pattern;
 
+- (BOOL)presentViewController:(UIViewController*)controller
+            parentController:(UIViewController*)parentController;
 
 @end

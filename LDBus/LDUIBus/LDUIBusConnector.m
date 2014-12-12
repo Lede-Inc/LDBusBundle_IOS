@@ -39,9 +39,16 @@
 #pragma mark - require
 //接收URLMessage并处理：via Action
 -(BOOL) dealWithURLMessageFromBus:(TTURLAction *)action {
-    BOOL success = NO;
     UIViewController *controller = [self viewControllerForAction:action];
-    if (nil != controller) {
+    if (controller==nil) {
+        return NO;
+    }
+    
+    BOOL success = NO;
+    if ([self presentViewController:controller
+                   parentController:nil]) {
+        success = YES;
+    } else {
         TTURLNavigatorPattern *pattern = [_bundleMap matchObjectPattern:[NSURL URLWithString:action.urlPath]];
         action.transition = action.transition ? action.transition : pattern.transition;
         [_navigator presentController: controller
@@ -52,36 +59,6 @@
     }
     
     return success;
-}
-
-
-/**
- * 接收消息，查看消息是否能够处理
- * 调用TTURLMap 的urlmatch，如果返回pattern不是默认pattern，则可以处理；
- */
--(BOOL) IsURLCanOpenInBundle:(NSString *)url{
-    BOOL isCan = NO;
-    TTURLNavigatorPattern *pattern = [_bundleMap matchObjectPattern:[NSURL URLWithString:url]];
-    if(!pattern.isUniversal){
-        isCan = YES;
-    }
-    return isCan;
-}
-
-//根据URLAction生成ViewController
-- (UIViewController*)viewControllerForAction:(TTURLAction *)action{
-    if (nil == action || nil == action.urlPath) {
-        return nil;
-    }
-    
-    // We may need to modify the urlPath, so let's create a local copy.
-    NSString* urlPath = action.urlPath;
-    
-    TTURLNavigatorPattern* pattern = nil;
-    UIViewController* controller = [self viewControllerForURL: urlPath
-                                                        query: action.query
-                                                      pattern: &pattern];
-    return controller;
 }
 
 
@@ -179,6 +156,46 @@
     TTURLAction *action = [TTURLAction actionWithURLPath:url];
     action.ifNeedPresent = NO;
     return [LDUIBusCenter receiveURLCtrlFromUIBus:action];
+}
+
+@end
+
+
+@implementation LDUIBusConnector(ToBeOverwrite)
+
+/**
+ * 接收消息，查看消息是否能够处理
+ * 调用TTURLMap 的urlmatch，如果返回pattern不是默认pattern，则可以处理；
+ */
+-(BOOL) canOpenInBundle:(NSString *)url{
+    BOOL isCan = NO;
+    TTURLNavigatorPattern *pattern = [_bundleMap matchObjectPattern:[NSURL URLWithString:url]];
+    if(!pattern.isUniversal){
+        isCan = YES;
+    }
+    return isCan;
+}
+
+
+//根据URLAction生成ViewController
+- (UIViewController*)viewControllerForAction:(TTURLAction *)action{
+    if (nil == action || nil == action.urlPath) {
+        return nil;
+    }
+    
+    // We may need to modify the urlPath, so let's create a local copy.
+    NSString* urlPath = action.urlPath;
+    
+    TTURLNavigatorPattern* pattern = nil;
+    UIViewController* controller = [self viewControllerForURL: urlPath
+                                                        query: action.query
+                                                      pattern: &pattern];
+    return controller;
+}
+
+- (BOOL)presentViewController:(UIViewController*)controller
+             parentController:(UIViewController*)parentController {
+    return NO;
 }
 
 @end
