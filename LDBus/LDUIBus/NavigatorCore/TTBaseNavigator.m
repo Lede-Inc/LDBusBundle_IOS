@@ -334,6 +334,8 @@ static TTBaseNavigator* gNavigator = nil;
   
   //展示一个已经存在的ViewController
   else {
+    //superController是指push：前一个push成为Parent；
+    //如果事tab，则tabController成为parent
     UIViewController* previousSuper = controller.superController;
     if (nil != previousSuper) {
       if (previousSuper != parentController) {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<bundle name="LDMBMovieFilm" update="http://piao.163.com/bundles/LDMBMovieFilem.bundle" istallLevel="wifi" connectorClass="LDShareMakeKit" host＝"">
+<bundle name="LDMBMovieFilm" update="http://piao.163.com/bundles/LDMBMovieFilem.bundle" istallLevel="wifi" connectorClass="LDShareMakeKit" host="" >
     <UIBus>
         <!--如果没有配置URLPattern，则默认以initNavigationURL:query打开-->
         <!--电影票电影列表首页-->

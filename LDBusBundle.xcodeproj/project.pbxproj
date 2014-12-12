@@ -22,7 +22,6 @@
 		62D539B71A1B27790088FFF4 /* framework.sh in Resources */ = {isa = PBXBuildFile; fileRef = 62D539B51A1B27790088FFF4 /* framework.sh */; };
 		62DE5E491A32DCF800AC53AC /* LDMBPersonAccount.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 62DE5E471A32DCA900AC53AC /* LDMBPersonAccount.bundle */; };
 		62DE5E4A1A32DCFC00AC53AC /* LDMBActivity.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 62DE5E451A32DC7300AC53AC /* LDMBActivity.bundle */; };
-		62DE5E4B1A32DD0100AC53AC /* LDMBCenema.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 62DE5E431A32DC0A00AC53AC /* LDMBCenema.bundle */; };
 		62E8B8A01A39A75A001993A9 /* LDBus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62E8B8951A39A75A001993A9 /* LDBus.framework */; };
 		62E8B8A91A39A75A001993A9 /* LDBusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B8A81A39A75A001993A9 /* LDBusTests.m */; };
 		62E8B8AC1A39A75A001993A9 /* LDBus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62E8B8951A39A75A001993A9 /* LDBus.framework */; };
@@ -59,7 +58,7 @@
 		62E8B9B41A39AA85001993A9 /* TTGlobalCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B96C1A39AA85001993A9 /* TTGlobalCore.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		62E8B9B51A39AA85001993A9 /* TTGlobalCoreRects.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B96D1A39AA85001993A9 /* TTGlobalCoreRects.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9B61A39AA85001993A9 /* TTGlobalCoreRects.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B96E1A39AA85001993A9 /* TTGlobalCoreRects.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62E8B9B71A39AA85001993A9 /* TTBaseNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B96F1A39AA85001993A9 /* TTBaseNavigator.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		62E8B9B71A39AA85001993A9 /* TTBaseNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B96F1A39AA85001993A9 /* TTBaseNavigator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		62E8B9B81A39AA85001993A9 /* TTBaseNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9701A39AA85001993A9 /* TTBaseNavigator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		62E8B9B91A39AA85001993A9 /* TTBaseNavigatorInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9711A39AA85001993A9 /* TTBaseNavigatorInternal.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9BA1A39AA85001993A9 /* TTURLAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9731A39AA85001993A9 /* TTURLAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -162,7 +161,6 @@
 		62D516581A304F0500FFEDC0 /* LDLoginServiceImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDLoginServiceImpl.h; sourceTree = "<group>"; };
 		62D516591A304F0500FFEDC0 /* LDLoginServiceImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDLoginServiceImpl.m; sourceTree = "<group>"; };
 		62D539B51A1B27790088FFF4 /* framework.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = framework.sh; sourceTree = "<group>"; };
-		62DE5E431A32DC0A00AC53AC /* LDMBCenema.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LDMBCenema.bundle; sourceTree = "<group>"; };
 		62DE5E451A32DC7300AC53AC /* LDMBActivity.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LDMBActivity.bundle; sourceTree = "<group>"; };
 		62DE5E471A32DCA900AC53AC /* LDMBPersonAccount.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LDMBPersonAccount.bundle; sourceTree = "<group>"; };
 		62E8B8951A39A75A001993A9 /* LDBus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LDBus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -301,7 +299,6 @@
 				62D1F52E1A36D58C0076ACA7 /* LDBusDemo.bundle */,
 				62DE5E471A32DCA900AC53AC /* LDMBPersonAccount.bundle */,
 				62DE5E451A32DC7300AC53AC /* LDMBActivity.bundle */,
-				62DE5E431A32DC0A00AC53AC /* LDMBCenema.bundle */,
 				6242C66D1A275E9F0073E37C /* LDMBMovieFilm.bundle */,
 				62B4F9281A171BBC0056CBAB /* AppDelegate.h */,
 				62B4F9291A171BBC0056CBAB /* AppDelegate.m */,
@@ -554,6 +551,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62E8B9B71A39AA85001993A9 /* TTBaseNavigator.h in Headers */,
 				62E8B9991A39AA85001993A9 /* LDBusCenter.h in Headers */,
 				62E8B99B1A39AA85001993A9 /* LDBusContext.h in Headers */,
 				62E8B9D11A39AA85001993A9 /* LDNavigator.h in Headers */,
@@ -572,7 +570,6 @@
 				62E8B9A71A39AA85001993A9 /* UIPopoverControllerAdditions.h in Headers */,
 				62E8B9B31A39AA85001993A9 /* TTGlobalCore.h in Headers */,
 				62E8B9D31A39AA85001993A9 /* UIViewController+LDNavigator.h in Headers */,
-				62E8B9B71A39AA85001993A9 /* TTBaseNavigator.h in Headers */,
 				62E8B9C51A39AA85001993A9 /* TTURLArgumentType.h in Headers */,
 				62E8B9D91A39AB16001993A9 /* TTURLArguments.h in Headers */,
 				62E8B9BC1A39AA85001993A9 /* TTNavigationMode.h in Headers */,
@@ -723,7 +720,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				62DE5E4A1A32DCFC00AC53AC /* LDMBActivity.bundle in Resources */,
-				62DE5E4B1A32DD0100AC53AC /* LDMBCenema.bundle in Resources */,
 				62D539B71A1B27790088FFF4 /* framework.sh in Resources */,
 				62D1F52F1A36D58C0076ACA7 /* LDBusDemo.bundle in Resources */,
 				62B4F9321A171BBC0056CBAB /* Images.xcassets in Resources */,

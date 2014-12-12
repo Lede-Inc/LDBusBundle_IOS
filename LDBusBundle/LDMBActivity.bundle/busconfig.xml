@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <bundle name="LDMBActivity">
     <UIBus>
         <!--如果没有配置URLPattern，则默认以initNavigationURL:query打开-->
