@@ -53,8 +53,6 @@
 //根据URLAction生成ViewController
 - (UIViewController*)viewControllerForAction:(TTURLAction*)action;
 
-
 - (BOOL)presentViewController:(UIViewController*)controller
             parentController:(UIViewController*)parentController;
-
 @end

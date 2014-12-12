@@ -145,7 +145,7 @@ static LDUIBusCenter *uibusCenter = nil;
             NSString *bundleKey = [keys objectAtIndex:i];
             LDBundle *bundle = [bundlesMap objectForKey:bundleKey];
             //如果当前bundle可以处理该url
-            if([bundle.uibusConnetor IsURLCanOpenInBundle:action.urlPath]){
+            if([bundle.uibusConnetor canOpenInBundle:action.urlPath]){
                 @synchronized(_UIBusMessageQueue){
                     //如果是url跳转，直接调用响应的connector处理
                     if(action.ifNeedPresent){

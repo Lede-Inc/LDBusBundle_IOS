@@ -136,7 +136,7 @@ static LDServiceBusCenter *servicebusCenter = nil;
  * 实现service总线供外界调用的方法
  */
 @implementation LDBusContext(LDServiceBusCenter)
-+(id)getServiceFromBus:(NSString *)serviceName{
++(id)getService:(NSString *)serviceName{
     return [[LDServiceBusCenter servicebusCenter] getServiceImpl:serviceName];
 }
 

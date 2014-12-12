@@ -344,14 +344,14 @@
 		62E8B8961A39A75A001993A9 /* LDBus */ = {
 			isa = PBXGroup;
 			children = (
+				62E8B94D1A39AA85001993A9 /* LDBusContext.h */,
+				62E8B94E1A39AA85001993A9 /* LDBusContext.m */,
 				62E8B9491A39AA85001993A9 /* LDBundle.h */,
 				62E8B94A1A39AA85001993A9 /* LDBundle.m */,
 				62E8B9951A39AA85001993A9 /* LDBundleConfigParser.h */,
 				62E8B9961A39AA85001993A9 /* LDBundleConfigParser.m */,
 				62E8B94B1A39AA85001993A9 /* LDBusCenter.h */,
 				62E8B94C1A39AA85001993A9 /* LDBusCenter.m */,
-				62E8B94D1A39AA85001993A9 /* LDBusContext.h */,
-				62E8B94E1A39AA85001993A9 /* LDBusContext.m */,
 				62E8B94F1A39AA85001993A9 /* LDMessageBus */,
 				62E8B9521A39AA85001993A9 /* LDServiceBus */,
 				62E8B9551A39AA85001993A9 /* LDUIBus */,
@@ -1122,6 +1122,7 @@
 				62E8B8B01A39A75A001993A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		62E8B8B11A39A75A001993A9 /* Build configuration list for PBXNativeTarget "LDBusTests" */ = {
 			isa = XCConfigurationList;
@@ -1130,6 +1131,7 @@
 				62E8B8B31A39A75A001993A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

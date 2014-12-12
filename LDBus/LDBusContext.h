@@ -22,22 +22,22 @@
 /**
  * 向当前bundle的connector 发送action消息
  */
-+(BOOL)sendURLToConnectorWithAction:(TTURLAction *)action;
++(BOOL)sendURLWithAction:(TTURLAction *)action;
 
 /**
  * 向当前bundle的Connetor 发送URL消息
  */
-+(BOOL)sendURLToConnector:(NSString *)url;
++(BOOL)sendURL:(NSString *)url;
 
 /**
  * 向当前bundle的connector 发送url和query组装消息
  */
-+(BOOL)sendURLToConnectorWithQuery:(NSString *)url query:(NSDictionary *)query;
++(BOOL)sendURL:(NSString *)url query:(NSDictionary *)query;
 
 /**
  * 向当前bundle的connetor 申请某个url对应的ctrl；
  */
-+(UIViewController *)receiveURLCtrlFromConnetor:(NSString *)url;
++(UIViewController *)controllerForURL:(NSString *)url;
 
 @end
 
@@ -54,7 +54,7 @@
 /**
  * 从服务总线获取服务的实例
  */
-+(id)getServiceFromBus:(NSString *)serviceName;
++(id)getService:(NSString *)serviceName;
 
 @end
 
@@ -70,18 +70,18 @@
 /**
  * 向消息总线添加观察者
  */
-+(BOOL )addObserverToMessageBus:(id)observer sel:(SEL)sel  message:(NSString *)message aObject: (id)aObject;
++(BOOL )addObserver:(id)observer sel:(SEL)sel  message:(NSString *)message aObject: (id)aObject;
 /**
  * 向消息总线移除观察者
  */
-+(BOOL)removeObserverFromMessageBus:(id)observer message:(NSString *) message aObject:(id)aObject;
++(BOOL)removeObserver:(id)observer message:(NSString *) message aObject:(id)aObject;
 
 /**
  * 向消息总线的所有观察者发送消息
  */
-+(BOOL)postMessageToBus:(NSString *)message;
-+(BOOL)postMessageToBusWithObject:(NSString *) message object:(id) object;
-+(BOOL)postMessageToBusWithUserInfo:(NSString *)message userInfo:(NSDictionary *)aUserInfo;
++(BOOL)postMessage:(NSString *)message;
++(BOOL)postMessage:(NSString *) message object:(id) object;
++(BOOL)postMessage:(NSString *)message userInfo:(NSDictionary *)aUserInfo;
 
 
 @end

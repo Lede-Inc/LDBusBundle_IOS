@@ -124,7 +124,7 @@
 /**
  * 向当前bundle的connector 发送action消息
  */
-+(BOOL)sendURLToConnectorWithAction:(TTURLAction *)action{
++(BOOL)sendURLWithAction:(TTURLAction *)action{
     action.animated = YES;
     return [LDUIBusCenter sendUIMessage:action];
 }
@@ -132,7 +132,7 @@
 /**
  * 向当前bundle的Connetor 发送URL消息
  */
-+(BOOL)sendURLToConnector:(NSString *)url{
++(BOOL)sendURL:(NSString *)url{
     TTURLAction *action = [TTURLAction actionWithURLPath:url];
     action.animated = YES;
     return [LDUIBusCenter sendUIMessage:action];;
@@ -141,7 +141,7 @@
 /**
  * 向当前bundle的connector 发送url和query组装消息
  */
-+(BOOL)sendURLToConnectorWithQuery:(NSString *)url query:(NSDictionary *)query{
++(BOOL)sendURL:(NSString *)url query:(NSDictionary *)query{
     TTURLAction *action = [TTURLAction actionWithURLPath:url];
     action.query = query;
     action.animated = YES;
@@ -152,7 +152,7 @@
 /**
  * 向当前bundle的connetor 申请某个url对应的ctrl；
  */
-+(UIViewController *)receiveURLCtrlFromConnetor:(NSString *)url{
++(UIViewController *)controllerForURL:(NSString *)url{
     TTURLAction *action = [TTURLAction actionWithURLPath:url];
     action.ifNeedPresent = NO;
     return [LDUIBusCenter receiveURLCtrlFromUIBus:action];
