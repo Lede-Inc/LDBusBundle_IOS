@@ -10,6 +10,7 @@
 		6242C66E1A275E9F0073E37C /* LDMBMovieFilm.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6242C66D1A275E9F0073E37C /* LDMBMovieFilm.bundle */; };
 		6246F3801A1F388C00980472 /* LDBus.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 6246F37F1A1F388C00980472 /* LDBus.podspec */; };
 		625EDB561A19ED5F000AEA3E /* tab.png in Resources */ = {isa = PBXBuildFile; fileRef = 625EDB551A19ED5F000AEA3E /* tab.png */; };
+		6262ED1A1A3A973200191FB9 /* LDCustomConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 6262ED191A3A973200191FB9 /* LDCustomConnector.m */; };
 		62B4F9271A171BBC0056CBAB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B4F9261A171BBC0056CBAB /* main.m */; };
 		62B4F92A1A171BBC0056CBAB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B4F9291A171BBC0056CBAB /* AppDelegate.m */; };
 		62B4F9321A171BBC0056CBAB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62B4F9311A171BBC0056CBAB /* Images.xcassets */; };
@@ -141,6 +142,8 @@
 		6242C66D1A275E9F0073E37C /* LDMBMovieFilm.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LDMBMovieFilm.bundle; sourceTree = "<group>"; };
 		6246F37F1A1F388C00980472 /* LDBus.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LDBus.podspec; sourceTree = "<group>"; };
 		625EDB551A19ED5F000AEA3E /* tab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tab.png; path = LDBusBundle/tab.png; sourceTree = "<group>"; };
+		6262ED181A3A973200191FB9 /* LDCustomConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDCustomConnector.h; sourceTree = "<group>"; };
+		6262ED191A3A973200191FB9 /* LDCustomConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDCustomConnector.m; sourceTree = "<group>"; };
 		62B4F9211A171BBC0056CBAB /* LDBusBundle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LDBusBundle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62B4F9251A171BBC0056CBAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62B4F9261A171BBC0056CBAB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -307,6 +310,8 @@
 				62B4F9C61A17310A0056CBAB /* MenuController.m */,
 				62B4F9C31A17310A0056CBAB /* ContentController.h */,
 				62B4F9C41A17310A0056CBAB /* ContentController.m */,
+				6262ED181A3A973200191FB9 /* LDCustomConnector.h */,
+				6262ED191A3A973200191FB9 /* LDCustomConnector.m */,
 				62D516571A304E7600FFEDC0 /* LDLoginService.h */,
 				62D516581A304F0500FFEDC0 /* LDLoginServiceImpl.h */,
 				62D516591A304F0500FFEDC0 /* LDLoginServiceImpl.m */,
@@ -761,6 +766,7 @@
 				62B4F9CA1A17310A0056CBAB /* MenuController.m in Sources */,
 				62B4F92A1A171BBC0056CBAB /* AppDelegate.m in Sources */,
 				62B4F9271A171BBC0056CBAB /* main.m in Sources */,
+				6262ED1A1A3A973200191FB9 /* LDCustomConnector.m in Sources */,
 				62B4F9C91A17310A0056CBAB /* ContentController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

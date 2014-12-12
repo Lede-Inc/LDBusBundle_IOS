@@ -45,10 +45,14 @@
     }
     
     BOOL success = NO;
+    //调用用户自定义继承的处理，否则调用默认的present处理
     if ([self presentViewController:controller
-                   parentController:nil]) {
+                          navigator:_navigator
+                             action:action]){
         success = YES;
-    } else {
+    }
+    
+    else {
         TTURLNavigatorPattern *pattern = [_bundleMap matchObjectPattern:[NSURL URLWithString:action.urlPath]];
         action.transition = action.transition ? action.transition : pattern.transition;
         [_navigator presentController: controller
@@ -177,7 +181,9 @@
 }
 
 
-//根据URLAction生成ViewController
+/**
+ * 根据URLAction生成ViewController
+ */
 - (UIViewController*)viewControllerForAction:(TTURLAction *)action{
     if (nil == action || nil == action.urlPath) {
         return nil;
@@ -193,9 +199,18 @@
     return controller;
 }
 
+
+/**
+ * 自定义如何展示ViewController，直接调用navigator获取当前view栈的情况
+ * 按照action定义的展示方式完成
+ */
 - (BOOL)presentViewController:(UIViewController*)controller
-             parentController:(UIViewController*)parentController {
+                    navigator:(LDNavigator*)navigator
+                       action:(TTURLAction *)action{
     return NO;
 }
+
+
+
 
 @end

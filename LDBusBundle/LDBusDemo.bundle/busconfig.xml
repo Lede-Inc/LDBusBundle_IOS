@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<bundle name="LDBusDemo" connectorClass="">
+<bundle name="LDBusDemo" connectorClass="LDCustomConnector">
     <UIBus>
         <!--个人账户首页-->
         <ViewController name="mainTab" class="MyTabController" type="share">

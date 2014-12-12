@@ -37,22 +37,34 @@
  */
 -(void) setGlobalNavigator:(LDNavigator*) navigator;
 
-
-//可以在继承类中重定向
 //处理接收的URL消息Action
 -(BOOL) dealWithURLMessageFromBus:(TTURLAction *)action;
 
-
 @end
 
+
+/**
+ * 当继承Connector的时候，只需要重载如下三个方法，其他可以不用动
+ */
 @interface LDUIBusConnector(ToBeOverwrite)
 
-//接收消息，查看消息是否能够处理
+/**
+ * 接收消息，查看消息是否能够处理
+ */
 -(BOOL) canOpenInBundle:(NSString *)url;
 
-//根据URLAction生成ViewController
+
+/**
+ * 根据URLAction生成ViewController
+ */
 - (UIViewController*)viewControllerForAction:(TTURLAction*)action;
 
+
+/**
+ * 自定义如何展示ViewController，直接调用navigator获取当前view栈的情况
+ */
 - (BOOL)presentViewController:(UIViewController*)controller
-            parentController:(UIViewController*)parentController;
+                    navigator:(LDNavigator*)navigator
+                       action:(TTURLAction *)action;
+
 @end
