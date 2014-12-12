@@ -46,11 +46,11 @@
     _tableView.dataSource = self;
 
     [self.view addSubview:_tableView];
-    [LDBusContext addObserverToMessageBus:self sel:@selector(messageExcute) message:@"LocationModified" aObject:nil];
+    [LDBusContext addObserver:self sel:@selector(messageExcute) message:@"LocationModified" aObject:nil];
 }
 
 -(void) dealloc{
-    [LDBusContext removeObserverFromMessageBus:self message:@"LocationModified" aObject:nil];
+    [LDBusContext removeObserver:self message:@"LocationModified" aObject:nil];
 }
 
 
@@ -162,19 +162,19 @@
             if(indexPath.row == 3){
                 TTURLAction *action = [TTURLAction actionWithURLPath:url];
                 [action applySourceView:[tableView cellForRowAtIndexPath:indexPath]];
-                [LDBusContext sendURLToConnectorWithAction:action];
+                [LDBusContext sendURLWithAction:action];
             } else if(indexPath.row == 8) {
-                [LDBusContext sendURLToConnectorWithQuery:url query:@{@"_array_":@[@"hello", @"baby"], @"_dic_": @{@"hello":@"1", @"baby":@"2"}}];
+                [LDBusContext sendURL:url query:@{@"_array_":@[@"hello", @"baby"], @"_dic_": @{@"hello":@"1", @"baby":@"2"}}];
             } else if(indexPath.row == 9){
-                [LDBusContext postMessageToBus:url];
+                [LDBusContext postMessage:url];
             }else {
-                [LDBusContext sendURLToConnector:url];
+                [LDBusContext sendURL:url];
             }
         } else {
             if(indexPath.row == 1){
-                [[LDBusContext getServiceFromBus:url] autologin];
+                [[LDBusContext getService:url] autologin];
             } else {
-                [LDBusContext sendURLToConnector:url];
+                [LDBusContext sendURL:url];
             }
         }
     }

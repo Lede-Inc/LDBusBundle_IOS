@@ -187,31 +187,31 @@ static LDMessageBusCenter *messagebusCenter = nil;
 /**
  * 向消息总线添加观察者
  */
-+(BOOL )addObserverToMessageBus:(id)observer sel:(SEL)sel  message:(NSString *)message aObject: (id)aObject{
++(BOOL )addObserver:(id)observer sel:(SEL)sel  message:(NSString *)message aObject: (id)aObject{
     return [[LDMessageBusCenter messagebusCenter] operateNotificationObserverToMessageBus:observer selector:sel withMessage:message andAObject:aObject option:1];
 }
 
 /**
  * 向消息总线移除观察者
  */
-+(BOOL)removeObserverFromMessageBus:(id)observer message:(NSString *) message aObject:(id)aObject{
++(BOOL)removeObserver:(id)observer message:(NSString *) message aObject:(id)aObject{
     return [[LDMessageBusCenter messagebusCenter] operateNotificationObserverToMessageBus:observer selector:nil withMessage:message andAObject:aObject option:0];
 }
 
 /**
  * 向消息总线的所有观察者发送消息
  */
-+(BOOL)postMessageToBus:(NSString *)message{
++(BOOL)postMessage:(NSString *)message{
     NSNotification *notification =  [NSNotification notificationWithName:message object:nil];
     return [[LDMessageBusCenter messagebusCenter] postNotificaitonToAllResponseViewController:notification];
 }
 
-+(BOOL)postMessageToBusWithObject:(NSString *) message object:(id) object{
++(BOOL)postMessage:(NSString *) message object:(id) object{
     NSNotification *notification =  [NSNotification notificationWithName:message object:object];
     return [[LDMessageBusCenter messagebusCenter] postNotificaitonToAllResponseViewController:notification];
 }
 
-+(BOOL)postMessageToBusWithUserInfo:(NSString *)message userInfo:(NSDictionary *)aUserInfo{
++(BOOL)postMessage:(NSString *)message userInfo:(NSDictionary *)aUserInfo{
     NSNotification *notification =  [NSNotification notificationWithName:message object:nil userInfo:aUserInfo];
     return [[LDMessageBusCenter messagebusCenter] postNotificaitonToAllResponseViewController:notification];
 }

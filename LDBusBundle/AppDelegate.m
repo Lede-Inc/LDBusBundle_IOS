@@ -29,7 +29,7 @@
 - (void)setTabURLs:(NSArray*)URLs {
     NSMutableArray* controllers = [NSMutableArray array];
     for (NSString* URL in URLs) {
-        UIViewController* controller = [LDBusContext receiveURLCtrlFromConnetor:URL];
+        UIViewController* controller = [LDBusContext controllerForURL:URL];
         if (controller) {
             UIViewController* tabController = [self rootControllerForController:controller];
             tabController.tabBarItem.title =URL;
@@ -55,7 +55,7 @@
     [[LDBusCenter busCenter] preloadConfig];
     
     //打开一个初始ViewController
-    [LDBusContext sendURLToConnector:@"LDBusDemo://mainTab"];
+    [LDBusContext sendURL:@"LDBusDemo://mainTab"];
     return YES;
 }
 

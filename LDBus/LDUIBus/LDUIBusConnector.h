@@ -48,10 +48,4 @@
 //根据URLAction生成ViewController
 - (UIViewController*)viewControllerForAction:(TTURLAction*)action;
 
-//根据指定Pattern生成ViewController
-- (UIViewController*)viewControllerForURL: (NSString*)URL
-                                    query: (NSDictionary*)query
-                                  pattern: (TTURLPattern**)pattern;
-
-
 @end
