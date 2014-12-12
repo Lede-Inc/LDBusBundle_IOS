@@ -187,6 +187,10 @@ static LDMessageBusCenter *messagebusCenter = nil;
 /**
  * 向消息总线添加观察者
  */
++(BOOL )addObserver:(id)observer sel:(SEL)sel  message:(NSString *)message{
+    return [[LDMessageBusCenter messagebusCenter] operateNotificationObserverToMessageBus:observer selector:sel withMessage:message andAObject:nil option:1];
+}
+
 +(BOOL )addObserver:(id)observer sel:(SEL)sel  message:(NSString *)message aObject: (id)aObject{
     return [[LDMessageBusCenter messagebusCenter] operateNotificationObserverToMessageBus:observer selector:sel withMessage:message andAObject:aObject option:1];
 }
@@ -194,6 +198,10 @@ static LDMessageBusCenter *messagebusCenter = nil;
 /**
  * 向消息总线移除观察者
  */
++(BOOL)removeObserver:(id)observer message:(NSString *) message{
+    return [[LDMessageBusCenter messagebusCenter] operateNotificationObserverToMessageBus:observer selector:nil withMessage:message andAObject:nil option:0];
+}
+
 +(BOOL)removeObserver:(id)observer message:(NSString *) message aObject:(id)aObject{
     return [[LDMessageBusCenter messagebusCenter] operateNotificationObserverToMessageBus:observer selector:nil withMessage:message andAObject:aObject option:0];
 }

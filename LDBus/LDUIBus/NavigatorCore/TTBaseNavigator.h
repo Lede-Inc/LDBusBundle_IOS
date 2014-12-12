@@ -15,10 +15,9 @@
  * A URL-based navigation system.
  */
 @interface TTBaseNavigator : NSObject <UIPopoverControllerDelegate> {
-  UIWindow*                   _window;
-  UIViewController*           _rootViewController;
-  id        _popoverController;
-  BOOL                        _opensExternalURLs;
+    UIWindow*                   _window;
+    UIViewController*           _rootViewController;
+    id                          _popoverController;
 }
 
 //The window that contains the view controller hierarchy
@@ -34,9 +33,6 @@
 //忽略search display controoler，不属于导航体系的一部分
 @property (nonatomic, readonly) UIViewController* topViewController;
 @property (nonatomic, readonly)NSString *URL;
-
-//Allows URLs to be opened externally if they don't match any patterns.
-@property (nonatomic) BOOL opensExternalURLs;
 
 
 + (TTBaseNavigator*)globalNavigator;

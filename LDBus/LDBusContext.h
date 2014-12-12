@@ -70,11 +70,15 @@
 /**
  * 向消息总线添加观察者
  */
++(BOOL )addObserver:(id)observer sel:(SEL)sel  message:(NSString *)message;
 +(BOOL )addObserver:(id)observer sel:(SEL)sel  message:(NSString *)message aObject: (id)aObject;
+
 /**
  * 向消息总线移除观察者
  */
++(BOOL)removeObserver:(id)observer message:(NSString *) message;
 +(BOOL)removeObserver:(id)observer message:(NSString *) message aObject:(id)aObject;
+
 
 /**
  * 向消息总线的所有观察者发送消息

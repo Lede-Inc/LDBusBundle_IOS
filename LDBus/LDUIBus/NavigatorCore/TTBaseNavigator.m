@@ -34,7 +34,6 @@ static TTBaseNavigator* gNavigator = nil;
 @implementation TTBaseNavigator
 @synthesize window                    = _window;
 @synthesize rootViewController        = _rootViewController;
-@synthesize opensExternalURLs         = _opensExternalURLs;
 
 
 /**
