@@ -184,8 +184,9 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-  UILabel* label = (UILabel*)[self.view viewWithTag:42];
-  label.text = _text;
+    [super viewWillAppear:animated];
+    UILabel* label = (UILabel*)[self.view viewWithTag:42];
+    label.text = _text;
 }
 
 @end

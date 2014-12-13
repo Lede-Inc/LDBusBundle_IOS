@@ -20,6 +20,7 @@
 @implementation MyTabController
 //如果没有定义Selector，则默认调用init的方法去启动程序应用
 -(void) viewDidLoad {
+    [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self setTabURLs:@[@"LDBusDemo://menu/1", @"LDBusDemo://menu/5"]];
 }

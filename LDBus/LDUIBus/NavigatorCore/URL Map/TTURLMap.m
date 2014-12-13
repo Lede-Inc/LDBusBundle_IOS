@@ -430,6 +430,7 @@
     TTURLNavigatorPattern* pattern  = [self matchObjectPattern:theURL];
     if (pattern) {
         //判断pattern中的class或者object是否存在, 不存在用webview打开
+        NSMutableDictionary *mutquery = nil;
         if(pattern.targetClass == nil && pattern.targetObject == nil){
             //读取pattern中的参数组装webview的url
             NSURL *patternWebURL = [NSURL URLWithString:pattern.webURL];
@@ -438,22 +439,21 @@
             NSString *actWebURL = [NSString stringWithFormat:@"%@://%@%@%@%@", patternWebURL.scheme, patternWebURL.host, patternWebURL.path, actQuery, actFragement];
             
             //放置到query对象中
-            NSMutableDictionary *mutquery = nil;
             if(query){
                mutquery = [NSMutableDictionary dictionaryWithDictionary:query];
             } else {
-                mutquery = [[NSMutableDictionary alloc] initWithCapacity:1];
+                mutquery = [[[NSMutableDictionary alloc] initWithCapacity:1] autorelease];
             }
             if(![mutquery objectForKey:@"_ttdefault_url_"] && pattern.webURL){
                 NSLog(@"actWebURL>>>>%@", actWebURL);
                 [mutquery setObject:actWebURL  forKey:@"_ttdefault_url_"];
             }
-            query = (NSDictionary *)mutquery;
             pattern = _defaultObjectPattern;
         }
         
         if (!object) {
-            object = [pattern createObjectFromURL:theURL query:query];
+            object = [pattern createObjectFromURL:theURL query:mutquery?mutquery:query];
+            
         }
         
         if (pattern.navigationMode == TTNavigationModeShare && object) {

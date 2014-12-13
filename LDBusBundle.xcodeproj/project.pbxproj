@@ -80,7 +80,7 @@
 		62E8B9CD1A39AA85001993A9 /* TTGlobalNavigatorMetrics.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B98D1A39AA85001993A9 /* TTGlobalNavigatorMetrics.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9CE1A39AA85001993A9 /* TTGlobalNavigatorMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B98E1A39AA85001993A9 /* TTGlobalNavigatorMetrics.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		62E8B9CF1A39AA85001993A9 /* TTWebController.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B98F1A39AA85001993A9 /* TTWebController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		62E8B9D01A39AA85001993A9 /* TTWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9901A39AA85001993A9 /* TTWebController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		62E8B9D01A39AA85001993A9 /* TTWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9901A39AA85001993A9 /* TTWebController.m */; };
 		62E8B9D11A39AA85001993A9 /* LDNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9911A39AA85001993A9 /* LDNavigator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		62E8B9D21A39AA85001993A9 /* LDNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9921A39AA85001993A9 /* LDNavigator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		62E8B9D31A39AA85001993A9 /* UIViewController+LDNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9931A39AA85001993A9 /* UIViewController+LDNavigator.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -944,7 +944,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "dfd6e7ee-c520-4649-af7c-d385a859b669";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -965,7 +965,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "dfd6e7ee-c520-4649-af7c-d385a859b669";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -1035,7 +1035,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "dfd6e7ee-c520-4649-af7c-d385a859b669";
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1063,7 +1063,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "dfd6e7ee-c520-4649-af7c-d385a859b669";
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
