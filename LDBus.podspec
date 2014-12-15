@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
     s.description      = ""
     s.license          = 'MIT'
     s.author           = { "huipang" => "huipang@corp.netease.com" }
-    s.source           = { :git => "https://git.ms.netease.com/moviefilebundles/LDBusBundle.git", :tag => "0.0.1" }
+    s.source           = { :git => "https://git.ms.netease.com/moviefilebundles/LDBusBundle_IOS.git", :tag => "0.0.1" }
 
     s.platform     = :ios, '5.0'
     s.ios.deployment_target = '5.0'

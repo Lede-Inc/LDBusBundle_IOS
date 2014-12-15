@@ -96,7 +96,12 @@ static LDBusCenter* busCenter = nil;
         if([fileManager fileExistsAtPath:configPath]){
             NSString *toPath = [bundleCacheDir stringByAppendingPathComponent:[fromPath lastPathComponent]];
             NSLog(@"toBundleCacheDir>>>>%@", toPath);
-            if(![fileManager fileExistsAtPath:toPath]){
+            #ifdef DEBUG
+            NSLog(@"current is debug: every time to copy config");
+            #else
+            if(![fileManager fileExistsAtPath:toPath])
+            #endif
+            {
                 [fileManager copyItemAtPath:fromPath toPath:toPath error:nil];
             }
         }//if exist
