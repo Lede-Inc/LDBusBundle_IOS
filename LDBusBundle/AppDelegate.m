@@ -55,7 +55,7 @@
     [[LDBusCenter busCenter] preloadConfig];
     
     //打开一个初始ViewController
-    [LDBusContext sendURL:@"LDBusDemo://mainTab"];
+    [LDBusContext sendURL:@"LDBusDemo://mainTab1"];
     return YES;
 }
 

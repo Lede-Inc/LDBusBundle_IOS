@@ -2,7 +2,7 @@
 <bundle name="LDBusDemo" connectorClass="LDCustomConnector">
     <UIBus>
         <!--个人账户首页-->
-        <ViewController name="mainTab" class="MyTabController" type="share">
+        <ViewController name="mainTab1" class="MyTabController" type="share">
         </ViewController>
         <ViewController name="menu/(initWithMenu:)" class="MenuController" type="share">
         </ViewController>

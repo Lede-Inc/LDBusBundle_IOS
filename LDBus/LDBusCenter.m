@@ -92,17 +92,27 @@ static LDBusCenter* busCenter = nil;
     NSArray *bundlePaths = [[NSBundle mainBundle] pathsForResourcesOfType:@"bundle" inDirectory:nil];
     for(int i =0; i<bundlePaths.count; i++){
         NSString *fromPath = [bundlePaths objectAtIndex:i];
-        NSString  *configPath = [fromPath stringByAppendingPathComponent:@"busconfig.xml"];
-        if([fileManager fileExistsAtPath:configPath]){
+        NSString  *configFromPath = [fromPath stringByAppendingPathComponent:@"busconfig.xml"];
+        if([fileManager fileExistsAtPath:configFromPath]){
             NSString *toPath = [bundleCacheDir stringByAppendingPathComponent:[fromPath lastPathComponent]];
             NSLog(@"toBundleCacheDir>>>>%@", toPath);
-            #ifdef DEBUG
-            NSLog(@"current is debug: every time to copy config");
-            #else
-            if(![fileManager fileExistsAtPath:toPath])
-            #endif
-            {
-                [fileManager copyItemAtPath:fromPath toPath:toPath error:nil];
+            //如果存在，在debug环境中先删除，再拷贝; 如果在release环境，不删除已存在Cache的bundle
+            NSError *error;
+            if([fileManager fileExistsAtPath:toPath]){
+#ifdef DEBUG
+                [fileManager removeItemAtPath:toPath error:&error];
+                if(error){
+                    NSLog(@"remove bundle error:%@", [error localizedDescription]);
+                }
+#endif
+            }
+            
+            //然后在做一次判断，如果不存在或者debug已删除，拷贝bundle文件；
+            if(![fileManager fileExistsAtPath:toPath]){
+                [fileManager copyItemAtPath:fromPath toPath:toPath error:&error];
+                if(error){
+                    NSLog(@"copy bundle error:%@", [error localizedDescription]);
+                }
             }
         }//if exist
     }//for bundlePaths
