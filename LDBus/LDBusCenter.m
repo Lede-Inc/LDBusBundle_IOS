@@ -50,8 +50,14 @@ static LDBusCenter* busCenter = nil;
     if(self) {
         //全局初始化一个navigator
         _mainNavigator = [LDNavigator navigator];
-        _mainNavigator.window = [[UIWindow alloc] initWithFrame:TTScreenBounds()];
+        UIWindow *rootWindow = [UIApplication sharedApplication].keyWindow;
+        if(!rootWindow){
+            rootWindow = [[UIWindow alloc] initWithFrame:TTScreenBounds()];
+        }
+        
+        _mainNavigator.window = rootWindow;
         _bundlesMap = [[NSMutableDictionary alloc] initWithCapacity:5];
+            
     }
     
     return self;
@@ -80,6 +86,19 @@ static LDBusCenter* busCenter = nil;
         [self loadAllLocalBundleConfig];
     }
 }
+
+/**
+ * 设置当前navigator的rootViewController
+ */
+-(BOOL) setNavigatorRootViewController:(UIViewController *)theRoot{
+    BOOL success = NO;
+    if(theRoot && _mainNavigator && _mainNavigator.window){
+        _mainNavigator.rootViewController = theRoot;
+        success = YES;
+    }
+    return success;
+}
+
 
 /**
  * 拷贝mainbundle 所有static bundle的配置文件到cache目录

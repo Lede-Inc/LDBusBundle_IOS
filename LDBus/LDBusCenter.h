@@ -15,6 +15,7 @@
 @class LDUIBusCenter;
 @class LDServiceBusCenter;
 @class LDMessageBusCenter;
+@class UIViewController;
 
 
 /**
@@ -39,5 +40,11 @@
  * bus center preload config
  */
 -(void) preloadConfig;
+
+
+/**
+ * 设置当前navigator的rootViewController
+ */
+-(BOOL) setNavigatorRootViewController:(UIViewController *)theRoot;
 
 @end
