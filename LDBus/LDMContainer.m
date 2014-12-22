@@ -1,55 +1,55 @@
 //
-//  LDBundleBusCenter.m
+//  LDMContainer.m
 //  LDBusBundle
 //
 //  Created by 庞辉 on 12/5/14.
 //  Copyright (c) 2014 庞辉. All rights reserved.
 //
 
-#import "LDBusCenter.h"
+#import "LDMContainer.h"
 
-#import "LDBundle.h"
-#import "LDUIBusCenter.h"
-#import "LDServiceBusCenter.h"
-#import "LDMessageBusCenter.h"
+#import "LDMBundle.h"
+#import "LDMUIBusCenter.h"
+#import "LDMServiceBusCenter.h"
+#import "LDMMessageBusCenter.h"
 
-#import "LDNavigator.h"
+#import "LDMNavigator.h"
 #import "TTGlobalNavigatorMetrics.h"
 
 
-static LDBusCenter* busCenter = nil;
+static LDMContainer* container = nil;
 
-@interface LDBusCenter () {
-    LDNavigator *_mainNavigator;
+@interface LDMContainer () {
+    LDMNavigator *_mainNavigator;
 }
 
 @property (nonatomic, retain) NSString *bundleCacheDir;
-@property (nonatomic, assign) LDUIBusCenter *uibusCenter;
-@property (nonatomic, assign) LDServiceBusCenter *servicebusCenter;
-@property (nonatomic, assign) LDMessageBusCenter *messagebusCenter;
+@property (nonatomic, assign) LDMUIBusCenter *uibusCenter;
+@property (nonatomic, assign) LDMServiceBusCenter *servicebusCenter;
+@property (nonatomic, assign) LDMMessageBusCenter *messagebusCenter;
 
 @end
 
 
-@implementation LDBusCenter
+@implementation LDMContainer
 @synthesize bundlesMap = _bundlesMap;
 @dynamic bundleCacheDir;
 @dynamic uibusCenter, servicebusCenter, messagebusCenter;
 
 
-+ (LDBusCenter*) busCenter{
++ (LDMContainer*)container{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        busCenter = [[self alloc] init];
+        container = [[self alloc] init];
     });
-    return busCenter;
+    return container;
 }
 
 -(id)init {
     self = [super init];
     if(self) {
         //全局初始化一个navigator
-        _mainNavigator = [LDNavigator navigator];
+        _mainNavigator = [LDMNavigator navigator];
         UIWindow *rootWindow = [UIApplication sharedApplication].keyWindow;
         if(!rootWindow){
             rootWindow = [[UIWindow alloc] initWithFrame:TTScreenBounds()];
@@ -64,16 +64,16 @@ static LDBusCenter* busCenter = nil;
 }
 
 
--(LDUIBusCenter *) uibusCenter {
-    return [LDUIBusCenter uibusCenter];
+-(LDMUIBusCenter *) uibusCenter {
+    return [LDMUIBusCenter uibusCenter];
 }
 
--(LDServiceBusCenter *) servicebusCenter {
-    return [LDServiceBusCenter servicebusCenter];
+-(LDMServiceBusCenter *) servicebusCenter {
+    return [LDMServiceBusCenter servicebusCenter];
 }
 
--(LDMessageBusCenter *) messagebusCenter {
-    return [LDMessageBusCenter messagebusCenter];
+-(LDMMessageBusCenter *) messagebusCenter {
+    return [LDMMessageBusCenter messagebusCenter];
 }
 
 /**
@@ -181,7 +181,7 @@ static LDBusCenter* busCenter = nil;
         for(NSString *filename in fileArray){
             if([filename hasSuffix:@".bundle"] || [filename hasSuffix:@".framework"]){
                 NSString *bundleFilePath = [bundleCacheDir stringByAppendingPathComponent:filename];
-                LDBundle *bundle = [[LDBundle alloc] initBundleWithPath: bundleFilePath];
+                LDMBundle *bundle = [[LDMBundle alloc] initBundleWithPath: bundleFilePath];
                 if(bundle != nil){
                     NSString *bundleUUID = (bundle.bundleIdentifier && ![bundle.bundleIdentifier isEqualToString:@""]) ? bundle.bundleIdentifier:[filename stringByDeletingPathExtension];
                     NSString *key = [NSString stringWithFormat:@"_bundle_%@_", bundleUUID];

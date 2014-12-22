@@ -1,6 +1,4 @@
 //
-//  AppDelegate.m
-//  MovieStartupBundle
 //
 //  Created by 庞辉 on 11/21/14.
 //  Copyright (c) 2014 庞辉. All rights reserved.
@@ -77,7 +75,7 @@ typedef enum{
 /**
  * 解析各个framework bundle中的配置文件
  */
-@interface LDBundleConfigParser : NSObject <NSXMLParserDelegate>{
+@interface LDMBundleConfigParser : NSObject <NSXMLParserDelegate>{
 }
 
 @property (nonatomic, readonly, strong) TTFrameworkBundleObj* frameworkBundle;

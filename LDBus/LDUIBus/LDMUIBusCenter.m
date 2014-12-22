@@ -1,5 +1,5 @@
 //
-//  LDUIBusCenter.m
+//  LDMUIBusCenter.m
 //  LDBusBundle
 //
 //  Created by 庞辉 on 12/5/14.
@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LDUIBusCenter.h"
+#import "LDMUIBusCenter.h"
 
-#import "LDBundle.h"
-#import "LDBusCenter.h"
-#import "LDUIBusConnector.h"
+#import "LDMBundle.h"
+#import "LDMContainer.h"
+#import "LDMUIBusConnector.h"
 
 #import "TTURLAction.h"
 #import "TTWebController.h"
@@ -19,16 +19,16 @@
 #define TITLE_MESSAGEACTION @"uibus_messageaction"
 #define TITLE_MESSAGERESULT @"uibus_messageresult"
 
-static LDUIBusCenter *uibusCenter = nil;
-@interface LDUIBusCenter () {
+static LDMUIBusCenter *uibusCenter = nil;
+@interface LDMUIBusCenter () {
     NSMutableArray *_UIBusMessageQueue;
 }
 @end
 
-@implementation LDUIBusCenter
+@implementation LDMUIBusCenter
 
 
-+(LDUIBusCenter *)uibusCenter {
++(LDMUIBusCenter *)uibusCenter {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         uibusCenter = [[self alloc] init];
@@ -48,7 +48,7 @@ static LDUIBusCenter *uibusCenter = nil;
     }
     
     
-    LDUIBusCenter *center = [LDUIBusCenter uibusCenter];
+    LDMUIBusCenter *center = [LDMUIBusCenter uibusCenter];
     if([center getMessageFromConnetor:action]){
         //转发消息并调用响应connetor 生成viewControll
         success = [center forwardMessageToOtherBundles];
@@ -64,7 +64,7 @@ static LDUIBusCenter *uibusCenter = nil;
     if(action.ifNeedPresent) return nil;
     
     UIViewController *ctrl = nil;
-    LDUIBusCenter *center = [LDUIBusCenter uibusCenter];
+    LDMUIBusCenter *center = [LDMUIBusCenter uibusCenter];
     if([center getMessageFromConnetor:action]){
         //转发消息并调用响应connetor 生成viewControll
         BOOL success = [center forwardMessageToOtherBundles];
@@ -128,7 +128,7 @@ static LDUIBusCenter *uibusCenter = nil;
  */
 -(BOOL) forwardMessageToOtherBundles {
     // 向总的buscenter获取Bundle列表
-    NSMutableDictionary *bundlesMap = [LDBusCenter busCenter].bundlesMap;
+    NSMutableDictionary *bundlesMap = [LDMContainer container].bundlesMap;
     if(!bundlesMap || bundlesMap.allKeys.count<=0 ){
         NSLog(@"LDUIBusCenter>> bundle list is empty>>");
         return NO;
@@ -143,7 +143,7 @@ static LDUIBusCenter *uibusCenter = nil;
         int i = 0;
         for(; i < keys.count; i++){
             NSString *bundleKey = [keys objectAtIndex:i];
-            LDBundle *bundle = [bundlesMap objectForKey:bundleKey];
+            LDMBundle *bundle = [bundlesMap objectForKey:bundleKey];
             //如果当前bundle可以处理该url
             if([bundle.uibusConnetor canOpenInBundle:action.urlPath]){
                 @synchronized(_UIBusMessageQueue){

@@ -8,8 +8,8 @@
 
 #import "AppDelegate.h"
 
-#import "LDBusCenter.h"
-#import "LDBusContext.h"
+#import "LDMContainer.h"
+#import "LDMBusContext.h"
 #import "LDLoginService.h"
 #import "UITabBarControllerAdditions.h"
 
@@ -29,7 +29,7 @@
 - (void)setTabURLs:(NSArray*)URLs {
     NSMutableArray* controllers = [NSMutableArray array];
     for (NSString* URL in URLs) {
-        UIViewController* controller = [LDBusContext controllerForURL:URL];
+        UIViewController* controller = [LDMBusContext controllerForURL:URL];
         if (controller) {
             UIViewController* tabController = [self rootControllerForController:controller];
             tabController.tabBarItem.title =URL;
@@ -52,10 +52,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //bus Center初始化，预加载所有bundle的配置
-    [[LDBusCenter busCenter] preloadConfigWithScheme:@"netescaipiao"];
+    [[LDMContainer container] preloadConfigWithScheme:@"netescaipiao"];
     
     //打开一个初始ViewController
-    [LDBusContext sendURL:@"netescaipiao://mainTab1"];
+    [LDMBusContext sendURL:@"netescaipiao://mainTab1"];
     return YES;
 }
 

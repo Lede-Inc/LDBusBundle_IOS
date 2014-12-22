@@ -1,5 +1,5 @@
 //
-//  LDServiceBusCenter.h
+//  LDMServiceBusCenter.h
 //  LDBusBundle
 //
 //  Created by 庞辉 on 12/5/14.
@@ -12,11 +12,11 @@
  * @class LDServiceBusCenter
  * service总线调度中心
  */
-@interface LDServiceBusCenter : NSObject{
+@interface LDMServiceBusCenter : NSObject{
     
 }
 
-+(LDServiceBusCenter *)servicebusCenter;
++(LDMServiceBusCenter *)servicebusCenter;
 /**
  * 通过map数组给服务总线中注册服务
  */

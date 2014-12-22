@@ -1,5 +1,5 @@
 //
-//  LDBundleImpl.h
+//  LDMBundle.h
 //  LDBusBundle
 //
 //  Created by 庞辉 on 12/5/14.
@@ -25,16 +25,16 @@ typedef enum {
 }InstallLevel;
 
 /**
- * @class LDBundle
+ * @class LDMBundle
  * 定义bundle的基本属性、启动、加载、停止
  * 1. 目前每个bundle编译成static framework，集成到主工程之后统一编译成一个bundle
  * 2. 如果编译成动态库，可以直接通过NSBundle进行管理, 为了方便以后扩展，直接继承NSBundle
  */
 
-@class LDNavigator;
+@class LDMNavigator;
 @class TTFrameworkBundleObj;
-@class LDUIBusConnector;
-@interface LDBundle : NSBundle {
+@class LDMUIBusConnector;
+@interface LDMBundle : NSBundle {
     //bundle的下载地址，由每个bundle自己完成更新
     NSString *_updateURL;
     //记录自动下载安装的网络级别
@@ -50,8 +50,8 @@ typedef enum {
     
     //bundle的UIBus connetor
     //如果自定义connector，必须继承busconnetor并遵循busconnetor的服务协议；
-    LDUIBusConnector *_uibusConnetor;
-    LDNavigator *_navigator;
+    LDMUIBusConnector *_uibusConnetor;
+    LDMNavigator *_navigator;
     NSString *_scheme;
 }
 
@@ -59,7 +59,7 @@ typedef enum {
 @property (readonly) InstallLevel InstallLevel;
 @property (readonly) BundleState state;
 @property (readonly) BOOL isDynamic;
-@property (readonly) LDUIBusConnector *uibusConnetor;
+@property (readonly) LDMUIBusConnector *uibusConnetor;
 @property (readonly) NSString *scheme;
 
 
@@ -72,7 +72,7 @@ typedef enum {
  *          指定位置是一个以.framework为扩展名的动态库bundle，可以直接从动态库里读取配置文件
  */
 -(id) initBundleWithPath:(NSString *)path;
--(void)setBundleNavigator:(LDNavigator *)navigator;
+-(void)setBundleNavigator:(LDMNavigator *)navigator;
 -(void)setBundleScheme:(NSString *)scheme;
 
 

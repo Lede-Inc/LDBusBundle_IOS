@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "LDUIBusConnector.h"
+#import "LDMUIBusConnector.h"
 
-@interface LDCustomConnector : LDUIBusConnector {
+@interface LDCustomConnector : LDMUIBusConnector {
     
 }
 

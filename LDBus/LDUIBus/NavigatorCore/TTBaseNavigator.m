@@ -11,7 +11,7 @@
 #import "TTURLAction.h"
 #import "TTURLMap.h"
 #import "TTURLNavigatorPattern.h"
-#import "UIViewController+LDNavigator.h"
+#import "UIViewController+LDMNavigator.h"
 
 // UINavigator (private)
 #import "TTBaseNavigatorInternal.h"
@@ -24,7 +24,7 @@
 #import "TTCorePreprocessorMacros.h"
 #import "TTDebug.h"
 #import "TTDebugFlags.h"
-#import "LDUIBusCenter.h"
+#import "LDMUIBusCenter.h"
 
 static TTBaseNavigator* gNavigator = nil;
 
@@ -215,7 +215,7 @@ static TTBaseNavigator* gNavigator = nil;
     if (nil != parentURLPath) {
         TTURLAction *action = [TTURLAction actionWithURLPath:parentURLPath];
         action.ifNeedPresent = NO;
-        return [LDUIBusCenter receiveURLCtrlFromUIBus:action];
+        return [LDMUIBusCenter receiveURLCtrlFromUIBus:action];
     }
     
     //其他情况下返回当前导航体系的TopViewController作为父ViewController

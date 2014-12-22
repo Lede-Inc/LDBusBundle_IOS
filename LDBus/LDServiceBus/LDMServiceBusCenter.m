@@ -1,28 +1,28 @@
 //
-//  LDServiceBusCenter.m
+//  LDMServiceBusCenter.m
 //  LDBusBundle
 //
 //  Created by 庞辉 on 12/5/14.
 //  Copyright (c) 2014 庞辉. All rights reserved.
 //
 
-#import "LDServiceBusCenter.h"
-#import "LDBusContext.h"
+#import "LDMServiceBusCenter.h"
+#import "LDMBusContext.h"
 
 #define TITLE_SERVICEBUSCLASS @"servicebus_implclass"
 #define TITLE_SERVICEBUSOBJECT  @"servicebus_implobject"
 
-static LDServiceBusCenter *servicebusCenter = nil;
-@interface LDServiceBusCenter () {
+static LDMServiceBusCenter *servicebusCenter = nil;
+@interface LDMServiceBusCenter () {
     NSMutableDictionary *_serviceMap;
 }
 
 @end
 
-@implementation LDServiceBusCenter
+@implementation LDMServiceBusCenter
 
 
-+(LDServiceBusCenter *) servicebusCenter {
++(LDMServiceBusCenter *) servicebusCenter {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         servicebusCenter = [[self alloc] init];
@@ -135,9 +135,9 @@ static LDServiceBusCenter *servicebusCenter = nil;
 /**
  * 实现service总线供外界调用的方法
  */
-@implementation LDBusContext(LDServiceBusCenter)
+@implementation LDMBusContext(LDServiceBusCenter)
 +(id)getService:(NSString *)serviceName{
-    return [[LDServiceBusCenter servicebusCenter] getServiceImpl:serviceName];
+    return [[LDMServiceBusCenter servicebusCenter] getServiceImpl:serviceName];
 }
 
 @end

@@ -14,7 +14,7 @@
  * 也可以不继承，另外提供整个navigator的垃圾回收：
  * 在收到内存搞紧之后，通过调用[UIViewController doNavigatorGarbageCollection]
  */
-@interface UIViewController (LDNavigator)
+@interface UIViewController (LDMNavigator)
 
 /**
  * The default initializer sent to view controllers opened through Navigator.

@@ -1,7 +1,7 @@
 #import "MenuController.h"
 
-#import "LDBusContext.h"
-#import "LDUIBusConnector.h"
+#import "LDMBusContext.h"
+#import "LDMUIBusConnector.h"
 #import "TTURLAction.h"
 
 #import "LDLoginService.h"
@@ -45,11 +45,11 @@
     _tableView.dataSource = self;
 
     [self.view addSubview:_tableView];
-    [LDBusContext addObserver:self sel:@selector(messageExcute) message:@"LocationModified" aObject:nil];
+    [LDMBusContext addObserver:self sel:@selector(messageExcute) message:@"LocationModified" aObject:nil];
 }
 
 -(void) dealloc{
-    [LDBusContext removeObserver:self message:@"LocationModified" aObject:nil];
+    [LDMBusContext removeObserver:self message:@"LocationModified" aObject:nil];
 }
 
 
@@ -115,7 +115,7 @@
                                           @"netescaipiao://food/about/complaints/10",
                                           @"",
                                           @"netescaipiao://food/modeview/mode",
-                                          @"LDMBMovieFilm://tabMovie",
+                                          @"netescaipiao://tabMovie",
                                           @"LocationModified"]];
     } else if (_page == MenuPageLunch) {
     } else if (_page == MenuPageDinner) {
@@ -161,19 +161,19 @@
             if(indexPath.row == 3){
                 TTURLAction *action = [TTURLAction actionWithURLPath:url];
                 [action applySourceView:[tableView cellForRowAtIndexPath:indexPath]];
-                [LDBusContext sendURLWithAction:action];
+                [LDMBusContext sendURLWithAction:action];
             } else if(indexPath.row == 8) {
-                [LDBusContext sendURL:url query:@{@"_array_":@[@"hello", @"baby"], @"_dic_": @{@"hello":@"1", @"baby":@"2"}}];
+                [LDMBusContext sendURL:url query:@{@"_array_":@[@"hello", @"baby"], @"_dic_": @{@"hello":@"1", @"baby":@"2"}}];
             } else if(indexPath.row == 9){
-                [LDBusContext postMessage:url];
+                [LDMBusContext postMessage:url];
             }else {
-                [LDBusContext sendURL:url];
+                [LDMBusContext sendURL:url];
             }
         } else {
             if(indexPath.row == 1){
-                [[LDBusContext getService:url] autologin];
+                [[LDMBusContext getService:url] autologin];
             } else {
-                [LDBusContext sendURL:url];
+                [LDMBusContext sendURL:url];
             }
         }
     }

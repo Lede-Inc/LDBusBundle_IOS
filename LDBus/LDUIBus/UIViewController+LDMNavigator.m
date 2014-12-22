@@ -4,7 +4,7 @@
 //
 
 
-#import "UIViewController+LDNavigator.h"
+#import "UIViewController+LDMNavigator.h"
 
 // UINavigator
 #import "TTBaseNavigator.h"
@@ -28,10 +28,10 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
 /**
  * Additions.
  */
-TT_FIX_CATEGORY_BUG(UIViewController_LDNavigator)
+TT_FIX_CATEGORY_BUG(UIViewController_LDMNavigator)
 
 
-@implementation UIViewController (LDNavigator)
+@implementation UIViewController (LDMNavigator)
 
 /**
  * 参加导航的ViewController，最后将初始化放到这个

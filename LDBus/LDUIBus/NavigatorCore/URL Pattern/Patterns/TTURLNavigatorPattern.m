@@ -8,7 +8,7 @@
 #import "TTURLNavigatorPattern.h"
 
 // UINavigator (private)
-#import "UIViewController+LDNavigator.h"
+#import "UIViewController+LDMNavigator.h"
 #import "TTURLWildcard.h"
 #import "TTURLArguments.h"
 

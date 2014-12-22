@@ -1,5 +1,5 @@
 //
-//  LDMessageBusCenter.h
+//  LDMMessageBusCenter.h
 //  LDBusBundle
 //
 //  Created by 庞辉 on 12/5/14.
@@ -11,10 +11,10 @@
  * @class LDServiceBusCenter
  * message总线调度中心
  */
-@interface LDMessageBusCenter : NSObject {
+@interface LDMMessageBusCenter : NSObject {
     
 }
-+(LDMessageBusCenter *) messagebusCenter;
++(LDMMessageBusCenter *) messagebusCenter;
 
 /**
  * 向消息总线操作注册消息Object的实例化标志

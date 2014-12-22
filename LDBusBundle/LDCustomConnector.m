@@ -7,7 +7,7 @@
 //
 
 #import "LDCustomConnector.h"
-#import "LDNavigator.h"
+#import "LDMNavigator.h"
 #import "TTURLAction.h"
 
 @implementation LDCustomConnector
@@ -50,7 +50,7 @@
  * 如果不想自行处理，可以不继承，或者返回NO；
  */
 -(BOOL) presentViewController:(UIViewController *)controller
-                    navigator:(LDNavigator *)navigator
+                    navigator:(LDMNavigator *)navigator
                        action:(TTURLAction *)action {
     BOOL success = [super presentViewController:controller navigator:navigator action:action];    
     return success;

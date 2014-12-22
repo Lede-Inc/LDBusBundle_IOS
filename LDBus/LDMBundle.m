@@ -1,5 +1,5 @@
 //
-//  LDBundleImpl.m
+//  LDMBundle.m
 //  LDBusBundle
 //
 //  Created by 庞辉 on 12/5/14.
@@ -7,16 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LDBundle.h"
-#import "LDUIBusConnector.h"
+#import "LDMBundle.h"
+#import "LDMUIBusConnector.h"
 #import "TTURLMap.h"
-#import "LDBundleConfigParser.h"
+#import "LDMBundleConfigParser.h"
 #import "TTWebController.h"
 
 //获取系统版本
 #define INTOSVERSION ([[[UIDevice currentDevice] systemVersion] intValue])
 
-@implementation LDBundle
+@implementation LDMBundle
 @synthesize uibusConnetor = _uibusConnetor;
 @synthesize updateURL = _updateURL;
 @synthesize InstallLevel = _installLevel;
@@ -78,7 +78,7 @@
     }
 }
 
--(void)setBundleNavigator:(LDNavigator *)navigator{
+-(void)setBundleNavigator:(LDMNavigator *)navigator{
     _navigator = navigator;
 }
 
@@ -96,7 +96,7 @@
 -(BOOL) loadStaticBundleConfigToMap:(NSString *)bundlePath{
     NSString  *configPath = [bundlePath stringByAppendingPathComponent:@"busconfig.xml"];
     if([[NSFileManager defaultManager] fileExistsAtPath:configPath]){
-        LDBundleConfigParser *delegate = [[LDBundleConfigParser alloc] init];
+        LDMBundleConfigParser *delegate = [[LDMBundleConfigParser alloc] init];
         NSXMLParser *configParser = [[NSXMLParser alloc] initWithContentsOfURL:[NSURL fileURLWithPath:configPath]];
         if (configParser == nil) {
             NSLog(@"Failed to initialize XML parser:>>>path=%@", configPath);
@@ -154,7 +154,7 @@
         Class connctorClass = [NSClassFromString(_configObj.connectorClass) class];
         if(connctorClass != nil){
             id obj = [[connctorClass alloc] init];
-            if([obj isKindOfClass:[LDUIBusConnector class]]){
+            if([obj isKindOfClass:[LDMUIBusConnector class]]){
                 _uibusConnetor = obj;
             }
         }
@@ -162,7 +162,7 @@
     
     //否则，bus总线自动为bundle初始化一个
     if(_uibusConnetor == nil) {
-        _uibusConnetor = [[LDUIBusConnector alloc] init];
+        _uibusConnetor = [[LDMUIBusConnector alloc] init];
     }
     
     //初始化完成之后赋值map

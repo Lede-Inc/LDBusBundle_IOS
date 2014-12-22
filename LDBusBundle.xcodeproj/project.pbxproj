@@ -25,20 +25,20 @@
 		62DE5E4A1A32DCFC00AC53AC /* LDMBActivity.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 62DE5E451A32DC7300AC53AC /* LDMBActivity.bundle */; };
 		62E8B8A01A39A75A001993A9 /* LDBus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62E8B8951A39A75A001993A9 /* LDBus.framework */; };
 		62E8B8A91A39A75A001993A9 /* LDBusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B8A81A39A75A001993A9 /* LDBusTests.m */; };
-		62E8B9971A39AA85001993A9 /* LDBundle.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9491A39AA85001993A9 /* LDBundle.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		62E8B9981A39AA85001993A9 /* LDBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B94A1A39AA85001993A9 /* LDBundle.m */; };
-		62E8B9991A39AA85001993A9 /* LDBusCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B94B1A39AA85001993A9 /* LDBusCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		62E8B99A1A39AA85001993A9 /* LDBusCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B94C1A39AA85001993A9 /* LDBusCenter.m */; };
-		62E8B99B1A39AA85001993A9 /* LDBusContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B94D1A39AA85001993A9 /* LDBusContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		62E8B99C1A39AA85001993A9 /* LDBusContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B94E1A39AA85001993A9 /* LDBusContext.m */; };
-		62E8B99D1A39AA85001993A9 /* LDMessageBusCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9501A39AA85001993A9 /* LDMessageBusCenter.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		62E8B99E1A39AA85001993A9 /* LDMessageBusCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9511A39AA85001993A9 /* LDMessageBusCenter.m */; };
-		62E8B99F1A39AA85001993A9 /* LDServiceBusCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9531A39AA85001993A9 /* LDServiceBusCenter.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		62E8B9A01A39AA85001993A9 /* LDServiceBusCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9541A39AA85001993A9 /* LDServiceBusCenter.m */; };
-		62E8B9A11A39AA85001993A9 /* LDUIBusCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9561A39AA85001993A9 /* LDUIBusCenter.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		62E8B9A21A39AA85001993A9 /* LDUIBusCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9571A39AA85001993A9 /* LDUIBusCenter.m */; };
-		62E8B9A31A39AA85001993A9 /* LDUIBusConnector.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9581A39AA85001993A9 /* LDUIBusConnector.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		62E8B9A41A39AA85001993A9 /* LDUIBusConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9591A39AA85001993A9 /* LDUIBusConnector.m */; };
+		62E8B9971A39AA85001993A9 /* LDMBundle.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9491A39AA85001993A9 /* LDMBundle.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		62E8B9981A39AA85001993A9 /* LDMBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B94A1A39AA85001993A9 /* LDMBundle.m */; };
+		62E8B9991A39AA85001993A9 /* LDMContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B94B1A39AA85001993A9 /* LDMContainer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		62E8B99A1A39AA85001993A9 /* LDMContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B94C1A39AA85001993A9 /* LDMContainer.m */; };
+		62E8B99B1A39AA85001993A9 /* LDMBusContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B94D1A39AA85001993A9 /* LDMBusContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		62E8B99C1A39AA85001993A9 /* LDMBusContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B94E1A39AA85001993A9 /* LDMBusContext.m */; };
+		62E8B99D1A39AA85001993A9 /* LDMMessageBusCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9501A39AA85001993A9 /* LDMMessageBusCenter.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		62E8B99E1A39AA85001993A9 /* LDMMessageBusCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9511A39AA85001993A9 /* LDMMessageBusCenter.m */; };
+		62E8B99F1A39AA85001993A9 /* LDMServiceBusCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9531A39AA85001993A9 /* LDMServiceBusCenter.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		62E8B9A01A39AA85001993A9 /* LDMServiceBusCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9541A39AA85001993A9 /* LDMServiceBusCenter.m */; };
+		62E8B9A11A39AA85001993A9 /* LDMUIBusCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9561A39AA85001993A9 /* LDMUIBusCenter.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		62E8B9A21A39AA85001993A9 /* LDMUIBusCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9571A39AA85001993A9 /* LDMUIBusCenter.m */; };
+		62E8B9A31A39AA85001993A9 /* LDMUIBusConnector.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9581A39AA85001993A9 /* LDMUIBusConnector.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		62E8B9A41A39AA85001993A9 /* LDMUIBusConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9591A39AA85001993A9 /* LDMUIBusConnector.m */; };
 		62E8B9A51A39AA85001993A9 /* UINavigationControllerAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B95C1A39AA85001993A9 /* UINavigationControllerAdditions.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9A61A39AA85001993A9 /* UINavigationControllerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B95D1A39AA85001993A9 /* UINavigationControllerAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		62E8B9A71A39AA85001993A9 /* UIPopoverControllerAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B95E1A39AA85001993A9 /* UIPopoverControllerAdditions.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -81,12 +81,12 @@
 		62E8B9CE1A39AA85001993A9 /* TTGlobalNavigatorMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B98E1A39AA85001993A9 /* TTGlobalNavigatorMetrics.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		62E8B9CF1A39AA85001993A9 /* TTWebController.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B98F1A39AA85001993A9 /* TTWebController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		62E8B9D01A39AA85001993A9 /* TTWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9901A39AA85001993A9 /* TTWebController.m */; };
-		62E8B9D11A39AA85001993A9 /* LDNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9911A39AA85001993A9 /* LDNavigator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		62E8B9D21A39AA85001993A9 /* LDNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9921A39AA85001993A9 /* LDNavigator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62E8B9D31A39AA85001993A9 /* UIViewController+LDNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9931A39AA85001993A9 /* UIViewController+LDNavigator.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		62E8B9D41A39AA85001993A9 /* UIViewController+LDNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9941A39AA85001993A9 /* UIViewController+LDNavigator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62E8B9D51A39AA85001993A9 /* LDBundleConfigParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9951A39AA85001993A9 /* LDBundleConfigParser.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		62E8B9D61A39AA85001993A9 /* LDBundleConfigParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9961A39AA85001993A9 /* LDBundleConfigParser.m */; };
+		62E8B9D11A39AA85001993A9 /* LDMNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9911A39AA85001993A9 /* LDMNavigator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		62E8B9D21A39AA85001993A9 /* LDMNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9921A39AA85001993A9 /* LDMNavigator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		62E8B9D31A39AA85001993A9 /* UIViewController+LDMNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9931A39AA85001993A9 /* UIViewController+LDMNavigator.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		62E8B9D41A39AA85001993A9 /* UIViewController+LDMNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9941A39AA85001993A9 /* UIViewController+LDMNavigator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		62E8B9D51A39AA85001993A9 /* LDMBundleConfigParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9951A39AA85001993A9 /* LDMBundleConfigParser.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		62E8B9D61A39AA85001993A9 /* LDMBundleConfigParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9961A39AA85001993A9 /* LDMBundleConfigParser.m */; };
 		62E8B9D91A39AB16001993A9 /* TTURLArguments.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9D71A39AB16001993A9 /* TTURLArguments.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9DA1A39AB16001993A9 /* TTURLArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9D81A39AB16001993A9 /* TTURLArguments.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
@@ -166,20 +166,20 @@
 		62E8B89F1A39A75A001993A9 /* LDBusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LDBusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		62E8B8A71A39A75A001993A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62E8B8A81A39A75A001993A9 /* LDBusTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDBusTests.m; sourceTree = "<group>"; };
-		62E8B9491A39AA85001993A9 /* LDBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDBundle.h; sourceTree = "<group>"; };
-		62E8B94A1A39AA85001993A9 /* LDBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDBundle.m; sourceTree = "<group>"; };
-		62E8B94B1A39AA85001993A9 /* LDBusCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDBusCenter.h; sourceTree = "<group>"; };
-		62E8B94C1A39AA85001993A9 /* LDBusCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDBusCenter.m; sourceTree = "<group>"; };
-		62E8B94D1A39AA85001993A9 /* LDBusContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDBusContext.h; sourceTree = "<group>"; };
-		62E8B94E1A39AA85001993A9 /* LDBusContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDBusContext.m; sourceTree = "<group>"; };
-		62E8B9501A39AA85001993A9 /* LDMessageBusCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDMessageBusCenter.h; sourceTree = "<group>"; };
-		62E8B9511A39AA85001993A9 /* LDMessageBusCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDMessageBusCenter.m; sourceTree = "<group>"; };
-		62E8B9531A39AA85001993A9 /* LDServiceBusCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDServiceBusCenter.h; sourceTree = "<group>"; };
-		62E8B9541A39AA85001993A9 /* LDServiceBusCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDServiceBusCenter.m; sourceTree = "<group>"; };
-		62E8B9561A39AA85001993A9 /* LDUIBusCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDUIBusCenter.h; sourceTree = "<group>"; };
-		62E8B9571A39AA85001993A9 /* LDUIBusCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDUIBusCenter.m; sourceTree = "<group>"; };
-		62E8B9581A39AA85001993A9 /* LDUIBusConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDUIBusConnector.h; sourceTree = "<group>"; };
-		62E8B9591A39AA85001993A9 /* LDUIBusConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDUIBusConnector.m; sourceTree = "<group>"; };
+		62E8B9491A39AA85001993A9 /* LDMBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDMBundle.h; sourceTree = "<group>"; };
+		62E8B94A1A39AA85001993A9 /* LDMBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDMBundle.m; sourceTree = "<group>"; };
+		62E8B94B1A39AA85001993A9 /* LDMContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDMContainer.h; sourceTree = "<group>"; };
+		62E8B94C1A39AA85001993A9 /* LDMContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDMContainer.m; sourceTree = "<group>"; };
+		62E8B94D1A39AA85001993A9 /* LDMBusContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDMBusContext.h; sourceTree = "<group>"; };
+		62E8B94E1A39AA85001993A9 /* LDMBusContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDMBusContext.m; sourceTree = "<group>"; };
+		62E8B9501A39AA85001993A9 /* LDMMessageBusCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDMMessageBusCenter.h; sourceTree = "<group>"; };
+		62E8B9511A39AA85001993A9 /* LDMMessageBusCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDMMessageBusCenter.m; sourceTree = "<group>"; };
+		62E8B9531A39AA85001993A9 /* LDMServiceBusCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDMServiceBusCenter.h; sourceTree = "<group>"; };
+		62E8B9541A39AA85001993A9 /* LDMServiceBusCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDMServiceBusCenter.m; sourceTree = "<group>"; };
+		62E8B9561A39AA85001993A9 /* LDMUIBusCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDMUIBusCenter.h; sourceTree = "<group>"; };
+		62E8B9571A39AA85001993A9 /* LDMUIBusCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDMUIBusCenter.m; sourceTree = "<group>"; };
+		62E8B9581A39AA85001993A9 /* LDMUIBusConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDMUIBusConnector.h; sourceTree = "<group>"; };
+		62E8B9591A39AA85001993A9 /* LDMUIBusConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDMUIBusConnector.m; sourceTree = "<group>"; };
 		62E8B95C1A39AA85001993A9 /* UINavigationControllerAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UINavigationControllerAdditions.h; sourceTree = "<group>"; };
 		62E8B95D1A39AA85001993A9 /* UINavigationControllerAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UINavigationControllerAdditions.m; sourceTree = "<group>"; };
 		62E8B95E1A39AA85001993A9 /* UIPopoverControllerAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPopoverControllerAdditions.h; sourceTree = "<group>"; };
@@ -222,12 +222,12 @@
 		62E8B98E1A39AA85001993A9 /* TTGlobalNavigatorMetrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalNavigatorMetrics.m; sourceTree = "<group>"; };
 		62E8B98F1A39AA85001993A9 /* TTWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTWebController.h; sourceTree = "<group>"; };
 		62E8B9901A39AA85001993A9 /* TTWebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTWebController.m; sourceTree = "<group>"; };
-		62E8B9911A39AA85001993A9 /* LDNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDNavigator.h; sourceTree = "<group>"; };
-		62E8B9921A39AA85001993A9 /* LDNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDNavigator.m; sourceTree = "<group>"; };
-		62E8B9931A39AA85001993A9 /* UIViewController+LDNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LDNavigator.h"; sourceTree = "<group>"; };
-		62E8B9941A39AA85001993A9 /* UIViewController+LDNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LDNavigator.m"; sourceTree = "<group>"; };
-		62E8B9951A39AA85001993A9 /* LDBundleConfigParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDBundleConfigParser.h; sourceTree = "<group>"; };
-		62E8B9961A39AA85001993A9 /* LDBundleConfigParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDBundleConfigParser.m; sourceTree = "<group>"; };
+		62E8B9911A39AA85001993A9 /* LDMNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDMNavigator.h; sourceTree = "<group>"; };
+		62E8B9921A39AA85001993A9 /* LDMNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDMNavigator.m; sourceTree = "<group>"; };
+		62E8B9931A39AA85001993A9 /* UIViewController+LDMNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LDMNavigator.h"; sourceTree = "<group>"; };
+		62E8B9941A39AA85001993A9 /* UIViewController+LDMNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LDMNavigator.m"; sourceTree = "<group>"; };
+		62E8B9951A39AA85001993A9 /* LDMBundleConfigParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDMBundleConfigParser.h; sourceTree = "<group>"; };
+		62E8B9961A39AA85001993A9 /* LDMBundleConfigParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDMBundleConfigParser.m; sourceTree = "<group>"; };
 		62E8B9D71A39AB16001993A9 /* TTURLArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTURLArguments.h; sourceTree = "<group>"; };
 		62E8B9D81A39AB16001993A9 /* TTURLArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLArguments.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -344,14 +344,14 @@
 		62E8B8961A39A75A001993A9 /* LDBus */ = {
 			isa = PBXGroup;
 			children = (
-				62E8B94D1A39AA85001993A9 /* LDBusContext.h */,
-				62E8B94E1A39AA85001993A9 /* LDBusContext.m */,
-				62E8B9491A39AA85001993A9 /* LDBundle.h */,
-				62E8B94A1A39AA85001993A9 /* LDBundle.m */,
-				62E8B9951A39AA85001993A9 /* LDBundleConfigParser.h */,
-				62E8B9961A39AA85001993A9 /* LDBundleConfigParser.m */,
-				62E8B94B1A39AA85001993A9 /* LDBusCenter.h */,
-				62E8B94C1A39AA85001993A9 /* LDBusCenter.m */,
+				62E8B94D1A39AA85001993A9 /* LDMBusContext.h */,
+				62E8B94E1A39AA85001993A9 /* LDMBusContext.m */,
+				62E8B9491A39AA85001993A9 /* LDMBundle.h */,
+				62E8B94A1A39AA85001993A9 /* LDMBundle.m */,
+				62E8B9951A39AA85001993A9 /* LDMBundleConfigParser.h */,
+				62E8B9961A39AA85001993A9 /* LDMBundleConfigParser.m */,
+				62E8B94B1A39AA85001993A9 /* LDMContainer.h */,
+				62E8B94C1A39AA85001993A9 /* LDMContainer.m */,
 				62E8B94F1A39AA85001993A9 /* LDMessageBus */,
 				62E8B9521A39AA85001993A9 /* LDServiceBus */,
 				62E8B9551A39AA85001993A9 /* LDUIBus */,
@@ -388,8 +388,8 @@
 		62E8B94F1A39AA85001993A9 /* LDMessageBus */ = {
 			isa = PBXGroup;
 			children = (
-				62E8B9501A39AA85001993A9 /* LDMessageBusCenter.h */,
-				62E8B9511A39AA85001993A9 /* LDMessageBusCenter.m */,
+				62E8B9501A39AA85001993A9 /* LDMMessageBusCenter.h */,
+				62E8B9511A39AA85001993A9 /* LDMMessageBusCenter.m */,
 			);
 			path = LDMessageBus;
 			sourceTree = "<group>";
@@ -397,8 +397,8 @@
 		62E8B9521A39AA85001993A9 /* LDServiceBus */ = {
 			isa = PBXGroup;
 			children = (
-				62E8B9531A39AA85001993A9 /* LDServiceBusCenter.h */,
-				62E8B9541A39AA85001993A9 /* LDServiceBusCenter.m */,
+				62E8B9531A39AA85001993A9 /* LDMServiceBusCenter.h */,
+				62E8B9541A39AA85001993A9 /* LDMServiceBusCenter.m */,
 			);
 			path = LDServiceBus;
 			sourceTree = "<group>";
@@ -406,14 +406,14 @@
 		62E8B9551A39AA85001993A9 /* LDUIBus */ = {
 			isa = PBXGroup;
 			children = (
-				62E8B9561A39AA85001993A9 /* LDUIBusCenter.h */,
-				62E8B9571A39AA85001993A9 /* LDUIBusCenter.m */,
-				62E8B9581A39AA85001993A9 /* LDUIBusConnector.h */,
-				62E8B9591A39AA85001993A9 /* LDUIBusConnector.m */,
-				62E8B9911A39AA85001993A9 /* LDNavigator.h */,
-				62E8B9921A39AA85001993A9 /* LDNavigator.m */,
-				62E8B9931A39AA85001993A9 /* UIViewController+LDNavigator.h */,
-				62E8B9941A39AA85001993A9 /* UIViewController+LDNavigator.m */,
+				62E8B9561A39AA85001993A9 /* LDMUIBusCenter.h */,
+				62E8B9571A39AA85001993A9 /* LDMUIBusCenter.m */,
+				62E8B9581A39AA85001993A9 /* LDMUIBusConnector.h */,
+				62E8B9591A39AA85001993A9 /* LDMUIBusConnector.m */,
+				62E8B9911A39AA85001993A9 /* LDMNavigator.h */,
+				62E8B9921A39AA85001993A9 /* LDMNavigator.m */,
+				62E8B9931A39AA85001993A9 /* UIViewController+LDMNavigator.h */,
+				62E8B9941A39AA85001993A9 /* UIViewController+LDMNavigator.m */,
 				62E8B95A1A39AA85001993A9 /* NavigatorCore */,
 				62E8B98A1A39AA85001993A9 /* NavigatorUI */,
 			);
@@ -550,13 +550,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				62E8B9B71A39AA85001993A9 /* TTBaseNavigator.h in Headers */,
-				62E8B9991A39AA85001993A9 /* LDBusCenter.h in Headers */,
-				62E8B99B1A39AA85001993A9 /* LDBusContext.h in Headers */,
-				62E8B9D11A39AA85001993A9 /* LDNavigator.h in Headers */,
+				62E8B9991A39AA85001993A9 /* LDMContainer.h in Headers */,
+				62E8B99B1A39AA85001993A9 /* LDMBusContext.h in Headers */,
+				62E8B9D11A39AA85001993A9 /* LDMNavigator.h in Headers */,
 				62E8B9BA1A39AA85001993A9 /* TTURLAction.h in Headers */,
 				62E8B9CF1A39AA85001993A9 /* TTWebController.h in Headers */,
-				62E8B9A31A39AA85001993A9 /* LDUIBusConnector.h in Headers */,
-				62E8B9971A39AA85001993A9 /* LDBundle.h in Headers */,
+				62E8B9A31A39AA85001993A9 /* LDMUIBusConnector.h in Headers */,
+				62E8B9971A39AA85001993A9 /* LDMBundle.h in Headers */,
 				62E8B9BD1A39AA85001993A9 /* TTURLMap.h in Headers */,
 				62E8B9CB1A39AA85001993A9 /* TTBaseNavigationController.h in Headers */,
 				62E8B9AD1A39AA85001993A9 /* NSStringAdditions.h in Headers */,
@@ -567,22 +567,22 @@
 				62E8B9CA1A39AA85001993A9 /* TTURLPatternText.h in Headers */,
 				62E8B9A71A39AA85001993A9 /* UIPopoverControllerAdditions.h in Headers */,
 				62E8B9B31A39AA85001993A9 /* TTGlobalCore.h in Headers */,
-				62E8B9D31A39AA85001993A9 /* UIViewController+LDNavigator.h in Headers */,
+				62E8B9D31A39AA85001993A9 /* UIViewController+LDMNavigator.h in Headers */,
 				62E8B9C51A39AA85001993A9 /* TTURLArgumentType.h in Headers */,
 				62E8B9D91A39AB16001993A9 /* TTURLArguments.h in Headers */,
 				62E8B9BC1A39AA85001993A9 /* TTNavigationMode.h in Headers */,
-				62E8B9A11A39AA85001993A9 /* LDUIBusCenter.h in Headers */,
+				62E8B9A11A39AA85001993A9 /* LDMUIBusCenter.h in Headers */,
 				62E8B9AB1A39AA85001993A9 /* UIViewControllerAdditions.h in Headers */,
 				62E8B9C31A39AA85001993A9 /* TTURLPattern.h in Headers */,
 				62E8B9C61A39AA85001993A9 /* TTURLWildcard.h in Headers */,
 				62E8B9C81A39AA85001993A9 /* TTURLLiteral.h in Headers */,
 				62E8B9CD1A39AA85001993A9 /* TTGlobalNavigatorMetrics.h in Headers */,
-				62E8B9D51A39AA85001993A9 /* LDBundleConfigParser.h in Headers */,
+				62E8B9D51A39AA85001993A9 /* LDMBundleConfigParser.h in Headers */,
 				62E8B9B51A39AA85001993A9 /* TTGlobalCoreRects.h in Headers */,
 				62E8B9B91A39AA85001993A9 /* TTBaseNavigatorInternal.h in Headers */,
 				62E8B9A91A39AA85001993A9 /* UITabBarControllerAdditions.h in Headers */,
-				62E8B99D1A39AA85001993A9 /* LDMessageBusCenter.h in Headers */,
-				62E8B99F1A39AA85001993A9 /* LDServiceBusCenter.h in Headers */,
+				62E8B99D1A39AA85001993A9 /* LDMMessageBusCenter.h in Headers */,
+				62E8B99F1A39AA85001993A9 /* LDMServiceBusCenter.h in Headers */,
 				62E8B9BF1A39AA85001993A9 /* TTURLNavigatorPattern.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -779,22 +779,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62E8B99C1A39AA85001993A9 /* LDBusContext.m in Sources */,
+				62E8B99C1A39AA85001993A9 /* LDMBusContext.m in Sources */,
 				62E8B9AA1A39AA85001993A9 /* UITabBarControllerAdditions.m in Sources */,
-				62E8B9D21A39AA85001993A9 /* LDNavigator.m in Sources */,
+				62E8B9D21A39AA85001993A9 /* LDMNavigator.m in Sources */,
 				62E8B9BE1A39AA85001993A9 /* TTURLMap.m in Sources */,
-				62E8B9981A39AA85001993A9 /* LDBundle.m in Sources */,
+				62E8B9981A39AA85001993A9 /* LDMBundle.m in Sources */,
 				62E8B9C41A39AA85001993A9 /* TTURLPattern.m in Sources */,
 				62E8B9BB1A39AA85001993A9 /* TTURLAction.m in Sources */,
 				62E8B9CC1A39AA85001993A9 /* TTBaseNavigationController.m in Sources */,
 				62E8B9A81A39AA85001993A9 /* UIPopoverControllerAdditions.m in Sources */,
 				62E8B9B61A39AA85001993A9 /* TTGlobalCoreRects.m in Sources */,
-				62E8B99A1A39AA85001993A9 /* LDBusCenter.m in Sources */,
-				62E8B9A21A39AA85001993A9 /* LDUIBusCenter.m in Sources */,
-				62E8B9A41A39AA85001993A9 /* LDUIBusConnector.m in Sources */,
+				62E8B99A1A39AA85001993A9 /* LDMContainer.m in Sources */,
+				62E8B9A21A39AA85001993A9 /* LDMUIBusCenter.m in Sources */,
+				62E8B9A41A39AA85001993A9 /* LDMUIBusConnector.m in Sources */,
 				62E8B9C01A39AA85001993A9 /* TTURLNavigatorPattern.m in Sources */,
-				62E8B9A01A39AA85001993A9 /* LDServiceBusCenter.m in Sources */,
-				62E8B99E1A39AA85001993A9 /* LDMessageBusCenter.m in Sources */,
+				62E8B9A01A39AA85001993A9 /* LDMServiceBusCenter.m in Sources */,
+				62E8B99E1A39AA85001993A9 /* LDMMessageBusCenter.m in Sources */,
 				62E8B9B81A39AA85001993A9 /* TTBaseNavigator.m in Sources */,
 				62E8B9C91A39AA85001993A9 /* TTURLLiteral.m in Sources */,
 				62E8B9DA1A39AB16001993A9 /* TTURLArguments.m in Sources */,
@@ -803,9 +803,9 @@
 				62E8B9C71A39AA85001993A9 /* TTURLWildcard.m in Sources */,
 				62E8B9AE1A39AA85001993A9 /* NSStringAdditions.m in Sources */,
 				62E8B9B11A39AA85001993A9 /* TTDebug.m in Sources */,
-				62E8B9D41A39AA85001993A9 /* UIViewController+LDNavigator.m in Sources */,
+				62E8B9D41A39AA85001993A9 /* UIViewController+LDMNavigator.m in Sources */,
 				62E8B9A61A39AA85001993A9 /* UINavigationControllerAdditions.m in Sources */,
-				62E8B9D61A39AA85001993A9 /* LDBundleConfigParser.m in Sources */,
+				62E8B9D61A39AA85001993A9 /* LDMBundleConfigParser.m in Sources */,
 				62E8B9AC1A39AA85001993A9 /* UIViewControllerAdditions.m in Sources */,
 				62E8B9B41A39AA85001993A9 /* TTGlobalCore.m in Sources */,
 			);

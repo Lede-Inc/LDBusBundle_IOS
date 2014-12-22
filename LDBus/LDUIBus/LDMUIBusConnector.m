@@ -6,32 +6,32 @@
 //  Copyright (c) 2014 庞辉. All rights reserved.
 //
 
-#import "LDUIBusConnector.h"
+#import "LDMUIBusConnector.h"
 
-#import "LDUIBusCenter.h"
-#import "LDBusContext.h"
+#import "LDMUIBusCenter.h"
+#import "LDMBusContext.h"
 
-#import "LDNavigator.h"
+#import "LDMNavigator.h"
 #import "TTURLMap.h"
 #import "TTURLAction.h"
 #import "TTURLNavigatorPattern.h"
-#import "UIViewController+LDNavigator.h"
+#import "UIViewController+LDMNavigator.h"
 #import "UIViewControllerAdditions.h"
 
-@interface LDUIBusConnector() {
+@interface LDMUIBusConnector() {
     TTURLMap *_bundleMap;
-    LDNavigator *_navigator;
+    LDMNavigator *_navigator;
 }
 
 @end
 
-@implementation LDUIBusConnector
+@implementation LDMUIBusConnector
 
 -(void)setBundleURLMap:(TTURLMap *)map {
     _bundleMap = map;
 }
 
--(void) setGlobalNavigator:(LDNavigator*) navigator{
+-(void) setGlobalNavigator:(LDMNavigator*) navigator{
     _navigator = navigator;
 }
 
@@ -124,13 +124,13 @@
 /**
  * 完成UIConnetor的调用
  */
-@implementation LDBusContext (LDUIBusConnector)
+@implementation LDMBusContext (LDUIBusConnector)
 /**
  * 向当前bundle的connector 发送action消息
  */
 +(BOOL)sendURLWithAction:(TTURLAction *)action{
     action.animated = YES;
-    return [LDUIBusCenter sendUIMessage:action];
+    return [LDMUIBusCenter sendUIMessage:action];
 }
 
 /**
@@ -139,7 +139,7 @@
 +(BOOL)sendURL:(NSString *)url{
     TTURLAction *action = [TTURLAction actionWithURLPath:url];
     action.animated = YES;
-    return [LDUIBusCenter sendUIMessage:action];;
+    return [LDMUIBusCenter sendUIMessage:action];;
 }
 
 /**
@@ -149,7 +149,7 @@
     TTURLAction *action = [TTURLAction actionWithURLPath:url];
     action.query = query;
     action.animated = YES;
-    return [LDUIBusCenter sendUIMessage:action];
+    return [LDMUIBusCenter sendUIMessage:action];
 
 }
 
@@ -159,13 +159,13 @@
 +(UIViewController *)controllerForURL:(NSString *)url{
     TTURLAction *action = [TTURLAction actionWithURLPath:url];
     action.ifNeedPresent = NO;
-    return [LDUIBusCenter receiveURLCtrlFromUIBus:action];
+    return [LDMUIBusCenter receiveURLCtrlFromUIBus:action];
 }
 
 @end
 
 
-@implementation LDUIBusConnector(ToBeOverwrite)
+@implementation LDMUIBusConnector(ToBeOverwrite)
 
 /**
  * 接收消息，查看消息是否能够处理
@@ -205,7 +205,7 @@
  * 按照action定义的展示方式完成
  */
 - (BOOL)presentViewController:(UIViewController*)controller
-                    navigator:(LDNavigator*)navigator
+                    navigator:(LDMNavigator*)navigator
                        action:(TTURLAction *)action{
     return NO;
 }

@@ -1,5 +1,5 @@
 //
-//  LDBusContext.h
+//  LDMBusContext.h
 //  LDBusBundle
 //
 //  Created by 庞辉 on 12/10/14.
@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 
 @class TTURLAction;
-@interface LDBusContext : NSObject
+@interface LDMBusContext : NSObject
 
 @end
 
@@ -18,7 +18,7 @@
  * @Category LDUIBusConnector
  * UI总线的调用，通过UIConnetor调用，具体的UI总线透明
  */
-@interface LDBusContext (LDUIBusConnector)
+@interface LDMBusContext (LDUIBusConnector)
 /**
  * 向当前bundle的connector 发送action消息
  */
@@ -49,7 +49,7 @@
  * @Category LDServiceBusCenter
  * 服务总线的调用
  */
-@interface LDBusContext (LDServiceBusCenter)
+@interface LDMBusContext (LDServiceBusCenter)
 
 /**
  * 从服务总线获取服务的实例
@@ -66,7 +66,7 @@
  * @Category LDMessageBusCenter
  * 消息总线的调用
  */
-@interface LDBusContext (LDMessageBusCenter)
+@interface LDMBusContext (LDMessageBusCenter)
 /**
  * 向消息总线添加观察者
  */

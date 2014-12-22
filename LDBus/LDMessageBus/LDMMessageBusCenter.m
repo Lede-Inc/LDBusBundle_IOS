@@ -1,20 +1,20 @@
 //
-//  LDMessageBusCenter.m
+//  LDMMessageBusCenter.m
 //  LDBusBundle
 //
 //  Created by 庞辉 on 12/5/14.
 //  Copyright (c) 2014 庞辉. All rights reserved.
 //
 
-#import "LDMessageBusCenter.h"
-#import "LDBusContext.h"
+#import "LDMMessageBusCenter.h"
+#import "LDMBusContext.h"
 
 #define TITLE_MESSAGEBUSPOSTCLASS @"messagebus_postclass"
 #define TITLE_MESSAGEBUSRECVOBJCOUNT @"messagebus_recvobjcount"
 
 
-static LDMessageBusCenter *messagebusCenter = nil;
-@interface LDMessageBusCenter () {
+static LDMMessageBusCenter *messagebusCenter = nil;
+@interface LDMMessageBusCenter () {
     NSMutableDictionary *_messageMap;
     NSNotificationCenter *_center;
 }
@@ -22,9 +22,9 @@ static LDMessageBusCenter *messagebusCenter = nil;
 
 
 
-@implementation LDMessageBusCenter
+@implementation LDMMessageBusCenter
 
-+(LDMessageBusCenter *) messagebusCenter {
++(LDMMessageBusCenter *) messagebusCenter {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         messagebusCenter = [[self alloc] init];
@@ -183,27 +183,27 @@ static LDMessageBusCenter *messagebusCenter = nil;
 /**
  * 共所有bundle的所有controller调用
  */
-@implementation LDBusContext (LDMessageBusCenter)
+@implementation LDMBusContext (LDMessageBusCenter)
 /**
  * 向消息总线添加观察者
  */
 +(BOOL )addObserver:(id)observer sel:(SEL)sel  message:(NSString *)message{
-    return [[LDMessageBusCenter messagebusCenter] operateNotificationObserverToMessageBus:observer selector:sel withMessage:message andAObject:nil option:1];
+    return [[LDMMessageBusCenter messagebusCenter] operateNotificationObserverToMessageBus:observer selector:sel withMessage:message andAObject:nil option:1];
 }
 
 +(BOOL )addObserver:(id)observer sel:(SEL)sel  message:(NSString *)message aObject: (id)aObject{
-    return [[LDMessageBusCenter messagebusCenter] operateNotificationObserverToMessageBus:observer selector:sel withMessage:message andAObject:aObject option:1];
+    return [[LDMMessageBusCenter messagebusCenter] operateNotificationObserverToMessageBus:observer selector:sel withMessage:message andAObject:aObject option:1];
 }
 
 /**
  * 向消息总线移除观察者
  */
 +(BOOL)removeObserver:(id)observer message:(NSString *) message{
-    return [[LDMessageBusCenter messagebusCenter] operateNotificationObserverToMessageBus:observer selector:nil withMessage:message andAObject:nil option:0];
+    return [[LDMMessageBusCenter messagebusCenter] operateNotificationObserverToMessageBus:observer selector:nil withMessage:message andAObject:nil option:0];
 }
 
 +(BOOL)removeObserver:(id)observer message:(NSString *) message aObject:(id)aObject{
-    return [[LDMessageBusCenter messagebusCenter] operateNotificationObserverToMessageBus:observer selector:nil withMessage:message andAObject:aObject option:0];
+    return [[LDMMessageBusCenter messagebusCenter] operateNotificationObserverToMessageBus:observer selector:nil withMessage:message andAObject:aObject option:0];
 }
 
 /**
@@ -211,17 +211,17 @@ static LDMessageBusCenter *messagebusCenter = nil;
  */
 +(BOOL)postMessage:(NSString *)message{
     NSNotification *notification =  [NSNotification notificationWithName:message object:nil];
-    return [[LDMessageBusCenter messagebusCenter] postNotificaitonToAllResponseViewController:notification];
+    return [[LDMMessageBusCenter messagebusCenter] postNotificaitonToAllResponseViewController:notification];
 }
 
 +(BOOL)postMessage:(NSString *) message object:(id) object{
     NSNotification *notification =  [NSNotification notificationWithName:message object:object];
-    return [[LDMessageBusCenter messagebusCenter] postNotificaitonToAllResponseViewController:notification];
+    return [[LDMMessageBusCenter messagebusCenter] postNotificaitonToAllResponseViewController:notification];
 }
 
 +(BOOL)postMessage:(NSString *)message userInfo:(NSDictionary *)aUserInfo{
     NSNotification *notification =  [NSNotification notificationWithName:message object:nil userInfo:aUserInfo];
-    return [[LDMessageBusCenter messagebusCenter] postNotificaitonToAllResponseViewController:notification];
+    return [[LDMMessageBusCenter messagebusCenter] postNotificaitonToAllResponseViewController:notification];
 }
 
 

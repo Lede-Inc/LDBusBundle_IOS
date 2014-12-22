@@ -10,10 +10,10 @@
  * A URL-based navigation system with built-in persistence.
  * Add support for model-based controllers and implement the legacy global instance accessor.
  */
-@interface LDNavigator : TTBaseNavigator {
+@interface LDMNavigator : TTBaseNavigator {
     
 }
 
-+ (LDNavigator*)navigator;
++ (LDMNavigator*)navigator;
 
 @end

@@ -1,5 +1,5 @@
 //
-//  LDUIBusCenter.h
+//  LDMUIBusCenter.h
 //  LDBusBundle
 //
 //  Created by 庞辉 on 12/5/14.
@@ -14,11 +14,11 @@
  * @class LDUIBusCenter
  * UI总线调度中心, 负责接收从UIBusConnetor获取的URL消息，并负责将URL消息转发给其他所有bundle的connetor；
  */
-@interface LDUIBusCenter : NSObject {
+@interface LDMUIBusCenter : NSObject {
     
 }
 
-+(LDUIBusCenter *) uibusCenter;
++(LDMUIBusCenter *) uibusCenter;
 
 
 

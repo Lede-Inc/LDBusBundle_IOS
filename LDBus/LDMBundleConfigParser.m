@@ -1,12 +1,10 @@
 //
-//  AppDelegate.m
-//  MovieStartupBundle
 //
 //  Created by 庞辉 on 11/21/14.
 //  Copyright (c) 2014 庞辉. All rights reserved.
 //
 
-#import "LDBundleConfigParser.h"
+#import "LDMBundleConfigParser.h"
 
 
 #define IFNIL(XX) (((XX)==nil)?@"":(XX))
@@ -43,7 +41,7 @@
 @end
 
 
-@interface LDBundleConfigParser () {
+@interface LDMBundleConfigParser () {
     NSString *bundleName;
     NSString *viewCtrlName; 
     NSString *urlPatternName;
@@ -51,7 +49,7 @@
 @end
 
 
-@implementation LDBundleConfigParser
+@implementation LDMBundleConfigParser
 @synthesize frameworkBundle = _frameworkBundle;
 
 - (id)init
