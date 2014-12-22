@@ -52,6 +52,7 @@ typedef enum {
     //如果自定义connector，必须继承busconnetor并遵循busconnetor的服务协议；
     LDUIBusConnector *_uibusConnetor;
     LDNavigator *_navigator;
+    NSString *_scheme;
 }
 
 @property (readonly, copy) NSString *updateURL;
@@ -59,6 +60,7 @@ typedef enum {
 @property (readonly) BundleState state;
 @property (readonly) BOOL isDynamic;
 @property (readonly) LDUIBusConnector *uibusConnetor;
+@property (readonly) NSString *scheme;
 
 
 /**
@@ -70,8 +72,17 @@ typedef enum {
  *          指定位置是一个以.framework为扩展名的动态库bundle，可以直接从动态库里读取配置文件
  */
 -(id) initBundleWithPath:(NSString *)path;
+-(void)setBundleNavigator:(LDNavigator *)navigator;
+-(void)setBundleScheme:(NSString *)scheme;
 
--(void)setNavigator:(LDNavigator *)navigator;
+
+/**
+ * 给当前bundle初始化一个connector
+ * 如果bundle配置文件指定connetorClass，则初始化一个指定的connetor给
+ * 否则初始化一个默认的connetor给bundle
+ */
+-(BOOL) setUIBusConnectorToBundle;
+
 
 /**
  * 从config中获取服务总线配置

@@ -52,19 +52,7 @@
 -(BOOL) presentViewController:(UIViewController *)controller
                     navigator:(LDNavigator *)navigator
                        action:(TTURLAction *)action {
-    BOOL success = [super presentViewController:controller navigator:navigator action:action];
-    if(!success) {
-        //自定义展示方式：
-        //获取当前显示的ViewController navigator.topViewController
-        //获取当前的rootViewCOntroller navigator.rootViewController
-        if(navigator.rootViewController == nil){
-            [navigator presentController:controller parentURLPath:action.parentURLPath withPattern:nil action:action];
-            success = YES;
-        } else {
-            success  = NO;
-        }
-    }
-    
+    BOOL success = [super presentViewController:controller navigator:navigator action:action];    
     return success;
 }
 

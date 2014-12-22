@@ -22,7 +22,7 @@
 -(void) viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    [self setTabURLs:@[@"LDBusDemo://menu/1", @"LDBusDemo://menu/5"]];
+    [self setTabURLs:@[@"netescaipiao://menu/1", @"netescaipiao://menu/5"]];
 }
 
 
@@ -52,10 +52,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //bus Center初始化，预加载所有bundle的配置
-    [[LDBusCenter busCenter] preloadConfig];
+    [[LDBusCenter busCenter] preloadConfigWithScheme:@"netescaipiao"];
     
     //打开一个初始ViewController
-    [LDBusContext sendURL:@"LDBusDemo://mainTab1"];
+    [LDBusContext sendURL:@"netescaipiao://mainTab1"];
     return YES;
 }
 

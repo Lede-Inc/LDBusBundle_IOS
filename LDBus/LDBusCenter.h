@@ -27,6 +27,7 @@
  */
 @interface LDBusCenter : NSObject {
     NSMutableDictionary *_bundlesMap;
+    NSString *_mainScheme;
 }
 
 @property (nonatomic, readonly)NSMutableDictionary *bundlesMap;
@@ -38,9 +39,15 @@
 
 /**
  * bus center preload config
+ * private: 每个bundle一个scheme
  */
 -(void) preloadConfig;
 
+
+/**
+ * 对于保证整个app统一scheme导航的初始化
+ */
+-(void) preloadConfigWithScheme:(NSString *)scheme;
 
 /**
  * 设置当前navigator的rootViewController

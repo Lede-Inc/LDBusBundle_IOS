@@ -88,6 +88,16 @@ static LDBusCenter* busCenter = nil;
 }
 
 /**
+ * 对于保证整个app统一scheme导航的初始化
+ */
+-(void) preloadConfigWithScheme:(NSString *)scheme{
+    if([self setNavigatorMainScheme:scheme]){
+        [self preloadConfig];
+    }
+}
+
+
+/**
  * 设置当前navigator的rootViewController
  */
 -(BOOL) setNavigatorRootViewController:(UIViewController *)theRoot{
@@ -98,6 +108,23 @@ static LDBusCenter* busCenter = nil;
     }
     return success;
 }
+
+/**
+ * 请在preloadConfig之前设置整个应用的的scheme
+ * 如果设置，应用内所有bundle的URL Pattern的scheme将通过设置scheme统一导航
+ * 如果不设置，所有的UI总线的URL Pattern的scheme将以bundle name设置；
+ */
+-(BOOL) setNavigatorMainScheme:(NSString *)theMainScheme;{
+    BOOL success = NO;
+    if(theMainScheme && ![theMainScheme isEqualToString:@""]){
+        _mainScheme = theMainScheme;
+        success = YES;
+    }
+    
+    return success;
+}
+
+
 
 
 /**
@@ -156,11 +183,19 @@ static LDBusCenter* busCenter = nil;
                 NSString *bundleFilePath = [bundleCacheDir stringByAppendingPathComponent:filename];
                 LDBundle *bundle = [[LDBundle alloc] initBundleWithPath: bundleFilePath];
                 if(bundle != nil){
-                    [bundle setNavigator:_mainNavigator];
                     NSString *bundleUUID = (bundle.bundleIdentifier && ![bundle.bundleIdentifier isEqualToString:@""]) ? bundle.bundleIdentifier:[filename stringByDeletingPathExtension];
                     NSString *key = [NSString stringWithFormat:@"_bundle_%@_", bundleUUID];
                     [_bundlesMap setObject:bundle forKey:key];
+                    //设置每个bundle的全局导航器
+                    [bundle setBundleNavigator:_mainNavigator];
                     
+                    //先设置bundleScheme，
+                    //再初始化每个bundle对应的UIBusConnector，并给connetor设置导航map
+                    if(_mainScheme && ![_mainScheme isEqualToString:@""]){
+                        [bundle setBundleScheme:_mainScheme];
+                    }
+                    [bundle setUIBusConnectorToBundle];
+
                     //将bundle中服务注册到服务总线中去；
                     NSLog(@"bundleIdentier>>>>%@", bundle.bundleIdentifier);
                     [self.servicebusCenter registerServiceToBusBatchly:[bundle getServiceMapFromConfigObj]];

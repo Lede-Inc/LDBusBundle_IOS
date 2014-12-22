@@ -11,7 +11,7 @@
             <URLPattern name="type/(initWithType:)"/>
             <URLPattern name="popover/(initWithFood:)" type="pop"/>
             <URLPattern name="modeview/(initWithModeController:)" type="modal"/>
-            <URLPattern name="about/(initWithUs:)/(others:)" parent="LDBusDemo://menu/5" type="push"/>
+            <URLPattern name="about/(initWithUs:)/(others:)" parent="netescaipiao://menu/5" type="push"/>
         </ViewController>
     </UIBus>
     <ServiceBus>

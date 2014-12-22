@@ -19,5 +19,6 @@ Pod::Spec.new do |s|
     s.platform     = :ios, '5.0'
     s.ios.deployment_target = '5.0'
     s.requires_arc = true
+    s.ios.public_header_files = 'LDBus/LDBusContext.h', 'LDBus/LDBusCenter.h', 'LDBus/LDUIBus/LDUIBusConnector.h', 'LDBus/LDUIBus/LDNavigator.h', 'LDBus/LDUIBus/NavigatorCore/TTBaseNavigator.h', 'LDBus/LDUIBus/NavigatorCore/URL\ Action/TTURLAction.h','LDBus/LDUIBus/NavigatorUI/TTWebController.h'
     s.ios.vendored_frameworks = 'FrameWork/LDBus.framework'
 end

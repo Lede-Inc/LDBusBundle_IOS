@@ -22,6 +22,7 @@
 @synthesize InstallLevel = _installLevel;
 @synthesize state = _state;
 @synthesize isDynamic = _isDynamic;
+@synthesize scheme = _scheme;
 
 -(id) initBundleWithPath:(NSString *)path {
     //处理static framework
@@ -77,10 +78,14 @@
     }
 }
 
--(void)setNavigator:(LDNavigator *)navigator{
+-(void)setBundleNavigator:(LDNavigator *)navigator{
     _navigator = navigator;
-    if(_uibusConnetor){
-        [_uibusConnetor setGlobalNavigator:_navigator];
+}
+
+
+-(void)setBundleScheme:(NSString *)scheme {
+    if(scheme && ![scheme isEqualToString:@""]){
+        _scheme = scheme;
     }
 }
 
@@ -101,8 +106,6 @@
         [configParser parse];
         _configObj = delegate.frameworkBundle;
         
-        //初始化每个bundle对应的UIBusConnector
-        [self setUIBusConnectorToBundle];
         return YES;
     }
     
@@ -164,6 +167,10 @@
     
     //初始化完成之后赋值map
     if(_uibusConnetor != nil) {
+        //根据bundle的navigator设置UIBusConnector
+        if(_navigator){
+            [_uibusConnetor setGlobalNavigator:_navigator];
+        }
         [_uibusConnetor setBundleURLMap:[self getURLMapFromConfigObj]];
     }
     return YES;
@@ -179,10 +186,16 @@
     TTURLMap *map = [[TTURLMap alloc] init];
     [map from:@"*" toViewController:[TTWebController class] withWebURL:nil];
     if(bundle.bundleName && bundle.urlCtrlArray && bundle.urlCtrlArray.count>0){
+        //设置bundle URLMap的scheme
+        NSString *bundleScheme = bundle.bundleName;
+        if(_scheme && ![_scheme isEqualToString:@""]) {
+            bundleScheme = _scheme;
+        }
+        
         for(int i = 0; i < bundle.urlCtrlArray.count; i++){
             //设置每个viewctrl默认的打开方式
             TTURLViewControlObj *viewCtrl = bundle.urlCtrlArray[i];
-            NSString *ctrlPatternURL = [NSString stringWithFormat:@"%@://%@", bundle.bundleName, viewCtrl.viewCtrlName];
+            NSString *ctrlPatternURL = [NSString stringWithFormat:@"%@://%@", bundleScheme, viewCtrl.viewCtrlName];
             NSString *ctrlPatternWebURL = [NSString stringWithFormat:@"%@%@",bundle.bundleWebHost,viewCtrl.viewCtrlWebPath];
             [self setNaviagtorMap:map MapURL:ctrlPatternURL webURL:ctrlPatternWebURL ctrlClass:viewCtrl.viewCtrlClass parent:viewCtrl.viewCtrlDefaultParent type:viewCtrl.viewCtrlDefaultType];
             

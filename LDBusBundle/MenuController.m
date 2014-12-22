@@ -97,24 +97,24 @@
     [_keyArrary removeAllObjects];
     [_urlArrary removeAllObjects];
     if (_page == MenuPageBreakfast) {
-        [_keyArrary addObjectsFromArray:@[@"点击push view，push:LDBusDemo://food",
+        [_keyArrary addObjectsFromArray:@[@"点击push view，push:netescaipiao://food",
                                           @"push view",
-                                          @"(只能在ipad测试)点击pop view，popOver:LDBusDemo://food/popover/popview",
+                                          @"(只能在ipad测试)点击pop view，popOver:netescaipiao://food/popover/popview",
                                           @"pop view",
-                                          @"点击tab switch, 跳到tab2，并push:LDBusDemo://food/about/tabswitch/10",
+                                          @"点击tab switch, 跳到tab2，并push:netescaipiao://food/about/tabswitch/10",
                                           @"tab switch",
-                                          @"点击model view, 打开LDBusDemo://food/modeview/mode",
+                                          @"点击model view, 打开netescaipiao://food/modeview/mode",
                                           @"mode view",
                                           @"点击测试，Htm5降级",
                                           @"消息总线测试，点击两个tabCtrl各收到一个通知"]];
         [_urlArrary addObjectsFromArray:@[@"",
-                                          @"LDBusDemo://food",
+                                          @"netescaipiao://food",
                                           @"",
-                                          @"LDBusDemo://food/popover/coffee",
+                                          @"netescaipiao://food/popover/coffee",
                                           @"",
-                                          @"LDBusDemo://food/about/complaints/10",
+                                          @"netescaipiao://food/about/complaints/10",
                                           @"",
-                                          @"LDBusDemo://food/modeview/mode",
+                                          @"netescaipiao://food/modeview/mode",
                                           @"LDMBMovieFilm://tabMovie",
                                           @"LocationModified"]];
     } else if (_page == MenuPageLunch) {
@@ -122,7 +122,7 @@
     } else if (_page == MenuPageDessert) {
     } else if (_page == MenuPageAbout) {
         [_keyArrary addObjectsFromArray:@[@"Our Story", @"测试服务总线", @"Text Us", @"Complaints Dept."]];
-        [_urlArrary addObjectsFromArray:@[@"LDBusDemo://food/foo/story", @"ldbusdemo.loginService", @"sms://5555555", @"LDBusDemo://food/foo/complaints"]];
+        [_urlArrary addObjectsFromArray:@[@"netescaipiao://food/foo/story", @"ldbusdemo.loginService", @"sms://5555555", @"netescaipiao://food/foo/complaints"]];
     }
 
 }
