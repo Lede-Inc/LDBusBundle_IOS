@@ -8,6 +8,7 @@
 
 #import "LDMServiceBusCenter.h"
 #import "LDMBusContext.h"
+#import "LDMServiceConfigurationItem.h"
 
 #define TITLE_SERVICEBUSCLASS @"servicebus_implclass"
 #define TITLE_SERVICEBUSOBJECT  @"servicebus_implobject"
@@ -50,10 +51,9 @@ static LDMServiceBusCenter *servicebusCenter = nil;
     id serviceImpl = nil;
     if(dic){
         if([dic objectForKey:TITLE_SERVICEBUSOBJECT] == [NSNull null]){
-            NSString *serviceClass = [dic objectForKey:TITLE_SERVICEBUSCLASS];
-            Class class = [NSClassFromString(serviceClass) class];
-            if(class != nil){
-                serviceImpl = [[class alloc] init];
+            Class serviceClass = [dic objectForKey:TITLE_SERVICEBUSCLASS];
+            if(serviceClass != nil){
+                serviceImpl = [[serviceClass alloc] init];
                 [dic setObject:serviceImpl forKey:TITLE_SERVICEBUSOBJECT];
                 [_serviceMap setObject:dic forKey:[serviceName lowercaseString]];
             }
@@ -70,17 +70,13 @@ static LDMServiceBusCenter *servicebusCenter = nil;
 /**
  * 通过map数组给服务总线中注册服务
  */
--(BOOL) registerServiceToBusBatchly: (NSMutableDictionary *) dic {
-    if(dic && dic.allKeys.count > 0){
-        NSArray *keysArray = dic.allKeys;
-        for(int i = 0; i < keysArray.count; i++){
-            NSString *serviceName = [keysArray objectAtIndex:i];
-            NSString *serviceClass = [dic objectForKey:serviceName];
-            if([NSClassFromString(serviceClass) class] != nil){
-                [_serviceMap setObject:@{TITLE_SERVICEBUSCLASS:serviceClass,
-                                         TITLE_SERVICEBUSOBJECT:[NSNull null]}
-                                forKey:[serviceName lowercaseString]];
-            }
+-(BOOL) registerServiceToBusBatchly: (NSArray *) serviceConfigurationList{
+    if(serviceConfigurationList && serviceConfigurationList.count > 0){
+        for(int i = 0; i < serviceConfigurationList.count; i++){
+            LDMServiceConfigurationItem *serviceItem = [serviceConfigurationList objectAtIndex:i];
+            [self registerServiceToBus:serviceItem.serviceName
+                                 class:serviceItem.classString
+                              protocol:serviceItem.protocolString];
         }
     }
     
@@ -92,23 +88,46 @@ static LDMServiceBusCenter *servicebusCenter = nil;
  * 通过key-value给服务总线注册服务
  *
  */
--(BOOL) registerServiceToBus:(NSString *)serviceName withServiceClass:(NSString *)serviceClass {
-    if([NSClassFromString(serviceClass) class] != nil){
-        [_serviceMap setObject:@{TITLE_SERVICEBUSCLASS:serviceClass,
+-(BOOL) registerServiceToBus:(NSString *)serviceName
+                       class:(NSString *)serviceClassString
+                    protocol:(NSString *)serviceProtocolString{
+    BOOL success = NO;
+    Class serviceClass = nil;
+    if(serviceClassString && ![serviceClassString isEqualToString:@""]){
+        serviceClass = NSClassFromString(serviceClassString);
+    }
+    
+    Protocol *serviceProtocol = nil;
+    if(serviceProtocolString && ![serviceProtocolString isEqualToString:@""]){
+        serviceProtocol = NSProtocolFromString(serviceProtocolString);
+    }
+    
+    //如果serviceClass 在bundle中不存在，不注册该服务
+    if(serviceClass && serviceProtocol && [serviceClass conformsToProtocol:serviceProtocol]){
+        if([_serviceMap objectForKey:[serviceName lowercaseString]] != nil){
+            //注册的时候给予提醒，不允许相同服务名称进行注册，不区分大小写，有重复不予覆盖
+#ifdef DEBUG
+            NSAssert(NO, @"service: %@ duplicate register in service bus", serviceName);
+#endif
+        } else {
+            [_serviceMap setObject:@{TITLE_SERVICEBUSCLASS:serviceClass,
                                  TITLE_SERVICEBUSOBJECT:[NSNull null]}
                         forKey:[serviceName lowercaseString]];
+            success = YES;
+        }
     }
-    return YES;
+    
+    return success;
 }
 
 
 /**
  * 批量注销服务
  */
--(BOOL) unRegisterServiceFromBusBatchly:(NSArray *)services {
-    if(services && services.count > 0){
-        for(int i = 0; i < services.count; i++){
-            [self unRegisterServiceFromBus:[services objectAtIndex:i]];
+-(BOOL) unRegisterServiceFromBusBatchly:(NSArray *)serviceNames;{
+    if(serviceNames && serviceNames.count > 0){
+        for(int i = 0; i < serviceNames.count; i++){
+            [self unRegisterServiceFromBus:[serviceNames objectAtIndex:i]];
         }
     }
     

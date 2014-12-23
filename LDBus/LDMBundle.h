@@ -32,7 +32,7 @@ typedef enum {
  */
 
 @class LDMNavigator;
-@class TTFrameworkBundleObj;
+@class LDMBundleConfigurationItem;
 @class LDMUIBusConnector;
 @interface LDMBundle : NSBundle {
     //bundle的下载地址，由每个bundle自己完成更新
@@ -46,7 +46,7 @@ typedef enum {
     BOOL _isDynamic;
     
     //bundle config解析对象
-    TTFrameworkBundleObj *_configObj;
+    LDMBundleConfigurationItem* _configurationItem;
     
     //bundle的UIBus connetor
     //如果自定义connector，必须继承busconnetor并遵循busconnetor的服务协议；
@@ -85,13 +85,28 @@ typedef enum {
 
 
 /**
- * 从config中获取服务总线配置
+ * 从config中获取bundle服务配置项列表
  */
--(NSMutableDictionary* ) getServiceMapFromConfigObj;
+-(NSArray* ) getServiceConfigurationList;
+
 
 /**
- * 从config中获取消息总线配置
+ * 从config中获取bundle发送消息配置项列表
  */
--(NSMutableDictionary *) getMessageMapFromConfigObj;
+-(NSArray *) getPostMessageConfigurationList;
+
+
+/**
+ * 从config中获取bundle接受消息配置项列表
+ */
+-(NSArray *) getReceiveMessageConfigurationList;
+
+
+/**
+ * 检查bundle内部是否有配置重复
+ * (1) 检查URL Pattern是否有重复, 检查URLPattern在weburl配置为空时，class是否存在；
+ * (2) 检查service的实现类是否存在
+ * (3) 检查message的
+ */
 
 @end

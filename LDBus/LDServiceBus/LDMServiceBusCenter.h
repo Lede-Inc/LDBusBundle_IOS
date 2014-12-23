@@ -17,26 +17,30 @@
 }
 
 +(LDMServiceBusCenter *)servicebusCenter;
-/**
- * 通过map数组给服务总线中注册服务
- */
--(BOOL) registerServiceToBusBatchly: (NSMutableDictionary *) dic;
 
 /**
  * 从服务总线中获取某个服务的实现
  */
 -(id) getServiceImpl:(NSString *)serviceName;
 
+
+/**
+ * 通过map数组给服务总线中注册服务
+ */
+-(BOOL) registerServiceToBusBatchly: (NSArray *) serviceConfigurationList;
+
 /**
  * 通过key-value给服务总线注册服务
  *
  */
--(BOOL) registerServiceToBus:(NSString *)serviceName withServiceClass:(NSString *)serviceClass;
+-(BOOL) registerServiceToBus:(NSString *)serviceName
+                       class:(NSString *)serviceClassString
+                    protocol:(NSString *)serviceProtocolString;
 
 /**
  * 批量注销服务
  */
--(BOOL) unRegisterServiceFromBusBatchly:(NSArray *)services;
+-(BOOL) unRegisterServiceFromBusBatchly:(NSArray *)serviceNames;
 
 /**
  * 按service名称注销服务

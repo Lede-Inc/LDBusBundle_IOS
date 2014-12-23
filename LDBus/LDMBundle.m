@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LDMBundleConfigParser.h"
+#import "LDMBundleConfigurationItem.h"
+#import "LDMURLViewCtrlConfigurationItem.h"
+#import "LDMURLViewCtrlPatternConfigurationItem.h"
+
+#import "LDMBusContext.h"
 #import "LDMBundle.h"
 #import "LDMUIBusConnector.h"
 #import "TTURLMap.h"
-#import "LDMBundleConfigParser.h"
 #import "TTWebController.h"
 
 //获取系统版本
@@ -74,7 +79,7 @@
     if(_isDynamic){
         return self.bundleIdentifier;
     } else {
-        return _configObj.bundleName;
+        return _configurationItem.bundleName;
     }
 }
 
@@ -99,12 +104,13 @@
         LDMBundleConfigParser *delegate = [[LDMBundleConfigParser alloc] init];
         NSXMLParser *configParser = [[NSXMLParser alloc] initWithContentsOfURL:[NSURL fileURLWithPath:configPath]];
         if (configParser == nil) {
-            NSLog(@"Failed to initialize XML parser:>>>path=%@", configPath);
+            //xml路径有效性进行验证
+            NSAssert(@"Failed to initialize XML parser:>>>path=%@", configPath);
             return NO;
         }
         [configParser setDelegate:((id < NSXMLParserDelegate >)delegate)];
         [configParser parse];
-        _configObj = delegate.frameworkBundle;
+        _configurationItem = delegate.configurationItem;
         
         return YES;
     }
@@ -113,13 +119,13 @@
 }
 
 /**
- * 从config中获取服务总线配置
+ * 从config中获取bundle服务配置项列表
  */
--(NSMutableDictionary* ) getServiceMapFromConfigObj {
-    if(_configObj == nil) return nil;
+-(NSArray* ) getServiceConfigurationList{
+    if(_configurationItem == nil) return nil;
     
-    if(_configObj.serviceMap != nil && _configObj.serviceMap.allKeys.count>0){
-        return _configObj.serviceMap;
+    if(_configurationItem.serviceConfigurationList && _configurationItem.serviceConfigurationList.count>0){
+        return _configurationItem.serviceConfigurationList;
     } else {
         return nil;
     }
@@ -128,17 +134,30 @@
 
 
 /**
- * 从config中获取消息总线配置
+ * 从config中获取bundle发送消息配置项列表
  */
--(NSMutableDictionary *) getMessageMapFromConfigObj {
-    if(_configObj == nil) return nil;
-    
-    if(_configObj.messageMap != nil && _configObj.messageMap.allKeys.count>0){
-        return _configObj.messageMap;
+-(NSArray *) getPostMessageConfigurationList {
+    if(_configurationItem == nil) return nil;
+    if(_configurationItem.postMessageConfigurationList && _configurationItem.postMessageConfigurationList.count>0){
+        return _configurationItem.postMessageConfigurationList;
     } else {
         return nil;
     }
 }
+
+
+/**
+ * 从config中获取bundle接受消息配置项列表
+ */
+-(NSArray *) getReceiveMessageConfigurationList{
+    if(_configurationItem == nil) return nil;
+    if(_configurationItem.receiveMessageConfigurationList && _configurationItem.receiveMessageConfigurationList.count>0){
+        return _configurationItem.receiveMessageConfigurationList;
+    } else {
+        return nil;
+    }
+}
+
 
 
 /**
@@ -147,11 +166,11 @@
  * 否则初始化一个默认的connetor给bundle
  */
 -(BOOL) setUIBusConnectorToBundle {
-    if(_configObj == nil) return NO;
+    if(_configurationItem == nil) return NO;
     
     //bundle指定了connector
-    if(![_configObj.connectorClass isEqualToString:@""]){
-        Class connctorClass = [NSClassFromString(_configObj.connectorClass) class];
+    if(![_configurationItem.connectorClass isEqualToString:@""]){
+        Class connctorClass = [NSClassFromString(_configurationItem.connectorClass) class];
         if(connctorClass != nil){
             id obj = [[connctorClass alloc] init];
             if([obj isKindOfClass:[LDMUIBusConnector class]]){
@@ -181,28 +200,28 @@
  * 从解析的configObj获取供其他bundle调用的UI总线的map
  */
 -(TTURLMap *)getURLMapFromConfigObj{
-    if(_configObj == nil) return nil;
-    TTFrameworkBundleObj *bundle = _configObj;
+    if(_configurationItem == nil) return nil;
     TTURLMap *map = [[TTURLMap alloc] init];
     [map from:@"*" toViewController:[TTWebController class] withWebURL:nil];
-    if(bundle.bundleName && bundle.urlCtrlArray && bundle.urlCtrlArray.count>0){
+    if(_configurationItem.urlViewCtrlConfigurationList && _configurationItem.urlViewCtrlConfigurationList.count>0){
         //设置bundle URLMap的scheme
-        NSString *bundleScheme = bundle.bundleName;
+        NSString *bundleScheme = _configurationItem.bundleName;
         if(_scheme && ![_scheme isEqualToString:@""]) {
             bundleScheme = _scheme;
         }
         
-        for(int i = 0; i < bundle.urlCtrlArray.count; i++){
+        for(int i = 0; i < _configurationItem.urlViewCtrlConfigurationList.count; i++){
             //设置每个viewctrl默认的打开方式
-            TTURLViewControlObj *viewCtrl = bundle.urlCtrlArray[i];
+            LDMURLViewCtrlConfigurationItem *viewCtrl = _configurationItem.urlViewCtrlConfigurationList[i];
             NSString *ctrlPatternURL = [NSString stringWithFormat:@"%@://%@", bundleScheme, viewCtrl.viewCtrlName];
-            NSString *ctrlPatternWebURL = [NSString stringWithFormat:@"%@%@",bundle.bundleWebHost,viewCtrl.viewCtrlWebPath];
-            [self setNaviagtorMap:map MapURL:ctrlPatternURL webURL:ctrlPatternWebURL ctrlClass:viewCtrl.viewCtrlClass parent:viewCtrl.viewCtrlDefaultParent type:viewCtrl.viewCtrlDefaultType];
+            NSString *ctrlPatternWebURL = [NSString stringWithFormat:@"%@%@",_configurationItem.bundleWebHost,viewCtrl.viewCtrlWebPath];
+            NSString *ctrlPatternParent = [viewCtrl.viewCtrlDefaultParent isEqualToString:@""]?@"": [NSString stringWithFormat:@"%@://%@", bundleScheme, viewCtrl.viewCtrlDefaultParent];
+            [self setNaviagtorMap:map MapURL:ctrlPatternURL webURL:ctrlPatternWebURL ctrlClass:viewCtrl.viewCtrlClass parent:ctrlPatternParent type:viewCtrl.viewCtrlDefaultType];
             
             //设置viewctrl各个pattern的map
-            if(viewCtrl.patternArray && viewCtrl.patternArray.count>0){
-                for(int j = 0; j < viewCtrl.patternArray.count; j++){
-                    TTURLPatternObj *urlPattern = [viewCtrl.patternArray objectAtIndex:j];
+            if(viewCtrl.urlViewCtrlPatternConfigurationList && viewCtrl.urlViewCtrlPatternConfigurationList.count>0){
+                for(int j = 0; j < viewCtrl.urlViewCtrlPatternConfigurationList.count; j++){
+                    LDMURLViewCtrlPatternConfigurationItem *urlPattern = [viewCtrl.urlViewCtrlPatternConfigurationList objectAtIndex:j];
                     if(![urlPattern.patternWebPath isEqualToString:@""]
                        ||![urlPattern.patternWebQuery isEqualToString:@""]
                        || ![urlPattern.patternWebFrage isEqualToString:@""]){
@@ -211,7 +230,8 @@
                         NSString *fragement = [urlPattern.patternWebFrage isEqualToString:@""] ? @"" : [NSString stringWithFormat:@"#%@", urlPattern.patternWebFrage];
                         NSString *patternURL = [ctrlPatternURL stringByAppendingFormat:@"%@%@%@",path,query, fragement];
                         NSString *patternWebURL = [ctrlPatternWebURL stringByAppendingFormat:@"%@%@", query, fragement];
-                        [self setNaviagtorMap:map MapURL:patternURL webURL:patternWebURL ctrlClass:viewCtrl.viewCtrlClass parent:urlPattern.patternParent type:urlPattern.patternType];
+                        NSString *patternParent = [urlPattern.patternParent isEqualToString:@""] ? @"" : [NSString stringWithFormat:@"%@://%@", bundleScheme, urlPattern.patternParent];
+                        [self setNaviagtorMap:map MapURL:patternURL webURL:patternWebURL ctrlClass:viewCtrl.viewCtrlClass parent:patternParent type:urlPattern.patternType];
                     }
                 }
             }

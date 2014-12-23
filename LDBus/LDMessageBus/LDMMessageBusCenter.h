@@ -7,48 +7,60 @@
 //
 
 #import <Foundation/Foundation.h>
+
 /**
  * @class LDServiceBusCenter
- * message总线调度中心
+ * message总线调度中心 主要为了跟android的intent广播消息保持一致
+ * 其主要作用不同于notificationcenter，主要是定义了Notification handler机制
  */
+
 @interface LDMMessageBusCenter : NSObject {
-    
+    NSMutableDictionary *_messageReceiveItemList; //是指消息中心接收notification的Object
+    NSMutableDictionary *_listeningNotifications; //是指消息中心监控的Notification
 }
+
+
 +(LDMMessageBusCenter *) messagebusCenter;
 
-/**
- * 向消息总线操作注册消息Object的实例化标志
- */
--(BOOL)operateNotificationObserverToMessageBus: (id)observer selector:(SEL)selector withMessage:(NSString *)messageName  andAObject:(id) aobject option:(int)option;
-
 
 /**
- * 向注册消息的所有viewController发送通知
+ * 根据MessageName获取MessageCode
+ * 从监听notification中获取
  */
--(BOOL)postNotificaitonToAllResponseViewController:(NSNotification *)notification;
+-(NSString *)messageCodeForName:(NSString *)messageName;
 
 
 /**
- * 通过map数组向消息总线中注册允许通信的消息
- * 每个bundle通过配置文件告诉消息总线需要发送什么消息
+ * 当收到notification时，检测notification是否注册
+ * 然后将Notification转发给所有的监听者
  */
--(BOOL) registerMessageToBusBatchly: (NSMutableDictionary *) dic;
+-(void) didReceiveMessageNotification:(NSNotification *)notification;
+
 
 /**
- * 通过key-value给消息总线注册消息
- *
+ * 注册notification监听者
  */
--(BOOL) registerMessageToBus:(NSString *)messageName withMessageClass:(NSString *)messageClass;
+-(void) regitsterMessageReceivers:(NSArray *)receiveMessageConfigurationList;
+
+
 
 /**
- * 批量注销消息
+ * 向消息总线中注册监听的notification
  */
--(BOOL) unRegisterMessageFromBusBatchly:(NSArray *)messages;
+-(void)registerListeningNotificationBatchly: (NSArray*)postMessageConfigurationList;
+-(void)registerListeningNotification: (NSString *)postMessageName code:(NSString *)postMessageCode;
+
 
 /**
- * 按service名称注销服务
+ * 批量注销监听的notification
  */
--(BOOL) unRegisterMessageFromBus:(NSString *) message;
+-(void) unRegisterListeningNotificationBatchly:(NSArray *)postMessageNames;
+
+
+/**
+ * 按postMessageNames注销监听
+ */
+-(void) unRegisterListeningNotification:(NSString *) postMessageName;
 
 
 

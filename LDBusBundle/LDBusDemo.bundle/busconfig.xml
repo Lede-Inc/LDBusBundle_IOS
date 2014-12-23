@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <bundle name="LDBusDemo" connectorClass="LDCustomConnector">
-    <UIBus>
+    <url_handler_list>
         <!--个人账户首页-->
         <ViewController name="mainTab1" class="MyTabController" type="share">
         </ViewController>
@@ -11,15 +11,18 @@
             <URLPattern name="type/(initWithType:)"/>
             <URLPattern name="popover/(initWithFood:)" type="pop"/>
             <URLPattern name="modeview/(initWithModeController:)" type="modal"/>
-            <URLPattern name="about/(initWithUs:)/(others:)" parent="netescaipiao://menu/5" type="push"/>
+            <URLPattern name="about/(initWithUs:)/(others:)" parent="menu/5" type="push"/>
         </ViewController>
-    </UIBus>
-    <ServiceBus>
-        <Service name="loginService" class="LDLoginServiceImpl" />
-    </ServiceBus>
-    <MessageBus>
-        <Message name="LocationModified" class="MenuController" />
-    </MessageBus>
+    </url_handler_list>
+    <service_list>
+        <service name="loginService" class="LDLoginServiceImpl"  protocol="LDLoginService"/>
+    </service_list>
+    <post_message_list>
+        <postmessage name="LocationModified" code="locationmodify" />
+    </post_message_list>
+    <receive_message_list>
+        <recvmessage code="locationmodify" class="LDDemoMessageHandler" />
+    </receive_message_list>
 </bundle>
 <!--
  （1）当bundle没有开发之前，可以优先开发wap页面,并在应用中打开； 但是可以根据业务要求确定bundle得UI总线导航配置；

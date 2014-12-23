@@ -9,19 +9,16 @@
 #import "LDMMessageBusCenter.h"
 #import "LDMBusContext.h"
 
+#import "LDMPostMessageConfigurationItem.h"
+#import "LDMReceiveMessageConfigurationItem.h"
+#import "LDMMessageReceiver.h"
+
+
 #define TITLE_MESSAGEBUSPOSTCLASS @"messagebus_postclass"
 #define TITLE_MESSAGEBUSRECVOBJCOUNT @"messagebus_recvobjcount"
 
 
 static LDMMessageBusCenter *messagebusCenter = nil;
-@interface LDMMessageBusCenter () {
-    NSMutableDictionary *_messageMap;
-    NSNotificationCenter *_center;
-}
-@end
-
-
-
 @implementation LDMMessageBusCenter
 
 +(LDMMessageBusCenter *) messagebusCenter {
@@ -35,145 +32,148 @@ static LDMMessageBusCenter *messagebusCenter = nil;
 -(id) init {
     self = [super init];
     if(self){
-        _messageMap = [[NSMutableDictionary alloc] initWithCapacity:2];
-        _center = [NSNotificationCenter defaultCenter];
+        _listeningNotifications = [[NSMutableDictionary alloc] initWithCapacity:2];
+        _messageReceiveItemList = [[NSMutableDictionary alloc] initWithCapacity:2];
     }
     return self;
 }
 
 
 /**
- * 向消息总线操作注册消息Object的实例化标志
+ * 根据MessageName获取MessageCode
+ * 从监听notification中获取
  */
--(BOOL)operateNotificationObserverToMessageBus: (id)observer selector:(SEL)selector withMessage:(NSString *)messageName  andAObject:(id) aobject option:(int)option{
-    BOOL success = NO;
-    NSArray *keys = _messageMap.allKeys;
-    for(int i=0; i<keys.count; i++){
-        NSString *key = [keys objectAtIndex:i];
-        if([key hasSuffix:[messageName lowercaseString]]){
-            NSDictionary *dic = [_messageMap objectForKey:key];
-            NSString *className = [dic objectForKey:TITLE_MESSAGEBUSPOSTCLASS];
-            NSInteger initCount = [[dic objectForKey:TITLE_MESSAGEBUSRECVOBJCOUNT] intValue];
-            //当前监听object不允许为nil
-            if(observer != nil){
-                [_messageMap setObject:@{TITLE_MESSAGEBUSPOSTCLASS:className,
-                                         TITLE_MESSAGEBUSRECVOBJCOUNT:(option?@(initCount+1):@(initCount-1))}
-                                forKey:key];
-                if(option){
-                    [_center addObserver:observer
-                                selector:selector
-                                    name:messageName
-                                  object:aobject];
-                } else {
-                    [_center removeObserver:observer
-                                       name:messageName
-                                     object:aobject];
+-(NSString *)messageCodeForName:(NSString *)messageName{
+    NSString *messageCode = nil;
+    if(_listeningNotifications && _listeningNotifications.allKeys.count >0){
+        messageCode = [_listeningNotifications objectForKey:messageName];
+    }
+    
+    return  messageCode;
+}
+
+
+/**
+ * 当收到notification时，检测notification是否注册
+ * 然后将Notification转发给所有的监听者
+ */
+-(void) didReceiveMessageNotification:(NSNotification *)notification{
+    NSString *messageCode = [self messageCodeForName:notification.name];
+    //如果当前messagecode是消息总线监听的messageCode
+    if(messageCode){
+        NSMutableArray *oneReceiverList = [_messageReceiveItemList objectForKey:messageCode];
+        if(oneReceiverList && oneReceiverList.count > 0){
+            for(int i = 0; i < oneReceiverList.count; i++){
+                id<LDMMessageReceiver> messageReceiver = [oneReceiverList objectAtIndex:i];
+                [messageReceiver didReceiveMessageNotification:notification];
+            }
+        }
+    }
+}
+
+
+/**
+ * 注册notification监听者
+ * 只要求传MessageCode
+ * 监听者默认都是notification的handler，所以默认初始化一个handler的实例
+ */
+-(void) regitsterMessageReceivers:(NSArray *)receiveMessageConfigurationList{
+    if(receiveMessageConfigurationList && receiveMessageConfigurationList.count > 0) {
+        Protocol *messageReceiveProtocol = NSProtocolFromString(@"LDMMessageReceiver");
+        for(int i = 0; i < receiveMessageConfigurationList.count; i++){
+            LDMReceiveMessageConfigurationItem *receiveMessageConfigurationItem =  [receiveMessageConfigurationList objectAtIndex:i];
+#ifdef DEBUG
+            assert(receiveMessageConfigurationItem.messageCode != nil && ![receiveMessageConfigurationItem.messageCode isEqualToString:@""]);
+#endif
+            NSMutableArray *oneReceiverList = [_messageReceiveItemList objectForKey:receiveMessageConfigurationItem.messageCode];
+            //如果为设置，初始化一个接收者池子
+            if(oneReceiverList == nil){
+                oneReceiverList = [[NSMutableArray alloc] initWithCapacity:2];
+                [_messageReceiveItemList setObject:oneReceiverList forKey:receiveMessageConfigurationItem.messageCode];
+            }
+            
+            //检查handler并且实例化
+#ifdef DEBUG
+            assert(receiveMessageConfigurationItem.receiveObjectString != nil && ![receiveMessageConfigurationItem.receiveObjectString isEqualToString:@""]);
+#endif
+            Class receiveObjectClass = NSClassFromString(receiveMessageConfigurationItem.receiveObjectString);
+            if(receiveObjectClass != nil &&
+               [receiveObjectClass conformsToProtocol:messageReceiveProtocol]){
+                //验证接受hander是否已经存在
+                BOOL isexist = NO;
+                for(int index = 0; index < oneReceiverList.count; index++){
+                    id tmpObject = [oneReceiverList objectAtIndex:index];
+                    if([tmpObject class] == receiveObjectClass){
+                        isexist = YES;
+                        break;
+                    }
                 }
-                success = YES;
-                break;
-            }
+                
+                //如果不存在，将handler加入到该messageCode的订阅者列表中
+                if(!isexist){
+                    id<LDMMessageReceiver> receiveObject = [[receiveObjectClass alloc] init];
+                    [oneReceiverList addObject:receiveObject];
+                }
+            }//if
+            
+        }//for
+    }//if
+}
+
+
+/**
+ * 向消息总线中注册监听的notification
+ */
+-(void)registerListeningNotificationBatchly: (NSArray*)postMessageConfigurationList{
+    if(postMessageConfigurationList && postMessageConfigurationList.count > 0){
+        for(int i = 0; i < postMessageConfigurationList.count; i++){
+            LDMPostMessageConfigurationItem *postMessageConfigurationItem = [postMessageConfigurationList objectAtIndex:i];
+            //在parse的时候已经确保没有空参数传入
+            [self registerListeningNotification:postMessageConfigurationItem.messageName code:postMessageConfigurationItem.messageCode];
         }
     }
-    return success;
 }
 
-
-
-/**
- * 向注册消息的所有viewController发送通知
- */
--(BOOL)postNotificaitonToAllResponseViewController:(NSNotification *)notification{
-    //当当前的消息总线中是否有订阅才发射消息，这里做了一个中心hook
-    //实际情况不管有没有订阅，消息中心均可以发射消息，但是两者效果一致
-    BOOL success = NO;
-    if([self isMessageValid:notification.name]){
-        [_center postNotification:notification];
-        success = YES;
-    }
-    return success;
-}
-
-
-/**
- * 判断当前发送的消息是否在消息总线注册，是否有object响应
- */
--(BOOL)isMessageValid:(NSString *) messageName {
-    BOOL isValid = NO;
-    NSArray *keys = _messageMap.allKeys;
-    for(int i=0; i<keys.count; i++){
-        NSString *key = [keys objectAtIndex:i];
-        if([key hasSuffix:[messageName lowercaseString]]){
-            NSDictionary *dic = [_messageMap objectForKey:key];
-            //检测当前是否有object响应,通过订阅消息者是否大于0
-            if([[dic objectForKey:TITLE_MESSAGEBUSRECVOBJCOUNT] intValue]>0){
-                isValid = YES;
-                break;
-            }
+-(void)registerListeningNotification: (NSString *)postMessageName code:(NSString *)postMessageCode{
+    if((postMessageName && ![postMessageName isEqualToString:@""])
+       && (postMessageCode && ![postMessageCode isEqualToString:@""])){
+        if([_listeningNotifications objectForKey:postMessageName] != nil){
+            //注册的时候给予提醒，不允许注册相同名称的消息事件，区分大小写, 有重复不予覆盖
+#ifdef DEBUG
+            NSAssert(NO, @"postMessage: %@ duplicate register in message bus", postMessageName);
+#endif
+        } else {
+            [_listeningNotifications setObject:postMessageCode forKey:postMessageName];
         }
     }
-    
-    return isValid;
 }
 
 
+
+
+
 /**
- * 通过map数组给服务总线中注册服务
+ * 批量注销监听的notification
  */
--(BOOL) registerMessageToBusBatchly: (NSMutableDictionary *) dic {
-    if(dic && dic.allKeys.count > 0){
-        NSArray *keysArray = dic.allKeys;
-        for(int i = 0; i < keysArray.count; i++){
-            NSString *messageName = [keysArray objectAtIndex:i];
-            NSString *messageClass = [dic objectForKey: messageName];
-            if([NSClassFromString(messageClass) class] != nil){
-                [_messageMap setObject: @{TITLE_MESSAGEBUSPOSTCLASS:messageClass,
-                                          TITLE_MESSAGEBUSRECVOBJCOUNT:@0}
-                                forKey:[ messageName lowercaseString]];
-            }
+-(void) unRegisterListeningNotificationBatchly:(NSArray *)postMessageNames{
+    if(postMessageNames && postMessageNames.count > 0){
+        for(int i = 0; i < postMessageNames.count; i++){
+            NSString *postMessageName = [postMessageNames objectAtIndex:i];
+            [self unRegisterListeningNotification:postMessageName];
         }
     }
-    
-    return YES;
 }
 
 
 /**
- * 通过key-value给服务总线注册服务
- *
+ * 按postMessageName注销监听
  */
--(BOOL) registerMessageToBus:(NSString *) messageName withMessageClass:(NSString *) messageClass {
-    if([NSClassFromString(messageClass) class] != nil){
-        [_messageMap setObject:@{TITLE_MESSAGEBUSPOSTCLASS:messageClass,
-                                 TITLE_MESSAGEBUSRECVOBJCOUNT:@0}
-                        forKey:[messageName lowercaseString]];
-    }
-    return YES;
-}
-
-
-/**
- * 批量注销服务
- */
--(BOOL) unRegisterMessageFromBusBatchly:(NSArray *)messages {
-    if(messages && messages.count > 0){
-        for(int i = 0; i < messages.count; i++){
-            [self unRegisterMessageFromBus:[messages objectAtIndex:i]];
+-(void) unRegisterListeningNotification:(NSString *) postMessageName{
+    if(postMessageName && ![postMessageName isEqualToString:@""]){
+        if([_listeningNotifications objectForKey:postMessageName] != nil){
+            [_listeningNotifications removeObjectForKey:postMessageName];
         }
     }
-    
-    return YES;
-}
-
-
-/**
- * 按service名称注销服务
- */
--(BOOL) unRegisterMessageFromBus:(NSString *) messageName {
-    if([_messageMap objectForKey:[messageName lowercaseString]] != nil){
-        [_messageMap removeObjectForKey:[messageName lowercaseString]];
-    }
-    
-    return YES;
 }
 
 @end
@@ -185,43 +185,25 @@ static LDMMessageBusCenter *messagebusCenter = nil;
  */
 @implementation LDMBusContext (LDMessageBusCenter)
 /**
- * 向消息总线添加观察者
- */
-+(BOOL )addObserver:(id)observer sel:(SEL)sel  message:(NSString *)message{
-    return [[LDMMessageBusCenter messagebusCenter] operateNotificationObserverToMessageBus:observer selector:sel withMessage:message andAObject:nil option:1];
-}
-
-+(BOOL )addObserver:(id)observer sel:(SEL)sel  message:(NSString *)message aObject: (id)aObject{
-    return [[LDMMessageBusCenter messagebusCenter] operateNotificationObserverToMessageBus:observer selector:sel withMessage:message andAObject:aObject option:1];
-}
-
-/**
- * 向消息总线移除观察者
- */
-+(BOOL)removeObserver:(id)observer message:(NSString *) message{
-    return [[LDMMessageBusCenter messagebusCenter] operateNotificationObserverToMessageBus:observer selector:nil withMessage:message andAObject:nil option:0];
-}
-
-+(BOOL)removeObserver:(id)observer message:(NSString *) message aObject:(id)aObject{
-    return [[LDMMessageBusCenter messagebusCenter] operateNotificationObserverToMessageBus:observer selector:nil withMessage:message andAObject:aObject option:0];
-}
-
-/**
  * 向消息总线的所有观察者发送消息
  */
-+(BOOL)postMessage:(NSString *)message{
++(void)postMessage:(NSString *)message{
     NSNotification *notification =  [NSNotification notificationWithName:message object:nil];
-    return [[LDMMessageBusCenter messagebusCenter] postNotificaitonToAllResponseViewController:notification];
+   [self postNotification:notification];
 }
 
-+(BOOL)postMessage:(NSString *) message object:(id) object{
++(void)postMessage:(NSString *) message object:(id) object{
     NSNotification *notification =  [NSNotification notificationWithName:message object:object];
-    return [[LDMMessageBusCenter messagebusCenter] postNotificaitonToAllResponseViewController:notification];
+    [self postNotification:notification];
 }
 
-+(BOOL)postMessage:(NSString *)message userInfo:(NSDictionary *)aUserInfo{
++(void)postMessage:(NSString *)message userInfo:(NSDictionary *)aUserInfo{
     NSNotification *notification =  [NSNotification notificationWithName:message object:nil userInfo:aUserInfo];
-    return [[LDMMessageBusCenter messagebusCenter] postNotificaitonToAllResponseViewController:notification];
+    [self postNotification:notification];
+}
+
++(void)postNotification:(NSNotification *)notification{
+    [[LDMMessageBusCenter messagebusCenter] didReceiveMessageNotification:notification];
 }
 
 

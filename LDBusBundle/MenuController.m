@@ -45,11 +45,6 @@
     _tableView.dataSource = self;
 
     [self.view addSubview:_tableView];
-    [LDMBusContext addObserver:self sel:@selector(messageExcute) message:@"LocationModified" aObject:nil];
-}
-
--(void) dealloc{
-    [LDMBusContext removeObserver:self message:@"LocationModified" aObject:nil];
 }
 
 
@@ -122,16 +117,9 @@
     } else if (_page == MenuPageDessert) {
     } else if (_page == MenuPageAbout) {
         [_keyArrary addObjectsFromArray:@[@"Our Story", @"测试服务总线", @"Text Us", @"Complaints Dept."]];
-        [_urlArrary addObjectsFromArray:@[@"netescaipiao://food/foo/story", @"ldbusdemo.loginService", @"sms://5555555", @"netescaipiao://food/foo/complaints"]];
+        [_urlArrary addObjectsFromArray:@[@"netescaipiao://food/foo/story", @"loginService", @"sms://5555555", @"netescaipiao://food/foo/complaints"]];
     }
 
-}
-
--(void) messageExcute {
-    NSLog(@"message excute....");
-    NSString *message = [NSString stringWithFormat:@"TabMenu:%d接到一个来自消息总线的消息", _page];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"消息总线" message:message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-    [alert show];
 }
 
 
@@ -165,7 +153,8 @@
             } else if(indexPath.row == 8) {
                 [LDMBusContext sendURL:url query:@{@"_array_":@[@"hello", @"baby"], @"_dic_": @{@"hello":@"1", @"baby":@"2"}}];
             } else if(indexPath.row == 9){
-                [LDMBusContext postMessage:url];
+                NSNotification *notification = [NSNotification notificationWithName:url object:@"i am a object" userInfo:@{@"userInfo":@"i am form userinfo"}];
+                [LDMBusContext postNotification:notification];
             }else {
                 [LDMBusContext sendURL:url];
             }

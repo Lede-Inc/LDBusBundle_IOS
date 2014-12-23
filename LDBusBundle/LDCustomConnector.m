@@ -34,6 +34,25 @@
  *  也可以处理ctrl生成为空的情况
  */
 -(UIViewController *) viewControllerForAction:(TTURLAction *)action {
+    //可以过滤action请求
+    /*
+    if(![[Usersession session] hasLogined]){
+      //调用自动登录服务
+        if(([Loginservice shareinstance] autologin]){
+             UIViewController *ctrl = [super viewControllerForAction:action];
+             if(ctrl == nil) {
+             ctrl = [[UIViewController alloc] init];
+             }
+        }
+     
+    } else {
+         UIViewController *ctrl = [super viewControllerForAction:action];
+         if(ctrl == nil) {
+         ctrl = [[UIViewController alloc] init];
+         }
+    }
+     */
+    
     UIViewController *ctrl = [super viewControllerForAction:action];
     if(ctrl == nil) {
         ctrl = [[UIViewController alloc] init];
