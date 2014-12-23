@@ -117,6 +117,13 @@ static LDMServiceBusCenter *servicebusCenter = nil;
         }
     }
     
+    //debug阶段给予提示
+    else {
+#ifdef DEBUG
+        NSAssert(NO, @"service: %@ invalid, reason is serviceImpl(%@) is not impleamted or not conform to protocol (%@)", serviceName, serviceClassString, serviceProtocolString);
+#endif
+    }
+    
     return success;
 }
 

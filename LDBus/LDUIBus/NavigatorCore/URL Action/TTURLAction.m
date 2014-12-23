@@ -23,6 +23,7 @@
 @synthesize sourceRect    = _sourceRect;
 @synthesize sourceView    = _sourceView;
 @synthesize sourceButton  = _sourceButton;
+@synthesize sourceViewController = _sourceViewController;
 @synthesize transition    = _transition;
 @synthesize ifNeedPresent = _ifNeedPresent;
 
@@ -70,6 +71,7 @@
   TT_RELEASE_SAFELY(_query);
   TT_RELEASE_SAFELY(_sourceView);
   TT_RELEASE_SAFELY(_sourceButton);
+  TT_RELEASE_SAFELY(_sourceViewController);
 
   [super dealloc];
 }
@@ -122,6 +124,11 @@
   return self;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (TTURLAction*)applySourceViewController:(UIViewController*)sourceViewController{
+    self.sourceViewController = sourceViewController;
+    return self;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (TTURLAction*)applyTransition:(UIViewAnimationTransition)transition {

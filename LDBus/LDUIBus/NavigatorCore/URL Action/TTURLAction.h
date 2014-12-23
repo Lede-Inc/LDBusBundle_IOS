@@ -28,6 +28,7 @@
   CGRect        _sourceRect;
   UIView*       _sourceView;
   UIBarButtonItem* _sourceButton;
+  UIViewController* _sourceViewController;
 
   UIViewAnimationTransition _transition;
     BOOL          _ifNeedPresent;
@@ -40,6 +41,7 @@
 @property (nonatomic, assign) CGRect        sourceRect;
 @property (nonatomic, retain) UIView*       sourceView;
 @property (nonatomic, retain) UIBarButtonItem* sourceButton;
+@property (nonatomic, retain) UIViewController* sourceViewController;
 @property (nonatomic, assign) UIViewAnimationTransition transition;
 @property (nonatomic, assign) BOOL          ifNeedPresent;
 
@@ -96,6 +98,7 @@
  * @default nil
  */
 - (TTURLAction*)applySourceButton:(UIBarButtonItem*)sourceButton;
+- (TTURLAction*)applySourceViewController:(UIViewController*)sourceViewController;
 
 /**
  * @default UIViewAnimationTransitionNone

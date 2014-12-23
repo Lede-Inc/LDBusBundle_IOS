@@ -60,6 +60,7 @@ typedef enum {
 @property (readonly) BundleState state;
 @property (readonly) BOOL isDynamic;
 @property (readonly) LDMUIBusConnector *uibusConnetor;
+@property (readonly,nonatomic) LDMBundleConfigurationItem *configurationItem;
 @property (readonly) NSString *scheme;
 
 
@@ -103,10 +104,9 @@ typedef enum {
 
 
 /**
- * 检查bundle内部是否有配置重复
- * (1) 检查URL Pattern是否有重复, 检查URLPattern在weburl配置为空时，class是否存在；
- * (2) 检查service的实现类是否存在
- * (3) 检查message的
+ * 和容器内的其他bundle进行比较，是否有重复的URLPattern
  */
+-(void) checkDuplicateURLPattern:(LDMBundle *)aBundle;
+
 
 @end

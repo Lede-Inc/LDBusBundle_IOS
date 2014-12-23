@@ -32,6 +32,8 @@
  * 从buscenter 赋值, 继承者可以重载自己加载map；
  */
 -(void) setBundleURLMap:(TTURLMap *)map;
+
+
 /**
  * 从buscenter 赋值, 继承者可以重载自己加载map；
  */
@@ -39,6 +41,8 @@
 
 //处理接收的URL消息Action
 -(BOOL) dealWithURLMessageFromBus:(TTURLAction *)action;
+
+
 
 @end
 

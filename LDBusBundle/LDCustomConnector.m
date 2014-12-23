@@ -71,7 +71,12 @@
 -(BOOL) presentViewController:(UIViewController *)controller
                     navigator:(LDMNavigator *)navigator
                        action:(TTURLAction *)action {
-    BOOL success = [super presentViewController:controller navigator:navigator action:action];    
+    //获得传入的sourceViewController
+    UIViewController *viewCtrl = action.sourceViewController;
+    if(viewCtrl){
+        NSLog(@"%@", [viewCtrl description]);
+    }
+    BOOL success = [super presentViewController:controller navigator:navigator action:action];
     return success;
 }
 

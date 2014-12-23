@@ -116,6 +116,13 @@ static LDMMessageBusCenter *messagebusCenter = nil;
                 }
             }//if
             
+            else {
+#ifdef DEBUG
+                //检查receiveObjectClass是否定义，以及是否遵循事件处理机制
+                    NSAssert(NO, @"messageReceiver: %@ has invalid object receiver (%@) in message bus", receiveMessageConfigurationItem.messageName, receiveMessageConfigurationItem.receiveObjectString);
+#endif
+            }
+            
         }//for
     }//if
 }

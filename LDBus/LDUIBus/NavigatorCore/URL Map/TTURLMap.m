@@ -109,6 +109,11 @@
     return _defaultObjectPattern;
 }
 
+-(TTURLNavigatorPattern *)defaultObjectPattern{
+    return _defaultObjectPattern;
+}
+
+
 
 
 /**

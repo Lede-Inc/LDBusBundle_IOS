@@ -86,6 +86,9 @@ static LDMContainer* container = nil;
         [self loadAllLocalBundleConfig];
         
         //在debug状态下，在所有bundle加载完成之后，检查重复性
+#ifdef DEBUG
+        [self checkAllBundleDuplicateConfig];
+#endif
     }
 }
 
@@ -199,7 +202,6 @@ static LDMContainer* container = nil;
                     [bundle setUIBusConnectorToBundle];
 
                     //将bundle中服务注册到服务总线中去；
-                    NSLog(@"bundleIdentier>>>>%@", bundle.bundleIdentifier);
                     [self.servicebusCenter registerServiceToBusBatchly:[bundle getServiceConfigurationList]];
                     
                     //将bundle中配置的发送消息注册到消息总线中
@@ -246,16 +248,19 @@ static LDMContainer* container = nil;
     if(_bundlesMap && _bundlesMap.allKeys.count > 0){
         NSArray *keys =  _bundlesMap.allKeys;
         //遍历Container中的所有bundle
-        for(int i = 0; i < keys.count; i++){
+        int i,j;
+        for(i = 0; i < keys.count; i++){
             NSString *key =  [keys objectAtIndex:i];
             LDMBundle *bundle = [_bundlesMap objectForKey:key];
-            
-            //bundle 内部检查
-            
-            
             //bundle 和其他bundle比较检查
-        }
-    }
+            for(j = 0; j < keys.count; j++){
+                if(i == j) continue;
+                NSString *akey = [keys objectAtIndex:j];
+                LDMBundle *aBundle = [_bundlesMap objectForKey:akey];
+                [bundle checkDuplicateURLPattern:aBundle];
+            }//for
+        }//for
+    }//if
 }
 
 

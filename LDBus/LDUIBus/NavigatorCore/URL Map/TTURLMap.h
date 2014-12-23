@@ -125,5 +125,6 @@
  * 根据url获取匹配的pattern
  */
 - (TTURLNavigatorPattern*)matchObjectPattern:(NSURL*)URL;
+-(TTURLNavigatorPattern *)defaultObjectPattern;
 
 @end

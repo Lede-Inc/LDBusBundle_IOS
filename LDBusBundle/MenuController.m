@@ -54,7 +54,6 @@
 }
 
 -(void)resizeViewLayout:(CGRect) frame {
-    NSLog(@"view frame>>>>>%@", NSStringFromCGRect(self.view.frame));
     _tableView.frame = CGRectMake(0.0f, 0.0f, frame.size.width, frame.size.height);
 }
 
@@ -84,7 +83,6 @@
 - (void)setPage:(MenuPage)page {
     _page = page;
     self.navigationItem.title = [self nameForMenuPage:_page];
-    NSLog(@"title===%@", self.navigationItem.title);
     UIImage* image = [UIImage imageNamed:@"tab.png"];
     self.tabBarItem = [[UITabBarItem alloc] initWithTitle:self.title image:image tag:0];
     
@@ -149,6 +147,7 @@
             if(indexPath.row == 3){
                 TTURLAction *action = [TTURLAction actionWithURLPath:url];
                 [action applySourceView:[tableView cellForRowAtIndexPath:indexPath]];
+                [action applySourceViewController:self];
                 [LDMBusContext sendURLWithAction:action];
             } else if(indexPath.row == 8) {
                 [LDMBusContext sendURL:url query:@{@"_array_":@[@"hello", @"baby"], @"_dic_": @{@"hello":@"1", @"baby":@"2"}}];

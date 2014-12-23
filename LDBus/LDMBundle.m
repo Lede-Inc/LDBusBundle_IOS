@@ -22,6 +22,7 @@
 #define INTOSVERSION ([[[UIDevice currentDevice] systemVersion] intValue])
 
 @implementation LDMBundle
+@synthesize configurationItem = _configurationItem;
 @synthesize uibusConnetor = _uibusConnetor;
 @synthesize updateURL = _updateURL;
 @synthesize InstallLevel = _installLevel;
@@ -243,6 +244,20 @@
 
 
 -(void) setNaviagtorMap:(TTURLMap *)map MapURL:(NSString *)URL webURL:(NSString *)webURL ctrlClass:(NSString *)ctrlClass parent:(NSString *) parent type:(PatternType) type {
+#ifdef DEBUG
+    //bundle内部：首先对weburl为空时，ctrlClass必须存在
+    if(webURL == nil || [webURL isEqualToString:@""]){
+        if([NSClassFromString(ctrlClass) class] == nil){
+            NSAssert(NO, @"bundle %@ parse url: %@ error for ctrlClass(%@) is nil and webURL is empty",_configurationItem.bundleName, URL, ctrlClass);
+        }
+    }
+    
+    //检查bundle内部URL是否重复
+    if( [map matchObjectPattern:[NSURL URLWithString:URL]] != [map defaultObjectPattern]){
+        NSAssert(NO, @"bundle %@ parse url: %@ of viewCtrl(%@) is duplicate in bundle",_configurationItem.bundleName, URL, ctrlClass);
+    }
+#endif
+    
     switch (type) {
         case PatternShare:
             if([parent isEqualToString:@""]){
@@ -275,6 +290,39 @@
     }
 }
 
-
+/**
+ * 和容器内的其他bundle进行比较，是否有重复的URLPattern
+ */
+-(void) checkDuplicateURLPattern:(LDMBundle *)aBundle{
+    if(_configurationItem && aBundle.configurationItem){
+        //获得当前bundle的scheme
+        NSString *bundleScheme = _configurationItem.bundleName;
+        if(_scheme && ![_scheme isEqualToString:@""]) {
+            bundleScheme = _scheme;
+        }
+        
+        NSLog(@">>>>>>>>>>>>>check Bunde: %@>>>>>>>>>>>>>>>>", _configurationItem.bundleName);
+        for(int i = 0; i < _configurationItem.urlViewCtrlConfigurationList.count; i++){
+            //检查viewctrl默认的打开方式在abundle是否存在，只要viewctrl不重复，pattern选项自然不重复
+            LDMURLViewCtrlConfigurationItem *viewCtrl = _configurationItem.urlViewCtrlConfigurationList[i];
+            NSString *ctrlPatternURL = [NSString stringWithFormat:@"%@://%@", bundleScheme, viewCtrl.viewCtrlName];
+            
+            //获得aBundle的scheme
+            NSString *aBundleScheme = aBundle.configurationItem.bundleName;
+            if(aBundle.scheme && ![aBundle.scheme isEqualToString:@""]) {
+                aBundleScheme = aBundle.scheme;
+            }
+            for(int j= 0; j < aBundle.configurationItem.urlViewCtrlConfigurationList.count; j++){
+                LDMURLViewCtrlConfigurationItem *aBundleViewCtrl = aBundle.configurationItem.urlViewCtrlConfigurationList[j];
+                NSString *aBundleCtrlPatternURL = [NSString stringWithFormat:@"%@://%@", aBundleScheme, aBundleViewCtrl.viewCtrlName];
+                if([ctrlPatternURL isEqualToString:aBundleCtrlPatternURL]){
+                    NSAssert(NO, @">>>>ViewCtrl(%@) exist duplicate url pattern in bundle(%@)>>>>>", viewCtrl.viewCtrlName, aBundle.configurationItem.bundleName);
+                }
+            }
+            
+        }
+        NSLog(@">>>>>>>>>>>>>check end>>>>>>>>>>>>>>>>>>>>>>");
+    }
+}
 
 @end

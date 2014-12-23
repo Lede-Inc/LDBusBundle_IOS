@@ -15,6 +15,7 @@
 
 #import "TTURLAction.h"
 #import "TTWebController.h"
+#import "TTDebug.h"
 
 #define TITLE_MESSAGEACTION @"uibus_messageaction"
 #define TITLE_MESSAGERESULT @"uibus_messageresult"
@@ -130,7 +131,7 @@ static LDMUIBusCenter *uibusCenter = nil;
     // 向总的buscenter获取Bundle列表
     NSMutableDictionary *bundlesMap = [LDMContainer container].bundlesMap;
     if(!bundlesMap || bundlesMap.allKeys.count<=0 ){
-        NSLog(@"LDUIBusCenter>> bundle list is empty>>");
+        TTDPRINT(@"LDUIBusCenter>> bundle list is empty>>");
         return NO;
     }
     
@@ -170,17 +171,17 @@ static LDMUIBusCenter *uibusCenter = nil;
         isAllCheck = (i == keys.count)?YES:NO;
     }
     @catch (NSException *exception) {
-        NSLog(@"LDUIBusCenter>> try via connetor create viewCtrl error>>");
+        TTDPRINT(@"LDUIBusCenter>> try via connetor create viewCtrl error>>");
     }
     @finally {
         //处理遍历所有bundle的map无法找到匹配url的情况
         if(isAllCheck){
-            NSLog(@"LDUIBusCenter>> all bundles have no matched pattern>>");
+            TTDPRINT(@"LDUIBusCenter>> all bundles have no matched pattern>>");
         }
     }
     
     if(success){
-        NSLog(@"LDUIBusCenter>> excute action success");
+        TTDPRINT(@"LDUIBusCenter>> excute action success");
     }
 
     return success;
