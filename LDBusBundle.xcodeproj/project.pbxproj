@@ -22,7 +22,7 @@
 		62D1F52F1A36D58C0076ACA7 /* LDBusDemo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 62D1F52E1A36D58C0076ACA7 /* LDBusDemo.bundle */; };
 		62D5165A1A304F0500FFEDC0 /* LDLoginServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 62D516591A304F0500FFEDC0 /* LDLoginServiceImpl.m */; };
 		62D539B71A1B27790088FFF4 /* framework.sh in Resources */ = {isa = PBXBuildFile; fileRef = 62D539B51A1B27790088FFF4 /* framework.sh */; };
-		62DE31CA1A481C41008FEFEF /* LDMMessageReceiver.h in Headers */ = {isa = PBXBuildFile; fileRef = 62DE31C81A481C41008FEFEF /* LDMMessageReceiver.h */; };
+		62DE31CA1A481C41008FEFEF /* LDMMessageReceiver.h in Headers */ = {isa = PBXBuildFile; fileRef = 62DE31C81A481C41008FEFEF /* LDMMessageReceiver.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		62DE31EA1A483879008FEFEF /* LDMBundleConfigParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 62DE31E21A483879008FEFEF /* LDMBundleConfigParser.h */; };
 		62DE31EB1A483879008FEFEF /* LDMBundleConfigParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DE31E31A483879008FEFEF /* LDMBundleConfigParser.m */; };
 		62DE31EC1A483879008FEFEF /* LDMPostMessageConfigurationItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 62DE31E41A483879008FEFEF /* LDMPostMessageConfigurationItem.h */; };
@@ -598,8 +598,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62E8B9B71A39AA85001993A9 /* TTBaseNavigator.h in Headers */,
 				62DE31CA1A481C41008FEFEF /* LDMMessageReceiver.h in Headers */,
+				62E8B9B71A39AA85001993A9 /* TTBaseNavigator.h in Headers */,
 				62E8B9991A39AA85001993A9 /* LDMContainer.h in Headers */,
 				62E8B99B1A39AA85001993A9 /* LDMBusContext.h in Headers */,
 				62E8B9D11A39AA85001993A9 /* LDMNavigator.h in Headers */,
