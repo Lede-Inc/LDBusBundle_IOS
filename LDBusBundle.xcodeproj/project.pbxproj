@@ -26,6 +26,7 @@
 		62DD8F001A4A813300E24C77 /* UIViewController+LDMNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DD8EFE1A4A813300E24C77 /* UIViewController+LDMNavigator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		62DD8F031A4A816100E24C77 /* LDMNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 62DD8F011A4A816100E24C77 /* LDMNavigator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		62DD8F041A4A816100E24C77 /* LDMNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DD8F021A4A816100E24C77 /* LDMNavigator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		62DD8F081A4A96B300E24C77 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 62DD8F071A4A96B300E24C77 /* LICENSE */; };
 		62DE31CA1A481C41008FEFEF /* LDMMessageReceiver.h in Headers */ = {isa = PBXBuildFile; fileRef = 62DE31C81A481C41008FEFEF /* LDMMessageReceiver.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		62DE31EA1A483879008FEFEF /* LDMBundleConfigParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 62DE31E21A483879008FEFEF /* LDMBundleConfigParser.h */; };
 		62DE31EB1A483879008FEFEF /* LDMBundleConfigParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DE31E31A483879008FEFEF /* LDMBundleConfigParser.m */; };
@@ -178,6 +179,7 @@
 		62DD8EFE1A4A813300E24C77 /* UIViewController+LDMNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LDMNavigator.m"; sourceTree = "<group>"; };
 		62DD8F011A4A816100E24C77 /* LDMNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDMNavigator.h; sourceTree = "<group>"; };
 		62DD8F021A4A816100E24C77 /* LDMNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDMNavigator.m; sourceTree = "<group>"; };
+		62DD8F071A4A96B300E24C77 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		62DE31C81A481C41008FEFEF /* LDMMessageReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDMMessageReceiver.h; sourceTree = "<group>"; };
 		62DE31E21A483879008FEFEF /* LDMBundleConfigParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDMBundleConfigParser.h; sourceTree = "<group>"; };
 		62DE31E31A483879008FEFEF /* LDMBundleConfigParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDMBundleConfigParser.m; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 		62B4F9181A171BBC0056CBAB = {
 			isa = PBXGroup;
 			children = (
+				62DD8F071A4A96B300E24C77 /* LICENSE */,
 				6246F37F1A1F388C00980472 /* LDBus.podspec */,
 				62D539B51A1B27790088FFF4 /* framework.sh */,
 				625EDB551A19ED5F000AEA3E /* tab.png */,
@@ -777,6 +780,7 @@
 			files = (
 				62D539B71A1B27790088FFF4 /* framework.sh in Resources */,
 				62D1F52F1A36D58C0076ACA7 /* LDBusDemo.bundle in Resources */,
+				62DD8F081A4A96B300E24C77 /* LICENSE in Resources */,
 				62D1C6D01A4920A100AEA467 /* LDMBMovieFilm.bundle in Resources */,
 				62B4F9321A171BBC0056CBAB /* Images.xcassets in Resources */,
 				625EDB561A19ED5F000AEA3E /* tab.png in Resources */,
