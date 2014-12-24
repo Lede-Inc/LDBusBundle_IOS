@@ -24,7 +24,7 @@
 @property (nonatomic, retain) UIWindow* window;
 
 //The controller that is at the root of the view controller hierarchy.
-@property (nonatomic, readwrite) UIViewController* rootViewController;
+@property (nonatomic, readwrite, assign) UIViewController* rootViewController;
 
 //The currently visible view controller.
 @property (nonatomic, readonly) UIViewController* visibleViewController;

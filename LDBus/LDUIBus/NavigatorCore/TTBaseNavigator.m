@@ -294,8 +294,8 @@ static TTBaseNavigator* gNavigator = nil;
     TT_RELEASE_SAFELY(_popoverController);
   }
 
-  _popoverController =  [[UIPopoverController alloc]
-                         initWithContentViewController: controller];
+  _popoverController =  [[[UIPopoverController alloc]
+                         initWithContentViewController: controller] autorelease];
   if (_popoverController != nil) {
       [(UIPopoverController *)_popoverController setDelegate:self];
   }
