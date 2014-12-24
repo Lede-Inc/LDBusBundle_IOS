@@ -11,7 +11,7 @@
             <URLPattern name="type/(initWithType:)"/>
             <URLPattern name="popover/(initWithFood:)" type="pop"/>
             <URLPattern name="modeview/(initWithModeController:)" type="modal"/>
-            <URLPattern name="about/(initWithUs:)/(others:)" parent="menu/5" type="push"/>
+            <URLPattern name="about/(initWithUs:)/(others:)" parent="food/foo/10" type="push"/>
         </ViewController>
     </url_handler_list>
     <service_list>

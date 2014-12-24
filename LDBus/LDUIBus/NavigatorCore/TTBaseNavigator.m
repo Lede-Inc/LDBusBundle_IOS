@@ -325,43 +325,44 @@ static TTBaseNavigator* gNavigator = nil;
          parentController: (UIViewController*)parentController
                      mode: (TTNavigationMode)mode
                    action: (TTURLAction*)action {
-  BOOL didPresentNewController = YES;
-
-  if (nil == _rootViewController) {
-    [self setRootViewController:controller];
-
-  }
-  
-  //展示一个已经存在的ViewController
-  else {
-    //superController是指push：前一个push成为Parent；
-    //如果事tab，则tabController成为parent
-    UIViewController* previousSuper = controller.superController;
-    if (nil != previousSuper) {
-      if (previousSuper != parentController) {
-        // The controller already exists, so we just need to make it visible
-        for (UIViewController* superController = previousSuper; controller; ) {
-          UIViewController* nextSuper = superController.superController;
-          [superController bringControllerToFront: controller
-                                         animated: !nextSuper];
-          controller = superController;
-          superController = nextSuper;
-        }
-      }
-      didPresentNewController = NO;
-
+    BOOL didPresentNewController = YES;
+    
+    if (nil == _rootViewController) {
+        [self setRootViewController:controller];
+        
     }
     
-    //展示一个新的独立的viewController
-    else if (nil != parentController) {
-      [self presentDependantController: controller
-                      parentController: parentController
-                                  mode: mode
-                                action: action];
+    //展示一个已经存在的ViewController
+    else {
+        //superController是指push：前一个push成为Parent；
+        //如果事tab，则tabController成为parent
+        UIViewController* previousSuper = controller.superController;
+        if (nil != previousSuper) {
+            if (previousSuper != parentController) {
+                // The controller already exists, so we just need to make it visible
+                for (UIViewController* superController = previousSuper; controller; ) {
+                    UIViewController* nextSuper = superController.superController;
+                    [superController bringControllerToFront: controller
+                                                   animated: !nextSuper];
+                    controller = superController;
+                    superController = nextSuper;
+                }
+            }
+            didPresentNewController = NO;
+            
+        }
+        
+        
+        //展示一个新的独立的viewController
+        else if (nil != parentController) {
+            [self presentDependantController: controller
+                            parentController: parentController
+                                        mode: mode
+                                      action: action];
+        }
     }
-  }
-
-  return didPresentNewController;
+    
+    return didPresentNewController;
 }
 
 
@@ -375,32 +376,38 @@ static TTBaseNavigator* gNavigator = nil;
             parentURLPath: (NSString*)parentURLPath
               withPattern: (TTURLNavigatorPattern*)pattern
                    action: (TTURLAction*)action {
-  BOOL didPresentNewController = NO;
-
-  if (nil != controller) {
-    UIViewController* topViewController = self.topViewController;
-    if (controller != topViewController) {
-      UIViewController* parentController = [self parentForController: controller
-                                                         isContainer: [controller canContainControllers]
-                                                       parentURLPath: parentURLPath
-                                            ? parentURLPath
-                                                                    : pattern.parentURL];
-
-      if (nil != parentController && parentController != topViewController) {
-        [self presentController: parentController
-               parentController: nil
-                           mode: TTNavigationModeNone
-                         action: [TTURLAction actionWithURLPath:nil]];
-      }
-
-      didPresentNewController = [self
-                                 presentController: controller
-                                 parentController: parentController
-                                 mode: pattern.navigationMode
-                                 action: action];
+    BOOL didPresentNewController = NO;
+    
+    if (nil != controller) {
+        UIViewController* topViewController = self.topViewController;
+        if (controller != topViewController) {
+            UIViewController* parentController = [self parentForController: controller
+                                                               isContainer: [controller canContainControllers]
+                                                             parentURLPath: parentURLPath
+                                                  ? parentURLPath
+                                                                          : pattern.parentURL];
+            
+            if (nil != parentController && parentController != topViewController) {
+                BOOL didParentPresent = [self presentController: parentController
+                                               parentController: nil
+                                                           mode: TTNavigationModeNone
+                                                         action: [TTURLAction actionWithURLPath:nil]];
+                
+                //当didParentPresetn＝YES，说明parentCtrller并没有展示，需要以当前top为parent展示；
+                //没有展示的原因:parent不是生成另外一个容器，而只是新生成的一个viewController，加上如下代码支持不管parent是否为一个新生成的viewCtrl，都支持导航；
+                if(didParentPresent){
+                    [self presentController:parentController parentController:topViewController mode:TTNavigationModeNone action:[TTURLAction actionWithURLPath:nil]];
+                }
+            }
+            
+            didPresentNewController = [self
+                                       presentController: controller
+                                       parentController: parentController
+                                       mode: pattern.navigationMode
+                                       action: action];
+        }
     }
-  }
-  return didPresentNewController;
+    return didPresentNewController;
 }
 
 
