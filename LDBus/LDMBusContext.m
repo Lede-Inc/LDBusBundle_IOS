@@ -7,7 +7,18 @@
 //
 
 #import "LDMBusContext.h"
+#import "LDMContainer.h"
 
 @implementation LDMBusContext
+
++(void)initialBundleContainerWithRootViewController:(UIViewController *)rootViewController {
+    //先初始化容器
+    [[LDMContainer container] preloadConfig];
+    
+    //在设置rootViewController
+    if(rootViewController){
+        [[LDMContainer container] setNavigatorRootViewController:rootViewController];
+    }
+}
 
 @end

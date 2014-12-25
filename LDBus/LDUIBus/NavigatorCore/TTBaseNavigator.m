@@ -9,6 +9,7 @@
 #import "TTGlobalNavigatorMetrics.h"
 #import "TTBaseNavigationController.h"
 #import "TTURLAction.h"
+#import "TTURLActionResponse.h"
 #import "TTURLMap.h"
 #import "TTURLNavigatorPattern.h"
 #import "UIViewController+LDMNavigator.h"
@@ -200,7 +201,8 @@ static TTBaseNavigator* gNavigator = nil;
  */
 - (UIViewController*)parentForController: (UIViewController*)controller
                              isContainer: (BOOL)isContainer
-                           parentURLPath: (NSString*)parentURLPath {
+                           parentURLPath: (NSString*)parentURLPath
+                        navigatorPattern: (TTURLNavigatorPattern**)pattern{
   if (controller == _rootViewController) {
     return nil;
 
@@ -215,7 +217,9 @@ static TTBaseNavigator* gNavigator = nil;
     if (nil != parentURLPath) {
         TTURLAction *action = [TTURLAction actionWithURLPath:parentURLPath];
         action.ifNeedPresent = NO;
-        return [LDMUIBusCenter receiveURLCtrlFromUIBus:action];
+        TTURLActionResponse *response = [LDMUIBusCenter handleURLActionRequest:action];
+        *pattern = response.navigatorPattern;
+        return response.viewController;
     }
     
     //其他情况下返回当前导航体系的TopViewController作为父ViewController
@@ -381,11 +385,13 @@ static TTBaseNavigator* gNavigator = nil;
     if (nil != controller) {
         UIViewController* topViewController = self.topViewController;
         if (controller != topViewController) {
+            TTURLNavigatorPattern *parentPattern = nil;
             UIViewController* parentController = [self parentForController: controller
                                                                isContainer: [controller canContainControllers]
                                                              parentURLPath: parentURLPath
                                                   ? parentURLPath
-                                                                          : pattern.parentURL];
+                                                                          : pattern.parentURL
+                                                          navigatorPattern:&parentPattern];
             
             if (nil != parentController && parentController != topViewController) {
                 BOOL didParentPresent = [self presentController: parentController
@@ -396,7 +402,10 @@ static TTBaseNavigator* gNavigator = nil;
                 //当didParentPresetn＝YES，说明parentCtrller并没有展示，需要以当前top为parent展示；
                 //没有展示的原因:parent不是生成另外一个容器，而只是新生成的一个viewController，加上如下代码支持不管parent是否为一个新生成的viewCtrl，都支持导航；
                 if(didParentPresent){
-                    [self presentController:parentController parentController:topViewController mode:TTNavigationModeNone action:[TTURLAction actionWithURLPath:nil]];
+                    [self presentController:parentController
+                           parentController:topViewController
+                                       mode:parentPattern.navigationMode?:TTNavigationModeNone
+                                     action:[TTURLAction actionWithURLPath:nil]];
                 }
             }
             

@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "LDMUIBusCenter.h"
 
+#import "LDMBusContext.h"
 #import "LDMBundle.h"
 #import "LDMContainer.h"
 #import "LDMUIBusConnector.h"
+#import "LDMRoutes.h"
 
 #import "TTURLAction.h"
+#import "TTURLActionResponse.h"
 #import "TTWebController.h"
 #import "TTDebug.h"
 
@@ -27,8 +30,6 @@ static LDMUIBusCenter *uibusCenter = nil;
 @end
 
 @implementation LDMUIBusCenter
-
-
 +(LDMUIBusCenter *)uibusCenter {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -40,22 +41,33 @@ static LDMUIBusCenter *uibusCenter = nil;
 
 +(BOOL)sendUIMessage:(TTURLAction *)action{
     BOOL success = NO;
+    NSURL *handleURL = [NSURL URLWithString:action.urlPath];
     
-    //是否是打开其他APP的url
-    NSURL* theURL = [NSURL URLWithString:action.urlPath];
-    if ([[UIApplication sharedApplication] canOpenURL:theURL]) {
-        [[UIApplication sharedApplication] openURL:theURL];
-        return YES;
+    //首先交给webScheme LDMRoutes去处理
+    if([LDMRoutes canRouteURL:handleURL]){
+        success = [LDMRoutes routeURL:handleURL];
     }
     
+    //如果LDMRoutes不能处理或者处理未成功，由Bus总线去处理
+    if(!success){
+        //其次让注册到UI总线的bundle进行处理
+        LDMUIBusCenter *center = [LDMUIBusCenter uibusCenter];
+        if([center getMessageFromConnetor:action]){
+            //转发消息并调用响应connetor 生成viewControll
+            success = [center forwardMessageToOtherBundles];
+            
+            //不管成功与否，立即重置消息队列
+            [center updateMessageQueue];
+        }
+    }
     
-    LDMUIBusCenter *center = [LDMUIBusCenter uibusCenter];
-    if([center getMessageFromConnetor:action]){
-        //转发消息并调用响应connetor 生成viewControll
-        success = [center forwardMessageToOtherBundles];
-        
-        //不管成功与否，立即重置消息队列
-        [center updateMessageQueue];
+    //如果app内部无法处理，查看是否是打开其他APP的url
+    if(!success){
+        NSURL* theURL = [NSURL URLWithString:action.urlPath];
+        if ([[UIApplication sharedApplication] canOpenURL:theURL]) {
+            [[UIApplication sharedApplication] openURL:theURL];
+            success = YES;
+        }
     }
     
     return success;
@@ -69,8 +81,8 @@ static LDMUIBusCenter *uibusCenter = nil;
     if([center getMessageFromConnetor:action]){
         //转发消息并调用响应connetor 生成viewControll
         BOOL success = [center forwardMessageToOtherBundles];
-        if(success){
-            ctrl = [center getResponseViewCtrl];
+        if(success && [center getURLActionResponse]){
+            ctrl = [center getURLActionResponse].viewController;
         }
         
         //不管成功与否，立即重置消息队列
@@ -80,6 +92,28 @@ static LDMUIBusCenter *uibusCenter = nil;
     return ctrl;
 }
 
+
++(TTURLActionResponse *)handleURLActionRequest:(TTURLAction *)action {
+    if(action.ifNeedPresent) return nil;
+    
+    TTURLActionResponse *response = nil;
+    LDMUIBusCenter *center = [LDMUIBusCenter uibusCenter];
+    if([center getMessageFromConnetor:action]){
+        //转发消息并调用响应connetor 生成viewControll
+        BOOL success = [center forwardMessageToOtherBundles];
+        if(success){
+            response = [center getURLActionResponse];
+        }
+        
+        //不管成功与否，立即重置消息队列
+        [center updateMessageQueue];
+    }
+    
+    return response;
+
+}
+
+
 -(id)init {
     self = [super init];
     if(self){
@@ -87,6 +121,7 @@ static LDMUIBusCenter *uibusCenter = nil;
     }
     return self;
 }
+
 
 /**
  * 清空消息队列
@@ -100,16 +135,16 @@ static LDMUIBusCenter *uibusCenter = nil;
 /**
  * 获取messageQueue的响应ViewController
  */
--(UIViewController *) getResponseViewCtrl {
-    UIViewController *ctrl = nil;
+-(TTURLActionResponse *) getURLActionResponse {
+    TTURLActionResponse *response = nil;
     if(_UIBusMessageQueue.count > 0){
-        ctrl = [[_UIBusMessageQueue lastObject] objectForKey:TITLE_MESSAGERESULT];
-        if(![ctrl isKindOfClass:[UIViewController class]]){
-            ctrl =  nil;
+        response = [[_UIBusMessageQueue lastObject] objectForKey:TITLE_MESSAGERESULT];
+        if(![response.viewController isKindOfClass:[UIViewController class]]){
+            response =  nil;
         }
     }
     
-    return ctrl;
+    return response;
 }
 
 
@@ -155,11 +190,11 @@ static LDMUIBusCenter *uibusCenter = nil;
                     
                     //如果只是url实例化，则调用connetor返回
                     else {
-                        UIViewController *ctrl = [bundle.uibusConnetor viewControllerForAction:action];
-                        if(ctrl){
+                        TTURLActionResponse *response = [bundle.uibusConnetor handleURLActionRequest:action];
+                        if(response.viewController){
                             success = YES;
                             //存储结果
-                            [_UIBusMessageQueue replaceObjectAtIndex:_UIBusMessageQueue.count-1 withObject:@{TITLE_MESSAGEACTION:action, TITLE_MESSAGERESULT:ctrl}];
+                            [_UIBusMessageQueue replaceObjectAtIndex:_UIBusMessageQueue.count-1 withObject:@{TITLE_MESSAGEACTION:action, TITLE_MESSAGERESULT:response}];
                         }
                     }
                 }
@@ -186,16 +221,30 @@ static LDMUIBusCenter *uibusCenter = nil;
 
     return success;
 }
+@end
 
 
+@implementation LDMBusContext (LDMUIBusCenter)
+
++(void)registerSpecialScheme:(NSString *)scheme
+                   addRoutes:(NSString *)routePattern
+            handleController:(NSString *)handleControllerClassString{
+    [[self class] registerSpecialScheme:scheme addRoutes:routePattern handleController:handleControllerClassString isModal:YES];
+}
 
 
++(void)registerSpecialScheme:(NSString *)scheme
+                   addRoutes:(NSString *)routePattern
+            handleController:(NSString *)handleControllerClassString
+                     isModal:(BOOL)isModal{
+    if(scheme && ![scheme isEqualToString:@""] &&
+       routePattern && ![routePattern isEqualToString:@""] &&
+       handleControllerClassString && ![handleControllerClassString isEqualToString:@""]){
+        [[LDMRoutes routesForScheme:scheme] addRoute:routePattern webHandler:handleControllerClassString isModal:isModal];
+    }
 
-
-
-
-
-
-
+    
+}
 
 @end
+

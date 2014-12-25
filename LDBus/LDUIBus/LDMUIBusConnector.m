@@ -1,5 +1,5 @@
 //
-//  LDUIBusConnector.m
+//  LDMUIBusConnector.m
 //  LDBusBundle
 //
 //  Created by 庞辉 on 12/6/14.
@@ -14,13 +14,16 @@
 #import "LDMNavigator.h"
 #import "TTURLMap.h"
 #import "TTURLAction.h"
+#import "TTURLActionResponse.h"
 #import "TTURLNavigatorPattern.h"
 #import "UIViewController+LDMNavigator.h"
 #import "UIViewControllerAdditions.h"
 
+
 @interface LDMUIBusConnector() {
     TTURLMap *_bundleMap;
     LDMNavigator *_navigator;
+    NSString *_bundleName;
 }
 
 @end
@@ -30,6 +33,11 @@
 -(void)setBundleURLMap:(TTURLMap *)map {
     _bundleMap = map;
 }
+
+-(void)setBelongBundle:(NSString *)bundleName {
+    _bundleName = bundleName;
+}
+
 
 -(void) setGlobalNavigator:(LDMNavigator*) navigator{
     _navigator = navigator;
@@ -124,11 +132,11 @@
 /**
  * 完成UIConnetor的调用
  */
-@implementation LDMBusContext (LDUIBusConnector)
+@implementation LDMBusContext (LDMUIBusConnector)
 /**
  * 向当前bundle的connector 发送action消息
  */
-+(BOOL)sendURLWithAction:(TTURLAction *)action{
++(BOOL)openURLWithAction:(TTURLAction *)action{
     action.animated = YES;
     return [LDMUIBusCenter sendUIMessage:action];
 }
@@ -136,7 +144,7 @@
 /**
  * 向当前bundle的Connetor 发送URL消息
  */
-+(BOOL)sendURL:(NSString *)url{
++(BOOL)openURL:(NSString *)url{
     TTURLAction *action = [TTURLAction actionWithURLPath:url];
     action.animated = YES;
     return [LDMUIBusCenter sendUIMessage:action];;
@@ -145,7 +153,7 @@
 /**
  * 向当前bundle的connector 发送url和query组装消息
  */
-+(BOOL)sendURL:(NSString *)url query:(NSDictionary *)query{
++(BOOL)openURL:(NSString *)url query:(NSDictionary *)query{
     TTURLAction *action = [TTURLAction actionWithURLPath:url];
     action.query = query;
     action.animated = YES;
@@ -161,7 +169,6 @@
     action.ifNeedPresent = NO;
     return [LDMUIBusCenter receiveURLCtrlFromUIBus:action];
 }
-
 @end
 
 
@@ -197,6 +204,23 @@
                                                         query: action.query
                                                       pattern: &pattern];
     return controller;
+}
+
+
+-(TTURLActionResponse *)handleURLActionRequest:(TTURLAction *)action {
+    if (nil == action || nil == action.urlPath) {
+        return nil;
+    }
+    
+    // We may need to modify the urlPath, so let's create a local copy.
+    NSString* urlPath = action.urlPath;
+    
+    TTURLNavigatorPattern* pattern = nil;
+    UIViewController* controller = [self viewControllerForURL: urlPath
+                                                        query: action.query
+                                                      pattern: &pattern];
+    TTURLActionResponse *actionResponse = [[TTURLActionResponse alloc] initWithViewController:controller pattern:pattern sourceBundle:_bundleName];
+    return actionResponse;
 }
 
 

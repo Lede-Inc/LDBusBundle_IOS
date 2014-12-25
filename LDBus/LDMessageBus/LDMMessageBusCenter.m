@@ -190,7 +190,7 @@ static LDMMessageBusCenter *messagebusCenter = nil;
 /**
  * 共所有bundle的所有controller调用
  */
-@implementation LDMBusContext (LDMessageBusCenter)
+@implementation LDMBusContext (LDMMessageBusCenter)
 /**
  * 向消息总线的所有观察者发送消息
  */

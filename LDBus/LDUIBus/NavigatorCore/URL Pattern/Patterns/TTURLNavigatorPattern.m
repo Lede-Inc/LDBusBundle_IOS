@@ -381,7 +381,8 @@ static NSString* kUniversalURLPattern = @"*";
  * 只匹配url的path和fragement部分
  */
 - (BOOL)matchURL:(NSURL*)URL {
-    if (!URL.scheme || !URL.host || ![_scheme isEqualToString:URL.scheme]) {
+    //由于传进来的scheme可能是多个，所以不匹配scheme
+    if (!URL.scheme || !URL.host /*|| ![_scheme isEqualToString:URL.scheme]*/) {
         return NO;
     }
     

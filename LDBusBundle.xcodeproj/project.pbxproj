@@ -27,6 +27,8 @@
 		62DD8F031A4A816100E24C77 /* LDMNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 62DD8F011A4A816100E24C77 /* LDMNavigator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		62DD8F041A4A816100E24C77 /* LDMNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DD8F021A4A816100E24C77 /* LDMNavigator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		62DD8F081A4A96B300E24C77 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 62DD8F071A4A96B300E24C77 /* LICENSE */; };
+		62DD8F0B1A4AB8F400E24C77 /* TTURLActionResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 62DD8F091A4AB8F400E24C77 /* TTURLActionResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		62DD8F0C1A4AB8F400E24C77 /* TTURLActionResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DD8F0A1A4AB8F400E24C77 /* TTURLActionResponse.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		62DE31CA1A481C41008FEFEF /* LDMMessageReceiver.h in Headers */ = {isa = PBXBuildFile; fileRef = 62DE31C81A481C41008FEFEF /* LDMMessageReceiver.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		62DE31EA1A483879008FEFEF /* LDMBundleConfigParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 62DE31E21A483879008FEFEF /* LDMBundleConfigParser.h */; };
 		62DE31EB1A483879008FEFEF /* LDMBundleConfigParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DE31E31A483879008FEFEF /* LDMBundleConfigParser.m */; };
@@ -43,6 +45,10 @@
 		62DE31FD1A4849A3008FEFEF /* LDMBundleConfigurationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DE31FB1A4849A3008FEFEF /* LDMBundleConfigurationItem.m */; };
 		62DE32001A48507E008FEFEF /* LDMURLViewCtrlPatternConfigurationItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 62DE31FE1A48507E008FEFEF /* LDMURLViewCtrlPatternConfigurationItem.h */; };
 		62DE32011A48507E008FEFEF /* LDMURLViewCtrlPatternConfigurationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DE31FF1A48507E008FEFEF /* LDMURLViewCtrlPatternConfigurationItem.m */; };
+		62DF03041A4BB69000EDBE8B /* LDMRoutes.h in Headers */ = {isa = PBXBuildFile; fileRef = 62DF03021A4BB69000EDBE8B /* LDMRoutes.h */; };
+		62DF03051A4BB69000EDBE8B /* LDMRoutes.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DF03031A4BB69000EDBE8B /* LDMRoutes.m */; };
+		62DF03081A4BDAE900EDBE8B /* LDMBusWebControllerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 62DF03061A4BDAE900EDBE8B /* LDMBusWebControllerProtocol.h */; };
+		62DF030C1A4BFD4800EDBE8B /* LDMPopWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DF030B1A4BFD4800EDBE8B /* LDMPopWebViewController.m */; };
 		62E8B8A01A39A75A001993A9 /* LDBus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62E8B8951A39A75A001993A9 /* LDBus.framework */; };
 		62E8B8A91A39A75A001993A9 /* LDBusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B8A81A39A75A001993A9 /* LDBusTests.m */; };
 		62E8B9971A39AA85001993A9 /* LDMBundle.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9491A39AA85001993A9 /* LDMBundle.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -180,6 +186,8 @@
 		62DD8F011A4A816100E24C77 /* LDMNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDMNavigator.h; sourceTree = "<group>"; };
 		62DD8F021A4A816100E24C77 /* LDMNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDMNavigator.m; sourceTree = "<group>"; };
 		62DD8F071A4A96B300E24C77 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		62DD8F091A4AB8F400E24C77 /* TTURLActionResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTURLActionResponse.h; sourceTree = "<group>"; };
+		62DD8F0A1A4AB8F400E24C77 /* TTURLActionResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLActionResponse.m; sourceTree = "<group>"; };
 		62DE31C81A481C41008FEFEF /* LDMMessageReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDMMessageReceiver.h; sourceTree = "<group>"; };
 		62DE31E21A483879008FEFEF /* LDMBundleConfigParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDMBundleConfigParser.h; sourceTree = "<group>"; };
 		62DE31E31A483879008FEFEF /* LDMBundleConfigParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDMBundleConfigParser.m; sourceTree = "<group>"; };
@@ -196,6 +204,11 @@
 		62DE31FB1A4849A3008FEFEF /* LDMBundleConfigurationItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDMBundleConfigurationItem.m; sourceTree = "<group>"; };
 		62DE31FE1A48507E008FEFEF /* LDMURLViewCtrlPatternConfigurationItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDMURLViewCtrlPatternConfigurationItem.h; sourceTree = "<group>"; };
 		62DE31FF1A48507E008FEFEF /* LDMURLViewCtrlPatternConfigurationItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDMURLViewCtrlPatternConfigurationItem.m; sourceTree = "<group>"; };
+		62DF03021A4BB69000EDBE8B /* LDMRoutes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDMRoutes.h; sourceTree = "<group>"; };
+		62DF03031A4BB69000EDBE8B /* LDMRoutes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDMRoutes.m; sourceTree = "<group>"; };
+		62DF03061A4BDAE900EDBE8B /* LDMBusWebControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDMBusWebControllerProtocol.h; sourceTree = "<group>"; };
+		62DF030A1A4BFD4800EDBE8B /* LDMPopWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDMPopWebViewController.h; sourceTree = "<group>"; };
+		62DF030B1A4BFD4800EDBE8B /* LDMPopWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDMPopWebViewController.m; sourceTree = "<group>"; };
 		62E8B8951A39A75A001993A9 /* LDBus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LDBus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		62E8B8981A39A75A001993A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62E8B89F1A39A75A001993A9 /* LDBusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LDBusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -340,6 +353,8 @@
 				62D516591A304F0500FFEDC0 /* LDLoginServiceImpl.m */,
 				62D1C6D11A4980C900AEA467 /* LDDemoMessageHandler.h */,
 				62D1C6D21A4980C900AEA467 /* LDDemoMessageHandler.m */,
+				62DF030A1A4BFD4800EDBE8B /* LDMPopWebViewController.h */,
+				62DF030B1A4BFD4800EDBE8B /* LDMPopWebViewController.m */,
 				62B4F9241A171BBC0056CBAB /* Supporting Files */,
 				62DE31F81A483F6B008FEFEF /* LDBusDemo_bundle.plist */,
 			);
@@ -462,6 +477,9 @@
 				62E8B9571A39AA85001993A9 /* LDMUIBusCenter.m */,
 				62E8B9581A39AA85001993A9 /* LDMUIBusConnector.h */,
 				62E8B9591A39AA85001993A9 /* LDMUIBusConnector.m */,
+				62DF03061A4BDAE900EDBE8B /* LDMBusWebControllerProtocol.h */,
+				62DF03021A4BB69000EDBE8B /* LDMRoutes.h */,
+				62DF03031A4BB69000EDBE8B /* LDMRoutes.m */,
 				62E8B95A1A39AA85001993A9 /* NavigatorCore */,
 				62E8B98A1A39AA85001993A9 /* NavigatorUI */,
 			);
@@ -524,6 +542,8 @@
 			children = (
 				62E8B9731A39AA85001993A9 /* TTURLAction.h */,
 				62E8B9741A39AA85001993A9 /* TTURLAction.m */,
+				62DD8F091A4AB8F400E24C77 /* TTURLActionResponse.h */,
+				62DD8F0A1A4AB8F400E24C77 /* TTURLActionResponse.m */,
 			);
 			path = "URL Action";
 			sourceTree = "<group>";
@@ -601,6 +621,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62DF03081A4BDAE900EDBE8B /* LDMBusWebControllerProtocol.h in Headers */,
+				62DD8F0B1A4AB8F400E24C77 /* TTURLActionResponse.h in Headers */,
 				62DD8F031A4A816100E24C77 /* LDMNavigator.h in Headers */,
 				62DE31CA1A481C41008FEFEF /* LDMMessageReceiver.h in Headers */,
 				62E8B9B71A39AA85001993A9 /* TTBaseNavigator.h in Headers */,
@@ -612,6 +634,7 @@
 				62DE31F01A483879008FEFEF /* LDMServiceConfigurationItem.h in Headers */,
 				62E8B9971A39AA85001993A9 /* LDMBundle.h in Headers */,
 				62E8B9BD1A39AA85001993A9 /* TTURLMap.h in Headers */,
+				62DF03041A4BB69000EDBE8B /* LDMRoutes.h in Headers */,
 				62E8B9CB1A39AA85001993A9 /* TTBaseNavigationController.h in Headers */,
 				62E8B9AD1A39AA85001993A9 /* NSStringAdditions.h in Headers */,
 				62E8B9A51A39AA85001993A9 /* UINavigationControllerAdditions.h in Headers */,
@@ -822,6 +845,7 @@
 				62B4F92A1A171BBC0056CBAB /* AppDelegate.m in Sources */,
 				62B4F9271A171BBC0056CBAB /* main.m in Sources */,
 				6262ED1A1A3A973200191FB9 /* LDCustomConnector.m in Sources */,
+				62DF030C1A4BFD4800EDBE8B /* LDMPopWebViewController.m in Sources */,
 				62B4F9C91A17310A0056CBAB /* ContentController.m in Sources */,
 				62D1C6D31A4980C900AEA467 /* LDDemoMessageHandler.m in Sources */,
 			);
@@ -855,6 +879,7 @@
 				62DE31EB1A483879008FEFEF /* LDMBundleConfigParser.m in Sources */,
 				62DD8F001A4A813300E24C77 /* UIViewController+LDMNavigator.m in Sources */,
 				62E8B9B61A39AA85001993A9 /* TTGlobalCoreRects.m in Sources */,
+				62DD8F0C1A4AB8F400E24C77 /* TTURLActionResponse.m in Sources */,
 				62E8B99A1A39AA85001993A9 /* LDMContainer.m in Sources */,
 				62DE31F11A483879008FEFEF /* LDMServiceConfigurationItem.m in Sources */,
 				62E8B9A21A39AA85001993A9 /* LDMUIBusCenter.m in Sources */,
@@ -867,6 +892,7 @@
 				62E8B9DA1A39AB16001993A9 /* TTURLArguments.m in Sources */,
 				62E8B9CE1A39AA85001993A9 /* TTGlobalNavigatorMetrics.m in Sources */,
 				62E8B9D01A39AA85001993A9 /* TTWebController.m in Sources */,
+				62DF03051A4BB69000EDBE8B /* LDMRoutes.m in Sources */,
 				62E8B9C71A39AA85001993A9 /* TTURLWildcard.m in Sources */,
 				62E8B9AE1A39AA85001993A9 /* NSStringAdditions.m in Sources */,
 				62E8B9B11A39AA85001993A9 /* TTDebug.m in Sources */,

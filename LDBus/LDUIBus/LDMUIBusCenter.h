@@ -10,12 +10,12 @@
 #import <UIKit/UIKit.h>
 
 @class TTURLAction;
+@class TTURLActionResponse;
 /**
  * @class LDUIBusCenter
  * UI总线调度中心, 负责接收从UIBusConnetor获取的URL消息，并负责将URL消息转发给其他所有bundle的connetor；
  */
 @interface LDMUIBusCenter : NSObject {
-    
 }
 
 +(LDMUIBusCenter *) uibusCenter;
@@ -27,6 +27,7 @@
 +(BOOL)sendUIMessage:(TTURLAction *)action;
 //
 +(UIViewController*)receiveURLCtrlFromUIBus:(TTURLAction *)action;
++(TTURLActionResponse *)handleURLActionRequest:(TTURLAction *)action;
 
 /**
  * 从connetor获取action，存到当前容量为1的messageCache中；
@@ -46,8 +47,5 @@
 /**
  * 获取messageQueue的响应ViewController
  */
--(UIViewController *) getResponseViewCtrl;
-
-
-
+-(TTURLActionResponse *) getURLActionResponse;
 @end

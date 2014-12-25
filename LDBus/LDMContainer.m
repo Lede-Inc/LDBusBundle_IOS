@@ -8,6 +8,7 @@
 
 #import "LDMContainer.h"
 
+#import "LDMBusContext.h"
 #import "LDMBundle.h"
 #import "LDMUIBusCenter.h"
 #import "LDMServiceBusCenter.h"
@@ -61,6 +62,15 @@ static LDMContainer* container = nil;
     }
     
     return self;
+}
+
+
+-(LDMNavigator *)getMainNavigator {
+    if(_mainNavigator){
+        return _mainNavigator;
+    } else {
+        return nil;
+    }
 }
 
 
@@ -262,10 +272,5 @@ static LDMContainer* container = nil;
         }//for
     }//if
 }
-
-
-
-
-
 
 @end

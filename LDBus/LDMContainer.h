@@ -15,6 +15,7 @@
 @class LDMUIBusCenter;
 @class LDMServiceBusCenter;
 @class LDMMessageBusCenter;
+@class LDMNavigator;
 @class UIViewController;
 
 
@@ -53,5 +54,11 @@
  * 设置当前navigator的rootViewController
  */
 -(BOOL) setNavigatorRootViewController:(UIViewController *)theRoot;
+
+/**
+ * 从bundle容器中获取全局导航管理器navigator
+ */
+-(LDMNavigator *)getMainNavigator;
+
 
 @end

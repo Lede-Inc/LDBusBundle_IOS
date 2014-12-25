@@ -51,11 +51,18 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    //bus Center初始化，预加载所有bundle的配置
-    [[LDMContainer container] preloadConfigWithScheme:@"netescaipiao"];
+    //bus容器初始化
+    [LDMBusContext initialBundleContainerWithRootViewController:self.window.rootViewController];
+    
+    //注册特殊scheme的web处理容器
+    //默认通过modal方式打开
+    [LDMBusContext registerSpecialScheme:@"http" addRoutes:@"*" handleController:@"LDMPopWebViewController"];
+    //push方式打开
+    [LDMBusContext registerSpecialScheme:@"https" addRoutes:@"*" handleController:@"LDMPopWebViewController" isModal:NO];
+    [LDMBusContext registerSpecialScheme:@"file" addRoutes:@"*" handleController:@"LDMPopWebViewController"];
     
     //打开一个初始ViewController
-    [LDMBusContext sendURL:@"netescaipiao://mainTab1"];
+    [LDMBusContext openURL:@"netescaipiao163://mainTab1"];
     return YES;
 }
 

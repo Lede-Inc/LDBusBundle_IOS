@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
 
     s.platform              = :ios, '5.0'
     s.ios.deployment_target = '5.0'
-    s.ios.public_header_files = 'LDBus/LDMBusContext.h', 'LDBus/LDMContainer.h', 'LDBus/LDUIBus/LDMUIBusConnector.h', 'LDBus/LDUIBus/NavigatorCore/LDMNavigator.h', 'LDBus/LDUIBus/NavigatorCore/TTBaseNavigator.h', 'LDBus/LDUIBus/NavigatorCore/URL\ Action/TTURLAction.h','LDBus/LDUIBus/NavigatorUI/TTWebController.h', 'LDBus/LDMessageBus/LDMMessageReceiver.h'
+    s.ios.public_header_files = 'LDBus/LDMBusContext.h', 'LDBus/LDUIBus/LDMUIBusConnector.h', 'LDBus/LDUIBus/LDMBusWebControllerProtocol.h', 'LDBus/LDUIBus/NavigatorCore/LDMNavigator.h', 'LDBus/LDUIBus/NavigatorCore/TTBaseNavigator.h', 'LDBus/LDUIBus/NavigatorCore/URL\ Action/TTURLAction.h','LDBus/LDUIBus/NavigatorUI/TTWebController.h', 'LDBus/LDMessageBus/LDMMessageReceiver.h'
     s.subspec 'arc' do |sa|
         sa.ios.source_files = 'LDBus/*.{h,m}', 'LDBus/LDBusConfig', 'LDBus/LDServiceBus', 'LDBus/LDMessageBus', 'LDBus/LDUIBus/*.{h,m}'
         sa.requires_arc = true

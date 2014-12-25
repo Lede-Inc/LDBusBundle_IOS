@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 /**
- * @class LDServiceBusCenter
+ * @class LDMServiceBusCenter
  * service总线调度中心
  */
 @interface LDMServiceBusCenter : NSObject{

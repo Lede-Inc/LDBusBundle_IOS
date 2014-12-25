@@ -7,7 +7,6 @@
 #import "LDMNavigator.h"
 
 // UINavigator
-#import "TTNavigationMode.h"
 #import "TTURLAction.h"
 
 // UINavigator (private)

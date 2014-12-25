@@ -114,8 +114,16 @@
     } else if (_page == MenuPageDinner) {
     } else if (_page == MenuPageDessert) {
     } else if (_page == MenuPageAbout) {
-        [_keyArrary addObjectsFromArray:@[@"Our Story", @"测试服务总线", @"Text Us", @"Complaints Dept."]];
-        [_urlArrary addObjectsFromArray:@[@"netescaipiao://food/foo/story", @"loginService", @"sms://5555555", @"netescaipiao://food/foo/complaints"]];
+        [_keyArrary addObjectsFromArray:@[@"modal打开特定scheme的处理，如http://",
+                                          @"push打开特殊scheme，如https://",
+                                          @"测试服务总线",
+                                          @"Text Us",
+                                          @"Complaints Dept."]];
+        [_urlArrary addObjectsFromArray:@[@"http://piao.163.com",
+                                          @"https://piao.163.com",
+                                          @"loginService",
+                                          @"sms://5555555",
+                                          @"netescaipiao://food/foo/complaints"]];
     }
 
 }
@@ -148,20 +156,20 @@
                 TTURLAction *action = [TTURLAction actionWithURLPath:url];
                 [action applySourceView:[tableView cellForRowAtIndexPath:indexPath]];
                 [action applySourceViewController:self];
-                [LDMBusContext sendURLWithAction:action];
+                [LDMBusContext openURLWithAction:action];
             } else if(indexPath.row == 8) {
-                [LDMBusContext sendURL:url query:@{@"_array_":@[@"hello", @"baby"], @"_dic_": @{@"hello":@"1", @"baby":@"2"}}];
+                [LDMBusContext openURL:url query:@{@"_array_":@[@"hello", @"baby"], @"_dic_": @{@"hello":@"1", @"baby":@"2"}}];
             } else if(indexPath.row == 9){
                 NSNotification *notification = [NSNotification notificationWithName:url object:@"i am a object" userInfo:@{@"userInfo":@"i am form userinfo"}];
                 [LDMBusContext postNotification:notification];
             }else {
-                [LDMBusContext sendURL:url];
+                [LDMBusContext openURL:url];
             }
         } else {
-            if(indexPath.row == 1){
+            if(indexPath.row == 2){
                 [[LDMBusContext getService:url] autologin];
             } else {
-                [LDMBusContext sendURL:url];
+                [LDMBusContext openURL:url];
             }
         }
     }

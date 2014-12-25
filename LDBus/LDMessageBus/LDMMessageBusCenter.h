@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 /**
- * @class LDServiceBusCenter
+ * @class LDMMessageBusCenter
  * message总线调度中心 主要为了跟android的intent广播消息保持一致
  * 其主要作用不同于notificationcenter，主要是定义了Notification handler机制
  */
