@@ -19,14 +19,15 @@ Pod::Spec.new do |s|
 
     s.platform              = :ios, '5.0'
     s.ios.deployment_target = '5.0'
-    s.ios.public_header_files = 'LDBus/LDMBusContext.h', 'LDBus/LDUIBus/LDMUIBusConnector.h', 'LDBus/LDUIBus/LDMBusWebControllerProtocol.h', 'LDBus/LDUIBus/NavigatorCore/LDMNavigator.h', 'LDBus/LDUIBus/NavigatorCore/URL\ Action/TTURLAction.h','LDBus/LDUIBus/NavigatorUI/TTWebController.h', 'LDBus/LDMessageBus/LDMMessageReceiver.h'
     s.subspec 'arc' do |sa|
-        sa.ios.source_files = 'LDBus/*.{h,m}', 'LDBus/LDBusConfig', 'LDBus/LDServiceBus', 'LDBus/LDMessageBus', 'LDBus/LDUIBus/*.{h,m}'
+        sa.public_header_files = 'LDBus/LDMBusContext.h', 'LDBus/LDUIBus/LDMUIBusConnector.h', 'LDBus/LDUIBus/LDMBusWebControllerProtocol.h', 'LDBus/LDMessageBus/LDMMessageReceiver.h'
+        sa.source_files = 'LDBus/*.{h,m}', 'LDBus/LDBusConfig', 'LDBus/LDServiceBus', 'LDBus/LDMessageBus', 'LDBus/LDUIBus/*.{h,m}'
         sa.requires_arc = true
         sa.dependency 'LDBus/non-arc'
     end
 
     s.subspec 'non-arc' do |sn|
+        sn.public_header_files = 'LDBus/LDUIBus/NavigatorCore/LDMNavigator.h', 'LDBus/LDUIBus/NavigatorCore/URL\ Action/TTURLAction.h','LDBus/LDUIBus/NavigatorUI/TTWebController.h'
         sn.source_files = 'LDBus/LDUIBus/NavigatorCore/**/*.{h,m}', 'LDBus/LDUIBus/NavigatorUI/**/*.{h,m}'
         sn.requires_arc = false
         sn.dependency 'LDBus/arc'
