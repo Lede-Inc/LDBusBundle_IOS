@@ -216,7 +216,7 @@ static TTBaseNavigator* gNavigator = nil;
     //如果传入了一个parentURL，则通过该URL生成一个ViewController
     if (nil != parentURLPath) {
         TTURLAction *action = [TTURLAction actionWithURLPath:parentURLPath];
-        action.ifNeedPresent = NO;
+        action.isDirectDeal = NO;
         TTURLActionResponse *response = [LDMUIBusCenter handleURLActionRequest:action];
         *pattern = response.navigatorPattern;
         return response.viewController;

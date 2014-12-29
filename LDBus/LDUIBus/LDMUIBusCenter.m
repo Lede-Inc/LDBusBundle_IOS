@@ -74,7 +74,7 @@ static LDMUIBusCenter *uibusCenter = nil;
 }
 
 +(UIViewController*)receiveURLCtrlFromUIBus:(TTURLAction *)action{
-    if(action.ifNeedPresent) return nil;
+    if(action.isDirectDeal) return nil;
     
     UIViewController *ctrl = nil;
     LDMUIBusCenter *center = [LDMUIBusCenter uibusCenter];
@@ -94,7 +94,7 @@ static LDMUIBusCenter *uibusCenter = nil;
 
 
 +(TTURLActionResponse *)handleURLActionRequest:(TTURLAction *)action {
-    if(action.ifNeedPresent) return nil;
+    if(action.isDirectDeal) return nil;
     
     TTURLActionResponse *response = nil;
     LDMUIBusCenter *center = [LDMUIBusCenter uibusCenter];
@@ -184,7 +184,7 @@ static LDMUIBusCenter *uibusCenter = nil;
             if([bundle.uibusConnetor canOpenInBundle:action.urlPath]){
                 @synchronized(_UIBusMessageQueue){
                     //如果是url跳转，直接调用响应的connector处理
-                    if(action.ifNeedPresent){
+                    if(action.isDirectDeal){
                         success = [bundle.uibusConnetor dealWithURLMessageFromBus:action];
                     }
                     

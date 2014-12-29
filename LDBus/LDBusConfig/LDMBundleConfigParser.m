@@ -73,7 +73,7 @@
             [self parser:parser attributes:attributeDict parseEmptyKeyParams:@[@"name", @"class"] nameSpace:elementName];
             NSString *viewCtrlName = IFNIL(attributeDict[@"name"]);
             if(_configurationItem && viewCtrlName && ![viewCtrlName isEqualToString:@""]){
-                LDMURLViewCtrlConfigurationItem *urlViewCtrlConfigurationItem = [[LDMURLViewCtrlConfigurationItem alloc] initWithURLViewCtrlConfigurationItem:viewCtrlName class:IFNIL(attributeDict[@"class"]) webPath:IFNIL(attributeDict[@"webpath"]) parent:IFNIL(attributeDict[@"parent"]) type:[self getTypeFromString:IFNIL(attributeDict[@"type"])]];
+                LDMURLViewCtrlConfigurationItem *urlViewCtrlConfigurationItem = [[LDMURLViewCtrlConfigurationItem alloc] initWithURLViewCtrlConfigurationItem:viewCtrlName class:IFNIL(attributeDict[@"class"]) webPath:IFNIL(attributeDict[@"webpath"]) webQuery: [IFNIL(attributeDict[@"webquery"]) stringByReplacingOccurrencesOfString:@";" withString:@"&"] parent:IFNIL(attributeDict[@"parent"]) type:[self getTypeFromString:IFNIL(attributeDict[@"type"])]];
                 [_configurationItem.urlViewCtrlConfigurationList addObject:urlViewCtrlConfigurationItem];
             }
         }

@@ -20,7 +20,7 @@
 -(void) viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    [self setTabURLs:@[@"netescaipiao://menu/1", @"netescaipiao://menu/5"]];
+    [self setTabURLs:@[@"netescaipiao://menu?menuID=1", @"netescaipiao://menu?menuID=5"]];
 }
 
 

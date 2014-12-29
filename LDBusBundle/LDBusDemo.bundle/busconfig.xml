@@ -4,7 +4,7 @@
         <!--个人账户首页-->
         <ViewController name="mainTab1" class="MyTabController" type="share">
         </ViewController>
-        <ViewController name="menu/(initWithMenu:)" class="MenuController" type="share">
+        <ViewController name="menu" webquery="menuID=(initWithMenu:)" class="MenuController" type="share">
         </ViewController>
         <ViewController name="food" class="ContentController" type="push">
             <URLPattern name="foo/(initWithFood:)"/>

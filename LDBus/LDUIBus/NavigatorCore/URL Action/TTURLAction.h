@@ -20,18 +20,18 @@
  * For the default values, see the apply method documentation below.
  */
 @interface TTURLAction : NSObject {
-  NSString*     _urlPath;
-  NSString*     _parentURLPath;
-  NSDictionary* _query;
-  BOOL          _animated;
-
-  CGRect        _sourceRect;
-  UIView*       _sourceView;
-  UIBarButtonItem* _sourceButton;
-  UIViewController* _sourceViewController;
-
-  UIViewAnimationTransition _transition;
-    BOOL          _ifNeedPresent;
+    NSString*     _urlPath;
+    NSString*     _parentURLPath;
+    NSDictionary* _query;
+    BOOL          _animated;
+    
+    CGRect        _sourceRect;
+    UIView*       _sourceView;
+    UIBarButtonItem* _sourceButton;
+    UIViewController* _sourceViewController;
+    
+    UIViewAnimationTransition _transition;
+    BOOL          _isDirectDeal; //是否直接展示URL
 }
 
 @property (nonatomic, copy)   NSString*     urlPath;
@@ -43,7 +43,7 @@
 @property (nonatomic, retain) UIBarButtonItem* sourceButton;
 @property (nonatomic, retain) UIViewController* sourceViewController;
 @property (nonatomic, assign) UIViewAnimationTransition transition;
-@property (nonatomic, assign) BOOL          ifNeedPresent;
+@property (nonatomic, assign) BOOL          isDirectDeal;
 
 /**
  * Create an autoreleased TTURLAction object.

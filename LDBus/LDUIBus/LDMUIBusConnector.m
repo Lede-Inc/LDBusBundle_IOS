@@ -166,7 +166,7 @@
  */
 +(UIViewController *)controllerForURL:(NSString *)url{
     TTURLAction *action = [TTURLAction actionWithURLPath:url];
-    action.ifNeedPresent = NO;
+    action.isDirectDeal = NO;
     return [LDMUIBusCenter receiveURLCtrlFromUIBus:action];
 }
 @end

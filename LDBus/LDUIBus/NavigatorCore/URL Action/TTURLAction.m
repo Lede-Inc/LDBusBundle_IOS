@@ -25,7 +25,7 @@
 @synthesize sourceButton  = _sourceButton;
 @synthesize sourceViewController = _sourceViewController;
 @synthesize transition    = _transition;
-@synthesize ifNeedPresent = _ifNeedPresent;
+@synthesize isDirectDeal = _isDirectDeal;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -47,7 +47,7 @@
     self.urlPath = urlPath;
     self.animated = YES;
     self.transition = UIViewAnimationTransitionNone;
-    self.ifNeedPresent = YES;
+    self.isDirectDeal = YES;
   }
 
   return self;
@@ -99,7 +99,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (TTURLAction*)applyIfNeedPresent:(BOOL)ifNeedPresent{
-    self.ifNeedPresent = ifNeedPresent;
+    self.isDirectDeal = ifNeedPresent;
     return self;
 }
 

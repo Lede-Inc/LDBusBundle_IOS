@@ -215,8 +215,14 @@
         for(int i = 0; i < _configurationItem.urlViewCtrlConfigurationList.count; i++){
             //设置每个viewctrl默认的打开方式
             LDMURLViewCtrlConfigurationItem *viewCtrl = _configurationItem.urlViewCtrlConfigurationList[i];
-            NSString *ctrlPatternURL = [NSString stringWithFormat:@"%@://%@", bundleScheme, viewCtrl.viewCtrlName];
-            NSString *ctrlPatternWebURL = [NSString stringWithFormat:@"%@%@",_configurationItem.bundleWebHost,viewCtrl.viewCtrlWebPath];
+            NSString *baseCtrlPatternURL = [NSString stringWithFormat:@"%@://%@", bundleScheme, viewCtrl.viewCtrlName];
+            NSString *baseCtrlPatternWebURL = [NSString stringWithFormat:@"%@%@",_configurationItem.bundleWebHost,viewCtrl.viewCtrlWebPath];
+            
+            //加query参数：
+            NSString *queryItem = [viewCtrl.viewCtrlWebQuery isEqualToString:@""]?@"": [NSString stringWithFormat:@"?%@", viewCtrl.viewCtrlWebQuery];
+            NSString *ctrlPatternURL = [baseCtrlPatternURL stringByAppendingString:queryItem];
+            NSString *ctrlPatternWebURL = [baseCtrlPatternWebURL stringByAppendingString:queryItem];
+            
             NSString *ctrlPatternParent = [viewCtrl.viewCtrlDefaultParent isEqualToString:@""]?@"": [NSString stringWithFormat:@"%@://%@", bundleScheme, viewCtrl.viewCtrlDefaultParent];
             [self setNaviagtorMap:map MapURL:ctrlPatternURL webURL:ctrlPatternWebURL ctrlClass:viewCtrl.viewCtrlClass parent:ctrlPatternParent type:viewCtrl.viewCtrlDefaultType];
             
@@ -230,8 +236,8 @@
                         NSString *path = [urlPattern.patternWebPath isEqualToString:@""] ? @"" : [NSString stringWithFormat:@"/%@", urlPattern.patternWebPath];
                         NSString *query = [urlPattern.patternWebQuery isEqualToString:@""] ? @"" : [NSString stringWithFormat:@"?%@", urlPattern.patternWebQuery];
                         NSString *fragement = [urlPattern.patternWebFrage isEqualToString:@""] ? @"" : [NSString stringWithFormat:@"#%@", urlPattern.patternWebFrage];
-                        NSString *patternURL = [ctrlPatternURL stringByAppendingFormat:@"%@%@%@",path,query, fragement];
-                        NSString *patternWebURL = [ctrlPatternWebURL stringByAppendingFormat:@"%@%@", query, fragement];
+                        NSString *patternURL = [baseCtrlPatternURL stringByAppendingFormat:@"%@%@%@",path,query, fragement];
+                        NSString *patternWebURL = [baseCtrlPatternWebURL stringByAppendingFormat:@"%@%@", query, fragement];
                         NSString *patternParent = [urlPattern.patternParent isEqualToString:@""] ? @"" : [NSString stringWithFormat:@"%@://%@", bundleScheme, urlPattern.patternParent];
                         [self setNaviagtorMap:map MapURL:patternURL webURL:patternWebURL ctrlClass:viewCtrl.viewCtrlClass parent:patternParent type:urlPattern.patternType];
                     }
