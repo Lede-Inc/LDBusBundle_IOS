@@ -3,7 +3,7 @@
 //  Copyright (c) 2014 庞辉. All rights reserved.
 //
 
-#import "TTBaseNavigator.h"
+#import "LDMBaseNavigator.h"
 
 // UINavigator
 #import "TTGlobalNavigatorMetrics.h"
@@ -15,7 +15,7 @@
 #import "UIViewController+LDMNavigator.h"
 
 // UINavigator (private)
-#import "TTBaseNavigatorInternal.h"
+#import "LDMBaseNavigatorInternal.h"
 
 // UICommon
 #import "UIViewControllerAdditions.h"
@@ -27,12 +27,12 @@
 #import "TTDebugFlags.h"
 #import "LDMUIBusCenter.h"
 
-static TTBaseNavigator* gNavigator = nil;
+static LDMBaseNavigator* gNavigator = nil;
 
 /**
  * @class 全局UI导航的navigator
  */
-@implementation TTBaseNavigator
+@implementation LDMBaseNavigator
 @synthesize window                    = _window;
 @synthesize rootViewController        = _rootViewController;
 
@@ -52,10 +52,9 @@ static TTBaseNavigator* gNavigator = nil;
  * 销毁对象
  */
 - (void)dealloc {
-  TT_RELEASE_SAFELY(_window);
-  TT_RELEASE_SAFELY(_rootViewController);
-  TT_RELEASE_SAFELY(_popoverController);
-  [super dealloc];
+    _window = nil;
+    _rootViewController = nil;
+    _popoverController = nil;
 }
 
 
@@ -64,7 +63,7 @@ static TTBaseNavigator* gNavigator = nil;
  *
  * @public
  */
-+ (TTBaseNavigator*)globalNavigator {
++ (LDMBaseNavigator*)globalNavigator {
   return gNavigator;
 }
 
@@ -74,10 +73,10 @@ static TTBaseNavigator* gNavigator = nil;
  *
  * @public
  */
-+ (void)setGlobalNavigator:(TTBaseNavigator*)navigator {
++ (void)setGlobalNavigator:(LDMBaseNavigator*)navigator {
   if (gNavigator != navigator) {
-    [gNavigator release];
-    gNavigator = [navigator retain];
+      gNavigator = nil;
+      gNavigator = navigator;
   }
 }
 
@@ -113,11 +112,11 @@ static TTBaseNavigator* gNavigator = nil;
  
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
   if (controller.modalViewController) {
-    return [TTBaseNavigator frontViewControllerForController:controller.modalViewController];
+    return [LDMBaseNavigator frontViewControllerForController:controller.modalViewController];
   }
 #else
     if(controller.presentedViewController){
-        return [TTBaseNavigator frontViewControllerForController:controller.presentedViewController];
+        return [LDMBaseNavigator frontViewControllerForController:controller.presentedViewController];
     }
 #endif
   else {
@@ -165,10 +164,10 @@ static TTBaseNavigator* gNavigator = nil;
 - (UIViewController*)frontViewController {
   UINavigationController* navController = self.frontNavigationController;
   if (navController) {
-    return [TTBaseNavigator frontViewControllerForController:navController];
+    return [LDMBaseNavigator frontViewControllerForController:navController];
 
   } else {
-    return [TTBaseNavigator frontViewControllerForController:_rootViewController];
+    return [LDMBaseNavigator frontViewControllerForController:_rootViewController];
   }
 }
 
@@ -180,8 +179,7 @@ static TTBaseNavigator* gNavigator = nil;
  */
 - (void)setRootViewController:(UIViewController*)controller {
     if (controller != _rootViewController) {
-        [_rootViewController release];
-        _rootViewController = [controller retain];
+        _rootViewController = controller;
         
         [self.window setRootViewController:_rootViewController];
         [self.window addSubview:_rootViewController.view];
@@ -210,7 +208,7 @@ static TTBaseNavigator* gNavigator = nil;
     //如果当前viewController是第一个ViewController，且不是一个容器的ViewController
     //强制生成一个NavigationController作为root导航
     if (nil == _rootViewController && !isContainer) {
-      [self setRootViewController:[[[[self navigationControllerClass] alloc] init] autorelease]];
+      [self setRootViewController:[[[self navigationControllerClass] alloc] init] ];
     }
 
     //如果传入了一个parentURL，则通过该URL生成一个ViewController
@@ -259,8 +257,7 @@ static TTBaseNavigator* gNavigator = nil;
 #endif
 
   } else {
-    UINavigationController* navController = [[[[self navigationControllerClass] alloc] init]
-                                             autorelease];
+    UINavigationController* navController = [[[self navigationControllerClass] alloc] init];
     navController.modalTransitionStyle = transition;
     navController.modalPresentationStyle = controller.modalPresentationStyle;
     [navController pushViewController: controller
@@ -295,11 +292,11 @@ static TTBaseNavigator* gNavigator = nil;
   //如果当前navigator中有popOverController，则先dismiss
   if (nil != _popoverController) {
     [_popoverController dismissPopoverAnimated:animated];
-    TT_RELEASE_SAFELY(_popoverController);
+      _popoverController = nil;
   }
 
-  _popoverController =  [[[UIPopoverController alloc]
-                         initWithContentViewController: controller] autorelease];
+  _popoverController =  [[UIPopoverController alloc]
+                         initWithContentViewController: controller];
   if (_popoverController != nil) {
       [(UIPopoverController *)_popoverController setDelegate:self];
   }
@@ -439,7 +436,7 @@ static TTBaseNavigator* gNavigator = nil;
   if (nil == _window) {
     UIWindow* keyWindow = [UIApplication sharedApplication].keyWindow;
     if (nil != keyWindow) {
-      _window = [keyWindow retain];
+        _window = keyWindow;
 
     } else {
       _window = [[[self windowClass] alloc] initWithFrame:TTScreenBounds()];
@@ -545,7 +542,7 @@ static TTBaseNavigator* gNavigator = nil;
  */
 - (void)removeAllViewControllers {
   [_rootViewController.view removeFromSuperview];
-  TT_RELEASE_SAFELY(_rootViewController);
+  _rootViewController = nil;
 }
 
 
@@ -559,7 +556,7 @@ static TTBaseNavigator* gNavigator = nil;
  */
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
   if (popoverController == _popoverController) {
-    TT_RELEASE_SAFELY(_popoverController);
+      _popoverController = nil;
   }
 }
 
@@ -571,7 +568,7 @@ static TTBaseNavigator* gNavigator = nil;
 
 
 
-@implementation TTBaseNavigator (TTInternal)
+@implementation LDMBaseNavigator (TTInternal)
 /**
  * Present a view controller that strictly depends on the existence of the parent controller.
  */

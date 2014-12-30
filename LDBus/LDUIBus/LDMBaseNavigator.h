@@ -14,9 +14,8 @@
 /**
  * A URL-based navigation system.
  */
-@interface TTBaseNavigator : NSObject <UIPopoverControllerDelegate> {
+@interface LDMBaseNavigator : NSObject <UIPopoverControllerDelegate> {
     UIWindow*                   _window;
-    UIViewController*           _rootViewController;
     id                          _popoverController;
 }
 
@@ -35,8 +34,8 @@
 @property (nonatomic, readonly)NSString *URL;
 
 
-+ (TTBaseNavigator*)globalNavigator;
-+ (void)setGlobalNavigator:(TTBaseNavigator*)navigator;
++ (LDMBaseNavigator*)globalNavigator;
++ (void)setGlobalNavigator:(LDMBaseNavigator*)navigator;
 
 /**
  * 在parentURL下展示一个ViewController

@@ -304,10 +304,12 @@
 -(void) checkDuplicateURLPattern:(LDMBundle *)aBundle{
     if(_configurationItem && aBundle.configurationItem){
         //获得当前bundle的scheme
+        /*
         NSString *bundleScheme = _configurationItem.bundleName;
         if(_scheme && ![_scheme isEqualToString:@""]) {
             bundleScheme = _scheme;
         }
+         */
         
         NSLog(@">>>>>>>>>>>>>check Bunde: %@>>>>>>>>>>>>>>>>", _configurationItem.bundleName);
         for(int i = 0; i < _configurationItem.urlViewCtrlConfigurationList.count; i++){
@@ -316,10 +318,13 @@
             NSString *ctrlPatternURL = [NSString stringWithFormat:@"%@", viewCtrl.viewCtrlName];
             
             //获得aBundle的scheme
+            /*
             NSString *aBundleScheme = aBundle.configurationItem.bundleName;
             if(aBundle.scheme && ![aBundle.scheme isEqualToString:@""]) {
                 aBundleScheme = aBundle.scheme;
             }
+             */
+            
             for(int j= 0; j < aBundle.configurationItem.urlViewCtrlConfigurationList.count; j++){
                 LDMURLViewCtrlConfigurationItem *aBundleViewCtrl = aBundle.configurationItem.urlViewCtrlConfigurationList[j];
                 NSString *aBundleCtrlPatternURL = [NSString stringWithFormat:@"%@", aBundleViewCtrl.viewCtrlName];

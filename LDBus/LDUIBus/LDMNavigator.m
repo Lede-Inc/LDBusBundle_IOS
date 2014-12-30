@@ -11,7 +11,7 @@
 
 // UINavigator (private)
 #import "TTBaseNavigationController.h"
-#import "TTBaseNavigatorInternal.h"
+#import "LDMBaseNavigatorInternal.h"
 
 // UICommon
 #import "UIViewControllerAdditions.h"
@@ -27,9 +27,9 @@
  * 获取App target中全局导航的navigator
  */
 + (LDMNavigator*)navigator {
-  TTBaseNavigator* navigator = [TTBaseNavigator globalNavigator];
+  LDMBaseNavigator* navigator = [LDMBaseNavigator globalNavigator];
   if (nil == navigator) {
-    navigator = [[[LDMNavigator alloc] init] autorelease];
+    navigator = [[LDMNavigator alloc] init];
     // setNavigator: retains.
     [super setGlobalNavigator:navigator];
   }

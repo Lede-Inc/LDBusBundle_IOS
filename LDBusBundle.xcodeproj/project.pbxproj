@@ -20,12 +20,15 @@
 		62D1C6D01A4920A100AEA467 /* LDMBMovieFilm.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 62D1C6CF1A4920A100AEA467 /* LDMBMovieFilm.bundle */; };
 		62D1C6D31A4980C900AEA467 /* LDDemoMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 62D1C6D21A4980C900AEA467 /* LDDemoMessageHandler.m */; };
 		62D1F52F1A36D58C0076ACA7 /* LDBusDemo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 62D1F52E1A36D58C0076ACA7 /* LDBusDemo.bundle */; };
+		62D28C3E1A52903C00CE1C2E /* LDMNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 62D28C391A52903C00CE1C2E /* LDMNavigator.h */; };
+		62D28C3F1A52903C00CE1C2E /* LDMNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 62D28C3A1A52903C00CE1C2E /* LDMNavigator.m */; };
+		62D28C401A52903C00CE1C2E /* LDMBaseNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 62D28C3B1A52903C00CE1C2E /* LDMBaseNavigator.h */; };
+		62D28C411A52903C00CE1C2E /* LDMBaseNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 62D28C3C1A52903C00CE1C2E /* LDMBaseNavigator.m */; };
+		62D28C421A52903C00CE1C2E /* LDMBaseNavigatorInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 62D28C3D1A52903C00CE1C2E /* LDMBaseNavigatorInternal.h */; };
 		62D5165A1A304F0500FFEDC0 /* LDLoginServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 62D516591A304F0500FFEDC0 /* LDLoginServiceImpl.m */; };
 		62D539B71A1B27790088FFF4 /* framework.sh in Resources */ = {isa = PBXBuildFile; fileRef = 62D539B51A1B27790088FFF4 /* framework.sh */; };
 		62DD8EFF1A4A813300E24C77 /* UIViewController+LDMNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 62DD8EFD1A4A813300E24C77 /* UIViewController+LDMNavigator.h */; };
 		62DD8F001A4A813300E24C77 /* UIViewController+LDMNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DD8EFE1A4A813300E24C77 /* UIViewController+LDMNavigator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62DD8F031A4A816100E24C77 /* LDMNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 62DD8F011A4A816100E24C77 /* LDMNavigator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		62DD8F041A4A816100E24C77 /* LDMNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DD8F021A4A816100E24C77 /* LDMNavigator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		62DD8F081A4A96B300E24C77 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 62DD8F071A4A96B300E24C77 /* LICENSE */; };
 		62DD8F0B1A4AB8F400E24C77 /* TTURLActionResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 62DD8F091A4AB8F400E24C77 /* TTURLActionResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		62DD8F0C1A4AB8F400E24C77 /* TTURLActionResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DD8F0A1A4AB8F400E24C77 /* TTURLActionResponse.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -83,9 +86,6 @@
 		62E8B9B41A39AA85001993A9 /* TTGlobalCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B96C1A39AA85001993A9 /* TTGlobalCore.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		62E8B9B51A39AA85001993A9 /* TTGlobalCoreRects.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B96D1A39AA85001993A9 /* TTGlobalCoreRects.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9B61A39AA85001993A9 /* TTGlobalCoreRects.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B96E1A39AA85001993A9 /* TTGlobalCoreRects.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62E8B9B71A39AA85001993A9 /* TTBaseNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B96F1A39AA85001993A9 /* TTBaseNavigator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		62E8B9B81A39AA85001993A9 /* TTBaseNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9701A39AA85001993A9 /* TTBaseNavigator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62E8B9B91A39AA85001993A9 /* TTBaseNavigatorInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9711A39AA85001993A9 /* TTBaseNavigatorInternal.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9BA1A39AA85001993A9 /* TTURLAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9731A39AA85001993A9 /* TTURLAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		62E8B9BB1A39AA85001993A9 /* TTURLAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9741A39AA85001993A9 /* TTURLAction.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		62E8B9BC1A39AA85001993A9 /* TTNavigationMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9761A39AA85001993A9 /* TTNavigationMode.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -177,14 +177,17 @@
 		62D1C6D11A4980C900AEA467 /* LDDemoMessageHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDDemoMessageHandler.h; sourceTree = "<group>"; };
 		62D1C6D21A4980C900AEA467 /* LDDemoMessageHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDDemoMessageHandler.m; sourceTree = "<group>"; };
 		62D1F52E1A36D58C0076ACA7 /* LDBusDemo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LDBusDemo.bundle; sourceTree = "<group>"; };
+		62D28C391A52903C00CE1C2E /* LDMNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDMNavigator.h; sourceTree = "<group>"; };
+		62D28C3A1A52903C00CE1C2E /* LDMNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDMNavigator.m; sourceTree = "<group>"; };
+		62D28C3B1A52903C00CE1C2E /* LDMBaseNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDMBaseNavigator.h; sourceTree = "<group>"; };
+		62D28C3C1A52903C00CE1C2E /* LDMBaseNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDMBaseNavigator.m; sourceTree = "<group>"; };
+		62D28C3D1A52903C00CE1C2E /* LDMBaseNavigatorInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDMBaseNavigatorInternal.h; sourceTree = "<group>"; };
 		62D516571A304E7600FFEDC0 /* LDLoginService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDLoginService.h; sourceTree = "<group>"; };
 		62D516581A304F0500FFEDC0 /* LDLoginServiceImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDLoginServiceImpl.h; sourceTree = "<group>"; };
 		62D516591A304F0500FFEDC0 /* LDLoginServiceImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDLoginServiceImpl.m; sourceTree = "<group>"; };
 		62D539B51A1B27790088FFF4 /* framework.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = framework.sh; sourceTree = "<group>"; };
 		62DD8EFD1A4A813300E24C77 /* UIViewController+LDMNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LDMNavigator.h"; sourceTree = "<group>"; };
 		62DD8EFE1A4A813300E24C77 /* UIViewController+LDMNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LDMNavigator.m"; sourceTree = "<group>"; };
-		62DD8F011A4A816100E24C77 /* LDMNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDMNavigator.h; sourceTree = "<group>"; };
-		62DD8F021A4A816100E24C77 /* LDMNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDMNavigator.m; sourceTree = "<group>"; };
 		62DD8F071A4A96B300E24C77 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		62DD8F091A4AB8F400E24C77 /* TTURLActionResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTURLActionResponse.h; sourceTree = "<group>"; };
 		62DD8F0A1A4AB8F400E24C77 /* TTURLActionResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLActionResponse.m; sourceTree = "<group>"; };
@@ -246,9 +249,6 @@
 		62E8B96C1A39AA85001993A9 /* TTGlobalCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalCore.m; sourceTree = "<group>"; };
 		62E8B96D1A39AA85001993A9 /* TTGlobalCoreRects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTGlobalCoreRects.h; sourceTree = "<group>"; };
 		62E8B96E1A39AA85001993A9 /* TTGlobalCoreRects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalCoreRects.m; sourceTree = "<group>"; };
-		62E8B96F1A39AA85001993A9 /* TTBaseNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTBaseNavigator.h; sourceTree = "<group>"; };
-		62E8B9701A39AA85001993A9 /* TTBaseNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTBaseNavigator.m; sourceTree = "<group>"; };
-		62E8B9711A39AA85001993A9 /* TTBaseNavigatorInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTBaseNavigatorInternal.h; sourceTree = "<group>"; };
 		62E8B9731A39AA85001993A9 /* TTURLAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTURLAction.h; sourceTree = "<group>"; };
 		62E8B9741A39AA85001993A9 /* TTURLAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLAction.m; sourceTree = "<group>"; };
 		62E8B9761A39AA85001993A9 /* TTNavigationMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTNavigationMode.h; sourceTree = "<group>"; };
@@ -480,6 +480,11 @@
 				62DF03061A4BDAE900EDBE8B /* LDMBusWebControllerProtocol.h */,
 				62DF03021A4BB69000EDBE8B /* LDMRoutes.h */,
 				62DF03031A4BB69000EDBE8B /* LDMRoutes.m */,
+				62D28C391A52903C00CE1C2E /* LDMNavigator.h */,
+				62D28C3A1A52903C00CE1C2E /* LDMNavigator.m */,
+				62D28C3B1A52903C00CE1C2E /* LDMBaseNavigator.h */,
+				62D28C3C1A52903C00CE1C2E /* LDMBaseNavigator.m */,
+				62D28C3D1A52903C00CE1C2E /* LDMBaseNavigatorInternal.h */,
 				62E8B95A1A39AA85001993A9 /* NavigatorCore */,
 				62E8B98A1A39AA85001993A9 /* NavigatorUI */,
 			);
@@ -489,13 +494,8 @@
 		62E8B95A1A39AA85001993A9 /* NavigatorCore */ = {
 			isa = PBXGroup;
 			children = (
-				62DD8F011A4A816100E24C77 /* LDMNavigator.h */,
-				62DD8F021A4A816100E24C77 /* LDMNavigator.m */,
 				62DD8EFD1A4A813300E24C77 /* UIViewController+LDMNavigator.h */,
 				62DD8EFE1A4A813300E24C77 /* UIViewController+LDMNavigator.m */,
-				62E8B9711A39AA85001993A9 /* TTBaseNavigatorInternal.h */,
-				62E8B96F1A39AA85001993A9 /* TTBaseNavigator.h */,
-				62E8B9701A39AA85001993A9 /* TTBaseNavigator.m */,
 				62E8B9721A39AA85001993A9 /* URL Action */,
 				62E8B9751A39AA85001993A9 /* URL Map */,
 				62E8B9791A39AA85001993A9 /* URL Pattern */,
@@ -624,9 +624,7 @@
 				62E8B9AF1A39AA85001993A9 /* TTCorePreprocessorMacros.h in Headers */,
 				62DF03081A4BDAE900EDBE8B /* LDMBusWebControllerProtocol.h in Headers */,
 				62DD8F0B1A4AB8F400E24C77 /* TTURLActionResponse.h in Headers */,
-				62DD8F031A4A816100E24C77 /* LDMNavigator.h in Headers */,
 				62DE31CA1A481C41008FEFEF /* LDMMessageReceiver.h in Headers */,
-				62E8B9B71A39AA85001993A9 /* TTBaseNavigator.h in Headers */,
 				62E8B9991A39AA85001993A9 /* LDMContainer.h in Headers */,
 				62E8B99B1A39AA85001993A9 /* LDMBusContext.h in Headers */,
 				62E8B9BA1A39AA85001993A9 /* TTURLAction.h in Headers */,
@@ -647,9 +645,11 @@
 				62DE31EC1A483879008FEFEF /* LDMPostMessageConfigurationItem.h in Headers */,
 				62DE31EE1A483879008FEFEF /* LDMReceiveMessageConfigurationItem.h in Headers */,
 				62E8B9C51A39AA85001993A9 /* TTURLArgumentType.h in Headers */,
+				62D28C3E1A52903C00CE1C2E /* LDMNavigator.h in Headers */,
 				62E8B9D91A39AB16001993A9 /* TTURLArguments.h in Headers */,
 				62E8B9BC1A39AA85001993A9 /* TTNavigationMode.h in Headers */,
 				62E8B9A11A39AA85001993A9 /* LDMUIBusCenter.h in Headers */,
+				62D28C421A52903C00CE1C2E /* LDMBaseNavigatorInternal.h in Headers */,
 				62E8B9AB1A39AA85001993A9 /* UIViewControllerAdditions.h in Headers */,
 				62DD8EFF1A4A813300E24C77 /* UIViewController+LDMNavigator.h in Headers */,
 				62E8B9C31A39AA85001993A9 /* TTURLPattern.h in Headers */,
@@ -658,8 +658,8 @@
 				62E8B9C81A39AA85001993A9 /* TTURLLiteral.h in Headers */,
 				62E8B9CD1A39AA85001993A9 /* TTGlobalNavigatorMetrics.h in Headers */,
 				62E8B9B51A39AA85001993A9 /* TTGlobalCoreRects.h in Headers */,
-				62E8B9B91A39AA85001993A9 /* TTBaseNavigatorInternal.h in Headers */,
 				62DE31FC1A4849A3008FEFEF /* LDMBundleConfigurationItem.h in Headers */,
+				62D28C401A52903C00CE1C2E /* LDMBaseNavigator.h in Headers */,
 				62E8B9A91A39AA85001993A9 /* UITabBarControllerAdditions.h in Headers */,
 				62E8B99D1A39AA85001993A9 /* LDMMessageBusCenter.h in Headers */,
 				62E8B99F1A39AA85001993A9 /* LDMServiceBusCenter.h in Headers */,
@@ -868,7 +868,6 @@
 				62DE31EF1A483879008FEFEF /* LDMReceiveMessageConfigurationItem.m in Sources */,
 				62DE31F51A483C9C008FEFEF /* LDMURLViewCtrlConfigurationItem.m in Sources */,
 				62E8B9BE1A39AA85001993A9 /* TTURLMap.m in Sources */,
-				62DD8F041A4A816100E24C77 /* LDMNavigator.m in Sources */,
 				62E8B9981A39AA85001993A9 /* LDMBundle.m in Sources */,
 				62E8B9C41A39AA85001993A9 /* TTURLPattern.m in Sources */,
 				62DE32011A48507E008FEFEF /* LDMURLViewCtrlPatternConfigurationItem.m in Sources */,
@@ -885,9 +884,10 @@
 				62E8B9A21A39AA85001993A9 /* LDMUIBusCenter.m in Sources */,
 				62E8B9A41A39AA85001993A9 /* LDMUIBusConnector.m in Sources */,
 				62E8B9C01A39AA85001993A9 /* TTURLNavigatorPattern.m in Sources */,
+				62D28C3F1A52903C00CE1C2E /* LDMNavigator.m in Sources */,
+				62D28C411A52903C00CE1C2E /* LDMBaseNavigator.m in Sources */,
 				62E8B9A01A39AA85001993A9 /* LDMServiceBusCenter.m in Sources */,
 				62E8B99E1A39AA85001993A9 /* LDMMessageBusCenter.m in Sources */,
-				62E8B9B81A39AA85001993A9 /* TTBaseNavigator.m in Sources */,
 				62E8B9C91A39AA85001993A9 /* TTURLLiteral.m in Sources */,
 				62E8B9DA1A39AB16001993A9 /* TTURLArguments.m in Sources */,
 				62E8B9CE1A39AA85001993A9 /* TTGlobalNavigatorMetrics.m in Sources */,

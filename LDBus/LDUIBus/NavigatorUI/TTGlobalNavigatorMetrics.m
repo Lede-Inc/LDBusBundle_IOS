@@ -16,7 +16,6 @@
 
 #import "TTGlobalNavigatorMetrics.h"
 // UINavigator
-#import "TTBaseNavigator.h"
 // Core
 #import "TTGlobalCoreRects.h"
 
@@ -26,7 +25,7 @@ UIInterfaceOrientation TTInterfaceOrientation() {
   UIInterfaceOrientation orient = [UIApplication sharedApplication].statusBarOrientation;
   if (UIDeviceOrientationUnknown == orient) {
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_8_0
-    return [TTBaseNavigator globalNavigator].visibleViewController.interfaceOrientation;
+      return UIInterfaceOrientationPortrait;
 #else
     return UIInterfaceOrientationPortrait;
 #endif
