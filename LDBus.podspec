@@ -30,6 +30,5 @@ Pod::Spec.new do |s|
         sn.public_header_files = 'LDBus/LDUIBus/NavigatorCore/LDMNavigator.h', 'LDBus/LDUIBus/NavigatorCore/URL\ Action/TTURLAction.h','LDBus/LDUIBus/NavigatorUI/TTWebController.h'
         sn.source_files = 'LDBus/LDUIBus/NavigatorCore/**/*.{h,m}', 'LDBus/LDUIBus/NavigatorUI/**/*.{h,m}'
         sn.requires_arc = false
-        sn.dependency 'LDBus/arc'
     end
 end
