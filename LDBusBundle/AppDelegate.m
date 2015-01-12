@@ -5,11 +5,12 @@
 //  Created by 庞辉 on 11/15/14.
 //  Copyright (c) 2014 庞辉. All rights reserved.
 //
-
 #import "AppDelegate.h"
 #import "LDMBusContext.h"
 #import "LDLoginService.h"
 #import "UITabBarControllerAdditions.h"
+
+#import "LDFBundleContainer.h"
 
 @interface MyTabController : UITabBarController
 
@@ -49,6 +50,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [[LDFBundleContainer sharedContainer] bootBundleContainerWithListener:nil];
+    
+    /*
     //bus容器初始化
     [LDMBusContext initialBundleContainerWithRootViewController:self.window.rootViewController];
     
@@ -63,6 +67,7 @@
     
     //打开一个初始ViewController
     [LDMBusContext openURL:@"netescaipiao163://mainTab1"];
+     */
     return YES;
 }
 
