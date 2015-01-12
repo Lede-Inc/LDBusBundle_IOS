@@ -56,12 +56,14 @@ static LDMUIBusCenter *uibusCenter = nil;
     }
     
     //如果app内部无法处理，查看外部能否处理
+    /*
     if(!success){
         NSURL* theURL = [NSURL URLWithString:url];
         if ([[UIApplication sharedApplication] canOpenURL:theURL]) {
             success = YES;
         }
     }
+     */
     
     return success;
 }
@@ -90,6 +92,7 @@ static LDMUIBusCenter *uibusCenter = nil;
     }
     
     //如果app内部无法处理，查看是否是打开其他APP的url
+    /*
     if(!success){
         NSURL* theURL = [NSURL URLWithString:action.urlPath];
         if ([[UIApplication sharedApplication] canOpenURL:theURL]) {
@@ -97,6 +100,7 @@ static LDMUIBusCenter *uibusCenter = nil;
             success = YES;
         }
     }
+     */
     
     return success;
 }
