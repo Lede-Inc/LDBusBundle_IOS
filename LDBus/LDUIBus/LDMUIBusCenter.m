@@ -39,6 +39,34 @@ static LDMUIBusCenter *uibusCenter = nil;
 }
 
 
+/**
+ * 向UIBus请求当前是否能够处理该URL
+ */
++(BOOL)canOpenURL:(NSString *)url{
+    BOOL success = NO;
+    //询问webScheme能否处理
+    if([LDMRoutes canRouteURL:[NSURL URLWithString:url]]){
+        success = YES;
+    }
+    
+    //如果LDMRoutes不能处理，询问Bus总线能否处理
+    if(!success){
+        LDMUIBusCenter *center = [LDMUIBusCenter uibusCenter];
+        success = [center canOpenURLWithBus:url];
+    }
+    
+    //如果app内部无法处理，查看外部能否处理
+    if(!success){
+        NSURL* theURL = [NSURL URLWithString:url];
+        if ([[UIApplication sharedApplication] canOpenURL:theURL]) {
+            success = YES;
+        }
+    }
+    
+    return success;
+}
+
+
 +(BOOL)sendUIMessage:(TTURLAction *)action{
     BOOL success = NO;
     NSURL *handleURL = [NSURL URLWithString:action.urlPath];
@@ -221,6 +249,37 @@ static LDMUIBusCenter *uibusCenter = nil;
 
     return success;
 }
+
+
+/**
+ * 向总线询问是否能够处理某个URL
+ */
+-(BOOL)canOpenURLWithBus:(NSString *)url {
+    // 向总的buscenter获取Bundle列表
+    NSMutableDictionary *bundlesMap = [LDMContainer container].bundlesMap;
+    if(!bundlesMap || bundlesMap.allKeys.count<=0 ){
+        TTDPRINT(@"LDUIBusCenter>> bundle list is empty>>");
+        return NO;
+    }
+    
+    BOOL isCan = NO;
+    NSArray *keys = bundlesMap.allKeys;
+    for(int i=0; i < keys.count; i++){
+        NSString *bundleKey = [keys objectAtIndex:i];
+        LDMBundle *bundle = [bundlesMap objectForKey:bundleKey];
+        //如果当前bundle可以处理该url
+        if([bundle.uibusConnetor canOpenInBundle:url]){
+            isCan = YES;
+            break;
+        }
+    }
+    
+    return isCan;
+}
+
+
+
+
 @end
 
 

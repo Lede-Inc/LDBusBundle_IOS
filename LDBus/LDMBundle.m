@@ -42,6 +42,7 @@
     }
     
     //处理dynamic framework, 只有ios8以上的系统才动态加载
+    /*
     else if([path.lastPathComponent hasSuffix:@".framework"]){
         if(INTOSVERSION >= 7){
             self = [super initWithPath:path];
@@ -52,7 +53,9 @@
         } else {
             return nil;
         }
-    } else {
+    }
+     */
+    else {
         return nil;
     }
 }

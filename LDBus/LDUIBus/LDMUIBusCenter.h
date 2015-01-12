@@ -20,7 +20,10 @@
 
 +(LDMUIBusCenter *) uibusCenter;
 
-
+/**
+ * 向UIBus请求当前是否能够处理该URL
+ */
++(BOOL)canOpenURL:(NSString *)url;
 
 //向UI总线发送消息，一个目的是为了跳转，另外一个目的是从其他Bundle获取ViewController
 //向UI总线发送消息，发送成功返回YES
@@ -48,4 +51,11 @@
  * 获取messageQueue的响应ViewController
  */
 -(TTURLActionResponse *) getURLActionResponse;
+
+
+/**
+ * 向总线询问是否能够处理某个URL
+ */
+-(BOOL)canOpenURLWithBus:(NSString *)url;
+
 @end
