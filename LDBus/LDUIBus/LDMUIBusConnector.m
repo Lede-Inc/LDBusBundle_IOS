@@ -169,6 +169,16 @@
     action.isDirectDeal = NO;
     return [LDMUIBusCenter receiveURLCtrlFromUIBus:action];
 }
+
+
+/**
+ * 向UIBus请求当前是否能够处理该URL
+ */
++(BOOL)canOpenURL:(NSString *)url {
+    return [LDMUIBusCenter canOpenURL:url];
+}
+
+
 @end
 
 

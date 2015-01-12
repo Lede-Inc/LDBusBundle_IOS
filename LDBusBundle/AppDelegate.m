@@ -62,7 +62,10 @@
     
     
     //打开一个初始ViewController
-    [LDMBusContext openURL:@"netescaipiao163://mainTab1"];
+    NSString *url = @"netescaipiao163://mainTab1";
+    if([LDMBusContext canOpenURL:url]){
+        [LDMBusContext openURL:url];
+    }
     return YES;
 }
 

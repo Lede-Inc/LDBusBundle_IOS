@@ -79,6 +79,11 @@
  */
 +(UIViewController *)controllerForURL:(NSString *)url;
 
+/**
+ * 向UIBus请求当前是否能够处理该URL
+ */
++(BOOL)canOpenURL:(NSString *)url;
+
 @end
 
 
