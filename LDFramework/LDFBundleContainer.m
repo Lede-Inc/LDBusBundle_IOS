@@ -13,8 +13,12 @@
 #import "LDFBundleDownloader.h"
 #import "LDFBundleInstaller.h"
 
+#import "LDFBundle.h"
 #import "LDFFileManager.h"
 #import "LDFCommonDef.h"
+
+
+#define CRC32_BUNDLE_INSTALLED @"LDF_Installed_Bundles_CRC32_Values"
 
 int const STATUS_SCUCCESS = 1;
 int const STATUS_ERR_DOWNLOAD = -1;
@@ -29,6 +33,7 @@ NSString* const NOTIFICATION_BOOT_COMPLETED = @"LDBundleContainer_BootCompleted"
     NSMutableDictionary *_installedBundles; //已解压安装组件列表
     NSMutableDictionary *_loadingBundles; //已加载到内存的组件列表
     
+    NSMutableDictionary *_bundleCRC32s;
     NSMutableDictionary *_exportedService; //组件对外开放的服务列表
     NSString *_signature;
     BOOL _initializing;
@@ -75,6 +80,10 @@ NSString* const NOTIFICATION_BOOT_COMPLETED = @"LDBundleContainer_BootCompleted"
 #warning fixme _signature
     _signature = @"";
     
+    _bundleCRC32s = [[NSUserDefaults standardUserDefaults] objectForKey:CRC32_BUNDLE_INSTALLED];
+    if(_bundleCRC32s == nil){
+        _bundleCRC32s = [[NSMutableDictionary alloc] initWithCapacity:2];
+    }
     _installer = [[LDFBundleInstaller alloc] init];
     _installer.signature = _signature;
     
@@ -153,7 +162,7 @@ NSString* const NOTIFICATION_BOOT_COMPLETED = @"LDBundleContainer_BootCompleted"
                 
                 //拷贝成功安装组件, 解压IPA
                 if(success){
-                    [self installBundleWithIpaPath:ipaInstalledFilePath toDestPath:toInstallDir];
+                    [self installBundleWithIpaPath:ipaInstalledFilePath];
                 }
             }//if
         }//for
@@ -269,18 +278,19 @@ NSString* const NOTIFICATION_BOOT_COMPLETED = @"LDBundleContainer_BootCompleted"
 /**
  * 指定ipa路径初始化一个组件
  */
--(BOOL)installBundleWithIpaPath:(NSString *)ipaPath toDestPath:(NSString *)destPath{
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSError *error;
-    NSString *toDestInstallDir = [destPath stringByAppendingFormat:@"/%@.framework", [[ipaPath lastPathComponent] stringByDeletingPathExtension]];
-    if([fileManager fileExistsAtPath:toDestInstallDir]){
-        [fileManager removeItemAtPath:toDestInstallDir error:&error];
-        if(error){
-            LOG(@"delete the bundle Installed Dir: %@ failure!!!", toDestInstallDir);
+-(BOOL)installBundleWithIpaPath:(NSString *)ipaPath{
+    LDFBundle *bundle = [_installer installBundleWithPath:ipaPath];
+    if(bundle != nil){
+        [_installedBundles setObject:bundle forKey:[bundle identifier]];
+        [self updateBundleState:INSTALLED forBundle:bundle.identifier];
+        
+        if([bundle autoStartup]){
+            //告知bundle提供的服务
+            
         }
     }
     
-    return [LDFFileManager unZipFile:ipaPath destPath:destPath];
+    return YES;
 }
 
 
@@ -299,5 +309,37 @@ NSString* const NOTIFICATION_BOOT_COMPLETED = @"LDBundleContainer_BootCompleted"
     return NO;
 }
 
+
+
+#pragma mark common method
+/**
+ * 更新bundle的状态
+ */
+-(void)updateBundleState:(int)state forBundle:(NSString *)bundleIdentifier {
+    LDFBundle *bundle = [_installedBundles objectForKey:bundleIdentifier];
+    LDFBundle *bundle2 = [_remoteBundles objectForKey:bundleIdentifier];
+    
+    if(bundle != nil){
+        if(state == INSTALLED){
+            [_bundleCRC32s setObject:[NSNumber numberWithLong:bundle.crc32] forKey:bundleIdentifier];
+            bundle.state = INSTALLED;
+            if(bundle2 != nil){
+                bundle2.state = INSTALLED;
+            }
+        }
+        
+        else if(state == UNINSTALLED){
+            [_bundleCRC32s removeObjectForKey:bundleIdentifier];
+            bundle.state = UNINSTALLED;
+            if(bundle2 != nil){
+                bundle2.state = UNINSTALLED;
+            }
+        }
+        
+        //每次保存一下
+        [[NSUserDefaults standardUserDefaults] setObject:_bundleCRC32s forKey:CRC32_BUNDLE_INSTALLED];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+}
 
 @end

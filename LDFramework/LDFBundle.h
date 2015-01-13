@@ -31,6 +31,9 @@ extern int const INSTALL_LEVEL_ALL;// 任意网络下均自动安装
 }
 //当前的安装状态
 @property (nonatomic) int state;
+@property (nonatomic) long crc32; //ipa包的CRC校验值
+
+-(id) initBundleWithPath:(NSString *)path;
 
 /**
  * 组件启动
@@ -86,5 +89,11 @@ extern int const INSTALL_LEVEL_ALL;// 任意网络下均自动安装
  * 组件的更新地址
  */
 -(NSString *) updateUrl;
+
+
+/**
+ * 判断组件是否自启动
+ */
+-(BOOL) autoStartup;
 
 @end

@@ -24,67 +24,26 @@
 @implementation LDMBundle
 @synthesize configurationItem = _configurationItem;
 @synthesize uibusConnetor = _uibusConnetor;
-@synthesize updateURL = _updateURL;
-@synthesize InstallLevel = _installLevel;
-@synthesize state = _state;
-@synthesize isDynamic = _isDynamic;
 @synthesize scheme = _scheme;
 
--(id) initBundleWithPath:(NSString *)path {
+-(id) initBundleBusConfigWithPath:(NSString *)path {
     //处理static framework
     if([path.lastPathComponent hasSuffix:@".bundle"]){
         self = [super init];
         if(self){
-            _isDynamic = NO;
             [self loadStaticBundleConfigToMap:path];
         }
         return self;
     }
-    
-    //处理dynamic framework, 只有ios8以上的系统才动态加载
-    /*
-    else if([path.lastPathComponent hasSuffix:@".framework"]){
-        if(INTOSVERSION >= 7){
-            self = [super initWithPath:path];
-            if(self){
-                _isDynamic = YES;
-            }
-            return self;
-        } else {
-            return nil;
-        }
-    }
-     */
     else {
         return nil;
     }
 }
 
-//加载bundle到内存, 暂不提供，需要探索
--(BOOL)load {
-    if(_isDynamic){
-        return [super load];
-    } else {
-        return YES;
-    }
-}
-
-//把bundle从内存中卸载，暂不提供，需要探索
--(BOOL)unload {
-    if(_isDynamic){
-        return [super unload];
-    } else {
-        return YES;
-    }
-}
 
 //获取bundle的唯一标识
--(NSString *)bundleIdentifier {
-    if(_isDynamic){
-        return self.bundleIdentifier;
-    } else {
-        return _configurationItem.bundleName;
-    }
+-(NSString *)bundleName {
+    return _configurationItem.bundleName;
 }
 
 -(void)setBundleNavigator:(LDMNavigator *)navigator{

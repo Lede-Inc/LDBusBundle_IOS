@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "LDFBundle.h"
+#import "LDFCommonDef.h"
 
 #define IOSVERSION ([[[UIDevice currentDevice] systemVersion] intValue])
 
@@ -33,6 +34,7 @@ int const INSTALL_LEVEL_ALL = 2;// 任意网络下均自动安装
 
 @implementation LDFBundle
 @synthesize state = _state;
+@synthesize crc32 = _crc32;
 
 -(id) initBundleWithPath:(NSString *)path {
     id obj = nil;
@@ -108,6 +110,23 @@ int const INSTALL_LEVEL_ALL = 2;// 任意网络下均自动安装
         return @"";
     }
 }
+
+-(NSDictionary *) infoDictionary {
+    if(_isDynamic){
+        return  self.infoDictionary;
+    } else {
+        return nil;
+    }
+}
+
+
+/**
+ * 判断组件是否自启动
+ */
+-(BOOL) autoStartup {
+    return [self.infoDictionary objectForKey:BUNDLE_AUTO_STARTUP];
+}
+
 
 
 

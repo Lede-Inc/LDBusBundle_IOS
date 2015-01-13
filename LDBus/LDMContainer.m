@@ -196,9 +196,9 @@ static LDMContainer* container = nil;
         for(NSString *filename in fileArray){
             if([filename hasSuffix:@".bundle"] || [filename hasSuffix:@".framework"]){
                 NSString *bundleFilePath = [bundleCacheDir stringByAppendingPathComponent:filename];
-                LDMBundle *bundle = [[LDMBundle alloc] initBundleWithPath: bundleFilePath];
+                LDMBundle *bundle = [[LDMBundle alloc] initBundleBusConfigWithPath: bundleFilePath];
                 if(bundle != nil){
-                    NSString *bundleUUID = (bundle.bundleIdentifier && ![bundle.bundleIdentifier isEqualToString:@""]) ? bundle.bundleIdentifier:[filename stringByDeletingPathExtension];
+                    NSString *bundleUUID = (bundle.bundleName && ![bundle.bundleName isEqualToString:@""]) ? bundle.bundleName:[filename stringByDeletingPathExtension];
                     NSString *key = [NSString stringWithFormat:@"_bundle_%@_", bundleUUID];
                     [_bundlesMap setObject:bundle forKey:key];
                     //设置每个bundle的全局导航器
