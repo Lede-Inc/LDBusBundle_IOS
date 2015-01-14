@@ -51,17 +51,29 @@ static LDMContainer* container = nil;
     if(self) {
         //全局初始化一个navigator
         _mainNavigator = [LDMNavigator navigator];
+        /*
         UIWindow *rootWindow = [UIApplication sharedApplication].keyWindow;
         if(!rootWindow){
             rootWindow = [[UIWindow alloc] initWithFrame:TTScreenBounds()];
         }
         
         _mainNavigator.window = rootWindow;
+         */
         _bundlesMap = [[NSMutableDictionary alloc] initWithCapacity:5];
             
     }
     
     return self;
+}
+
+-(void)setNavigatorRootWindow:(UIWindow *)window{
+    if(_mainNavigator){
+        if(window){
+            _mainNavigator.window = window;
+        } else {
+            NSAssert(NO, @"LDBus Failed to get Window");
+        }
+    }
 }
 
 

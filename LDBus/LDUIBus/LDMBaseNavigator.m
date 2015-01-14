@@ -434,6 +434,8 @@ static LDMBaseNavigator* gNavigator = nil;
  */
 - (UIWindow*)window {
   if (nil == _window) {
+      NSAssert(NO, @"window is not initial");
+      /*
     UIWindow* keyWindow = [UIApplication sharedApplication].keyWindow;
     if (nil != keyWindow) {
         _window = keyWindow;
@@ -442,6 +444,7 @@ static LDMBaseNavigator* gNavigator = nil;
       _window = [[[self windowClass] alloc] initWithFrame:TTScreenBounds()];
       [_window makeKeyAndVisible];
     }
+       */
   }
   return _window;
 }

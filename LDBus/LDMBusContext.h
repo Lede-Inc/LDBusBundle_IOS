@@ -15,6 +15,7 @@
  * 初始化bundleContainer，管理各个bundle的容器
  * 如果自行决定rootViewController,  则传入self.rootViewController， 否则传入nil
  */
++(void)initialBundleContainerWithWindow:(UIWindow *)window andRootViewController:(UIViewController *)rootViewController;
 +(void)initialBundleContainerWithRootViewController:(UIViewController *)rootViewController;
 
 @end

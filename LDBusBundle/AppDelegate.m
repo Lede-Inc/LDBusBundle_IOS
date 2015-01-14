@@ -49,8 +49,11 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    [self.window makeKeyAndVisible];
+    
     //bus容器初始化
-    [LDMBusContext initialBundleContainerWithRootViewController:self.window.rootViewController];
+    [LDMBusContext initialBundleContainerWithWindow:self.window andRootViewController:self.window.rootViewController];
     
     
     //注册特殊scheme的web处理容器
