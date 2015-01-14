@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+#define BUNDLE_EXTENSION @".ipa"
+#define INFO_PLIST @"Info.plist"
+
 /**
  * @class LDFFileManager 对框架涉及到的所有文件进行管理
  *
@@ -34,5 +37,10 @@
  */
 +(BOOL)unZipFile:(NSString *)filePath destPath:(NSString *)destPath;
 
+
+/**
+ * 获取ipa文件的CRC值
+ */
++(long)getCRC32:(NSString *)filePath;
 
 @end

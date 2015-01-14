@@ -43,7 +43,7 @@
     
     //获取ipa中所有文件的CRC值
     //第一次解压的时候，存储ipa的CRC32值，下次运行比较CRC的值是否变化
-    long crc32OfIpa  = [self getCRC32:filePath];
+    long crc32OfIpa  = [LDFFileManager getCRC32:filePath];
     
     
     //解压文件
@@ -86,13 +86,6 @@
  */
 -(BOOL)checkCertificate:(NSString *)filePath{
     return YES;
-}
-
-/**
- * 获取ipa文件的CRC值
- */
--(long)getCRC32:(NSString *)filePath {
-    return 1000;
 }
 
 

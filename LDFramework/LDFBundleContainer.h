@@ -69,7 +69,7 @@ extern NSString* const NOTIFICATION_BOOT_COMPLETED;
 /**
  * 指定ipa路径初始化一个组件
  */
--(BOOL)installBundleWithIpaPath:(NSString *)ipaPath toDestPath:(NSString *)destPath;
+-(BOOL) installBundleWithIpaPath:(NSString *)ipaPath;
 
 
 /**

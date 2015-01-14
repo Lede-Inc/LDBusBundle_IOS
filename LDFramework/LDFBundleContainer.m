@@ -16,6 +16,7 @@
 #import "LDFBundle.h"
 #import "LDFFileManager.h"
 #import "LDFCommonDef.h"
+#import "LDFNetUtils.h"
 
 
 #define CRC32_BUNDLE_INSTALLED @"LDF_Installed_Bundles_CRC32_Values"
@@ -62,6 +63,10 @@ NSString* const NOTIFICATION_BOOT_COMPLETED = @"LDBundleContainer_BootCompleted"
 {
     self = [super init];
     if (self) {
+        _remoteBundles = [[NSMutableDictionary alloc] initWithCapacity:2];
+        _installedBundles = [[NSMutableDictionary alloc] initWithCapacity:2];
+        _loadingBundles = [[NSMutableDictionary alloc] initWithCapacity:2];
+        _exportedService = [[NSMutableDictionary alloc] initWithCapacity:2];
     }
     return self;
 }
@@ -110,6 +115,7 @@ NSString* const NOTIFICATION_BOOT_COMPLETED = @"LDBundleContainer_BootCompleted"
 }
 
 
+#pragma mark - install local bundles
 /**
  * 检查本地的Bundle(包括随主APP一起发布，也包括通过插件更新新安装的)是否安装，否则安装
  */
@@ -133,7 +139,7 @@ NSString* const NOTIFICATION_BOOT_COMPLETED = @"LDBundleContainer_BootCompleted"
             //检查本地版本是否有效和是否需要安装
             NSString *bundleFileName = [filePath lastPathComponent];
             NSDictionary *properties = [LDFFileManager getPropertiesFromLocalBundleFile:filePath];
-            NSString *bundleIdentifier = [properties objectForKey:@"CFBundleIdentifier"];
+            NSString *bundleIdentifier = [properties objectForKey:BUNDLE_PACKAGENAME];
             if([bundleIdentifier isEqualToString:@""]){
                 continue;
             }
@@ -168,8 +174,6 @@ NSString* const NOTIFICATION_BOOT_COMPLETED = @"LDBundleContainer_BootCompleted"
         }//for
     }//if
 }
-
-
 
 
 
@@ -216,12 +220,95 @@ NSString* const NOTIFICATION_BOOT_COMPLETED = @"LDBundleContainer_BootCompleted"
 
 
 /**
+ * 指定ipa路径初始化一个组件
+ */
+-(BOOL) installBundleWithIpaPath:(NSString *)ipaPath {
+    //不是更新
+    return [self installBundleWithIpaPath:ipaPath update:NO];
+}
+
+
+-(BOOL)installBundleWithIpaPath:(NSString *)ipaPath update:(BOOL)update{
+    LDFBundle *bundle = [_installer installBundleWithPath:ipaPath];
+    if(bundle != nil){
+        [_installedBundles setObject:bundle forKey:[bundle identifier]];
+        [self updateBundleState:INSTALLED forBundle:bundle.identifier];
+        
+        if([bundle autoStartup]){
+            //告知bundle提供的服务
+            [self addExportedService:bundle];
+            
+            //如果是更新组件，需要卸载原有的组件，再加在进去；
+            if(update){
+                if([bundle unload]){
+                    [bundle load];
+                }
+            }
+            
+            else {
+                [bundle load];
+            }
+        }
+        
+        LOG(@"install bundle: %@ success", bundle.name);
+    }
+    
+    return bundle != nil;
+}
+
+
+#pragma mark - load installed bundles
+/**
  * 校验本地安装的dynamic framework是否有效，防止被更改替换
  * 对于dynamic framework的配置文件也要进行检验
  * 如果有效，加载组件的配置信息
  */
 -(void)verifyInstalledBundles{
-    
+    NSString *bundleCache = [LDFFileManager bundleCacheDir];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *listFiles = [fileManager contentsOfDirectoryAtPath:bundleCache error:nil];
+    if(listFiles && listFiles.count > 0){
+        for(NSString *fileName in listFiles){
+            NSString *filepath = [bundleCache stringByAppendingPathComponent:fileName];
+            NSDictionary *fileAtrrDic = [fileManager attributesOfItemAtPath:filepath error:nil];
+            if(fileAtrrDic){
+                //如果不是文件夹
+                if(![[fileAtrrDic fileType] isEqualToString:NSFileTypeDirectory]){
+                    long crc32 = [LDFFileManager getCRC32: filepath];
+                    NSDictionary *properties = [LDFFileManager getPropertiesFromLocalBundleFile:filepath];
+                    NSString *bundleIdentifier = [properties objectForKey:BUNDLE_PACKAGENAME];
+                    long install_crc32 = [_bundleCRC32s objectForKey:bundleIdentifier]?[[_bundleCRC32s objectForKey:bundleIdentifier] longValue] : 0;
+                    if(crc32 != install_crc32){
+                        [_bundleCRC32s removeObjectForKey:bundleIdentifier];
+                        [self reStoreBundleCRC32s];
+                    }
+                }
+                
+                else{
+                    //读取framework属性
+                    LDFBundle *bundle = [[LDFBundle alloc] initBundleWithPath:filepath];
+                    if(!bundle.infoDictionary ||  bundle.infoDictionary.allKeys.count == 0){
+                        continue;
+                    }
+                    
+                    //如果ipa被删除，忽略改bundle的安装文件夹, 并删除
+                    NSString *ipaPath = [bundleCache stringByAppendingFormat:@"/%@%@", [[filepath lastPathComponent] stringByDeletingPathExtension], BUNDLE_EXTENSION];
+                    if(![fileManager fileExistsAtPath:ipaPath]){
+                        [_bundleCRC32s removeObjectForKey:bundle.identifier];
+                        [self reStoreBundleCRC32s];
+                        [fileManager removeItemAtPath:filepath error:nil];
+                        continue;
+                    }
+                    
+                    bundle.state = INSTALLED;
+                    [_installedBundles setObject:bundle forKey:bundle.identifier];
+                    
+                    //纪录服务提供
+                    [self addExportedService:bundle];
+                }
+            }//if file attr
+        }//for
+    }//if files exists
 }
 
 
@@ -230,8 +317,53 @@ NSString* const NOTIFICATION_BOOT_COMPLETED = @"LDBundleContainer_BootCompleted"
  * static framework默认为自启动Bundle
  */
 -(void)loadAutoStartBundles{
-    
+    NSArray *keys = _installedBundles.allKeys;
+    if(keys && keys.count > 0){
+        for(NSString *key in keys){
+            LDFBundle *bundle = [_installedBundles objectForKey:key];
+            [self startBundle:bundle];
+        }
+    }//if
 }
+
+
+/**
+ * 加载Bundle
+ */
+-(void)startBundle:(LDFBundle *)bundle{
+    if(bundle != nil && [bundle autoStartup]
+       && (bundle.state & STARTED) == 0){
+        bundle.state |= STARTED;
+        NSString *importServiceStr = [bundle importServices];
+        if(importServiceStr && ![importServiceStr isEqualToString:@""]){
+            NSArray *importServices = [importServiceStr componentsSeparatedByString:@","];
+            for(NSString *service in importServices){
+                LDFBundle *linkBundle = [_exportedService objectForKey:service];
+                [self startBundle:linkBundle];
+            }
+        }//if
+        
+        //启动完依赖服务之后，加载该Bundle
+        [bundle load];
+        LOG(@"bundle loaded: %@", bundle.name);
+    }
+}
+
+
+/**
+ * 根据bundle的配置返回是否能够自动安装
+ * 当前配置为任意下载，或者当前为wifi且配置只允许wifi下载
+ */
+-(BOOL)autoInstall:(LDFBundle *) bundle {
+    LOG(@"install_level = %d", [bundle autoInstallLevel]);
+    return [bundle autoInstallLevel] == INSTALL_LEVEL_ALL
+    || ([[LDFNetUtils sharedNetMoniter] isWifi] && [bundle autoInstallLevel] == INSTALL_LEVEL_WIFI);
+}
+
+
+
+#pragma mark - common method
+
 
 
 /**
@@ -276,25 +408,6 @@ NSString* const NOTIFICATION_BOOT_COMPLETED = @"LDBundleContainer_BootCompleted"
 
 
 /**
- * 指定ipa路径初始化一个组件
- */
--(BOOL)installBundleWithIpaPath:(NSString *)ipaPath{
-    LDFBundle *bundle = [_installer installBundleWithPath:ipaPath];
-    if(bundle != nil){
-        [_installedBundles setObject:bundle forKey:[bundle identifier]];
-        [self updateBundleState:INSTALLED forBundle:bundle.identifier];
-        
-        if([bundle autoStartup]){
-            //告知bundle提供的服务
-            
-        }
-    }
-    
-    return YES;
-}
-
-
-/**
  * 根据BundleName卸载一个组件
  */
 -(BOOL)unInstallBundleWithName:(NSString *)bundleName{
@@ -310,8 +423,6 @@ NSString* const NOTIFICATION_BOOT_COMPLETED = @"LDBundleContainer_BootCompleted"
 }
 
 
-
-#pragma mark common method
 /**
  * 更新bundle的状态
  */
@@ -337,9 +448,59 @@ NSString* const NOTIFICATION_BOOT_COMPLETED = @"LDBundleContainer_BootCompleted"
         }
         
         //每次保存一下
+        [self reStoreBundleCRC32s];
+    }
+}
+
+/**
+ * 持久化安装组件的CRC32值
+ */
+-(void)reStoreBundleCRC32s {
+    if(_bundleCRC32s){
         [[NSUserDefaults standardUserDefaults] setObject:_bundleCRC32s forKey:CRC32_BUNDLE_INSTALLED];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
 }
+
+
+/**
+ * 向框架中注册bundle支持的服务
+ * 每个服务名称和对应的实例化Bundle配置
+ */
+-(void)addExportedService:(LDFBundle *)bundle {
+    NSString *serviceString = [bundle exportServices];
+    if(serviceString && ![serviceString isEqualToString:@""]){
+        NSArray *serviceArray = [serviceString componentsSeparatedByString:@","];
+        for(NSString *service in serviceArray){
+            [_exportedService setObject:bundle forKey:service];
+        }
+    }
+}
+
+
+/**
+ * 检查bundle依赖的服务
+ */
+-(BOOL)checkImportService:(LDFBundle *)bundle {
+    NSString *importServiceStr = [bundle importServices];
+    if(importServiceStr && ![importServiceStr isEqualToString:@""]){
+        NSArray *importServices = [importServiceStr componentsSeparatedByString:@","];
+        for(NSString *service in importServices){
+            LDFBundle *linkBundle = [_exportedService objectForKey:service];
+            if(linkBundle != nil){
+                return  NO;
+            }
+        }//for
+    }//if
+    
+    return YES;
+}
+
+
+
+
+
+
+
 
 @end

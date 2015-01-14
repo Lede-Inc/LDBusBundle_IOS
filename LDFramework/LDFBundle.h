@@ -32,6 +32,8 @@ extern int const INSTALL_LEVEL_ALL;// 任意网络下均自动安装
 //当前的安装状态
 @property (nonatomic) int state;
 @property (nonatomic) long crc32; //ipa包的CRC校验值
+@property (nonatomic, readonly) NSString *identifier;
+@property (nonatomic, readonly) NSString *name; //组件显示名字
 
 -(id) initBundleWithPath:(NSString *)path;
 
@@ -49,16 +51,6 @@ extern int const INSTALL_LEVEL_ALL;// 任意网络下均自动安装
  * 获取当前组件状态
  */
 -(int)state;
-
-/**
- * 组件显示名
- */
--(NSString*)name;
-
-/**
- * 组件的bundle identifier
- */
--(NSString *)identifier;
 
 /**
  * 组件的版本号 和 build版本号
@@ -95,5 +87,24 @@ extern int const INSTALL_LEVEL_ALL;// 任意网络下均自动安装
  * 判断组件是否自启动
  */
 -(BOOL) autoStartup;
+
+/**
+ * 获取bundle支持的服务
+ */
+-(NSString *) exportServices;
+
+
+/**
+ * 获取bundle需要引入的服务
+ */
+-(NSString *) importServices;
+
+
+/**
+ * 获取bundle的自动安装的网络级别
+ */
+-(int)autoInstallLevel;
+
+
 
 @end

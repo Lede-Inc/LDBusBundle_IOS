@@ -14,8 +14,6 @@
 #import "LDFFileManager.h"
 #import "LDFDebug.h"
 
-#define BUNDLE_EXTENSION @".ipa"
-#define INFO_PLIST @"Info.plist"
 
 @interface NSDictionary (NSDataHelper)
 
@@ -52,7 +50,7 @@
  */
 +(NSString *) bundleCacheDir {
     NSString *cacheDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *bundleCacheDir = [cacheDir stringByAppendingPathComponent:@"_bundleCache_"];
+    NSString *bundleCacheDir = [cacheDir stringByAppendingPathComponent:@"_dynamic_bundleCache_"];
     NSLog(@"bundleCacheDir>>>>%@", bundleCacheDir);
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if(![fileManager fileExistsAtPath:bundleCacheDir]){
@@ -120,6 +118,14 @@
     }
     
     return success;
+}
+
+
+/**
+ * 获取ipa文件的CRC值
+ */
++(long)getCRC32:(NSString *)filePath {
+    return 1000;
 }
 
 

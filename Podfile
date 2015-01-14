@@ -21,6 +21,7 @@ target :LDBusBundle do
     #三方库
     pod 'objective-zip', '~> 0.8.3'
     pod 'ZipArchive', '~> 1.3.0'
+    pod 'Reachability', '~> 3.1.1'
 
     #设置pod target需要link的工程target
     #默认链接当前工程中的第一个target

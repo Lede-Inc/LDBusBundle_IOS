@@ -8,8 +8,8 @@
 
 #import "LDFCommonDef.h"
 
-NSString * const BUNDLE_PACKAGENAME = @"Bundle-PackageName";
-NSString * const BUNDLE_NAME = @"Bundle-Name";
+NSString * const BUNDLE_PACKAGENAME = @"CFBundleIdentifier";
+NSString * const BUNDLE_NAME = @"CFBundleName";
 NSString * const BUNDLE_MAIN_ACTIVITY = @"Bundle-MainActivity";
 NSString * const BUNDLE_ICON_URL = @"Bundle-Icon";
 NSString * const BUNDLE_UPDATE_URL = @"Bundle-UpdateUrl";

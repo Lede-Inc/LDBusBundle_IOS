@@ -37,6 +37,7 @@
 		62D28C421A52903C00CE1C2E /* LDMBaseNavigatorInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 62D28C3D1A52903C00CE1C2E /* LDMBaseNavigatorInternal.h */; };
 		62D5165A1A304F0500FFEDC0 /* LDLoginServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 62D516591A304F0500FFEDC0 /* LDLoginServiceImpl.m */; };
 		62D539B71A1B27790088FFF4 /* framework.sh in Resources */ = {isa = PBXBuildFile; fileRef = 62D539B51A1B27790088FFF4 /* framework.sh */; };
+		62D857E71A65565E008E6C3A /* LDFNetUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 62D857E61A65565E008E6C3A /* LDFNetUtils.m */; };
 		62DD8EFF1A4A813300E24C77 /* UIViewController+LDMNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 62DD8EFD1A4A813300E24C77 /* UIViewController+LDMNavigator.h */; };
 		62DD8F001A4A813300E24C77 /* UIViewController+LDMNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DD8EFE1A4A813300E24C77 /* UIViewController+LDMNavigator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		62DD8F081A4A96B300E24C77 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 62DD8F071A4A96B300E24C77 /* LICENSE */; };
@@ -213,6 +214,8 @@
 		62D516581A304F0500FFEDC0 /* LDLoginServiceImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDLoginServiceImpl.h; sourceTree = "<group>"; };
 		62D516591A304F0500FFEDC0 /* LDLoginServiceImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDLoginServiceImpl.m; sourceTree = "<group>"; };
 		62D539B51A1B27790088FFF4 /* framework.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = framework.sh; sourceTree = "<group>"; };
+		62D857E51A65565E008E6C3A /* LDFNetUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDFNetUtils.h; sourceTree = "<group>"; };
+		62D857E61A65565E008E6C3A /* LDFNetUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDFNetUtils.m; sourceTree = "<group>"; };
 		62DD8EFD1A4A813300E24C77 /* UIViewController+LDMNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LDMNavigator.h"; sourceTree = "<group>"; };
 		62DD8EFE1A4A813300E24C77 /* UIViewController+LDMNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LDMNavigator.m"; sourceTree = "<group>"; };
 		62DD8F071A4A96B300E24C77 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -358,6 +361,8 @@
 				622C00241A60D36300D35E31 /* LDFFileManager.m */,
 				622C00311A6112CF00D35E31 /* LDFCommonDef.h */,
 				622C00321A6112CF00D35E31 /* LDFCommonDef.m */,
+				62D857E51A65565E008E6C3A /* LDFNetUtils.h */,
+				62D857E61A65565E008E6C3A /* LDFNetUtils.m */,
 			);
 			path = LDFramework;
 			sourceTree = "<group>";
@@ -958,6 +963,7 @@
 				62B4F92A1A171BBC0056CBAB /* AppDelegate.m in Sources */,
 				62B4F9271A171BBC0056CBAB /* main.m in Sources */,
 				622C00281A60D36300D35E31 /* LDFBundleDownloader.m in Sources */,
+				62D857E71A65565E008E6C3A /* LDFNetUtils.m in Sources */,
 				622C002B1A60D36300D35E31 /* LDFFileManager.m in Sources */,
 				622C00271A60D36300D35E31 /* LDFBundleContainer.m in Sources */,
 				622C00331A6112CF00D35E31 /* LDFCommonDef.m in Sources */,

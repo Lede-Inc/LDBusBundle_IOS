@@ -35,6 +35,8 @@ int const INSTALL_LEVEL_ALL = 2;// 任意网络下均自动安装
 @implementation LDFBundle
 @synthesize state = _state;
 @synthesize crc32 = _crc32;
+@synthesize identifier = _identifier;
+@synthesize name = _name;
 
 -(id) initBundleWithPath:(NSString *)path {
     id obj = nil;
@@ -71,8 +73,8 @@ int const INSTALL_LEVEL_ALL = 2;// 任意网络下均自动安装
 }
 
 -(BOOL)start {
-    if(_isDynamic && ![self isLoaded]){
-        return [self load];
+    if(_isDynamic && ![super isLoaded]){
+        return [super load];
     } else {
         return YES;
     }
@@ -80,8 +82,8 @@ int const INSTALL_LEVEL_ALL = 2;// 任意网络下均自动安装
 
 
 -(BOOL)stop {
-    if(_isDynamic && [self isLoaded]){
-        return [self unload];
+    if(_isDynamic && [super isLoaded]){
+        return [super unload];
     } else {
         return YES;
     }
@@ -94,7 +96,7 @@ int const INSTALL_LEVEL_ALL = 2;// 任意网络下均自动安装
 
 -(NSString *)name {
     if(_isDynamic){
-        return [self.infoDictionary  objectForKey:@""];
+        return [self.infoDictionary  objectForKey:BUNDLE_NAME];
     } else {
         //返回总线配置的bundle名字
         return @"";
@@ -102,9 +104,9 @@ int const INSTALL_LEVEL_ALL = 2;// 任意网络下均自动安装
 }
 
 
--(NSString *)bundleIdentifier {
+-(NSString *)identifier {
     if(_isDynamic){
-        return self.bundleIdentifier;
+        return [super bundleIdentifier];
     } else {
         //
         return @"";
@@ -113,7 +115,7 @@ int const INSTALL_LEVEL_ALL = 2;// 任意网络下均自动安装
 
 -(NSDictionary *) infoDictionary {
     if(_isDynamic){
-        return  self.infoDictionary;
+        return  [super infoDictionary];
     } else {
         return nil;
     }
@@ -124,7 +126,37 @@ int const INSTALL_LEVEL_ALL = 2;// 任意网络下均自动安装
  * 判断组件是否自启动
  */
 -(BOOL) autoStartup {
-    return [self.infoDictionary objectForKey:BUNDLE_AUTO_STARTUP];
+#warning fixme
+    return YES;
+    return [[self.infoDictionary objectForKey:BUNDLE_AUTO_STARTUP] boolValue];
+}
+
+
+/**
+ * 获取bundle支持的服务
+ */
+-(NSString *) exportServices {
+    return [self.infoDictionary objectForKey:EXPORT_SERVICE];
+}
+
+
+/**
+ * 获取bundle需要引入的服务
+ */
+-(NSString *) importServices{
+    return [self.infoDictionary objectForKey:IMPORT_SERVICE];
+}
+
+/**
+ * 获取bundle的自动安装的网络级别
+ */
+-(int)autoInstallLevel{
+    id level = [self.infoDictionary objectForKey:BUNDLE_INSTALL_LEVEL];
+    if(level && [level isKindOfClass:[NSString class]]){
+        return [level intValue];
+    }
+    
+    return INSTALL_LEVEL_NONE;
 }
 
 
