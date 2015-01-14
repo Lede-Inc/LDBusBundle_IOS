@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 /**
  * @class bus总线全局控制中心
@@ -37,6 +38,11 @@
  * 获取各个bus的调度中心
  */
 +(LDMContainer*) container;
+
+/**
+ * 由调用者设置window；
+ */
+-(void)setNavigatorRootWindow:(UIWindow *)window;
 
 /**
  * bus center preload config
