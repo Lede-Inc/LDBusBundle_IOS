@@ -12,6 +12,12 @@
 #define CUR_HOST_VERSION ([[NSBundle mainBundle].infoDictionary objectForKey:@"CFBundleShortVersionString"])
 
 
+extern int const STATUS_SCUCCESS;
+extern int const STATUS_ERR_DOWNLOAD;
+extern int const STATUS_ERR_INSTALL;
+extern int const STATUS_ERR_CANCEL;
+
+
 extern NSString * const BUNDLE_PACKAGENAME;
 extern NSString * const BUNDLE_NAME;
 extern NSString * const BUNDLE_MAIN_ACTIVITY;

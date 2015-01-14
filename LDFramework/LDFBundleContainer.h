@@ -7,24 +7,41 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LDFBundle.h"
 
-extern int const STATUS_SCUCCESS;
-extern int const STATUS_ERR_DOWNLOAD;
-extern int const STATUS_ERR_INSTALL;
-extern int const STATUS_ERR_CANCEL;
-extern NSString* const NOTIFICATION_BOOT_COMPLETED;
 
+extern NSString * const NOTIFICATION_BUNDLE_INSTALLED;
+extern NSString * const NOTIFICATION_BUNDLE_UNINSTALLED;
+extern NSString * const NOTIFICATION_BOOT_COMPLETED;
+
+
+
+/**
+ * Container加载监控器
+ */
 @protocol LDFBundleContainerListener <NSObject>
--(void) onFinish:(int) statusCode;
+-(void)onFinish:(int) statusCode;
 @end
+
+
+
+/**
+ * bundleContainer给外界提供下载进度监控，由外界自定义下载界面
+ */
+@protocol LDFBundleContainerDownloadListener <NSObject>
+//是否下载结束
+-(void)containerDownloadOnFinish:(long long) statusCode;
+//下载进度
+-(void)containerDownloadOnProgress:(long long) written total:(long long) total;
+@end
+
 
 
 /**
  * @class 管理整个应用的组件检查、下载、安装和启动
  * 控制一个单例
  */
-@protocol LDBundleDownloadListener;
-@class LDFBundle;
+@protocol LDFBundleDownloadListener;
 @interface LDFBundleContainer : NSObject {
     
 }
@@ -35,6 +52,12 @@ extern NSString* const NOTIFICATION_BOOT_COMPLETED;
  * 启动bundle容器
  */
 -(void)bootBundleContainerWithListener:(id<LDFBundleContainerListener>) listener;
+
+
+/**
+ * 返回是否需要重启
+ */
+-(BOOL) isNeedReboot;
 
 
 /**
@@ -63,7 +86,7 @@ extern NSString* const NOTIFICATION_BOOT_COMPLETED;
 /**
  * 根据identifier获取组件
  */
--(LDFBundle *)getBundleWithName:(NSString *)bundleName;
+-(LDFBundle *)getBundle:(NSString *)bundleIdentifier;
 
 
 /**
@@ -75,13 +98,22 @@ extern NSString* const NOTIFICATION_BOOT_COMPLETED;
 /**
  * 根据BundleName卸载一个组件
  */
--(BOOL)unInstallBundleWithName:(NSString *)bundleName;
+-(BOOL)unInstallBundle:(NSString *)bundleIdentifier;
 
 
 /**
  * 根据BundleName查看Bundle是否安装
  */
--(BOOL)isBundleInstalled:(NSString *)bundleName;
+-(BOOL)isBundleInstalled:(NSString *)bundleIdentifier;
+
+
+/**
+ * 根据bundle信息, 从服务器更新远程的Bundle
+ * 下载完成之后自动重新加载该组件
+ */
+-(BOOL)installRemoteBundlePackage:(LDFBundle *)bundle listener:(id<LDFBundleContainerDownloadListener>)containerDownloadListener;
+
+
 
 
 @end

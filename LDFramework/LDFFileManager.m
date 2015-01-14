@@ -129,6 +129,26 @@
 }
 
 
+/**
+ * 将下载的zip文件重命名
+ */
++(BOOL)renameNewDownloadFileWithName: (NSString *)bundleName {
+    NSString *bundleCacheDir = [LDFFileManager bundleCacheDir];
+    NSString *newFileName = [bundleName stringByAppendingFormat:@"_new%@", BUNDLE_EXTENSION];
+    NSString *newFilePath = [bundleCacheDir stringByAppendingPathComponent:newFileName];
+    NSString *filePath = [bundleCacheDir stringByAppendingFormat:@"/%@%@", bundleName, BUNDLE_EXTENSION];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if([fileManager fileExistsAtPath:filePath]){
+        [fileManager removeItemAtPath:filePath error:nil];
+    }
+    
+    BOOL success = [fileManager moveItemAtPath:newFilePath toPath:filePath error:nil];
+    return success;
+}
+
+
+
 
 
 /*

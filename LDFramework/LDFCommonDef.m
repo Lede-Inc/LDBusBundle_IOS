@@ -8,6 +8,21 @@
 
 #import "LDFCommonDef.h"
 
+
+int const STATUS_SCUCCESS = 1;
+int const STATUS_ERR_DOWNLOAD = -1;
+int const STATUS_ERR_INSTALL = -2;
+int const STATUS_ERR_CANCEL = -3;
+
+
+//获取bundle中的info.plist的属性
+//bundle签名 @"CFBundleSignature"
+//最低支持版本 @"MinimumOSVersion"
+//bundle类型 @"CFBundlePackageType"
+//bundle版本号 @"CFBundleShortVersionString"
+//bundle build版本号 @"CFBundleVersion"
+//版本名字 @"CFBundleName"
+
 NSString * const BUNDLE_PACKAGENAME = @"CFBundleIdentifier";
 NSString * const BUNDLE_NAME = @"CFBundleName";
 NSString * const BUNDLE_MAIN_ACTIVITY = @"Bundle-MainActivity";

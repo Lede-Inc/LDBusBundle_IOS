@@ -67,15 +67,22 @@
     [_responseData appendData:data];
 }
 
+
 //数据传完之后调用此方法
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection{
-    
+    id resultJson = [NSJSONSerialization JSONObjectWithData:_responseData options:NSJSONReadingMutableLeaves error:nil];
+    NSArray *items = [resultJson objectAtIndex:0];
+    if(_listener && [_listener respondsToSelector:@selector(updatorOnSuccess:)]){
+        [_listener updatorOnSuccess:items];
+    }
 }
 
 //网络请求过程中，出现任何错误（断网，连接超时等）会进入此方法
 -(void)connection:(NSURLConnection *)connection
  didFailWithError:(NSError *)error{
-    
+    if(_listener && [_listener respondsToSelector:@selector(updatorOnFailure)]){
+        [_listener updatorOnFailure];
+    }
 }
 
 

@@ -97,13 +97,38 @@
 }
 
 
--(BOOL)uninstallBundleWithName:(NSString *)bundleIdentifier{
-    return YES;
+-(void)getMyAppSupportedArchitectures {
+    _myAppArchiteture = [NSBundle mainBundle].executableArchitectures;
 }
 
 
--(void)getMyAppSupportedArchitectures {
-    _myAppArchiteture = [NSBundle mainBundle].executableArchitectures;
+/**
+ * 根据bundleIdentifier 卸载已安装的组件
+ * (1) 删除ipa文件
+ * (2) 删除ipa的安装目录
+ */
+-(BOOL)uninstallBundle:(NSString *)bundleName{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error;
+    NSString *bundleCacheDir = [LDFFileManager bundleCacheDir];
+    
+    //卸载安装目录
+    NSString *toDestInstallDir = [bundleCacheDir stringByAppendingFormat:@"/%@.framework", bundleName];
+    if([fileManager fileExistsAtPath:toDestInstallDir]){
+        if(![fileManager removeItemAtPath:toDestInstallDir error:&error]){
+            LOG(@"uninstall framework %@ error: %@", toDestInstallDir, [error description]);
+        }
+    }
+    
+    //删除安装文件
+    NSString *ipaFilePath = [bundleCacheDir stringByAppendingFormat:@"/%@%@", bundleName, BUNDLE_EXTENSION];
+    if([fileManager fileExistsAtPath:ipaFilePath]){
+        if(![fileManager removeItemAtPath:ipaFilePath error:&error]){
+            LOG(@"delete ipa file %@ error: %@", ipaFilePath, [error description]);
+        }
+    }
+    
+    return YES;
 }
 
 

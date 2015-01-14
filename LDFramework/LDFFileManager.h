@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#define LOCAL_BUNDLES_DIR @"bundles"
 #define BUNDLE_EXTENSION @".ipa"
 #define INFO_PLIST @"Info.plist"
 
@@ -42,5 +43,10 @@
  * 获取ipa文件的CRC值
  */
 +(long)getCRC32:(NSString *)filePath;
+
+/**
+ * 将下载的zip文件重命名
+ */
++(BOOL)renameNewDownloadFileWithName: (NSString *)bundleName;
 
 @end

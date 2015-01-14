@@ -7,19 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LDFBundle.h"
 
-@protocol LDBundleDownloadListener <NSObject>
+@protocol LDFBundleDownloadListener <NSObject>
 
 /**
  * 是否下载结束
  */
--(void) downloaderOnFinish:(long long) statusCode;
+-(void) downloaderOnFinish:(long long) statusCode withBundle:(LDFBundle *)bundle;
 
 
 /**
  * 下载进度
  */
--(void)downloaderOnProgress:(long long) written total:(long long) total;
+-(void)downloaderOnProgress:(long long) written total:(long long) total withBundle:(LDFBundle *)bundle;
 
 @end
 
@@ -38,6 +39,6 @@
  * @param downloadURL 下载地址
  * @param listener 下载进度监听
  */
-+(void) updateRemoteBundlePackage:(NSString *)downloadURLString delegate:(id<LDBundleDownloadListener>) listener;
++(BOOL) updateRemoteBundlePackage:(LDFBundle *)bundle delegate:(id<LDFBundleDownloadListener>) listener;
 
 @end

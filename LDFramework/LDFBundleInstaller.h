@@ -36,6 +36,6 @@
  * (1) 删除ipa文件
  * (2) 删除ipa的安装目录
  */
--(BOOL)uninstallBundleWithName:(NSString *)bundleIdentifier;
+-(BOOL)uninstallBundle:(NSString *)bundleName;
 
 @end

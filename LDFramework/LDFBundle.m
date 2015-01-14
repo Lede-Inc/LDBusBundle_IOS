@@ -25,56 +25,84 @@ int const INSTALL_LEVEL_ALL = 2;// 任意网络下均自动安装
 
 
 @interface LDFBundle () {
-    //是否动态加载
-    BOOL _isDynamic;
+    NSBundle *_bundle;
 }
 
+@property (nonatomic, readwrite) NSMutableDictionary *infoDictionary;
 @end
 
 
 @implementation LDFBundle
 @synthesize state = _state;
 @synthesize crc32 = _crc32;
+@synthesize infoDictionary = _infoDictionary;
 @synthesize identifier = _identifier;
 @synthesize name = _name;
+@synthesize version = _version;
+@synthesize versionCode = _versionCode;
+@synthesize updateURL = _updateURL;
+@synthesize autoStartup = _autoStartup;
+@synthesize size = _size;
+@synthesize installLocation = _installLocation;
+@synthesize principalClass = _principalClass;
+@synthesize exportServices = _exportServices;
+@synthesize importServices = _importServices;
+@synthesize autoInstallLevel = _autoInstallLevel;
+@synthesize minFrameworkVersion = _minFrameworkVersion;
+@synthesize minHostAppVersion = _minHostAppVersion;
 
--(id) initBundleWithPath:(NSString *)path {
-    id obj = nil;
-    //处理static framework
-    if([path.lastPathComponent hasSuffix:@".bundle"]){
-        self = [super init];
-        if(self){
-            _isDynamic = NO;
-            obj = self;
-        }
-    }
-    
-    //处理dynamic framework, 只有ios7以上的系统才动态加载
-    else if([path.lastPathComponent hasSuffix:@".framework"]){
-        if(IOSVERSION >= 7){
-            self = [super initWithPath:path];
-            if(self){
-                _isDynamic = YES;
-                obj = self;
-            }
-        } else {
-            obj =  nil;
-        }
-    } else {
-        obj = nil;
-    }
-    
-    if(obj){
+
+#pragma mark bundle selector
+-(id) initBundleWithInfoDictionary:(NSDictionary *)theInfoDictionary{
+    self = [super init];
+    if(self){
+        _bundle = nil;
         _state = UNINSTALLED;
-        //读取.bundle或者.framework中info.plist信息
+        _infoDictionary = [NSMutableDictionary dictionaryWithDictionary:theInfoDictionary];
     }
     
-    return obj;
+    return self;
 }
 
+-(id) initBundleWithPath:(NSString *)path {
+    self = [super init];
+    if(self){
+        if([path.lastPathComponent hasSuffix:@".framework"] && IOSVERSION >= 7){
+            _bundle = [NSBundle bundleWithPath:path];
+            if(_bundle){
+                [self.infoDictionary setObject:path forKey:BUNDLE_LOCATION];
+            }
+            _state = INSTALLED;
+        }
+    }
+    
+    return self;
+}
+
+
+-(BOOL)instanceDynamicBundle:(NSString *)path {
+    if([path.lastPathComponent hasSuffix:@".framework"] && IOSVERSION >= 7){
+        if(_bundle && [_bundle isLoaded]){
+            [_bundle unload];
+            _bundle = nil;
+        }
+        
+        _bundle = [NSBundle bundleWithPath:path];
+        if(_bundle){
+            [self.infoDictionary setObject:path forKey:BUNDLE_LOCATION];
+        }
+        _state = INSTALLED;
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+
+
 -(BOOL)start {
-    if(_isDynamic && ![super isLoaded]){
-        return [super load];
+    if(_bundle && ![_bundle isLoaded]){
+        return [_bundle load];
     } else {
         return YES;
     }
@@ -82,81 +110,127 @@ int const INSTALL_LEVEL_ALL = 2;// 任意网络下均自动安装
 
 
 -(BOOL)stop {
-    if(_isDynamic && [super isLoaded]){
-        return [super unload];
+    if(_bundle && [_bundle isLoaded]){
+        return [_bundle unload];
     } else {
         return YES;
     }
 }
+
+
+-(BOOL)isLoaded {
+    if(_bundle){
+        return [_bundle isLoaded];
+    } else{
+        return NO;
+    }
+}
+
 
 -(int)state {
     return _state;
 }
 
 
--(NSString *)name {
-    if(_isDynamic){
-        return [self.infoDictionary  objectForKey:BUNDLE_NAME];
-    } else {
-        //返回总线配置的bundle名字
-        return @"";
+-(BOOL)isEqual:(id)obj{
+    if([obj isKindOfClass:[LDFBundle class]]){
+        return [[(LDFBundle *)obj identifier] isEqualToString:self.identifier];
     }
+    
+    return NO;
+}
+
+
+
+#pragma mark - bundle infodictionary
+-(NSDictionary *) infoDictionary {
+    if(_bundle){
+        _infoDictionary = nil;
+        return _bundle.infoDictionary;
+    } else {
+        if(_infoDictionary == nil){
+            _infoDictionary = [[NSMutableDictionary alloc] initWithCapacity:2];
+        }
+        return _infoDictionary;
+    }
+}
+
+
+-(NSString *)name {
+    return [self.infoDictionary objectForKey:BUNDLE_NAME];
 }
 
 
 -(NSString *)identifier {
-    if(_isDynamic){
-        return [super bundleIdentifier];
-    } else {
-        //
-        return @"";
-    }
+    return [self.infoDictionary objectForKey:BUNDLE_PACKAGENAME];
 }
 
--(NSDictionary *) infoDictionary {
-    if(_isDynamic){
-        return  [super infoDictionary];
+
+-(NSString *)updateURL {
+    return [self.infoDictionary objectForKey:BUNDLE_UPDATE_URL];
+}
+
+
+-(NSString *)version {
+    return [self.infoDictionary objectForKey:BUNDLE_VERSION];
+}
+
+
+-(NSString *)versionCode{
+    return [self.infoDictionary objectForKey:BUNDLE_VERSION_CODE];
+}
+
+
+-(BOOL) autoStartup {
+    return [[self.infoDictionary objectForKey:BUNDLE_AUTO_STARTUP] boolValue];
+}
+
+
+-(NSString *) exportServices {
+    return [self.infoDictionary objectForKey:EXPORT_SERVICE];
+}
+
+
+-(NSString *) importServices{
+    return [self.infoDictionary objectForKey:IMPORT_SERVICE];
+}
+
+
+-(int)autoInstallLevel{
+    id level = [self.infoDictionary objectForKey:BUNDLE_INSTALL_LEVEL];
+    if(level && [level isKindOfClass:[NSString class]]){
+        return [level intValue];
+    }
+    return INSTALL_LEVEL_NONE;
+}
+
+
+-(Class)principalClass{
+    if(_bundle){
+        return _bundle.principalClass;
     } else {
         return nil;
     }
 }
 
 
-/**
- * 判断组件是否自启动
- */
--(BOOL) autoStartup {
-#warning fixme
-    return YES;
-    return [[self.infoDictionary objectForKey:BUNDLE_AUTO_STARTUP] boolValue];
+-(NSString *)installLocation{
+    return [self.infoDictionary objectForKey:BUNDLE_LOCATION];
 }
 
 
-/**
- * 获取bundle支持的服务
- */
--(NSString *) exportServices {
-    return [self.infoDictionary objectForKey:EXPORT_SERVICE];
+-(long)size{
+    return [[self.infoDictionary objectForKey:BUNDLE_SIZE] longValue];
 }
 
 
-/**
- * 获取bundle需要引入的服务
- */
--(NSString *) importServices{
-    return [self.infoDictionary objectForKey:IMPORT_SERVICE];
+-(NSString *)minFrameworkVersion{
+    return [self.infoDictionary objectForKey:MIN_FRAMEWORK_VERSION];
 }
 
-/**
- * 获取bundle的自动安装的网络级别
- */
--(int)autoInstallLevel{
-    id level = [self.infoDictionary objectForKey:BUNDLE_INSTALL_LEVEL];
-    if(level && [level isKindOfClass:[NSString class]]){
-        return [level intValue];
-    }
-    
-    return INSTALL_LEVEL_NONE;
+
+-(NSString *)minHostAppVersion{
+    return [self.infoDictionary objectForKey:MIN_HOST_VERSION];
 }
 
 

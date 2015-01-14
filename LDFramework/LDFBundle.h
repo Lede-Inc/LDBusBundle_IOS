@@ -23,88 +23,70 @@ extern int const INSTALL_LEVEL_ALL;// 任意网络下均自动安装
 /**
  * @class 组件Bundle
  * 主要用来加载动态组件（dynamic framework）, 直接读取framework内部的info.plist
- * 如果是静态组件（static framework), 不初始化完成，只是完成基本属性的管理，将info.plist拷贝到资源配置文件夹中
- * 不管是动态还是静态，均对总线进行管理
  */
-@interface LDFBundle : NSBundle {
+@interface LDFBundle : NSObject {
 
 }
-//当前的安装状态
-@property (nonatomic) int state;
+
+
+@property (nonatomic) int state; ////当前的安装状态
 @property (nonatomic) long crc32; //ipa包的CRC校验值
+@property (nonatomic, readonly) NSMutableDictionary *infoDictionary;
 @property (nonatomic, readonly) NSString *identifier;
 @property (nonatomic, readonly) NSString *name; //组件显示名字
+@property (nonatomic, readonly) NSString *updateURL;//组件更新地址
+@property (nonatomic, readonly) NSString *version;
+@property (nonatomic, readonly) NSString *versionCode;
+@property (nonatomic, readonly) BOOL autoStartup;
+@property (nonatomic, readonly) long size;
+@property (nonatomic, readonly) NSString* installLocation;
+@property (nonatomic, readonly) Class principalClass;
+@property (nonatomic, readonly) NSString *exportServices; //获取bundle支持的服务
+@property (nonatomic, readonly) NSString *importServices; //获取bundle需要引入的服务
+@property (nonatomic, readonly) int autoInstallLevel; //获取bundle的自动安装的网络级别
+@property (nonatomic, readonly) NSString *minFrameworkVersion; //要求的最低框架版本
+@property (nonatomic, readonly) NSString *minHostAppVersion; //要求主程序的最低版本
 
--(id) initBundleWithPath:(NSString *)path;
+/**
+ * 根据远程组件的属性初始化一个bundle
+ */
+-(id)initBundleWithInfoDictionary:(NSDictionary *)theInfoDictionary;
+
+
+/**
+ * 根据framework的路径初始化一个bundle
+ */
+-(id)initBundleWithPath:(NSString *)path;
+
+
+/**
+ * 根据framwork的路径和IOSVersion初始化动态库对象
+ */
+-(BOOL)instanceDynamicBundle:(NSString *)path;
+
 
 /**
  * 组件启动
  */
 -(BOOL)start;
 
+
 /**
  * 组件停止
  */
 -(BOOL)stop;
 
-/**
- * 获取当前组件状态
- */
--(int)state;
 
 /**
- * 组件的版本号 和 build版本号
+ * 判断组件是否启动
  */
--(NSString *)version;
--(int) versionCode;
+-(BOOL)isLoaded;
 
 
 /**
- * 组件的入口class
+ * 判断两个组件是否相同
  */
--(Class) principalClass;
-
-
-/**
- * 组件的初始化路径
- */
--(NSString *) installLocation;
-
-
-/**
- * 组件的大小
- */
--(long) size;
-
-
-/**
- * 组件的更新地址
- */
--(NSString *) updateUrl;
-
-
-/**
- * 判断组件是否自启动
- */
--(BOOL) autoStartup;
-
-/**
- * 获取bundle支持的服务
- */
--(NSString *) exportServices;
-
-
-/**
- * 获取bundle需要引入的服务
- */
--(NSString *) importServices;
-
-
-/**
- * 获取bundle的自动安装的网络级别
- */
--(int)autoInstallLevel;
-
+-(BOOL)isEqual:(id)obj;
 
 
 @end
