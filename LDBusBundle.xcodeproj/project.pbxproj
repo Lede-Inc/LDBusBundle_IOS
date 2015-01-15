@@ -7,16 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		283DAC8A5C921A84216EF883 /* libPods-LDBusBundle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D421B3A642E26741E6D7EF3 /* libPods-LDBusBundle.a */; };
-		622C00141A60CA2C00D35E31 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 622C00051A60CA2C00D35E31 /* Podfile */; };
-		622C00261A60D36300D35E31 /* LDFBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 622C00191A60D36300D35E31 /* LDFBundle.m */; };
-		622C00271A60D36300D35E31 /* LDFBundleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 622C001B1A60D36300D35E31 /* LDFBundleManager.m */; };
-		622C00281A60D36300D35E31 /* LDFBundleDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 622C001D1A60D36300D35E31 /* LDFBundleDownloader.m */; };
-		622C00291A60D36300D35E31 /* LDFBundleInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 622C001F1A60D36300D35E31 /* LDFBundleInstaller.m */; };
-		622C002A1A60D36300D35E31 /* LDFBundleUpdator.m in Sources */ = {isa = PBXBuildFile; fileRef = 622C00211A60D36300D35E31 /* LDFBundleUpdator.m */; };
-		622C002B1A60D36300D35E31 /* LDFFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 622C00241A60D36300D35E31 /* LDFFileManager.m */; };
-		622C002D1A60D37700D35E31 /* bundles in Resources */ = {isa = PBXBuildFile; fileRef = 622C002C1A60D37700D35E31 /* bundles */; };
-		622C00331A6112CF00D35E31 /* LDFCommonDef.m in Sources */ = {isa = PBXBuildFile; fileRef = 622C00321A6112CF00D35E31 /* LDFCommonDef.m */; };
 		6246F3801A1F388C00980472 /* LDBus.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 6246F37F1A1F388C00980472 /* LDBus.podspec */; };
 		625EDB561A19ED5F000AEA3E /* tab.png in Resources */ = {isa = PBXBuildFile; fileRef = 625EDB551A19ED5F000AEA3E /* tab.png */; };
 		6262ED1A1A3A973200191FB9 /* LDCustomConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 6262ED191A3A973200191FB9 /* LDCustomConnector.m */; };
@@ -37,7 +27,6 @@
 		62D28C421A52903C00CE1C2E /* LDMBaseNavigatorInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 62D28C3D1A52903C00CE1C2E /* LDMBaseNavigatorInternal.h */; };
 		62D5165A1A304F0500FFEDC0 /* LDLoginServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 62D516591A304F0500FFEDC0 /* LDLoginServiceImpl.m */; };
 		62D539B71A1B27790088FFF4 /* framework.sh in Resources */ = {isa = PBXBuildFile; fileRef = 62D539B51A1B27790088FFF4 /* framework.sh */; };
-		62D857E71A65565E008E6C3A /* LDFNetUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 62D857E61A65565E008E6C3A /* LDFNetUtils.m */; };
 		62DD8EFF1A4A813300E24C77 /* UIViewController+LDMNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 62DD8EFD1A4A813300E24C77 /* UIViewController+LDMNavigator.h */; };
 		62DD8F001A4A813300E24C77 /* UIViewController+LDMNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DD8EFE1A4A813300E24C77 /* UIViewController+LDMNavigator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		62DD8F081A4A96B300E24C77 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 62DD8F071A4A96B300E24C77 /* LICENSE */; };
@@ -153,37 +142,7 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		625EDB781A1A045B000AEA3E /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		622C00051A60CA2C00D35E31 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		622C00181A60D36300D35E31 /* LDFBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDFBundle.h; sourceTree = "<group>"; };
-		622C00191A60D36300D35E31 /* LDFBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDFBundle.m; sourceTree = "<group>"; };
-		622C001A1A60D36300D35E31 /* LDFBundleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDFBundleManager.h; sourceTree = "<group>"; };
-		622C001B1A60D36300D35E31 /* LDFBundleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDFBundleManager.m; sourceTree = "<group>"; };
-		622C001C1A60D36300D35E31 /* LDFBundleDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDFBundleDownloader.h; sourceTree = "<group>"; };
-		622C001D1A60D36300D35E31 /* LDFBundleDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDFBundleDownloader.m; sourceTree = "<group>"; };
-		622C001E1A60D36300D35E31 /* LDFBundleInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDFBundleInstaller.h; sourceTree = "<group>"; };
-		622C001F1A60D36300D35E31 /* LDFBundleInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDFBundleInstaller.m; sourceTree = "<group>"; };
-		622C00201A60D36300D35E31 /* LDFBundleUpdator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDFBundleUpdator.h; sourceTree = "<group>"; };
-		622C00211A60D36300D35E31 /* LDFBundleUpdator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDFBundleUpdator.m; sourceTree = "<group>"; };
-		622C00221A60D36300D35E31 /* LDFDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDFDebug.h; sourceTree = "<group>"; };
-		622C00231A60D36300D35E31 /* LDFFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDFFileManager.h; sourceTree = "<group>"; };
-		622C00241A60D36300D35E31 /* LDFFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDFFileManager.m; sourceTree = "<group>"; };
-		622C002C1A60D37700D35E31 /* bundles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bundles; sourceTree = "<group>"; };
-		622C00311A6112CF00D35E31 /* LDFCommonDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDFCommonDef.h; sourceTree = "<group>"; };
-		622C00321A6112CF00D35E31 /* LDFCommonDef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDFCommonDef.m; sourceTree = "<group>"; };
 		6246F37F1A1F388C00980472 /* LDBus.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LDBus.podspec; sourceTree = "<group>"; };
 		625EDB551A19ED5F000AEA3E /* tab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tab.png; path = LDBusBundle/tab.png; sourceTree = "<group>"; };
 		6262ED181A3A973200191FB9 /* LDCustomConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDCustomConnector.h; sourceTree = "<group>"; };
@@ -214,8 +173,6 @@
 		62D516581A304F0500FFEDC0 /* LDLoginServiceImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDLoginServiceImpl.h; sourceTree = "<group>"; };
 		62D516591A304F0500FFEDC0 /* LDLoginServiceImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDLoginServiceImpl.m; sourceTree = "<group>"; };
 		62D539B51A1B27790088FFF4 /* framework.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = framework.sh; sourceTree = "<group>"; };
-		62D857E51A65565E008E6C3A /* LDFNetUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDFNetUtils.h; sourceTree = "<group>"; };
-		62D857E61A65565E008E6C3A /* LDFNetUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDFNetUtils.m; sourceTree = "<group>"; };
 		62DD8EFD1A4A813300E24C77 /* UIViewController+LDMNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LDMNavigator.h"; sourceTree = "<group>"; };
 		62DD8EFE1A4A813300E24C77 /* UIViewController+LDMNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LDMNavigator.m"; sourceTree = "<group>"; };
 		62DD8F071A4A96B300E24C77 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -302,9 +259,6 @@
 		62E8B9901A39AA85001993A9 /* TTWebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTWebController.m; sourceTree = "<group>"; };
 		62E8B9D71A39AB16001993A9 /* TTURLArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTURLArguments.h; sourceTree = "<group>"; };
 		62E8B9D81A39AB16001993A9 /* TTURLArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLArguments.m; sourceTree = "<group>"; };
-		8D421B3A642E26741E6D7EF3 /* libPods-LDBusBundle.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LDBusBundle.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C205A6BCA9886ED916FD2776 /* Pods-LDBusBundle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LDBusBundle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LDBusBundle/Pods-LDBusBundle.debug.xcconfig"; sourceTree = "<group>"; };
-		CF4A5D87ABF37F23A49CC09D /* Pods-LDBusBundle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LDBusBundle.release.xcconfig"; path = "Pods/Target Support Files/Pods-LDBusBundle/Pods-LDBusBundle.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -313,7 +267,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				628412841A3C36F800600B38 /* LDBus.framework in Frameworks */,
-				283DAC8A5C921A84216EF883 /* libPods-LDBusBundle.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,36 +295,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		622C00151A60D36300D35E31 /* LDFramework */ = {
-			isa = PBXGroup;
-			children = (
-				622C002C1A60D37700D35E31 /* bundles */,
-				622C00181A60D36300D35E31 /* LDFBundle.h */,
-				622C00191A60D36300D35E31 /* LDFBundle.m */,
-				622C001A1A60D36300D35E31 /* LDFBundleManager.h */,
-				622C001B1A60D36300D35E31 /* LDFBundleManager.m */,
-				622C001C1A60D36300D35E31 /* LDFBundleDownloader.h */,
-				622C001D1A60D36300D35E31 /* LDFBundleDownloader.m */,
-				622C001E1A60D36300D35E31 /* LDFBundleInstaller.h */,
-				622C001F1A60D36300D35E31 /* LDFBundleInstaller.m */,
-				622C00201A60D36300D35E31 /* LDFBundleUpdator.h */,
-				622C00211A60D36300D35E31 /* LDFBundleUpdator.m */,
-				622C00221A60D36300D35E31 /* LDFDebug.h */,
-				622C00231A60D36300D35E31 /* LDFFileManager.h */,
-				622C00241A60D36300D35E31 /* LDFFileManager.m */,
-				622C00311A6112CF00D35E31 /* LDFCommonDef.h */,
-				622C00321A6112CF00D35E31 /* LDFCommonDef.m */,
-				62D857E51A65565E008E6C3A /* LDFNetUtils.h */,
-				62D857E61A65565E008E6C3A /* LDFNetUtils.m */,
-			);
-			path = LDFramework;
-			sourceTree = "<group>";
-		};
 		62B4F9181A171BBC0056CBAB = {
 			isa = PBXGroup;
 			children = (
-				622C00151A60D36300D35E31 /* LDFramework */,
-				622C00051A60CA2C00D35E31 /* Podfile */,
 				62DD8F071A4A96B300E24C77 /* LICENSE */,
 				6246F37F1A1F388C00980472 /* LDBus.podspec */,
 				62D539B51A1B27790088FFF4 /* framework.sh */,
@@ -381,8 +307,6 @@
 				62E8B8961A39A75A001993A9 /* LDBus */,
 				62E8B8A51A39A75A001993A9 /* LDBusTests */,
 				62B4F9221A171BBC0056CBAB /* Products */,
-				E7044978416F0CDE913ABDD4 /* Pods */,
-				FA33399D22D2206E4B199265 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -677,23 +601,6 @@
 			path = NavigatorUI;
 			sourceTree = "<group>";
 		};
-		E7044978416F0CDE913ABDD4 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				C205A6BCA9886ED916FD2776 /* Pods-LDBusBundle.debug.xcconfig */,
-				CF4A5D87ABF37F23A49CC09D /* Pods-LDBusBundle.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		FA33399D22D2206E4B199265 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				8D421B3A642E26741E6D7EF3 /* libPods-LDBusBundle.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -756,12 +663,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 62B4F9441A171BBC0056CBAB /* Build configuration list for PBXNativeTarget "LDBusBundle" */;
 			buildPhases = (
-				7EB9679A74446484495E164D /* Check Pods Manifest.lock */,
 				62B4F91D1A171BBC0056CBAB /* Sources */,
 				62B4F91E1A171BBC0056CBAB /* Frameworks */,
 				62B4F91F1A171BBC0056CBAB /* Resources */,
-				625EDB781A1A045B000AEA3E /* Embed Frameworks */,
-				6E1A577C4EC11FDACA2A003B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -889,7 +793,6 @@
 				62D1C6D01A4920A100AEA467 /* LDMBMovieFilm.bundle in Resources */,
 				62B4F9321A171BBC0056CBAB /* Images.xcassets in Resources */,
 				625EDB561A19ED5F000AEA3E /* tab.png in Resources */,
-				622C002D1A60D37700D35E31 /* bundles in Resources */,
 				62DE31F91A483F6B008FEFEF /* LDBusDemo_bundle.plist in Resources */,
 				6246F3801A1F388C00980472 /* LDBus.podspec in Resources */,
 			);
@@ -906,7 +809,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				622C00141A60CA2C00D35E31 /* Podfile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -919,60 +821,19 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		6E1A577C4EC11FDACA2A003B /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LDBusBundle/Pods-LDBusBundle-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7EB9679A74446484495E164D /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		62B4F91D1A171BBC0056CBAB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				62D5165A1A304F0500FFEDC0 /* LDLoginServiceImpl.m in Sources */,
-				622C00291A60D36300D35E31 /* LDFBundleInstaller.m in Sources */,
 				62B4F9CA1A17310A0056CBAB /* MenuController.m in Sources */,
 				62B4F92A1A171BBC0056CBAB /* AppDelegate.m in Sources */,
 				62B4F9271A171BBC0056CBAB /* main.m in Sources */,
-				622C00281A60D36300D35E31 /* LDFBundleDownloader.m in Sources */,
-				62D857E71A65565E008E6C3A /* LDFNetUtils.m in Sources */,
-				622C002B1A60D36300D35E31 /* LDFFileManager.m in Sources */,
-				622C00271A60D36300D35E31 /* LDFBundleManager.m in Sources */,
-				622C00331A6112CF00D35E31 /* LDFCommonDef.m in Sources */,
 				6262ED1A1A3A973200191FB9 /* LDCustomConnector.m in Sources */,
 				62DF030C1A4BFD4800EDBE8B /* LDMPopWebViewController.m in Sources */,
 				62B4F9C91A17310A0056CBAB /* ContentController.m in Sources */,
-				622C002A1A60D36300D35E31 /* LDFBundleUpdator.m in Sources */,
 				62D1C6D31A4980C900AEA467 /* LDDemoMessageHandler.m in Sources */,
-				622C00261A60D36300D35E31 /* LDFBundle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1146,7 +1007,6 @@
 		};
 		62B4F9451A171BBC0056CBAB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C205A6BCA9886ED916FD2776 /* Pods-LDBusBundle.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1159,7 +1019,10 @@
 				INFOPLIST_FILE = LDBusBundle/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "dfd6e7ee-c520-4649-af7c-d385a859b669";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1168,7 +1031,6 @@
 		};
 		62B4F9461A171BBC0056CBAB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CF4A5D87ABF37F23A49CC09D /* Pods-LDBusBundle.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1181,7 +1043,10 @@
 				INFOPLIST_FILE = LDBusBundle/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "dfd6e7ee-c520-4649-af7c-d385a859b669";
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -10,8 +10,6 @@
 #import "LDLoginService.h"
 #import "UITabBarControllerAdditions.h"
 
-#import "LDFBundleManager.h"
-
 @interface MyTabController : UITabBarController
 
 @end
@@ -50,9 +48,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [[LDFBundleManager sharedContainer] bootBundleManagerWithListener:nil];
-    
-    /*
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.window makeKeyAndVisible];
     
@@ -73,7 +68,6 @@
     if([LDMBusContext canOpenURL:url]){
         [LDMBusContext openURL:url];
     }
-    */
     return YES;
 }
 
