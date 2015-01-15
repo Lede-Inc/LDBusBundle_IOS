@@ -15,49 +15,61 @@ int const STATUS_ERR_INSTALL = -2;
 int const STATUS_ERR_CANCEL = -3;
 
 
-//获取bundle中的info.plist的属性
-//bundle签名 @"CFBundleSignature"
-//最低支持版本 @"MinimumOSVersion"
-//bundle类型 @"CFBundlePackageType"
-//bundle版本号 @"CFBundleShortVersionString"
-//bundle build版本号 @"CFBundleVersion"
-//版本名字 @"CFBundleName"
+/*
+ {
+ BuildMachineOSBuild = 14B25;
+ CFBundleDevelopmentRegion = English;
+ CFBundleExecutable = Framework;
+ CFBundleIdentifier = "com.lede.library.Framework";
+ CFBundleInfoDictionaryVersion = "6.0";
+ CFBundleName = Framework;
+ CFBundlePackageType = FMWK;
+ CFBundleShortVersionString = "1.0";
+ CFBundleSignature = "????";
+ CFBundleSupportedPlatforms =     (
+ iPhoneOS
+ );
+ CFBundleVersion = 1;
+ DTCompiler = "com.apple.compilers.llvm.clang.1_0";
+ DTPlatformBuild = 12B411;
+ DTPlatformName = iphoneos;
+ DTPlatformVersion = "8.1";
+ DTSDKBuild = 12B411;
+ DTSDKName = "iphoneos8.1";
+ DTXcode = 0611;
+ DTXcodeBuild = 6A2008a;
+ MinimumOSVersion = "7.0";
+ NSHumanReadableCopyright = "Copyright \U00a9 2014 Damien DeVille. All rights reserved.";
+ UIDeviceFamily =     (
+ 1
+ );
+ }
+
+ */
 
 NSString * const BUNDLE_PACKAGENAME = @"CFBundleIdentifier";
 NSString * const BUNDLE_NAME = @"CFBundleName";
-NSString * const BUNDLE_MAIN_ACTIVITY = @"Bundle-MainActivity";
-NSString * const BUNDLE_ICON_URL = @"Bundle-Icon";
-NSString * const BUNDLE_UPDATE_URL = @"Bundle-UpdateUrl";
-NSString * const BUNDLE_SIZE = @"Bundle-Size";
+NSString * const BUNDLE_PRINCIPAL_CLASS = @"CFBundlePrincipalClass";
+NSString * const BUNDLE_ICON_URL = @"CFBundleIcon";
+NSString * const BUNDLE_UPDATE_URL = @"CFBundleUpdateUrl";
+NSString * const BUNDLE_SIZE = @"CFBundleSize";
 
-NSString * const MIN_FRAMEWORK_VERSION = @"Framework-Version";
-NSString * const MIN_HOST_VERSION = @"Host-Version";
-NSString * const HOST_VERSIONCODE = @"hostVersionCode";
-NSString * const BUNDLE_LOCATION = @"Bundle-Location";
+NSString * const MIN_FRAMEWORK_VERSION = @"MinFrameworkVersion";
+NSString * const MIN_HOST_VERSION = @"MinHostVersion";
+NSString * const HOST_VERSIONCODE = @"HostVersionCode";
+NSString * const BUNDLE_LOCATION = @"CFBundleLocation";
 
-NSString * const EXPORT_PACKAGE = @"Export-Package";
-NSString * const EXPORT_SERVICE = @"Export-Service";
-NSString * const IMPORT_PACKAGE = @"Import-Package";
-NSString * const IMPORT_SERVICE = @"Import-Service";
-NSString * const BUNDLE_VENDOR = @"Bundle-Vendor";
+NSString * const EXPORT_SERVICE = @"CFBundleExportService";
+NSString * const IMPORT_SERVICE = @"CFBundleImportService";
+NSString * const BUNDLE_VENDOR = @"NSHumanReadableCopyright";
 NSString * const BUNDLE_VERSION = @"CFBundleShortVersionString";
 
-NSString * const BUNDLE_VERSION_CODE = @"Bundle-VersionCode";
-NSString * const BUNDLE_ACTIVATOR = @"Bundle-Activator";
-NSString * const BUNDLE_AUTO_STARTUP = @"Bundle-AutoStartup";
+NSString * const BUNDLE_VERSION_CODE = @"CFBundleVersion";
+NSString * const BUNDLE_AUTO_STARTUP = @"CFBundleAutoStartup";
 
 // 0 不自动下载；1 仅WIFI下自动下载； 2 任意网络自动下载
-NSString * const BUNDLE_INSTALL_LEVEL = @"Bundle-InstallLevel";
-
-NSString * const OBJECTCLASS = @"Object-Class";
-
-NSString * const SERVICE_ID = @"Service-ID";
-
+NSString * const BUNDLE_INSTALL_LEVEL = @"CFBundleInstallLevel";
 NSString * const INSTALL_DIR = @"bundles";
-NSString * const DEX_OUT_DIR = @"dex";
-NSString * const PROPERTIES_PATH = @"assets/plugin.properties";// apk包中插件属性文件
-
-NSString * const CLASS_NAME = @"Bundle-ClassName";
 
 /**
  * 比较两个string版本号的大小 ver1, ver2

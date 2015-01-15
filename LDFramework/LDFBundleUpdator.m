@@ -71,7 +71,7 @@
 //数据传完之后调用此方法
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection{
     id resultJson = [NSJSONSerialization JSONObjectWithData:_responseData options:NSJSONReadingMutableLeaves error:nil];
-    NSArray *items = [resultJson objectAtIndex:0];
+    NSArray *items = (NSArray *)resultJson;//[resultJson objectAtIndex:0];
     if(_listener && [_listener respondsToSelector:@selector(updatorOnSuccess:)]){
         [_listener updatorOnSuccess:items];
     }

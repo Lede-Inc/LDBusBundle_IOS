@@ -10,6 +10,7 @@
 #import "LDFBundleInstaller.h"
 #import "LDFFileManager.h"
 #import "LDFBundle.h"
+#import "LDFCommonDef.h"
 
 @interface LDFBundleInstaller () {
     NSArray *_myAppArchiteture;
@@ -21,6 +22,16 @@
 
 @implementation LDFBundleInstaller
 @synthesize signature;
+
+
+-(id) init {
+    self = [super init];
+    if(self){
+        [self getMyAppSupportedArchitectures];
+    }
+    return self;
+}
+
 
 /**
  * 根据ipa的location 解压安装组件；
@@ -43,6 +54,7 @@
     
     //获取ipa中所有文件的CRC值
     //第一次解压的时候，存储ipa的CRC32值，下次运行比较CRC的值是否变化
+    NSDictionary *properties = [LDFFileManager getPropertiesFromLocalBundleFile:filePath];
     long crc32OfIpa  = [LDFFileManager getCRC32:filePath];
     
     
@@ -50,18 +62,16 @@
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error;
     NSString *bundleCacheDir = [LDFFileManager bundleCacheDir];
-    NSString *toDestInstallDir = [bundleCacheDir stringByAppendingFormat:@"/%@.framework", [[filePath lastPathComponent] stringByDeletingPathExtension]];
+    NSString *toDestInstallDir = [bundleCacheDir stringByAppendingFormat:@"/%@.%@", [properties objectForKey:BUNDLE_NAME], BUNDLE_INSTALLED_EXTENSION];
     if([fileManager fileExistsAtPath:toDestInstallDir]){
         if(![fileManager removeItemAtPath:toDestInstallDir error:&error]){
             LOG(@"delete the bundle Installed Dir: %@ failure!!!", toDestInstallDir);
         }
     }
     
-    BOOL unzipSuccess = [LDFFileManager unZipFile:filePath destPath:bundleCacheDir];
-    
-    
     //解压成功之后，获取ipa中打包的framework支持的architeture的值
     //如果不支持，删掉刚才解压的目录
+    BOOL unzipSuccess = [LDFFileManager unZipFile:filePath destPath:bundleCacheDir];
     if(unzipSuccess){
         BOOL isHasRequiredArchitetures = [self checkMatchingArchiteture:_myAppArchiteture inIpaFile:filePath];
         if(!isHasRequiredArchitetures){
@@ -113,7 +123,7 @@
     NSString *bundleCacheDir = [LDFFileManager bundleCacheDir];
     
     //卸载安装目录
-    NSString *toDestInstallDir = [bundleCacheDir stringByAppendingFormat:@"/%@.framework", bundleName];
+    NSString *toDestInstallDir = [bundleCacheDir stringByAppendingFormat:@"/%@.%@", bundleName, BUNDLE_INSTALLED_EXTENSION];
     if([fileManager fileExistsAtPath:toDestInstallDir]){
         if(![fileManager removeItemAtPath:toDestInstallDir error:&error]){
             LOG(@"uninstall framework %@ error: %@", toDestInstallDir, [error description]);
@@ -121,7 +131,7 @@
     }
     
     //删除安装文件
-    NSString *ipaFilePath = [bundleCacheDir stringByAppendingFormat:@"/%@%@", bundleName, BUNDLE_EXTENSION];
+    NSString *ipaFilePath = [bundleCacheDir stringByAppendingFormat:@"/%@.%@", bundleName, BUNDLE_EXTENSION];
     if([fileManager fileExistsAtPath:ipaFilePath]){
         if(![fileManager removeItemAtPath:ipaFilePath error:&error]){
             LOG(@"delete ipa file %@ error: %@", ipaFilePath, [error description]);

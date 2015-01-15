@@ -10,7 +10,7 @@
 		283DAC8A5C921A84216EF883 /* libPods-LDBusBundle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D421B3A642E26741E6D7EF3 /* libPods-LDBusBundle.a */; };
 		622C00141A60CA2C00D35E31 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 622C00051A60CA2C00D35E31 /* Podfile */; };
 		622C00261A60D36300D35E31 /* LDFBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 622C00191A60D36300D35E31 /* LDFBundle.m */; };
-		622C00271A60D36300D35E31 /* LDFBundleContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 622C001B1A60D36300D35E31 /* LDFBundleContainer.m */; };
+		622C00271A60D36300D35E31 /* LDFBundleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 622C001B1A60D36300D35E31 /* LDFBundleManager.m */; };
 		622C00281A60D36300D35E31 /* LDFBundleDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 622C001D1A60D36300D35E31 /* LDFBundleDownloader.m */; };
 		622C00291A60D36300D35E31 /* LDFBundleInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 622C001F1A60D36300D35E31 /* LDFBundleInstaller.m */; };
 		622C002A1A60D36300D35E31 /* LDFBundleUpdator.m in Sources */ = {isa = PBXBuildFile; fileRef = 622C00211A60D36300D35E31 /* LDFBundleUpdator.m */; };
@@ -170,8 +170,8 @@
 		622C00051A60CA2C00D35E31 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		622C00181A60D36300D35E31 /* LDFBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDFBundle.h; sourceTree = "<group>"; };
 		622C00191A60D36300D35E31 /* LDFBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDFBundle.m; sourceTree = "<group>"; };
-		622C001A1A60D36300D35E31 /* LDFBundleContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDFBundleContainer.h; sourceTree = "<group>"; };
-		622C001B1A60D36300D35E31 /* LDFBundleContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDFBundleContainer.m; sourceTree = "<group>"; };
+		622C001A1A60D36300D35E31 /* LDFBundleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDFBundleManager.h; sourceTree = "<group>"; };
+		622C001B1A60D36300D35E31 /* LDFBundleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDFBundleManager.m; sourceTree = "<group>"; };
 		622C001C1A60D36300D35E31 /* LDFBundleDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDFBundleDownloader.h; sourceTree = "<group>"; };
 		622C001D1A60D36300D35E31 /* LDFBundleDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDFBundleDownloader.m; sourceTree = "<group>"; };
 		622C001E1A60D36300D35E31 /* LDFBundleInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDFBundleInstaller.h; sourceTree = "<group>"; };
@@ -348,8 +348,8 @@
 				622C002C1A60D37700D35E31 /* bundles */,
 				622C00181A60D36300D35E31 /* LDFBundle.h */,
 				622C00191A60D36300D35E31 /* LDFBundle.m */,
-				622C001A1A60D36300D35E31 /* LDFBundleContainer.h */,
-				622C001B1A60D36300D35E31 /* LDFBundleContainer.m */,
+				622C001A1A60D36300D35E31 /* LDFBundleManager.h */,
+				622C001B1A60D36300D35E31 /* LDFBundleManager.m */,
 				622C001C1A60D36300D35E31 /* LDFBundleDownloader.h */,
 				622C001D1A60D36300D35E31 /* LDFBundleDownloader.m */,
 				622C001E1A60D36300D35E31 /* LDFBundleInstaller.h */,
@@ -965,7 +965,7 @@
 				622C00281A60D36300D35E31 /* LDFBundleDownloader.m in Sources */,
 				62D857E71A65565E008E6C3A /* LDFNetUtils.m in Sources */,
 				622C002B1A60D36300D35E31 /* LDFFileManager.m in Sources */,
-				622C00271A60D36300D35E31 /* LDFBundleContainer.m in Sources */,
+				622C00271A60D36300D35E31 /* LDFBundleManager.m in Sources */,
 				622C00331A6112CF00D35E31 /* LDFCommonDef.m in Sources */,
 				6262ED1A1A3A973200191FB9 /* LDCustomConnector.m in Sources */,
 				62DF030C1A4BFD4800EDBE8B /* LDMPopWebViewController.m in Sources */,

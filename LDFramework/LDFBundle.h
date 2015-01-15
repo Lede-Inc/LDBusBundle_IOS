@@ -31,6 +31,7 @@ extern int const INSTALL_LEVEL_ALL;// 任意网络下均自动安装
 
 @property (nonatomic) int state; ////当前的安装状态
 @property (nonatomic) long crc32; //ipa包的CRC校验值
+@property (nonatomic) BOOL update; //是否更新该Bundle；
 @property (nonatomic, readonly) NSMutableDictionary *infoDictionary;
 @property (nonatomic, readonly) NSString *identifier;
 @property (nonatomic, readonly) NSString *name; //组件显示名字

@@ -27,7 +27,7 @@
 
 /**
  * @class 完成远程Bundle（dynamic framework）的下载
- * 只负责完成制定url对应的.framework文件的下载
+ * 只负责完成制定url对应的bundle文件的下载
  */
 @interface LDFBundleDownloader : NSObject {
     

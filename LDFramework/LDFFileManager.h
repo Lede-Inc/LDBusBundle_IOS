@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 
 #define LOCAL_BUNDLES_DIR @"bundles"
-#define BUNDLE_EXTENSION @".ipa"
+#define BUNDLE_EXTENSION @"ipa"
+#define BUNDLE_INSTALLED_EXTENSION @"framework"
 #define INFO_PLIST @"Info.plist"
 
 /**

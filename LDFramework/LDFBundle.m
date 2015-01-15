@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "LDFBundle.h"
 #import "LDFCommonDef.h"
+#import "LDFFileManager.h"
 
 #define IOSVERSION ([[[UIDevice currentDevice] systemVersion] intValue])
 
@@ -35,6 +36,7 @@ int const INSTALL_LEVEL_ALL = 2;// 任意网络下均自动安装
 @implementation LDFBundle
 @synthesize state = _state;
 @synthesize crc32 = _crc32;
+@synthesize update = _update;
 @synthesize infoDictionary = _infoDictionary;
 @synthesize identifier = _identifier;
 @synthesize name = _name;
@@ -67,7 +69,7 @@ int const INSTALL_LEVEL_ALL = 2;// 任意网络下均自动安装
 -(id) initBundleWithPath:(NSString *)path {
     self = [super init];
     if(self){
-        if([path.lastPathComponent hasSuffix:@".framework"] && IOSVERSION >= 7){
+        if([path.lastPathComponent hasSuffix:BUNDLE_INSTALLED_EXTENSION] && IOSVERSION >= 7){
             _bundle = [NSBundle bundleWithPath:path];
             if(_bundle){
                 [self.infoDictionary setObject:path forKey:BUNDLE_LOCATION];
@@ -81,7 +83,7 @@ int const INSTALL_LEVEL_ALL = 2;// 任意网络下均自动安装
 
 
 -(BOOL)instanceDynamicBundle:(NSString *)path {
-    if([path.lastPathComponent hasSuffix:@".framework"] && IOSVERSION >= 7){
+    if([path.lastPathComponent hasSuffix:BUNDLE_INSTALLED_EXTENSION] && IOSVERSION >= 7){
         if(_bundle && [_bundle isLoaded]){
             [_bundle unload];
             _bundle = nil;

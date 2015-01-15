@@ -10,7 +10,7 @@
 #import "LDLoginService.h"
 #import "UITabBarControllerAdditions.h"
 
-#import "LDFBundleContainer.h"
+#import "LDFBundleManager.h"
 
 @interface MyTabController : UITabBarController
 
@@ -50,7 +50,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [[LDFBundleContainer sharedContainer] bootBundleContainerWithListener:nil];
+    [[LDFBundleManager sharedContainer] bootBundleManagerWithListener:nil];
     
     /*
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];

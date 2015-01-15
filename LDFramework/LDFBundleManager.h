@@ -19,7 +19,7 @@ extern NSString * const NOTIFICATION_BOOT_COMPLETED;
 /**
  * Container加载监控器
  */
-@protocol LDFBundleContainerListener <NSObject>
+@protocol LDFBundleManagerListener <NSObject>
 -(void)onFinish:(int) statusCode;
 @end
 
@@ -28,11 +28,11 @@ extern NSString * const NOTIFICATION_BOOT_COMPLETED;
 /**
  * bundleContainer给外界提供下载进度监控，由外界自定义下载界面
  */
-@protocol LDFBundleContainerDownloadListener <NSObject>
+@protocol LDFBundleManagerDownloadListener <NSObject>
 //是否下载结束
--(void)containerDownloadOnFinish:(long long) statusCode;
+-(void)managerDownloadOnFinish:(long long) statusCode;
 //下载进度
--(void)containerDownloadOnProgress:(long long) written total:(long long) total;
+-(void)managerDownloadOnProgress:(long long) written total:(long long) total;
 @end
 
 
@@ -42,7 +42,7 @@ extern NSString * const NOTIFICATION_BOOT_COMPLETED;
  * 控制一个单例
  */
 @protocol LDFBundleDownloadListener;
-@interface LDFBundleContainer : NSObject {
+@interface LDFBundleManager : NSObject {
     
 }
 
@@ -51,7 +51,7 @@ extern NSString * const NOTIFICATION_BOOT_COMPLETED;
 /**
  * 启动bundle容器
  */
--(void)bootBundleContainerWithListener:(id<LDFBundleContainerListener>) listener;
+-(void)bootBundleManagerWithListener:(id<LDFBundleManagerListener>) listener;
 
 
 /**
@@ -63,7 +63,7 @@ extern NSString * const NOTIFICATION_BOOT_COMPLETED;
 /**
  * 判断bundle容器是否启动完毕
  */
--(BOOL)isContainerBootCompleted;
+-(BOOL)isBootCompleted;
 
 
 /**
@@ -111,7 +111,7 @@ extern NSString * const NOTIFICATION_BOOT_COMPLETED;
  * 根据bundle信息, 从服务器更新远程的Bundle
  * 下载完成之后自动重新加载该组件
  */
--(BOOL)installRemoteBundlePackage:(LDFBundle *)bundle listener:(id<LDFBundleContainerDownloadListener>)containerDownloadListener;
+-(BOOL)installRemoteBundlePackage:(LDFBundle *)bundle listener:(id<LDFBundleManagerDownloadListener>)containerDownloadListener;
 
 
 

@@ -72,7 +72,7 @@
     if([bundleFilePath hasSuffix:BUNDLE_EXTENSION] &&[[NSFileManager defaultManager] fileExistsAtPath:bundleFilePath]){
         //限定ipa的名字和framework的名字相同
         NSString *bundleName = [[bundleFilePath lastPathComponent] stringByDeletingPathExtension];
-        NSString *propertyfile = [NSString stringWithFormat:@"%@.framework/%@", bundleName, INFO_PLIST];
+        NSString *propertyfile = [NSString stringWithFormat:@"%@.%@/%@", bundleName,BUNDLE_INSTALLED_EXTENSION, INFO_PLIST];
         @try {
             ZipFile *unzipFile = [[ZipFile alloc] initWithFileName:bundleFilePath mode:ZipFileModeUnzip];
             FileInZipInfo *currentInfo = nil;
@@ -134,9 +134,9 @@
  */
 +(BOOL)renameNewDownloadFileWithName: (NSString *)bundleName {
     NSString *bundleCacheDir = [LDFFileManager bundleCacheDir];
-    NSString *newFileName = [bundleName stringByAppendingFormat:@"_new%@", BUNDLE_EXTENSION];
+    NSString *newFileName = [bundleName stringByAppendingFormat:@"_new.%@", BUNDLE_EXTENSION];
     NSString *newFilePath = [bundleCacheDir stringByAppendingPathComponent:newFileName];
-    NSString *filePath = [bundleCacheDir stringByAppendingFormat:@"/%@%@", bundleName, BUNDLE_EXTENSION];
+    NSString *filePath = [bundleCacheDir stringByAppendingFormat:@"/%@.%@", bundleName, BUNDLE_EXTENSION];
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if([fileManager fileExistsAtPath:filePath]){

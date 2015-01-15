@@ -112,7 +112,7 @@
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection {
     //数据写入doument
     if(_packageData && _packageWrittenByteLenth == _packageTotalByteLenth){
-        NSString *newFileName = [[[_fileName lastPathComponent] stringByDeletingPathExtension] stringByAppendingFormat:@"_new%@", BUNDLE_EXTENSION];
+        NSString *newFileName = [[[_fileName lastPathComponent] stringByDeletingPathExtension] stringByAppendingFormat:@"_new.%@", BUNDLE_EXTENSION];
         NSString *toSavePath = [NSString stringWithFormat:@"%@/%@", [LDFFileManager bundleCacheDir], newFileName];
         //创建文件
         [_packageData writeToFile:toSavePath atomically:YES];
