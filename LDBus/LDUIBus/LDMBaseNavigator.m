@@ -52,6 +52,7 @@ static LDMBaseNavigator* gNavigator = nil;
  * 销毁对象
  */
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIWindowDidBecomeKeyNotification object:nil];
     _window = nil;
     _rootViewController = nil;
     _popoverController = nil;
@@ -179,6 +180,7 @@ static LDMBaseNavigator* gNavigator = nil;
  */
 - (void)setRootViewController:(UIViewController*)controller {
     if (controller != _rootViewController) {
+        NSLog(@"<<<<<<<<rootViewController_changed>>>>>>>>>>>");
         _rootViewController = controller;
         
         [self.window setRootViewController:_rootViewController];
@@ -429,6 +431,26 @@ static LDMBaseNavigator* gNavigator = nil;
 
 #pragma mark -
 #pragma mark Public
+-(void) setWindow:(UIWindow *)theWindow{
+    NSAssert(theWindow!=nil, @"window can't not be nil");
+    _window = theWindow;
+    if(_window.rootViewController == nil){
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIWindowDidBecomeKeyNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleWindowNotifcation) name:UIWindowDidBecomeKeyNotification object:nil];
+    }
+}
+
+/**
+ * 处理当初始化时，window还没有设置rootViewController，当makeKeyAndVisible时再去获取rootViewController设置
+ */
+-(void)handleWindowNotifcation{
+    if(_window!= nil && _window.rootViewController != nil){
+        NSLog(@">>>receive Window Notification:%@>>>>>>>>", NSStringFromClass([_window.rootViewController class]));
+        [self setRootViewController:_window.rootViewController];
+    }
+}
+
+
 /**
  * 返回当前的window
  */
