@@ -73,6 +73,18 @@
     return success;
 }
 
+-(TTURLActionResponse *)handleURLActionRequest:(TTURLAction *)action {
+    if (nil == action || nil == action.urlPath) {
+        return nil;
+    }
+    
+    // We may need to modify the urlPath, so let's create a local copy.
+    UIViewController* controller = [self viewControllerForAction:action];
+    TTURLActionResponse *actionResponse = [[TTURLActionResponse alloc] initWithViewController:controller pattern:nil sourceBundle:_bundleName];
+    return actionResponse;
+}
+
+
 
 /**
  * 根据指定Pattern生成ViewController
@@ -170,6 +182,13 @@
     return [LDMUIBusCenter receiveURLCtrlFromUIBus:action];
 }
 
++(UIViewController *)controllerForURL:(NSString *)url query:(NSDictionary *)query{
+    TTURLAction *action = [TTURLAction actionWithURLPath:url];
+    action.isDirectDeal = NO;
+    action.query = query;
+    return [LDMUIBusCenter receiveURLCtrlFromUIBus:action];
+}
+
 
 /**
  * 向UIBus请求当前是否能够处理该URL
@@ -216,22 +235,6 @@
     return controller;
 }
 
-
--(TTURLActionResponse *)handleURLActionRequest:(TTURLAction *)action {
-    if (nil == action || nil == action.urlPath) {
-        return nil;
-    }
-    
-    // We may need to modify the urlPath, so let's create a local copy.
-    NSString* urlPath = action.urlPath;
-    
-    TTURLNavigatorPattern* pattern = nil;
-    UIViewController* controller = [self viewControllerForURL: urlPath
-                                                        query: action.query
-                                                      pattern: &pattern];
-    TTURLActionResponse *actionResponse = [[TTURLActionResponse alloc] initWithViewController:controller pattern:pattern sourceBundle:_bundleName];
-    return actionResponse;
-}
 
 
 /**

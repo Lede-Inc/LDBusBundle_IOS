@@ -79,6 +79,7 @@
  * 向当前bundle的connetor 申请某个url对应的ctrl；
  */
 +(UIViewController *)controllerForURL:(NSString *)url;
++(UIViewController *)controllerForURL:(NSString *)url query:(NSDictionary *)query;
 
 /**
  * 向UIBus请求当前是否能够处理该URL

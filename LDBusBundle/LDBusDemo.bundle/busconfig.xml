@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <bundle name="LDBusDemo" connectorClass="LDCustomConnector">
     <url_handler_list>
-        <!--个人账户首页-->
+        <!--个人账户首页
+         netease://mainTab1
+         netease://menu?menuID=1
+         netease://menu/modeview/apple
+         -->
         <ViewController name="mainTab1" class="MyTabController" type="share">
         </ViewController>
         <ViewController name="menu" webquery="menuID=(initWithMenu:)" class="MenuController" type="share">
         </ViewController>
         <ViewController name="food" class="ContentController" type="push">
-            <URLPattern name="foo/(initWithFood:)"/>
+            <URLPattern name="foo/(initWithFood:)" webquery=""/>
             <URLPattern name="type/(initWithType:)"/>
             <URLPattern name="popover/(initWithFood:)" type="pop"/>
-            <URLPattern name="modeview/(initWithModeController:)" type="modal"/>
+            <URLPattern name="modeview" webquery="param=(initwith)" type="modal"/>
             <URLPattern name="about/(initWithUs:)/(others:)" parent="food/modeview/10" type="push"/>
         </ViewController>
     </url_handler_list>

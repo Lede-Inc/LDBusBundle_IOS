@@ -42,6 +42,8 @@
 //处理接收的URL消息Action
 -(BOOL) dealWithURLMessageFromBus:(TTURLAction *)action;
 
+//处理获取ViewController的消息
+-(TTURLActionResponse *)handleURLActionRequest:(TTURLAction *)action;
 
 
 @end
@@ -62,7 +64,6 @@
  * 根据URLAction生成ViewController
  */
 -(UIViewController*)viewControllerForAction:(TTURLAction*)action;
--(TTURLActionResponse *)handleURLActionRequest:(TTURLAction *)action;
 
 
 /**
