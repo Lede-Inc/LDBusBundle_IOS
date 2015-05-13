@@ -68,8 +68,6 @@
 		62E8B9A41A39AA85001993A9 /* LDMUIBusConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9591A39AA85001993A9 /* LDMUIBusConnector.m */; };
 		62E8B9A51A39AA85001993A9 /* UINavigationControllerAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B95C1A39AA85001993A9 /* UINavigationControllerAdditions.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9A61A39AA85001993A9 /* UINavigationControllerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B95D1A39AA85001993A9 /* UINavigationControllerAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62E8B9A71A39AA85001993A9 /* UIPopoverControllerAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B95E1A39AA85001993A9 /* UIPopoverControllerAdditions.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		62E8B9A81A39AA85001993A9 /* UIPopoverControllerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B95F1A39AA85001993A9 /* UIPopoverControllerAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		62E8B9A91A39AA85001993A9 /* UITabBarControllerAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9601A39AA85001993A9 /* UITabBarControllerAdditions.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9AA1A39AA85001993A9 /* UITabBarControllerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9611A39AA85001993A9 /* UITabBarControllerAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		62E8B9AB1A39AA85001993A9 /* UIViewControllerAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9621A39AA85001993A9 /* UIViewControllerAdditions.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -208,8 +206,6 @@
 		62E8B9591A39AA85001993A9 /* LDMUIBusConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDMUIBusConnector.m; sourceTree = "<group>"; };
 		62E8B95C1A39AA85001993A9 /* UINavigationControllerAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UINavigationControllerAdditions.h; sourceTree = "<group>"; };
 		62E8B95D1A39AA85001993A9 /* UINavigationControllerAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UINavigationControllerAdditions.m; sourceTree = "<group>"; };
-		62E8B95E1A39AA85001993A9 /* UIPopoverControllerAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPopoverControllerAdditions.h; sourceTree = "<group>"; };
-		62E8B95F1A39AA85001993A9 /* UIPopoverControllerAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPopoverControllerAdditions.m; sourceTree = "<group>"; };
 		62E8B9601A39AA85001993A9 /* UITabBarControllerAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITabBarControllerAdditions.h; sourceTree = "<group>"; };
 		62E8B9611A39AA85001993A9 /* UITabBarControllerAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITabBarControllerAdditions.m; sourceTree = "<group>"; };
 		62E8B9621A39AA85001993A9 /* UIViewControllerAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerAdditions.h; sourceTree = "<group>"; };
@@ -473,14 +469,12 @@
 		62E8B95B1A39AA85001993A9 /* Controller Addition */ = {
 			isa = PBXGroup;
 			children = (
-				62E8B95C1A39AA85001993A9 /* UINavigationControllerAdditions.h */,
-				62E8B95D1A39AA85001993A9 /* UINavigationControllerAdditions.m */,
-				62E8B95E1A39AA85001993A9 /* UIPopoverControllerAdditions.h */,
-				62E8B95F1A39AA85001993A9 /* UIPopoverControllerAdditions.m */,
-				62E8B9601A39AA85001993A9 /* UITabBarControllerAdditions.h */,
-				62E8B9611A39AA85001993A9 /* UITabBarControllerAdditions.m */,
 				62E8B9621A39AA85001993A9 /* UIViewControllerAdditions.h */,
 				62E8B9631A39AA85001993A9 /* UIViewControllerAdditions.m */,
+				62E8B95C1A39AA85001993A9 /* UINavigationControllerAdditions.h */,
+				62E8B95D1A39AA85001993A9 /* UINavigationControllerAdditions.m */,
+				62E8B9601A39AA85001993A9 /* UITabBarControllerAdditions.h */,
+				62E8B9611A39AA85001993A9 /* UITabBarControllerAdditions.m */,
 			);
 			path = "Controller Addition";
 			sourceTree = "<group>";
@@ -594,7 +588,6 @@
 				62E8B9A51A39AA85001993A9 /* UINavigationControllerAdditions.h in Headers */,
 				62E8B9B01A39AA85001993A9 /* TTDebug.h in Headers */,
 				62E8B9CA1A39AA85001993A9 /* TTURLPatternText.h in Headers */,
-				62E8B9A71A39AA85001993A9 /* UIPopoverControllerAdditions.h in Headers */,
 				62E8B9B31A39AA85001993A9 /* TTUtil.h in Headers */,
 				62DE31EC1A483879008FEFEF /* LDMPostMessageConfigurationItem.h in Headers */,
 				62DE31EE1A483879008FEFEF /* LDMReceiveMessageConfigurationItem.h in Headers */,
@@ -702,7 +695,7 @@
 		62B4F9191A171BBC0056CBAB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "庞辉";
 				TargetAttributes = {
 					62B4F9201A171BBC0056CBAB = {
@@ -822,7 +815,6 @@
 				62E8B9C41A39AA85001993A9 /* TTURLPattern.m in Sources */,
 				62DE32011A48507E008FEFEF /* LDMURLViewCtrlPatternConfigurationItem.m in Sources */,
 				62E8B9BB1A39AA85001993A9 /* TTURLAction.m in Sources */,
-				62E8B9A81A39AA85001993A9 /* UIPopoverControllerAdditions.m in Sources */,
 				62DE31FD1A4849A3008FEFEF /* LDMBundleConfigurationItem.m in Sources */,
 				62DE31EB1A483879008FEFEF /* LDMBundleConfigParser.m in Sources */,
 				62DD8F001A4A813300E24C77 /* UIViewController+LDMNavigator.m in Sources */,

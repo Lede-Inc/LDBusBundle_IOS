@@ -12,7 +12,7 @@
 #import "UIViewControllerAdditions.h"
 
 // Core
-#import "TTCorePreprocessorMacros.h"
+#import "TTUtil.h"
 #import "TTDebug.h"
 
 static NSMutableDictionary* gNavigatorURLs          = nil;
@@ -96,6 +96,34 @@ TT_FIX_CATEGORY_BUG(UIViewController_LDMNavigator)
 }
 
 
++ (void)doGarbageCollectionWithSelector:(SEL)selector controllerSet:(NSMutableSet*)controllers {
+    if ([controllers count] > 0) {
+        TTDCONDITIONLOG(0,@"Checking %lu controllers for garbage.", (unsigned long)[controllers count]);
+        NSSet* fullControllerList = [controllers copy];
+        for (UIViewController* controller in fullControllerList) {
+            // Subtract one from the retain count here due to the copied set.
+            NSInteger retainCount = [controller retainCount] - 1;
+            TTDCONDITIONLOG(0,@"Retain count for %X is %ld", (unsigned int)controller, (long)retainCount);
+            
+            if (retainCount == 1) {
+                // If this fails, you've somehow added a controller that doesn't use
+                // the given selector. Check the controller type and the selector itself.
+                TTDASSERT([controller respondsToSelector:selector]);
+                if ([controller respondsToSelector:selector]) {
+                    [controller performSelector:selector];
+                }
+                
+                // The object's retain count is now 1, so when we release the copied set below,
+                // the object will be completely released.
+                [controllers removeObject:controller];
+            }
+        }
+        TT_RELEASE_SAFELY(fullControllerList);
+    }
+}
+
+
+
 #pragma mark -
 #pragma mark Public
 - (NSString*)navigatorURL {
@@ -127,14 +155,11 @@ TT_FIX_CATEGORY_BUG(UIViewController_LDMNavigator)
     }
 }
 
+
 - (void)unsetNavigatorProperties {
-    TTDCONDITIONLOG(0,
-                    @"Unsetting this controller's properties: %X", (unsigned int)self);
-    
     NSString* urlPath = self.originalNavigatorURL;
     if (nil != urlPath) {
-        TTDCONDITIONLOG(0,
-                        @"Removing this URL path: %@", urlPath);
+        TTDCONDITIONLOG(0,@"Removing this URL path: %@", urlPath);
         self.originalNavigatorURL = nil;
     }
 }

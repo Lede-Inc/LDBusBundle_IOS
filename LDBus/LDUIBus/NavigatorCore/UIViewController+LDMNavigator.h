@@ -43,6 +43,9 @@
  */
 + (void)ttAddNavigatorController:(UIViewController*)controller;
 
+
++ (void)doGarbageCollectionWithSelector:(SEL)selector controllerSet:(NSMutableSet*)controllers;
+
 /**
  * 销毁垃圾箱中的ViewController
  * @protected

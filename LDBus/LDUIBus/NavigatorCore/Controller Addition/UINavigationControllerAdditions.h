@@ -6,6 +6,11 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+
+/**
+ * UINavigationController+TTCategory
+ * 用于在Navigator导航时，如果viewController是UINavigationController时，进行导航判断和处理
+ */
 @interface UINavigationController (TTCategory)
 
 @end

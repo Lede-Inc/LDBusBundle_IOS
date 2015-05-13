@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0610"
+   LastUpgradeVersion = "0630"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -42,7 +42,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "625EDB651A1A045B000AEA3E"
+               BlueprintIdentifier = "62E8B89E1A39A75A001993A9"
                BuildableName = "LDBusTests.xctest"
                BlueprintName = "LDBusTests"
                ReferencedContainer = "container:LDBusBundle.xcodeproj">
@@ -70,7 +70,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "625EDB651A1A045B000AEA3E"
+               BlueprintIdentifier = "62E8B89E1A39A75A001993A9"
                BuildableName = "LDBusTests.xctest"
                BlueprintName = "LDBusTests"
                ReferencedContainer = "container:LDBusBundle.xcodeproj">
@@ -96,7 +96,8 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "62B4F9201A171BBC0056CBAB"
@@ -114,7 +115,8 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "62B4F9201A171BBC0056CBAB"

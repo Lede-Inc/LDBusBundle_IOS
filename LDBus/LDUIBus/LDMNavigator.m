@@ -500,7 +500,7 @@ static LDMNavigator* gNavigator = nil;
 - (UIViewController*)topViewController {
   UIViewController* controller = _rootViewController;
   while (controller) {
-    UIViewController* child = controller.popupViewController;
+    UIViewController* child = nil;
     if (!child || ![child canBeTopViewController]) {
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
         child = controller.modalViewController;
