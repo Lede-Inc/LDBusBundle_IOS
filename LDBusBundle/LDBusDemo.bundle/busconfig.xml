@@ -14,8 +14,8 @@
             <URLPattern name="foo/(initWithFood:)" webquery=""/>
             <URLPattern name="type/(initWithType:)"/>
             <URLPattern name="popover/(initWithFood:)" type="pop"/>
-            <URLPattern name="modeview" webquery="param=(initwith)" type="modal"/>
-            <URLPattern name="about/(initWithUs:)/(others:)" parent="food/modeview/10" type="push"/>
+            <URLPattern name="modeview" webquery="param=(initWithFood:)" type="modal"/>
+            <URLPattern name="about/(initWithUs:)/(others:)" parent="food/modeview?param=10" type="push"/>
         </ViewController>
     </url_handler_list>
     <service_list>

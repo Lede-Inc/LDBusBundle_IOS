@@ -41,13 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LDBus/LDUIBus/NavigatorCore/URL Pattern/Patterns/TTURLNavigatorPattern.m"
-            timestampString = "453212415.785967"
+            filePath = "LDBusBundle/MenuController.m"
+            timestampString = "453214821.202105"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "460"
-            endingLineNumber = "460"
-            landmarkName = "-createObjectFromURL:query:"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,13 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LDBus/LDUIBus/NavigatorCore/URL Pattern/Patterns/TTURLNavigatorPattern.m"
-            timestampString = "453212415.785967"
+            filePath = "LDBusBundle/MenuController.m"
+            timestampString = "453215069.214835"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "477"
-            endingLineNumber = "477"
-            landmarkName = "-createObjectFromURL:query:"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,13 +73,45 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LDBus/LDMContainer.m"
-            timestampString = "453213937.664802"
+            filePath = "LDBus/LDUIBus/LDMUIBusCenter.m"
+            timestampString = "453215083.90759"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
-            landmarkName = "-loadAllLocalBundleConfig"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
+            landmarkName = "-forwardMessageToOtherBundles"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LDBus/LDUIBus/LDMUIBusConnector.m"
+            timestampString = "453215098.171605"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "-dealWithURLMessageFromBus:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LDBus/LDUIBus/LDMNavigator.m"
+            timestampString = "453215237.192189"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "327"
+            endingLineNumber = "327"
+            landmarkName = "-presentController:parentController:mode:action:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
