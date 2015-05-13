@@ -20,11 +20,9 @@
 		62D1C6D01A4920A100AEA467 /* LDMBMovieFilm.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 62D1C6CF1A4920A100AEA467 /* LDMBMovieFilm.bundle */; };
 		62D1C6D31A4980C900AEA467 /* LDDemoMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 62D1C6D21A4980C900AEA467 /* LDDemoMessageHandler.m */; };
 		62D1F52F1A36D58C0076ACA7 /* LDBusDemo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 62D1F52E1A36D58C0076ACA7 /* LDBusDemo.bundle */; };
-		62D28C3E1A52903C00CE1C2E /* LDMNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 62D28C391A52903C00CE1C2E /* LDMNavigator.h */; };
-		62D28C3F1A52903C00CE1C2E /* LDMNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 62D28C3A1A52903C00CE1C2E /* LDMNavigator.m */; };
-		62D28C401A52903C00CE1C2E /* LDMBaseNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 62D28C3B1A52903C00CE1C2E /* LDMBaseNavigator.h */; };
-		62D28C411A52903C00CE1C2E /* LDMBaseNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 62D28C3C1A52903C00CE1C2E /* LDMBaseNavigator.m */; };
-		62D28C421A52903C00CE1C2E /* LDMBaseNavigatorInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 62D28C3D1A52903C00CE1C2E /* LDMBaseNavigatorInternal.h */; };
+		62D28C401A52903C00CE1C2E /* LDMNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 62D28C3B1A52903C00CE1C2E /* LDMNavigator.h */; };
+		62D28C411A52903C00CE1C2E /* LDMNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 62D28C3C1A52903C00CE1C2E /* LDMNavigator.m */; };
+		62D28C421A52903C00CE1C2E /* LDMNavigatorInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 62D28C3D1A52903C00CE1C2E /* LDMNavigatorInternal.h */; };
 		62D5165A1A304F0500FFEDC0 /* LDLoginServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 62D516591A304F0500FFEDC0 /* LDLoginServiceImpl.m */; };
 		62D539B71A1B27790088FFF4 /* framework.sh in Resources */ = {isa = PBXBuildFile; fileRef = 62D539B51A1B27790088FFF4 /* framework.sh */; };
 		62DD8EFF1A4A813300E24C77 /* UIViewController+LDMNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 62DD8EFD1A4A813300E24C77 /* UIViewController+LDMNavigator.h */; };
@@ -156,11 +154,9 @@
 		62D1C6D11A4980C900AEA467 /* LDDemoMessageHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDDemoMessageHandler.h; sourceTree = "<group>"; };
 		62D1C6D21A4980C900AEA467 /* LDDemoMessageHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDDemoMessageHandler.m; sourceTree = "<group>"; };
 		62D1F52E1A36D58C0076ACA7 /* LDBusDemo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LDBusDemo.bundle; sourceTree = "<group>"; };
-		62D28C391A52903C00CE1C2E /* LDMNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDMNavigator.h; sourceTree = "<group>"; };
-		62D28C3A1A52903C00CE1C2E /* LDMNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDMNavigator.m; sourceTree = "<group>"; };
-		62D28C3B1A52903C00CE1C2E /* LDMBaseNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDMBaseNavigator.h; sourceTree = "<group>"; };
-		62D28C3C1A52903C00CE1C2E /* LDMBaseNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDMBaseNavigator.m; sourceTree = "<group>"; };
-		62D28C3D1A52903C00CE1C2E /* LDMBaseNavigatorInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDMBaseNavigatorInternal.h; sourceTree = "<group>"; };
+		62D28C3B1A52903C00CE1C2E /* LDMNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDMNavigator.h; sourceTree = "<group>"; };
+		62D28C3C1A52903C00CE1C2E /* LDMNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDMNavigator.m; sourceTree = "<group>"; };
+		62D28C3D1A52903C00CE1C2E /* LDMNavigatorInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDMNavigatorInternal.h; sourceTree = "<group>"; };
 		62D516571A304E7600FFEDC0 /* LDLoginService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDLoginService.h; sourceTree = "<group>"; };
 		62D516581A304F0500FFEDC0 /* LDLoginServiceImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDLoginServiceImpl.h; sourceTree = "<group>"; };
 		62D516591A304F0500FFEDC0 /* LDLoginServiceImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDLoginServiceImpl.m; sourceTree = "<group>"; };
@@ -451,11 +447,9 @@
 				62DF03061A4BDAE900EDBE8B /* LDMBusWebControllerProtocol.h */,
 				62DF03021A4BB69000EDBE8B /* LDMRoutes.h */,
 				62DF03031A4BB69000EDBE8B /* LDMRoutes.m */,
-				62D28C391A52903C00CE1C2E /* LDMNavigator.h */,
-				62D28C3A1A52903C00CE1C2E /* LDMNavigator.m */,
-				62D28C3B1A52903C00CE1C2E /* LDMBaseNavigator.h */,
-				62D28C3C1A52903C00CE1C2E /* LDMBaseNavigator.m */,
-				62D28C3D1A52903C00CE1C2E /* LDMBaseNavigatorInternal.h */,
+				62D28C3B1A52903C00CE1C2E /* LDMNavigator.h */,
+				62D28C3C1A52903C00CE1C2E /* LDMNavigator.m */,
+				62D28C3D1A52903C00CE1C2E /* LDMNavigatorInternal.h */,
 				62E8B95A1A39AA85001993A9 /* NavigatorCore */,
 				62E8B98A1A39AA85001993A9 /* NavigatorUI */,
 			);
@@ -605,11 +599,10 @@
 				62DE31EC1A483879008FEFEF /* LDMPostMessageConfigurationItem.h in Headers */,
 				62DE31EE1A483879008FEFEF /* LDMReceiveMessageConfigurationItem.h in Headers */,
 				62E8B9C51A39AA85001993A9 /* TTURLArgumentType.h in Headers */,
-				62D28C3E1A52903C00CE1C2E /* LDMNavigator.h in Headers */,
 				62E8B9D91A39AB16001993A9 /* TTURLArguments.h in Headers */,
 				62E8B9BC1A39AA85001993A9 /* TTNavigationMode.h in Headers */,
 				62E8B9A11A39AA85001993A9 /* LDMUIBusCenter.h in Headers */,
-				62D28C421A52903C00CE1C2E /* LDMBaseNavigatorInternal.h in Headers */,
+				62D28C421A52903C00CE1C2E /* LDMNavigatorInternal.h in Headers */,
 				62E8B9AB1A39AA85001993A9 /* UIViewControllerAdditions.h in Headers */,
 				62DD8EFF1A4A813300E24C77 /* UIViewController+LDMNavigator.h in Headers */,
 				62E8B9C31A39AA85001993A9 /* TTURLPattern.h in Headers */,
@@ -617,8 +610,8 @@
 				62DE31EA1A483879008FEFEF /* LDMBundleConfigParser.h in Headers */,
 				62E8B9C81A39AA85001993A9 /* TTURLLiteral.h in Headers */,
 				62DE31FC1A4849A3008FEFEF /* LDMBundleConfigurationItem.h in Headers */,
-				62D28C401A52903C00CE1C2E /* LDMBaseNavigator.h in Headers */,
 				62E8B9A91A39AA85001993A9 /* UITabBarControllerAdditions.h in Headers */,
+				62D28C401A52903C00CE1C2E /* LDMNavigator.h in Headers */,
 				62E8B99D1A39AA85001993A9 /* LDMMessageBusCenter.h in Headers */,
 				62E8B99F1A39AA85001993A9 /* LDMServiceBusCenter.h in Headers */,
 				62DE32001A48507E008FEFEF /* LDMURLViewCtrlPatternConfigurationItem.h in Headers */,
@@ -839,8 +832,7 @@
 				62E8B9A21A39AA85001993A9 /* LDMUIBusCenter.m in Sources */,
 				62E8B9A41A39AA85001993A9 /* LDMUIBusConnector.m in Sources */,
 				62E8B9C01A39AA85001993A9 /* TTURLNavigatorPattern.m in Sources */,
-				62D28C3F1A52903C00CE1C2E /* LDMNavigator.m in Sources */,
-				62D28C411A52903C00CE1C2E /* LDMBaseNavigator.m in Sources */,
+				62D28C411A52903C00CE1C2E /* LDMNavigator.m in Sources */,
 				62E8B9A01A39AA85001993A9 /* LDMServiceBusCenter.m in Sources */,
 				62E8B99E1A39AA85001993A9 /* LDMMessageBusCenter.m in Sources */,
 				62E8B9C91A39AA85001993A9 /* TTURLLiteral.m in Sources */,

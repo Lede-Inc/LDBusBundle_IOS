@@ -3,29 +3,56 @@
 //  Copyright (c) 2014 庞辉. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-#import "LDMBaseNavigator.h"
-#import "TTNavigationMode.h"
+@class TTURLAction;
+@class TTURLMap;
+@class TTURLPattern;
+@class TTURLNavigatorPattern;
+
 /**
- * A URL-based navigation system with built-in persistence.
- * Add support for model-based controllers and implement the legacy global instance accessor.
+ * A URL-based navigation system.
  */
-@interface LDMNavigator : LDMBaseNavigator {
-    
+@interface LDMNavigator : NSObject <UIPopoverControllerDelegate> {
+    UIWindow*                   _window;
+    id                          _popoverController;
 }
+
+//The window that contains the view controller hierarchy
+@property (nonatomic, retain) UIWindow* window;
+
+//The controller that is at the root of the view controller hierarchy.
+@property (nonatomic, readwrite, assign) UIViewController* rootViewController;
+
+//The currently visible view controller.
+@property (nonatomic, readonly) UIViewController* visibleViewController;
+
+//The view controller that is currently on top of the navigation stack. 
+//忽略search display controoler，不属于导航体系的一部分
+@property (nonatomic, readonly) UIViewController* topViewController;
+@property (nonatomic, readonly)NSString *URL;
+
 
 + (LDMNavigator*)navigator;
 
+/**
+ * 在parentURL下展示一个ViewController
+ *
+ * @public
+ */
+- (BOOL)presentController: (UIViewController*)controller
+            parentURLPath: (NSString*)parentURLPath
+              withPattern: (TTURLNavigatorPattern*)pattern
+                   action: (TTURLAction*)action;
 
 /**
- * Present a view controller that strictly depends on the existence of the parent controller.
- * 打开一个只依赖于当前父controller的controller
- *
- * @protected
+ * Removes all view controllers from the window and releases them.
  */
-- (void)presentDependantController: (UIViewController*)controller
-                  parentController: (UIViewController*)parentController
-                              mode: (TTNavigationMode)mode
-                            action: (TTURLAction*)action;
+- (void)removeAllViewControllers;
+- (UIViewController*)getVisibleChildController:(UIViewController*)controller;
+
+
+
 
 @end

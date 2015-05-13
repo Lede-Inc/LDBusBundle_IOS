@@ -14,9 +14,9 @@
 // limitations under the License.
 //
 
-#import "LDMBaseNavigator.h"
+#import "LDMNavigator.h"
 
-@interface LDMBaseNavigator (TTInternal)
+@interface LDMNavigator (TTInternal)
 
 - (void)presentDependantController: (UIViewController*)controller
                   parentController: (UIViewController*)parentController

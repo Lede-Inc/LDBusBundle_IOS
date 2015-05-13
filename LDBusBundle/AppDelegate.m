@@ -8,7 +8,7 @@
 #import "AppDelegate.h"
 #import "LDMBusContext.h"
 #import "LDLoginService.h"
-#import "UITabBarControllerAdditions.h"
+#import "UIViewControllerAdditions.h"
 
 @interface MyTabController : UITabBarController
 
@@ -37,6 +37,18 @@
 }
 
 
+- (UIViewController*)rootControllerForController:(UIViewController*)controller {
+    if ([controller canContainControllers]) {
+        return controller;
+        
+    } else {
+        UINavigationController* navController = [[UINavigationController alloc] init];
+        [navController pushViewController:controller animated:NO];
+        return navController;
+    }
+}
+
+
 @end
 
 
@@ -49,10 +61,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    [self.window makeKeyAndVisible];
-    
     //bus容器初始化
-    [LDMBusContext initialBundleContainerWithWindow:self.window andRootViewController:self.window.rootViewController];
+    [LDMBusContext initialBundleContainerWithWindow:self.window andRootViewController:nil];
     
     
     //注册特殊scheme的web处理容器
@@ -65,9 +75,11 @@
     
     //打开一个初始ViewController
     NSString *url = @"netescaipiao163://mainTab1";
-    if([LDMBusContext canOpenURL:url]){
-        [LDMBusContext openURL:url];
+    UIViewController *rootViewController = [LDMBusContext controllerForURL:url];
+    if(rootViewController){
+        self.window.rootViewController = rootViewController;
     }
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
