@@ -4,11 +4,7 @@
 //
 
 #import "TTURLWildcard.h"
-
-// UINavigator (private)
-#import "TTURLArguments.h"
 #import "TTUtil.h"
-
 
 @implementation TTURLWildcard
 @synthesize name      = _name;
@@ -32,17 +28,10 @@
 }
 
 
+/**
+ * 作为设置selector的选项，传入任何text都属于匹配项
+ */
 - (BOOL)match:(NSString*)text {
     return YES;
 }
-
-
-- (NSString*)convertPropertyOfObject:(id)object {
-    return @"";
-}
-
-
-
-
-
 @end

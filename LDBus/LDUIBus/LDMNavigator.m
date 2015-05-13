@@ -271,34 +271,34 @@ static LDMNavigator* gNavigator = nil;
                       sourceView: (UIView*)sourceView
                       sourceRect: (CGRect)sourceRect
                         animated: (BOOL)animated {
-  TTDASSERT(nil != sourceButton || nil != sourceView);
-  if (nil == sourceButton && nil == sourceView) {
-    return;
-  }
-
-  //如果当前navigator中有popOverController，则先dismiss
-  if (nil != _popoverController) {
-    [_popoverController dismissPopoverAnimated:animated];
-      _popoverController = nil;
-  }
-
-  _popoverController =  [[UIPopoverController alloc]
-                         initWithContentViewController: controller];
-  if (_popoverController != nil) {
-      [(UIPopoverController *)_popoverController setDelegate:self];
-  }
-
-  if (nil != sourceButton) {
-    [_popoverController presentPopoverFromBarButtonItem: sourceButton
-                               permittedArrowDirections: UIPopoverArrowDirectionAny
-                                               animated: animated];
-
-  } else {
-    [_popoverController presentPopoverFromRect: sourceRect
-                                        inView: sourceView
-                      permittedArrowDirections: UIPopoverArrowDirectionAny
-                                      animated: animated];
-  }
+    NSAssert(nil != sourceButton || nil != sourceView, @"source Button or source view cannot be nil at time");
+    if (nil == sourceButton && nil == sourceView) {
+        return;
+    }
+    
+    //如果当前navigator中有popOverController，则先dismiss
+    if (nil != _popoverController) {
+        [_popoverController dismissPopoverAnimated:animated];
+        _popoverController = nil;
+    }
+    
+    _popoverController =  [[UIPopoverController alloc]
+                           initWithContentViewController: controller];
+    if (_popoverController != nil) {
+        [(UIPopoverController *)_popoverController setDelegate:self];
+    }
+    
+    if (nil != sourceButton) {
+        [_popoverController presentPopoverFromBarButtonItem: sourceButton
+                                   permittedArrowDirections: UIPopoverArrowDirectionAny
+                                                   animated: animated];
+        
+    } else {
+        [_popoverController presentPopoverFromRect: sourceRect
+                                            inView: sourceView
+                          permittedArrowDirections: UIPopoverArrowDirectionAny
+                                          animated: animated];
+    }
 }
 
 

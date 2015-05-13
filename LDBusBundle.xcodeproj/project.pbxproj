@@ -75,7 +75,6 @@
 		62E8B9AD1A39AA85001993A9 /* NSStringAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9651A39AA85001993A9 /* NSStringAdditions.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9AE1A39AA85001993A9 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9661A39AA85001993A9 /* NSStringAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		62E8B9B01A39AA85001993A9 /* TTDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9681A39AA85001993A9 /* TTDebug.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		62E8B9B11A39AA85001993A9 /* TTDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9691A39AA85001993A9 /* TTDebug.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		62E8B9B31A39AA85001993A9 /* TTUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B96B1A39AA85001993A9 /* TTUtil.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9B41A39AA85001993A9 /* TTUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B96C1A39AA85001993A9 /* TTUtil.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		62E8B9BA1A39AA85001993A9 /* TTURLAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9731A39AA85001993A9 /* TTURLAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -87,7 +86,6 @@
 		62E8B9C01A39AA85001993A9 /* TTURLNavigatorPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B97C1A39AA85001993A9 /* TTURLNavigatorPattern.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		62E8B9C31A39AA85001993A9 /* TTURLPattern.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9801A39AA85001993A9 /* TTURLPattern.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9C41A39AA85001993A9 /* TTURLPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9811A39AA85001993A9 /* TTURLPattern.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62E8B9C51A39AA85001993A9 /* TTURLArgumentType.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9831A39AA85001993A9 /* TTURLArgumentType.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9C61A39AA85001993A9 /* TTURLWildcard.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9841A39AA85001993A9 /* TTURLWildcard.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9C71A39AA85001993A9 /* TTURLWildcard.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9851A39AA85001993A9 /* TTURLWildcard.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		62E8B9C81A39AA85001993A9 /* TTURLLiteral.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9871A39AA85001993A9 /* TTURLLiteral.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -213,7 +211,6 @@
 		62E8B9651A39AA85001993A9 /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
 		62E8B9661A39AA85001993A9 /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
 		62E8B9681A39AA85001993A9 /* TTDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTDebug.h; sourceTree = "<group>"; };
-		62E8B9691A39AA85001993A9 /* TTDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTDebug.m; sourceTree = "<group>"; };
 		62E8B96B1A39AA85001993A9 /* TTUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTUtil.h; sourceTree = "<group>"; };
 		62E8B96C1A39AA85001993A9 /* TTUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTUtil.m; sourceTree = "<group>"; };
 		62E8B9731A39AA85001993A9 /* TTURLAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTURLAction.h; sourceTree = "<group>"; };
@@ -221,16 +218,15 @@
 		62E8B9761A39AA85001993A9 /* TTNavigationMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTNavigationMode.h; sourceTree = "<group>"; };
 		62E8B9771A39AA85001993A9 /* TTURLMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTURLMap.h; sourceTree = "<group>"; };
 		62E8B9781A39AA85001993A9 /* TTURLMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLMap.m; sourceTree = "<group>"; };
-		62E8B97B1A39AA85001993A9 /* TTURLNavigatorPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTURLNavigatorPattern.h; sourceTree = "<group>"; };
-		62E8B97C1A39AA85001993A9 /* TTURLNavigatorPattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLNavigatorPattern.m; sourceTree = "<group>"; };
-		62E8B9801A39AA85001993A9 /* TTURLPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTURLPattern.h; sourceTree = "<group>"; };
-		62E8B9811A39AA85001993A9 /* TTURLPattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLPattern.m; sourceTree = "<group>"; };
-		62E8B9831A39AA85001993A9 /* TTURLArgumentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTURLArgumentType.h; sourceTree = "<group>"; };
+		62E8B97B1A39AA85001993A9 /* TTURLNavigatorPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLNavigatorPattern.h; path = Patterns/TTURLNavigatorPattern.h; sourceTree = "<group>"; };
+		62E8B97C1A39AA85001993A9 /* TTURLNavigatorPattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTURLNavigatorPattern.m; path = Patterns/TTURLNavigatorPattern.m; sourceTree = "<group>"; };
+		62E8B9801A39AA85001993A9 /* TTURLPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLPattern.h; path = ../TTURLPattern.h; sourceTree = "<group>"; };
+		62E8B9811A39AA85001993A9 /* TTURLPattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTURLPattern.m; path = ../TTURLPattern.m; sourceTree = "<group>"; };
 		62E8B9841A39AA85001993A9 /* TTURLWildcard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTURLWildcard.h; sourceTree = "<group>"; };
 		62E8B9851A39AA85001993A9 /* TTURLWildcard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLWildcard.m; sourceTree = "<group>"; };
-		62E8B9871A39AA85001993A9 /* TTURLLiteral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTURLLiteral.h; sourceTree = "<group>"; };
-		62E8B9881A39AA85001993A9 /* TTURLLiteral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLLiteral.m; sourceTree = "<group>"; };
-		62E8B9891A39AA85001993A9 /* TTURLPatternText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTURLPatternText.h; sourceTree = "<group>"; };
+		62E8B9871A39AA85001993A9 /* TTURLLiteral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLLiteral.h; path = "../URL Pattern Text/TTURLLiteral.h"; sourceTree = "<group>"; };
+		62E8B9881A39AA85001993A9 /* TTURLLiteral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTURLLiteral.m; path = "../URL Pattern Text/TTURLLiteral.m"; sourceTree = "<group>"; };
+		62E8B9891A39AA85001993A9 /* TTURLPatternText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLPatternText.h; path = "../URL Pattern Text/TTURLPatternText.h"; sourceTree = "<group>"; };
 		62E8B98F1A39AA85001993A9 /* TTWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTWebController.h; sourceTree = "<group>"; };
 		62E8B9901A39AA85001993A9 /* TTWebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTWebController.m; sourceTree = "<group>"; };
 		62E8B9D71A39AB16001993A9 /* TTURLArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTURLArguments.h; sourceTree = "<group>"; };
@@ -485,7 +481,6 @@
 				62E8B9651A39AA85001993A9 /* NSStringAdditions.h */,
 				62E8B9661A39AA85001993A9 /* NSStringAdditions.m */,
 				62E8B9681A39AA85001993A9 /* TTDebug.h */,
-				62E8B9691A39AA85001993A9 /* TTDebug.m */,
 				62E8B96B1A39AA85001993A9 /* TTUtil.h */,
 				62E8B96C1A39AA85001993A9 /* TTUtil.m */,
 			);
@@ -516,44 +511,27 @@
 		62E8B9791A39AA85001993A9 /* URL Pattern */ = {
 			isa = PBXGroup;
 			children = (
-				62E8B9801A39AA85001993A9 /* TTURLPattern.h */,
-				62E8B9811A39AA85001993A9 /* TTURLPattern.m */,
-				62E8B97A1A39AA85001993A9 /* Patterns */,
-				62E8B9821A39AA85001993A9 /* URL Argument Type */,
-				62E8B9861A39AA85001993A9 /* URL Pattern Text */,
-			);
-			path = "URL Pattern";
-			sourceTree = "<group>";
-		};
-		62E8B97A1A39AA85001993A9 /* Patterns */ = {
-			isa = PBXGroup;
-			children = (
 				62E8B97B1A39AA85001993A9 /* TTURLNavigatorPattern.h */,
 				62E8B97C1A39AA85001993A9 /* TTURLNavigatorPattern.m */,
+				62E8B9821A39AA85001993A9 /* URL Argument Type */,
 			);
-			path = Patterns;
+			path = "URL Pattern";
 			sourceTree = "<group>";
 		};
 		62E8B9821A39AA85001993A9 /* URL Argument Type */ = {
 			isa = PBXGroup;
 			children = (
-				62E8B9831A39AA85001993A9 /* TTURLArgumentType.h */,
+				62E8B9801A39AA85001993A9 /* TTURLPattern.h */,
+				62E8B9811A39AA85001993A9 /* TTURLPattern.m */,
+				62E8B9891A39AA85001993A9 /* TTURLPatternText.h */,
 				62E8B9D71A39AB16001993A9 /* TTURLArguments.h */,
 				62E8B9D81A39AB16001993A9 /* TTURLArguments.m */,
 				62E8B9841A39AA85001993A9 /* TTURLWildcard.h */,
 				62E8B9851A39AA85001993A9 /* TTURLWildcard.m */,
-			);
-			path = "URL Argument Type";
-			sourceTree = "<group>";
-		};
-		62E8B9861A39AA85001993A9 /* URL Pattern Text */ = {
-			isa = PBXGroup;
-			children = (
 				62E8B9871A39AA85001993A9 /* TTURLLiteral.h */,
 				62E8B9881A39AA85001993A9 /* TTURLLiteral.m */,
-				62E8B9891A39AA85001993A9 /* TTURLPatternText.h */,
 			);
-			path = "URL Pattern Text";
+			path = "URL Argument Type";
 			sourceTree = "<group>";
 		};
 		62E8B98A1A39AA85001993A9 /* NavigatorUI */ = {
@@ -591,7 +569,6 @@
 				62E8B9B31A39AA85001993A9 /* TTUtil.h in Headers */,
 				62DE31EC1A483879008FEFEF /* LDMPostMessageConfigurationItem.h in Headers */,
 				62DE31EE1A483879008FEFEF /* LDMReceiveMessageConfigurationItem.h in Headers */,
-				62E8B9C51A39AA85001993A9 /* TTURLArgumentType.h in Headers */,
 				62E8B9D91A39AB16001993A9 /* TTURLArguments.h in Headers */,
 				62E8B9BC1A39AA85001993A9 /* TTNavigationMode.h in Headers */,
 				62E8B9A11A39AA85001993A9 /* LDMUIBusCenter.h in Headers */,
@@ -833,7 +810,6 @@
 				62DF03051A4BB69000EDBE8B /* LDMRoutes.m in Sources */,
 				62E8B9C71A39AA85001993A9 /* TTURLWildcard.m in Sources */,
 				62E8B9AE1A39AA85001993A9 /* NSStringAdditions.m in Sources */,
-				62E8B9B11A39AA85001993A9 /* TTDebug.m in Sources */,
 				62E8B9A61A39AA85001993A9 /* UINavigationControllerAdditions.m in Sources */,
 				62E8B9AC1A39AA85001993A9 /* UIViewControllerAdditions.m in Sources */,
 				62E8B9B41A39AA85001993A9 /* TTUtil.m in Sources */,

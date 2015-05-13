@@ -5,7 +5,7 @@
 
 
 #import "TTURLPatternText.h"
-#import "TTURLArgumentType.h"
+#import "TTURLArguments.h"
 
 /**
  * @class 生成urlPattern中的selector选项（参数）

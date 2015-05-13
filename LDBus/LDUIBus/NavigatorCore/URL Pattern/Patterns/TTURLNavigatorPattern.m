@@ -168,6 +168,11 @@ static NSString* kUniversalURLPattern = @"*";
     else {
         [self setSelectorIfPossible:@selector(initWithNavigatorURL:query:)];
     }
+    
+    //如果没有指定selector或者也没有实现Bus要求的Selector
+    if(!_selector){
+        [self setSelectorIfPossible:@selector(initWithNibName:bundle:)];
+    }
 }
 
 
@@ -178,9 +183,7 @@ static NSString* kUniversalURLPattern = @"*";
  */
 - (void)analyzeMethod {
     Class cls = [self classForInvocation];
-    Method method = [self callsInstanceMethod]
-    ? class_getInstanceMethod(cls, _selector)
-    : class_getClassMethod(cls, _selector);
+    Method method = [self callsInstanceMethod]? class_getInstanceMethod(cls, _selector): class_getClassMethod(cls, _selector);
     if (method) {
         _argumentCount = method_getNumberOfArguments(method)-2;
         // Look up the index and type of each argument in the method
@@ -419,9 +422,7 @@ static NSString* kUniversalURLPattern = @"*";
 /*
  * 通过url生成object，直接通过object invoke一个object
  */
-- (id)invoke: (id)target
-     withURL: (NSURL*)URL
-       query: (NSDictionary*)query {
+- (id)invoke: (id)target withURL: (NSURL*)URL query: (NSDictionary*)query {
     id returnValue = nil;
     NSMethodSignature *sig = [target methodSignatureForSelector:self.selector];
     if (sig) {
@@ -454,8 +455,7 @@ static NSString* kUniversalURLPattern = @"*";
  * 通过target class alloc init 或者调用selector初始化一个object
  * @return the newly created object or nil if something went wrong
  */
-- (id)createObjectFromURL: (NSURL*)URL
-                    query: (NSDictionary*)query {
+- (id)createObjectFromURL: (NSURL*)URL query: (NSDictionary*)query {
     id returnValue = nil;
     if (self.instantiatesClass) {
         //suppress static analyzer warning for this part

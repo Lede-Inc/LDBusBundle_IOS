@@ -4,7 +4,6 @@
 //
 
 
-// UI
 #import "TTURLPattern.h"
 #import "TTNavigationMode.h"
 
@@ -23,6 +22,7 @@
 @property (nonatomic, copy)     NSString*         parentURL;
 @property (nonatomic, assign)   NSInteger         transition;
 @property (nonatomic, assign)   NSInteger         argumentCount;
+
 @property (nonatomic, readonly) BOOL              isUniversal;
 @property (nonatomic, readonly) BOOL              isFragment;
 
@@ -35,7 +35,7 @@
 - (void)compile;
 
 /**
- * 判断调用URL是否喝pattern匹配
+ * 判断调用URL是否和pattern匹配
  */
 - (BOOL)matchURL:(NSURL*)URL;
 

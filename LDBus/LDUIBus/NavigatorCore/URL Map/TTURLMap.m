@@ -8,7 +8,6 @@
 
 // UINavigator
 #import "TTURLNavigatorPattern.h"
-// UINavigator (private)
 #import "UIViewController+LDMNavigator.h"
 
 // Core
@@ -126,22 +125,6 @@
     || [URL.scheme caseInsensitiveCompare:@"ftps"] == NSOrderedSame
     || [URL.scheme caseInsensitiveCompare:@"data"] == NSOrderedSame
     || [URL.scheme caseInsensitiveCompare:@"file"] == NSOrderedSame;
-}
-
-
-
-/**
- * 判断当前URL是否是调用apple本身提供的服务
- */
-- (BOOL)isExternalURL:(NSURL*)URL {
-    if ([URL.host isEqualToString:@"maps.google.com"]
-        || [URL.host isEqualToString:@"itunes.apple.com"]
-        || [URL.host isEqualToString:@"phobos.apple.com"]) {
-        return YES;
-        
-    } else {
-        return NO;
-    }
 }
 
 
@@ -539,8 +522,7 @@
  * 判断URL是不是一个APP外部打开的URL
  */
 - (BOOL)isAppURL:(NSURL*)URL {
-    return [self isExternalURL:URL]
-          || ([[UIApplication sharedApplication] canOpenURL:URL]
+    return ([[UIApplication sharedApplication] canOpenURL:URL]
               && ![self isSchemeSupported:URL.scheme]
               && ![self isWebURL:URL]);
 }

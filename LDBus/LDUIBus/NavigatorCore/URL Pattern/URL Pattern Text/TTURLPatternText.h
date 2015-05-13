@@ -8,5 +8,4 @@
 @protocol TTURLPatternText <NSObject>
 @required
 - (BOOL)match:(NSString*)text;
-- (NSString*)convertPropertyOfObject:(id)object;
 @end

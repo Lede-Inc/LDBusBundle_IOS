@@ -16,10 +16,8 @@
 #import "TTDebug.h"
 
 static NSMutableDictionary* gNavigatorURLs          = nil;
-
 static NSMutableSet*        gsNavigatorControllers  = nil;
 static NSTimer*             gsGarbageCollectorTimer = nil;
-
 static const NSTimeInterval kGarbageCollectionInterval = 20;
 
 
@@ -57,6 +55,25 @@ TT_FIX_CATEGORY_BUG(UIViewController_LDMNavigator)
 
 
 /**
+ * 当通过URL生成一个ViewController之后，将改viewController放到垃圾回收箱中
+ */
++ (void)ttAddNavigatorController:(UIViewController*)controller {
+    //所有的viewController通过进行垃圾回收
+    [[UIViewController ttNavigatorControllers] addObject:controller];
+    
+    //每20S通过UIViewController Class执行一次垃圾回收
+    if (nil == gsGarbageCollectorTimer) {
+        gsGarbageCollectorTimer =
+        [[NSTimer scheduledTimerWithTimeInterval: kGarbageCollectionInterval
+                                          target: [UIViewController class]
+                                        selector: @selector(doNavigatorGarbageCollection)
+                                        userInfo: nil
+                                         repeats: YES] retain];
+    }
+}
+
+
+/**
  * 执行垃圾回收
  */
 + (void)doNavigatorGarbageCollection {
@@ -76,26 +93,9 @@ TT_FIX_CATEGORY_BUG(UIViewController_LDMNavigator)
 }
 
 
-
 /**
- * 当通过URL生成一个ViewController之后，将改viewController放到垃圾回收箱中
+ * 对当前通过URL打开的ViewController进行垃圾回收
  */
-+ (void)ttAddNavigatorController:(UIViewController*)controller {
-    //所有的viewController通过进行垃圾回收
-    [[UIViewController ttNavigatorControllers] addObject:controller];
-    
-    //每20S通过UIViewController Class执行一次垃圾回收
-    if (nil == gsGarbageCollectorTimer) {
-        gsGarbageCollectorTimer =
-        [[NSTimer scheduledTimerWithTimeInterval: kGarbageCollectionInterval
-                                          target: [UIViewController class]
-                                        selector: @selector(doNavigatorGarbageCollection)
-                                        userInfo: nil
-                                         repeats: YES] retain];
-    }
-}
-
-
 + (void)doGarbageCollectionWithSelector:(SEL)selector controllerSet:(NSMutableSet*)controllers {
     if ([controllers count] > 0) {
         TTDCONDITIONLOG(0,@"Checking %lu controllers for garbage.", (unsigned long)[controllers count]);
@@ -108,7 +108,6 @@ TT_FIX_CATEGORY_BUG(UIViewController_LDMNavigator)
             if (retainCount == 1) {
                 // If this fails, you've somehow added a controller that doesn't use
                 // the given selector. Check the controller type and the selector itself.
-                TTDASSERT([controller respondsToSelector:selector]);
                 if ([controller respondsToSelector:selector]) {
                     [controller performSelector:selector];
                 }
@@ -119,6 +118,15 @@ TT_FIX_CATEGORY_BUG(UIViewController_LDMNavigator)
             }
         }
         TT_RELEASE_SAFELY(fullControllerList);
+    }
+}
+
+
+-(void)unsetNavigatorProperties {
+    NSString* urlPath = self.originalNavigatorURL;
+    if (nil != urlPath) {
+        TTDCONDITIONLOG(0,@"Removing this URL path: %@", urlPath);
+        self.originalNavigatorURL = nil;
     }
 }
 
@@ -154,15 +162,4 @@ TT_FIX_CATEGORY_BUG(UIViewController_LDMNavigator)
         [gNavigatorURLs removeObjectForKey:key];
     }
 }
-
-
-- (void)unsetNavigatorProperties {
-    NSString* urlPath = self.originalNavigatorURL;
-    if (nil != urlPath) {
-        TTDCONDITIONLOG(0,@"Removing this URL path: %@", urlPath);
-        self.originalNavigatorURL = nil;
-    }
-}
-
-
 @end

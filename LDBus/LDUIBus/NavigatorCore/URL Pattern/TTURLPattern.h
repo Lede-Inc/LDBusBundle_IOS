@@ -16,6 +16,7 @@
 @interface TTURLPattern : NSObject {
     NSString*             _URL;     //urlpattern
     NSString*             _webURL;  //urlpattern对应的html5页面地址
+    
     NSString*             _scheme;
     NSMutableArray*       _path;  //用来存储path选项
     NSMutableDictionary*  _query; //用来存储query选项

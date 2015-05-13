@@ -3,23 +3,13 @@
 //  Copyright (c) 2014 庞辉. All rights reserved.
 //
 
-
-
 /**
- * Three20 Debugging tools.
  *
  * Provided in this header are a set of debugging tools. This is meant quite literally, in that
  * all of the macros below will only function when the DEBUG preprocessor macro is specified.
  *
- * TTDASSERT(<statement>);
- * If <statement> is false, the statement will be written to the log and if you are running in
- * the simulator with a debugger attached, the app will break on the assertion line.
- *
  * TTDPRINT(@"formatted log text %d", param1);
  * Print the given formatted text to the log.
- *
- * TTDPRINTMETHODNAME();
- * Print the current method name to the log.
  *
  * TTDCONDITIONLOG(<statement>, @"formatted log text %d", param1);
  * If <statement> is true, then the formatted text will be written to the log.
@@ -49,30 +39,6 @@
   #define TTDPRINT(xx, ...)  NSLog(@"%s(%d): " xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
 #else
   #define TTDPRINT(xx, ...)  ((void)0)
-#endif // #ifdef DEBUG
-
-
-// Debug-only assertions.
-#ifdef DEBUG
-    #import <TargetConditionals.h>
-
-    #if TARGET_IPHONE_SIMULATOR
-        #ifdef __cplusplus
-          extern "C" __attribute__ ((visibility ("default"))) int TTIsInDebugger();
-        #else
-          int TTIsInDebugger();
-        #endif
-
-        // We leave the __asm__ in this macro so that when a break occurs, we don't have to step out of
-        // a "breakInDebugger" function.
-        #define TTDASSERT(xx) { if (!(xx)) { TTDPRINT(@"TTDASSERT failed: %s", #xx); \
-                                          if (TTIsInDebugger()) { __asm__("int $3\n" : : ); }; } \
-                            } ((void)0)
-    #else
-        #define TTDASSERT(xx) { if (!(xx)) { TTDPRINT(@"TTDASSERT failed: %s", #xx); } } ((void)0)
-    #endif // #if TARGET_IPHONE_SIMULATOR
-#else
-    #define TTDASSERT(xx) ((void)0)
 #endif // #ifdef DEBUG
 
 

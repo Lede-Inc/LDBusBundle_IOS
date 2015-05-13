@@ -21,9 +21,4 @@
 }
 
 
-- (NSString*)convertPropertyOfObject:(id)object {
-    return _name;
-}
-
-
 @end
