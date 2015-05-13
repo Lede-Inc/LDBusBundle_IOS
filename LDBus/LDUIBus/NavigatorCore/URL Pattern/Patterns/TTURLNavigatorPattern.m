@@ -13,7 +13,7 @@
 #import "TTURLArguments.h"
 
 // Core
-#import "TTCorePreprocessorMacros.h"
+#import "TTUtil.h"
 #import "TTDebug.h"
 #import "NSStringAdditions.h"
 

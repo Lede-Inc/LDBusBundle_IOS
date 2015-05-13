@@ -4,10 +4,7 @@
 //
 
 #import "TTURLLiteral.h"
-
-// Core
-#import "TTCorePreprocessorMacros.h"
-
+#import "TTUtil.h"
 
 @implementation TTURLLiteral
 @synthesize name = _name;

@@ -36,8 +36,13 @@
 #define TTLOGLEVEL_ERROR    1
 
 #ifndef TTMAXLOGLEVEL
-  #define TTMAXLOGLEVEL TTLOGLEVEL_WARNING
+    #ifdef DEBUG
+        #define TTMAXLOGLEVEL TTLOGLEVEL_INFO
+    #else
+        #define TTMAXLOGLEVEL TTLOGLEVEL_ERROR
+    #endif
 #endif
+
 
 // The general purpose logger. This ignores logging levels.
 #ifdef DEBUG
@@ -46,34 +51,30 @@
   #define TTDPRINT(xx, ...)  ((void)0)
 #endif // #ifdef DEBUG
 
-// Prints the current method's name.
-#define TTDPRINTMETHODNAME() TTDPRINT(@"%s", __PRETTY_FUNCTION__)
 
 // Debug-only assertions.
 #ifdef DEBUG
+    #import <TargetConditionals.h>
 
-#import <TargetConditionals.h>
+    #if TARGET_IPHONE_SIMULATOR
+        #ifdef __cplusplus
+          extern "C" __attribute__ ((visibility ("default"))) int TTIsInDebugger();
+        #else
+          int TTIsInDebugger();
+        #endif
 
-#if TARGET_IPHONE_SIMULATOR
-
-#ifdef __cplusplus
-  extern "C" __attribute__ ((visibility ("default"))) int TTIsInDebugger();
+        // We leave the __asm__ in this macro so that when a break occurs, we don't have to step out of
+        // a "breakInDebugger" function.
+        #define TTDASSERT(xx) { if (!(xx)) { TTDPRINT(@"TTDASSERT failed: %s", #xx); \
+                                          if (TTIsInDebugger()) { __asm__("int $3\n" : : ); }; } \
+                            } ((void)0)
+    #else
+        #define TTDASSERT(xx) { if (!(xx)) { TTDPRINT(@"TTDASSERT failed: %s", #xx); } } ((void)0)
+    #endif // #if TARGET_IPHONE_SIMULATOR
 #else
-  int TTIsInDebugger();
-#endif
-
-  // We leave the __asm__ in this macro so that when a break occurs, we don't have to step out of
-  // a "breakInDebugger" function.
-  #define TTDASSERT(xx) { if (!(xx)) { TTDPRINT(@"TTDASSERT failed: %s", #xx); \
-                                      if (TTIsInDebugger()) { __asm__("int $3\n" : : ); }; } \
-                        } ((void)0)
-#else
-  #define TTDASSERT(xx) { if (!(xx)) { TTDPRINT(@"TTDASSERT failed: %s", #xx); } } ((void)0)
-#endif // #if TARGET_IPHONE_SIMULATOR
-
-#else
-  #define TTDASSERT(xx) ((void)0)
+    #define TTDASSERT(xx) ((void)0)
 #endif // #ifdef DEBUG
+
 
 // Log-level based logging macros.
 #if TTLOGLEVEL_ERROR <= TTMAXLOGLEVEL
@@ -93,6 +94,7 @@
 #else
   #define TTDINFO(xx, ...)  ((void)0)
 #endif // #if TTLOGLEVEL_INFO <= TTMAXLOGLEVEL
+
 
 #ifdef DEBUG
   #define TTDCONDITIONLOG(condition, xx, ...) { if ((condition)) { \

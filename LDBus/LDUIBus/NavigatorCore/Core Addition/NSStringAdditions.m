@@ -5,8 +5,7 @@
 
 
 #import "NSStringAdditions.h"
-// Core
-#import "TTCorePreprocessorMacros.h"
+#import "TTUtil.h"
 
 /**
  * Additions.

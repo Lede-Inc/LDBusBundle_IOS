@@ -10,7 +10,7 @@
 #import "TTURLLiteral.h"
 
 // Core
-#import "TTCorePreprocessorMacros.h"
+#import "TTUtil.h"
 #import "NSStringAdditions.h"
 #import <objc/runtime.h>
 

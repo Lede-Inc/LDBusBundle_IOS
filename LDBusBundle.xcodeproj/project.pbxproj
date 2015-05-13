@@ -78,11 +78,10 @@
 		62E8B9AC1A39AA85001993A9 /* UIViewControllerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9631A39AA85001993A9 /* UIViewControllerAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		62E8B9AD1A39AA85001993A9 /* NSStringAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9651A39AA85001993A9 /* NSStringAdditions.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9AE1A39AA85001993A9 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9661A39AA85001993A9 /* NSStringAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62E8B9AF1A39AA85001993A9 /* TTCorePreprocessorMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9671A39AA85001993A9 /* TTCorePreprocessorMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		62E8B9B01A39AA85001993A9 /* TTDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9681A39AA85001993A9 /* TTDebug.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9B11A39AA85001993A9 /* TTDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9691A39AA85001993A9 /* TTDebug.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62E8B9B31A39AA85001993A9 /* TTGlobalCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B96B1A39AA85001993A9 /* TTGlobalCore.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		62E8B9B41A39AA85001993A9 /* TTGlobalCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B96C1A39AA85001993A9 /* TTGlobalCore.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		62E8B9B31A39AA85001993A9 /* TTUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B96B1A39AA85001993A9 /* TTUtil.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		62E8B9B41A39AA85001993A9 /* TTUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B96C1A39AA85001993A9 /* TTUtil.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		62E8B9BA1A39AA85001993A9 /* TTURLAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9731A39AA85001993A9 /* TTURLAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		62E8B9BB1A39AA85001993A9 /* TTURLAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9741A39AA85001993A9 /* TTURLAction.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		62E8B9BC1A39AA85001993A9 /* TTNavigationMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9761A39AA85001993A9 /* TTNavigationMode.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -221,11 +220,10 @@
 		62E8B9631A39AA85001993A9 /* UIViewControllerAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerAdditions.m; sourceTree = "<group>"; };
 		62E8B9651A39AA85001993A9 /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
 		62E8B9661A39AA85001993A9 /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
-		62E8B9671A39AA85001993A9 /* TTCorePreprocessorMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTCorePreprocessorMacros.h; sourceTree = "<group>"; };
 		62E8B9681A39AA85001993A9 /* TTDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTDebug.h; sourceTree = "<group>"; };
 		62E8B9691A39AA85001993A9 /* TTDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTDebug.m; sourceTree = "<group>"; };
-		62E8B96B1A39AA85001993A9 /* TTGlobalCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTGlobalCore.h; sourceTree = "<group>"; };
-		62E8B96C1A39AA85001993A9 /* TTGlobalCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalCore.m; sourceTree = "<group>"; };
+		62E8B96B1A39AA85001993A9 /* TTUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTUtil.h; sourceTree = "<group>"; };
+		62E8B96C1A39AA85001993A9 /* TTUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTUtil.m; sourceTree = "<group>"; };
 		62E8B9731A39AA85001993A9 /* TTURLAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTURLAction.h; sourceTree = "<group>"; };
 		62E8B9741A39AA85001993A9 /* TTURLAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLAction.m; sourceTree = "<group>"; };
 		62E8B9761A39AA85001993A9 /* TTNavigationMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTNavigationMode.h; sourceTree = "<group>"; };
@@ -498,11 +496,10 @@
 			children = (
 				62E8B9651A39AA85001993A9 /* NSStringAdditions.h */,
 				62E8B9661A39AA85001993A9 /* NSStringAdditions.m */,
-				62E8B9671A39AA85001993A9 /* TTCorePreprocessorMacros.h */,
 				62E8B9681A39AA85001993A9 /* TTDebug.h */,
 				62E8B9691A39AA85001993A9 /* TTDebug.m */,
-				62E8B96B1A39AA85001993A9 /* TTGlobalCore.h */,
-				62E8B96C1A39AA85001993A9 /* TTGlobalCore.m */,
+				62E8B96B1A39AA85001993A9 /* TTUtil.h */,
+				62E8B96C1A39AA85001993A9 /* TTUtil.m */,
 			);
 			path = "Core Addition";
 			sourceTree = "<group>";
@@ -587,7 +584,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62E8B9AF1A39AA85001993A9 /* TTCorePreprocessorMacros.h in Headers */,
 				62DF03081A4BDAE900EDBE8B /* LDMBusWebControllerProtocol.h in Headers */,
 				62DD8F0B1A4AB8F400E24C77 /* TTURLActionResponse.h in Headers */,
 				62DE31CA1A481C41008FEFEF /* LDMMessageReceiver.h in Headers */,
@@ -605,7 +601,7 @@
 				62E8B9B01A39AA85001993A9 /* TTDebug.h in Headers */,
 				62E8B9CA1A39AA85001993A9 /* TTURLPatternText.h in Headers */,
 				62E8B9A71A39AA85001993A9 /* UIPopoverControllerAdditions.h in Headers */,
-				62E8B9B31A39AA85001993A9 /* TTGlobalCore.h in Headers */,
+				62E8B9B31A39AA85001993A9 /* TTUtil.h in Headers */,
 				62DE31EC1A483879008FEFEF /* LDMPostMessageConfigurationItem.h in Headers */,
 				62DE31EE1A483879008FEFEF /* LDMReceiveMessageConfigurationItem.h in Headers */,
 				62E8B9C51A39AA85001993A9 /* TTURLArgumentType.h in Headers */,
@@ -856,7 +852,7 @@
 				62E8B9B11A39AA85001993A9 /* TTDebug.m in Sources */,
 				62E8B9A61A39AA85001993A9 /* UINavigationControllerAdditions.m in Sources */,
 				62E8B9AC1A39AA85001993A9 /* UIViewControllerAdditions.m in Sources */,
-				62E8B9B41A39AA85001993A9 /* TTGlobalCore.m in Sources */,
+				62E8B9B41A39AA85001993A9 /* TTUtil.m in Sources */,
 				62DE31ED1A483879008FEFEF /* LDMPostMessageConfigurationItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

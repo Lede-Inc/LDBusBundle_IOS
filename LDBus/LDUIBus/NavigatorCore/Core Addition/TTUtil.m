@@ -3,10 +3,7 @@
 //  Copyright (c) 2014 庞辉. All rights reserved.
 //
 
-
-
-#import "TTGlobalCore.h"
-
+#import "TTUtil.h"
 #import <objc/runtime.h>
 
 // No-ops for non-retaining objects.

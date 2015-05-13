@@ -19,9 +19,8 @@
 #import "UIViewControllerAdditions.h"
 
 // Core
-#import "TTGlobalCore.h"
+#import "TTUtil.h"
 #import "TTDebug.h"
-#import "TTCorePreprocessorMacros.h"
 #import "LDMUIBusCenter.h"
 
 static LDMBaseNavigator* gNavigator = nil;

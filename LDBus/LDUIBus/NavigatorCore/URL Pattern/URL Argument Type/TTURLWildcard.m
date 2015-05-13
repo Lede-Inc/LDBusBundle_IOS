@@ -7,9 +7,7 @@
 
 // UINavigator (private)
 #import "TTURLArguments.h"
-
-// Core
-#import "TTCorePreprocessorMacros.h"
+#import "TTUtil.h"
 
 
 @implementation TTURLWildcard

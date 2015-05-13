@@ -6,10 +6,7 @@
 
 
 #import "UIViewControllerAdditions.h"
-
-// Core
-#import "TTCorePreprocessorMacros.h"
-#import "TTGlobalCore.h"
+#import "TTUtil.h"
 #import "TTDebug.h"
 
 static NSMutableDictionary* gSuperControllers = nil;

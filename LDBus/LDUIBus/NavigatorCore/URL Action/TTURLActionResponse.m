@@ -7,7 +7,7 @@
 //
 
 #import "TTURLActionResponse.h"
-#import "TTCorePreprocessorMacros.h"
+#import "TTUtil.h"
 
 @implementation TTURLActionResponse
 @synthesize viewController = _viewController;

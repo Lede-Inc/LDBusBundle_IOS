@@ -5,8 +5,7 @@
 
 
 #import "UINavigationControllerAdditions.h"
-// Core
-#import "TTCorePreprocessorMacros.h"
+#import "TTUtil.h"
 // UICommon
 #import "UIViewControllerAdditions.h"
 

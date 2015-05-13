@@ -12,8 +12,7 @@
 #import "UIViewController+LDMNavigator.h"
 
 // Core
-#import "TTGlobalCore.h"
-#import "TTCorePreprocessorMacros.h"
+#import "TTUtil.h"
 #import <objc/runtime.h>
 
 
