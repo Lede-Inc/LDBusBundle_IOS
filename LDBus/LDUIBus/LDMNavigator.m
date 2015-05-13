@@ -10,7 +10,6 @@
 #import "TTURLAction.h"
 
 // UINavigator (private)
-#import "TTBaseNavigationController.h"
 #import "LDMBaseNavigatorInternal.h"
 
 // UICommon
@@ -113,7 +112,7 @@
  * @public
  */
 - (Class)navigationControllerClass {
-  return [TTBaseNavigationController class];
+  return [UINavigationController class];
 }
 
 

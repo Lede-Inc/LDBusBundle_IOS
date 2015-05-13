@@ -14,7 +14,6 @@
 // Core
 #import "TTCorePreprocessorMacros.h"
 #import "TTDebug.h"
-#import "TTDebugFlags.h"
 
 static NSMutableDictionary* gNavigatorURLs          = nil;
 
@@ -68,7 +67,7 @@ TT_FIX_CATEGORY_BUG(UIViewController_LDMNavigator)
     
     //清空之后销毁垃圾容器,最后是通过清空navigationController来回收内存
     if ([controllers count] == 0) {
-        TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
+        TTDCONDITIONLOG(0,
                         @"Killing the navigator garbage collector.");
         [gsGarbageCollectorTimer invalidate];
         TT_RELEASE_SAFELY(gsGarbageCollectorTimer);
@@ -129,12 +128,12 @@ TT_FIX_CATEGORY_BUG(UIViewController_LDMNavigator)
 }
 
 - (void)unsetNavigatorProperties {
-    TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
+    TTDCONDITIONLOG(0,
                     @"Unsetting this controller's properties: %X", (unsigned int)self);
     
     NSString* urlPath = self.originalNavigatorURL;
     if (nil != urlPath) {
-        TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
+        TTDCONDITIONLOG(0,
                         @"Removing this URL path: %@", urlPath);
         self.originalNavigatorURL = nil;
     }

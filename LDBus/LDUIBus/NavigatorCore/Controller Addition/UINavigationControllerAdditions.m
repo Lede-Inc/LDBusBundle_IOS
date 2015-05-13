@@ -7,8 +7,6 @@
 #import "UINavigationControllerAdditions.h"
 // Core
 #import "TTCorePreprocessorMacros.h"
-// UI
-#import "TTBaseNavigationController.h"
 // UICommon
 #import "UIViewControllerAdditions.h"
 
@@ -65,14 +63,7 @@ TT_FIX_CATEGORY_BUG(UINavigationControllerAdditions)
 - (void)addSubcontroller:(UIViewController*)controller animated:(BOOL)animated
         transition:(UIViewAnimationTransition)transition {
   if (animated && transition) {
-    if ([self isKindOfClass:[TTBaseNavigationController class]]) {
-      [(TTBaseNavigationController*)self pushViewController: controller
-                                 animatedWithTransition: transition];
-
-    } else {
       [self pushViewController:controller animated:YES];
-    }
-
   } else {
     [self pushViewController:controller animated:animated];
   }

@@ -11,7 +11,6 @@
 #import "TTCorePreprocessorMacros.h"
 #import "TTGlobalCore.h"
 #import "TTDebug.h"
-#import "TTDebugFlags.h"
 
 static NSMutableDictionary* gSuperControllers = nil;
 static NSMutableDictionary* gPopupViewControllers = nil;
@@ -59,7 +58,7 @@ TT_FIX_CATEGORY_BUG(UIViewControllerAdditions)
                           controllerSet: controllers];
 
   if ([controllers count] == 0) {
-    TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
+    TTDCONDITIONLOG(0,
                     @"Killing the common garbage collector.");
     [gsGarbageCollectorTimer invalidate];
     TT_RELEASE_SAFELY(gsGarbageCollectorTimer);
@@ -248,7 +247,7 @@ TT_FIX_CATEGORY_BUG(UIViewControllerAdditions)
  */
 + (void)doGarbageCollectionWithSelector:(SEL)selector controllerSet:(NSMutableSet*)controllers {
   if ([controllers count] > 0) {
-    TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
+    TTDCONDITIONLOG(0,
                     @"Checking %lu controllers for garbage.", (unsigned long)[controllers count]);
 
     NSSet* fullControllerList = [controllers copy];
@@ -257,7 +256,7 @@ TT_FIX_CATEGORY_BUG(UIViewControllerAdditions)
       // Subtract one from the retain count here due to the copied set.
       NSInteger retainCount = [controller retainCount] - 1;
 
-      TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
+      TTDCONDITIONLOG(0,
                       @"Retain count for %X is %ld", (unsigned int)controller, (long)retainCount);
 
       if (retainCount == 1) {
@@ -281,7 +280,7 @@ TT_FIX_CATEGORY_BUG(UIViewControllerAdditions)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)unsetCommonProperties {
-  TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
+  TTDCONDITIONLOG(0,
                   @"Unsetting this controller's properties: %X", (unsigned int)self);
 
   self.superController = nil;

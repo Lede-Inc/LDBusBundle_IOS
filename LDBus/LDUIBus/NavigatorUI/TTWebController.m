@@ -6,7 +6,6 @@
 #import "TTWebController.h"
 
 // UINavigator
-#import "TTGlobalNavigatorMetrics.h"
 #import "TTURLMap.h"
 
 // UICommon
@@ -120,7 +119,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)loadView {
   [super loadView];
-  _webView = [[UIWebView alloc] initWithFrame:TTScreenBounds()];
+  _webView = [[UIWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     _webView.backgroundColor = [UIColor yellowColor];
   _webView.delegate = self;
   _webView.autoresizingMask = UIViewAutoresizingFlexibleWidth

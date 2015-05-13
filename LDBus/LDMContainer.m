@@ -15,7 +15,6 @@
 #import "LDMMessageBusCenter.h"
 
 #import "LDMNavigator.h"
-#import "TTGlobalNavigatorMetrics.h"
 
 
 static LDMContainer* container = nil;
@@ -51,14 +50,6 @@ static LDMContainer* container = nil;
     if(self) {
         //全局初始化一个navigator
         _mainNavigator = [LDMNavigator navigator];
-        /*
-        UIWindow *rootWindow = [UIApplication sharedApplication].keyWindow;
-        if(!rootWindow){
-            rootWindow = [[UIWindow alloc] initWithFrame:TTScreenBounds()];
-        }
-        
-        _mainNavigator.window = rootWindow;
-         */
         _bundlesMap = [[NSMutableDictionary alloc] initWithCapacity:5];
             
     }

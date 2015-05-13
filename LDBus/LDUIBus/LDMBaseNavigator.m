@@ -6,8 +6,6 @@
 #import "LDMBaseNavigator.h"
 
 // UINavigator
-#import "TTGlobalNavigatorMetrics.h"
-#import "TTBaseNavigationController.h"
 #import "TTURLAction.h"
 #import "TTURLActionResponse.h"
 #import "TTURLMap.h"
@@ -22,9 +20,8 @@
 
 // Core
 #import "TTGlobalCore.h"
-#import "TTCorePreprocessorMacros.h"
 #import "TTDebug.h"
-#import "TTDebugFlags.h"
+#import "TTCorePreprocessorMacros.h"
 #import "LDMUIBusCenter.h"
 
 static LDMBaseNavigator* gNavigator = nil;
@@ -208,8 +205,8 @@ static LDMBaseNavigator* gNavigator = nil;
 
   } else {
     //如果当前viewController是第一个ViewController，且不是一个容器的ViewController
-    //强制生成一个NavigationController作为root导航
-    if (nil == _rootViewController && !isContainer) {
+    //rootViewController从外部传入，而不要从内部生成
+    if (nil == _rootViewController && !isContainer){
       [self setRootViewController:[[[self navigationControllerClass] alloc] init] ];
     }
 
@@ -457,16 +454,6 @@ static LDMBaseNavigator* gNavigator = nil;
 - (UIWindow*)window {
   if (nil == _window) {
       NSAssert(NO, @"window is not initial");
-      /*
-    UIWindow* keyWindow = [UIApplication sharedApplication].keyWindow;
-    if (nil != keyWindow) {
-        _window = keyWindow;
-
-    } else {
-      _window = [[[self windowClass] alloc] initWithFrame:TTScreenBounds()];
-      [_window makeKeyAndVisible];
-    }
-       */
   }
   return _window;
 }
@@ -625,7 +612,7 @@ static LDMBaseNavigator* gNavigator = nil;
 
 
 - (Class)navigationControllerClass {
-  return [TTBaseNavigationController class];
+  return [UINavigationController class];
 }
 
 
