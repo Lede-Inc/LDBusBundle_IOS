@@ -17,7 +17,6 @@
 		62B4F9411A171BBC0056CBAB /* LDBusBundleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B4F9401A171BBC0056CBAB /* LDBusBundleTests.m */; };
 		62B4F9C91A17310A0056CBAB /* ContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B4F9C41A17310A0056CBAB /* ContentController.m */; };
 		62B4F9CA1A17310A0056CBAB /* MenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B4F9C61A17310A0056CBAB /* MenuController.m */; };
-		62D1C6D01A4920A100AEA467 /* LDMBMovieFilm.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 62D1C6CF1A4920A100AEA467 /* LDMBMovieFilm.bundle */; };
 		62D1C6D31A4980C900AEA467 /* LDDemoMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 62D1C6D21A4980C900AEA467 /* LDDemoMessageHandler.m */; };
 		62D1F52F1A36D58C0076ACA7 /* LDBusDemo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 62D1F52E1A36D58C0076ACA7 /* LDBusDemo.bundle */; };
 		62D28C401A52903C00CE1C2E /* LDMNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 62D28C3B1A52903C00CE1C2E /* LDMNavigator.h */; };
@@ -146,7 +145,6 @@
 		62B4F9C41A17310A0056CBAB /* ContentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentController.m; sourceTree = "<group>"; };
 		62B4F9C51A17310A0056CBAB /* MenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuController.h; sourceTree = "<group>"; };
 		62B4F9C61A17310A0056CBAB /* MenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuController.m; sourceTree = "<group>"; };
-		62D1C6CF1A4920A100AEA467 /* LDMBMovieFilm.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LDMBMovieFilm.bundle; sourceTree = "<group>"; };
 		62D1C6D11A4980C900AEA467 /* LDDemoMessageHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDDemoMessageHandler.h; sourceTree = "<group>"; };
 		62D1C6D21A4980C900AEA467 /* LDDemoMessageHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDDemoMessageHandler.m; sourceTree = "<group>"; };
 		62D1F52E1A36D58C0076ACA7 /* LDBusDemo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LDBusDemo.bundle; sourceTree = "<group>"; };
@@ -296,7 +294,6 @@
 		62B4F9231A171BBC0056CBAB /* LDBusBundle */ = {
 			isa = PBXGroup;
 			children = (
-				62D1C6CF1A4920A100AEA467 /* LDMBMovieFilm.bundle */,
 				62D1F52E1A36D58C0076ACA7 /* LDBusDemo.bundle */,
 				62B4F9281A171BBC0056CBAB /* AppDelegate.h */,
 				62B4F9291A171BBC0056CBAB /* AppDelegate.m */,
@@ -724,7 +721,6 @@
 				62D539B71A1B27790088FFF4 /* framework.sh in Resources */,
 				62D1F52F1A36D58C0076ACA7 /* LDBusDemo.bundle in Resources */,
 				62DD8F081A4A96B300E24C77 /* LICENSE in Resources */,
-				62D1C6D01A4920A100AEA467 /* LDMBMovieFilm.bundle in Resources */,
 				62B4F9321A171BBC0056CBAB /* Images.xcassets in Resources */,
 				625EDB561A19ED5F000AEA3E /* tab.png in Resources */,
 				62DE31F91A483F6B008FEFEF /* LDBusDemo_bundle.plist in Resources */,

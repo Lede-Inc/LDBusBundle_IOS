@@ -93,16 +93,12 @@ static LDMContainer* container = nil;
  * bus center preload config
  */
 -(void) preloadConfig{
-    //程序启动时，将main bundle中自己携带的static framework配置文件拷贝到cache目录中
-    //以后从线上动态下载的static framework配置文件和dynamic framework均下载到该目录
-    if([self copyConfigBundleToLibraryCache]){
-        [self loadAllLocalBundleConfig];
+    [self loadAllLocalBundleConfig];
         
-        //在debug状态下，在所有bundle加载完成之后，检查重复性
+    //在debug状态下，在所有bundle加载完成之后，检查重复性
 #ifdef DEBUG
-        [self checkAllBundleDuplicateConfig];
+    [self checkAllBundleDuplicateConfig];
 #endif
-    }
 }
 
 /**
@@ -143,87 +139,46 @@ static LDMContainer* container = nil;
 }
 
 
-
-
-/**
- * 拷贝mainbundle 所有static bundle的配置文件到cache目录
- * @return 检查拷贝完成返回YES
- */
--(BOOL) copyConfigBundleToLibraryCache {
-    NSString *bundleCacheDir = self.bundleCacheDir;
-    if( bundleCacheDir == nil || [bundleCacheDir isEqualToString:@""]) return NO;
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSArray *bundlePaths = [[NSBundle mainBundle] pathsForResourcesOfType:@"bundle" inDirectory:nil];
-    for(int i =0; i<bundlePaths.count; i++){
-        NSString *fromPath = [bundlePaths objectAtIndex:i];
-        NSString  *configFromPath = [fromPath stringByAppendingPathComponent:@"busconfig.xml"];
-        if([fileManager fileExistsAtPath:configFromPath]){
-            NSString *toPath = [bundleCacheDir stringByAppendingPathComponent:[fromPath lastPathComponent]];
-            NSLog(@"toBundleCacheDir>>>>%@", toPath);
-            //如果存在，在debug环境中先删除，再拷贝; 如果在release环境，不删除已存在Cache的bundle
-            NSError *error;
-            if([fileManager fileExistsAtPath:toPath]){
-#ifdef DEBUG
-                [fileManager removeItemAtPath:toPath error:&error];
-                if(error){
-                    NSLog(@"remove bundle error:%@", [error localizedDescription]);
-                }
-#endif
-            }
-            
-            //然后在做一次判断，如果不存在或者debug已删除，拷贝bundle文件；
-            if(![fileManager fileExistsAtPath:toPath]){
-                [fileManager copyItemAtPath:fromPath toPath:toPath error:&error];
-                if(error){
-                    NSLog(@"copy bundle error:%@", [error localizedDescription]);
-                }
-            }
-        }//if exist
-    }//for bundlePaths
-    return YES;
-}
-
-
 /**
  * 从bundleCache 目录加载所有的bundle配置文件
  * @return 检查拷贝完成返回YES
  *
  */
 -(BOOL) loadAllLocalBundleConfig {
-    NSString *bundleCacheDir = self.bundleCacheDir;
-    if(bundleCacheDir==nil || [bundleCacheDir isEqualToString:@""]) return NO;
-    
+    NSArray *bundlePaths = [[NSBundle mainBundle] pathsForResourcesOfType:@"bundle" inDirectory:nil];
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSArray *fileArray = [fileManager contentsOfDirectoryAtPath:bundleCacheDir error:nil];
-    if(fileArray && fileArray.count > 0) {
-        for(NSString *filename in fileArray){
-            if([filename hasSuffix:@".bundle"] || [filename hasSuffix:@".framework"]){
-                NSString *bundleFilePath = [bundleCacheDir stringByAppendingPathComponent:filename];
-                LDMBundle *bundle = [[LDMBundle alloc] initBundleBusConfigWithPath: bundleFilePath];
-                if(bundle != nil){
-                    NSString *bundleUUID = (bundle.bundleName && ![bundle.bundleName isEqualToString:@""]) ? bundle.bundleName:[filename stringByDeletingPathExtension];
-                    NSString *key = [NSString stringWithFormat:@"_bundle_%@_", bundleUUID];
-                    [_bundlesMap setObject:bundle forKey:key];
-                    //设置每个bundle的全局导航器
-                    [bundle setBundleNavigator:_mainNavigator];
-                    
-                    //先设置bundleScheme，
-                    //再初始化每个bundle对应的UIBusConnector，并给connetor设置导航map
-                    if(_mainScheme && ![_mainScheme isEqualToString:@""]){
-                        [bundle setBundleScheme:_mainScheme];
-                    }
-                    [bundle setUIBusConnectorToBundle];
+    if(bundlePaths && bundlePaths.count > 0) {
+        for(NSString *fromPath in bundlePaths){
+            NSString *filename = [fromPath lastPathComponent];
+            NSString  *configFromPath = [fromPath stringByAppendingPathComponent:@"busconfig.xml"];
+            if(![fileManager fileExistsAtPath:configFromPath]){
+                continue;
+            }
+            
+            LDMBundle *bundle = [[LDMBundle alloc] initBundleBusConfigWithPath: fromPath];
+            if(bundle != nil){
+                NSString *bundleUUID = (bundle.bundleName && ![bundle.bundleName isEqualToString:@""]) ? bundle.bundleName:[filename stringByDeletingPathExtension];
+                NSString *key = [NSString stringWithFormat:@"_bundle_%@_", bundleUUID];
+                [_bundlesMap setObject:bundle forKey:key];
+                //设置每个bundle的全局导航器
+                [bundle setBundleNavigator:_mainNavigator];
+                
+                //先设置bundleScheme，
+                //再初始化每个bundle对应的UIBusConnector，并给connetor设置导航map
+                if(_mainScheme && ![_mainScheme isEqualToString:@""]){
+                    [bundle setBundleScheme:_mainScheme];
+                }
+                [bundle setUIBusConnectorToBundle];
 
-                    //将bundle中服务注册到服务总线中去；
-                    [self.servicebusCenter registerServiceToBusBatchly:[bundle getServiceConfigurationList]];
-                    
-                    //将bundle中配置的发送消息注册到消息总线中
-                    [self.messagebusCenter registerListeningNotificationBatchly:[bundle getPostMessageConfigurationList]];
-                    
-                    //将bundle中配置的接收消息者添加到消息总线中
-                    [self.messagebusCenter regitsterMessageReceivers:[bundle getReceiveMessageConfigurationList]];
-                }//if bundle
-            }//if filename
+                //将bundle中服务注册到服务总线中去；
+                [self.servicebusCenter registerServiceToBusBatchly:[bundle getServiceConfigurationList]];
+                
+                //将bundle中配置的发送消息注册到消息总线中
+                [self.messagebusCenter registerListeningNotificationBatchly:[bundle getPostMessageConfigurationList]];
+                
+                //将bundle中配置的接收消息者添加到消息总线中
+                [self.messagebusCenter regitsterMessageReceivers:[bundle getReceiveMessageConfigurationList]];
+            }//if bundle
         }//for filearray
     }//if count
     
