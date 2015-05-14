@@ -30,13 +30,7 @@
 #pragma mark -
 #pragma mark Private
 /**
- * What's a scheme?
- * It's a specific URL that is registered with the URL map.
- * Example:
- *  @"tt://some/path"
- *
  * This method registers them.
- *
  * @private
  */
 - (void)registerScheme:(NSString*)scheme {
@@ -86,256 +80,6 @@
     }
 }
 
-
-/**
- * 检查当前的URLMap中是否有根调用URL匹配的Pattern
- * 如果有，返回； 如果没有，返回默认Pattern
- */
-- (TTURLNavigatorPattern*)matchObjectPattern:(NSURL*)URL {
-    //将pattern进行排序
-    if (_invalidPatterns) {
-        [_objectPatterns sortUsingSelector:@selector(compareSpecificity:)];
-        _invalidPatterns = NO;
-    }
-    
-    for (TTURLNavigatorPattern* pattern in _objectPatterns) {
-        if ([pattern matchURL:URL]) {
-            return pattern;
-        }
-    }
-    
-    return _defaultObjectPattern;
-}
-
--(TTURLNavigatorPattern *)defaultObjectPattern{
-    return _defaultObjectPattern;
-}
-
-
-
-
-/**
- * 判断当前URL是否是一个WebURL
- * @private
- */
-- (BOOL)isWebURL:(NSURL*)URL {
-    return [URL.scheme caseInsensitiveCompare:@"http"] == NSOrderedSame
-    || [URL.scheme caseInsensitiveCompare:@"https"] == NSOrderedSame
-    || [URL.scheme caseInsensitiveCompare:@"ftp"] == NSOrderedSame
-    || [URL.scheme caseInsensitiveCompare:@"ftps"] == NSOrderedSame
-    || [URL.scheme caseInsensitiveCompare:@"data"] == NSOrderedSame
-    || [URL.scheme caseInsensitiveCompare:@"file"] == NSOrderedSame;
-}
-
-
-
-#pragma mark -
-#pragma mark Mapping
-/**
- * 给已经存在的Object添加URL，直接返回Object，不用初始化过程
- * 暂时用不上，因为主要是通过配置完成跳转，但是可以提供给bundle内部进行调用
- */
-- (void)from:(NSString*)URL toObject:(id)target withWebURL:(NSString *)webURL {
-    TTURLNavigatorPattern* pattern = [[TTURLNavigatorPattern alloc] initWithTarget:target];
-    pattern.webURL = webURL;
-    [self addObjectPattern:pattern forURL:URL];
-    [pattern release];
-}
-
-
-
-/**
- * 给URL配置一个selector，当调用URL的时候，在当前target，调用selector，返回一个ViewController
- */
-- (void)from:(NSString*)URL toObject:(id)target selector:(SEL)selector withWebURL:(NSString *)webURL {
-    TTURLNavigatorPattern* pattern = [[TTURLNavigatorPattern alloc] initWithTarget:target];
-    pattern.webURL = webURL;
-    pattern.selector = selector;
-    [self addObjectPattern:pattern forURL:URL];
-    [pattern release];
-}
-
-
-/**
- * 配置一个create方式的ViewController Pattern
- */
-- (void)from:(NSString*)URL toViewController:(id)target withWebURL:(NSString *)webURL{
-    TTURLNavigatorPattern* pattern = [[TTURLNavigatorPattern alloc] initWithTarget:target
-                                                                              mode:TTNavigationModeCreate];
-    pattern.webURL = webURL;
-    [self addObjectPattern:pattern forURL:URL];
-    [pattern release];
-}
-
-
-/**
- * 配置一个create方式的ViewController Pattern
- * 配置一个默认初始化的Selector
- */
-- (void)from:(NSString*)URL toViewController:(id)target selector:(SEL)selector withWebURL:(NSString *)webURL {
-    TTURLNavigatorPattern* pattern = [[TTURLNavigatorPattern alloc] initWithTarget:target
-                                                                              mode:TTNavigationModeCreate];
-    pattern.webURL = webURL;
-    pattern.selector = selector;
-    [self addObjectPattern:pattern forURL:URL];
-    [pattern release];
-}
-
-
-- (void)from:(NSString*)URL toViewController:(id)target transition:(NSInteger)transition withWebURL:(NSString *)webURL {
-    TTURLNavigatorPattern* pattern = [[TTURLNavigatorPattern alloc] initWithTarget:target
-                                                                              mode:TTNavigationModeCreate];
-    pattern.webURL = webURL;
-    pattern.transition = transition;
-    [self addObjectPattern:pattern forURL:URL];
-    [pattern release];
-}
-
-
-/**
- * 配置一个create方式的ViewController Pattern
- * 配置在parentURL处打开当前ViewController
- */
-- (void)from:(NSString*)URL parent:(NSString*)parentURL
-        toViewController:(id)target selector:(SEL)selector transition:(NSInteger)transition withWebURL:(NSString *)webURL {
-    TTURLNavigatorPattern* pattern = [[TTURLNavigatorPattern alloc] initWithTarget:target
-                                                                              mode:TTNavigationModeCreate];
-    pattern.webURL = webURL;
-    pattern.parentURL = parentURL;
-    pattern.selector = selector;
-    pattern.transition = transition;
-    [self addObjectPattern:pattern forURL:URL];
-    [pattern release];
-}
-
-
-
-/**
- * 配置一个share方式的ViewController Pattern
- */
-- (void)from:(NSString*)URL toSharedViewController:(id)target withWebURL:(NSString *)webURL {
-    TTURLNavigatorPattern* pattern = [[TTURLNavigatorPattern alloc] initWithTarget:target
-                                                                              mode:TTNavigationModeShare];
-    pattern.webURL = webURL;
-    [self addObjectPattern:pattern forURL:URL];
-    [pattern release];
-}
-
-
-/**
- * 配置一个share方式的ViewController Pattern
- * 配置一个默认打开的Selector
- */
-- (void)from:(NSString*)URL toSharedViewController:(id)target selector:(SEL)selector withWebURL:(NSString *)webURL {
-    TTURLNavigatorPattern* pattern = [[TTURLNavigatorPattern alloc] initWithTarget:target
-                                                                              mode:TTNavigationModeShare];
-    pattern.webURL = webURL;
-    pattern.selector = selector;
-    [self addObjectPattern:pattern forURL:URL];
-    [pattern release];
-}
-
-
-/**
- * 配置一个share方式的ViewController Pattern
- * 配置在parentURL处打开
- */
-- (void)from:(NSString*)URL parent:(NSString*)parentURL
-        toSharedViewController:(id)target withWebURL:(NSString *)webURL {
-    TTURLNavigatorPattern* pattern = [[TTURLNavigatorPattern alloc] initWithTarget:target
-                                                                              mode:TTNavigationModeShare];
-    pattern.webURL = webURL;
-    pattern.parentURL = parentURL;
-    [self addObjectPattern:pattern forURL:URL];
-    [pattern release];
-}
-
-
-- (void)from:(NSString*)URL parent:(NSString*)parentURL
-        toSharedViewController:(id)target selector:(SEL)selector withWebURL:(NSString *)webURL {
-    TTURLNavigatorPattern* pattern = [[TTURLNavigatorPattern alloc] initWithTarget:target
-                                                                              mode:TTNavigationModeShare];
-    pattern.webURL = webURL;
-    pattern.parentURL = parentURL;
-    pattern.selector = selector;
-    [self addObjectPattern:pattern forURL:URL];
-    [pattern release];
-}
-
-
-/**
- * 配置一个Modal方式的ViewController Pattern
- */
-- (void)from:(NSString*)URL toModalViewController:(id)target withWebURL:(NSString *)webURL {
-    TTURLNavigatorPattern* pattern = [[TTURLNavigatorPattern alloc] initWithTarget:target
-                                                                              mode:TTNavigationModeModal];
-    pattern.webURL = webURL;
-    [self addObjectPattern:pattern forURL:URL];
-    [pattern release];
-}
-
-
-- (void)from:(NSString*)URL toModalViewController:(id)target selector:(SEL)selector  withWebURL:(NSString *)webURL{
-    TTURLNavigatorPattern* pattern = [[TTURLNavigatorPattern alloc] initWithTarget:target
-                                                                              mode:TTNavigationModeModal];
-    pattern.webURL = webURL;
-    pattern.selector = selector;
-    [self addObjectPattern:pattern forURL:URL];
-    [pattern release];
-}
-
-
-- (void)from:(NSString*)URL toModalViewController:(id)target transition:(NSInteger)transition withWebURL:(NSString *)webURL {
-    TTURLNavigatorPattern* pattern = [[TTURLNavigatorPattern alloc] initWithTarget:target
-                                                                              mode:TTNavigationModeModal];
-    pattern.webURL = webURL;
-    pattern.transition = transition;
-    [self addObjectPattern:pattern forURL:URL];
-    [pattern release];
-}
-
-
-
-- (void)from:(NSString*)URL parent:(NSString*)parentURL
-        toModalViewController:(id)target selector:(SEL)selector transition:(NSInteger)transition withWebURL:(NSString *)webURL{
-    TTURLNavigatorPattern* pattern = [[TTURLNavigatorPattern alloc] initWithTarget:target
-                                                                              mode:TTNavigationModeModal];
-    pattern.webURL = webURL;
-    pattern.parentURL = parentURL;
-    pattern.selector = selector;
-    pattern.transition = transition;
-    [self addObjectPattern:pattern forURL:URL];
-    [pattern release];
-}
-
-
-/**
- * 配置一个popover方式的ViewController Pattern
- */
-- (void)from:(NSString*)URL toPopoverViewController:(id)target withWebURL:(NSString *)webURL{
-    TTURLNavigatorPattern* pattern =
-    [[TTURLNavigatorPattern alloc] initWithTarget: target
-                                             mode: TTNavigationModePopover];
-    pattern.webURL = webURL;
-    [self addObjectPattern:pattern forURL:URL];
-    [pattern release];
-}
-
-- (void)from:(NSString*)URL toPopoverViewController:(id)target selector:(SEL)selector withWebURL:(NSString *)webURL {
-    TTURLNavigatorPattern* pattern =
-    [[TTURLNavigatorPattern alloc] initWithTarget:target
-                                             mode:TTNavigationModePopover];
-    pattern.webURL = webURL;
-    pattern.selector = selector;
-    [self addObjectPattern:pattern forURL:URL];
-    [pattern release];
-}
-
-
-
-
-#pragma mark -
-#pragma mark Public
 /**
  * 将通过URLPattern生成的Object放到_objectMap中
  */
@@ -352,55 +96,41 @@
 }
 
 
+
+#pragma mark -
+#pragma mark Mapping
 /**
- * 删除URL对应的Pattern
- * 先删除声称的Object，再删除Pattern
+ * 配置一个mode方式的ViewController Pattern
  */
-- (void)removeURL:(NSString*)URL {
-    [_objectMappings removeObjectForKey:URL];
-    
-    for (TTURLNavigatorPattern* pattern in _objectPatterns) {
-        if ([URL isEqualToString:pattern.URL]) {
-            [_objectPatterns removeObject:pattern];
-            break;
-        }
-    }
+- (void)from:(NSString*)URL toViewController:(id)target navigationMode:(TTNavigationMode)mode withWebURL:(NSString *)webURL{
+    TTURLNavigatorPattern* pattern = [[TTURLNavigatorPattern alloc] initWithTarget:target
+                                                                              mode:mode];
+    pattern.webURL = webURL;
+    [self addObjectPattern:pattern forURL:URL];
+    [pattern release];
 }
 
 
 /**
- * 删除url对应生成的Object
+ * 配置一个mode方式的ViewController Pattern
+ * 配置在parentURL处打开当前ViewController
  */
-- (void)removeObjectForURL:(NSString*)URL {
-    [_objectMappings removeObjectForKey:URL];
+- (void)from:(NSString*)URL parent:(NSString*)parentURL toViewController:(id)target navigationMode:(TTNavigationMode)mode withWebURL:(NSString *)webURL {
+    TTURLNavigatorPattern* pattern = [[TTURLNavigatorPattern alloc] initWithTarget:target
+                                                                              mode:mode];
+    pattern.webURL = webURL;
+    pattern.parentURL = parentURL;
+    [self addObjectPattern:pattern forURL:URL];
+    [pattern release];
 }
 
 
-/**
- * 删除所有生成的Object
- */
-- (void)removeAllObjects {
-    TT_RELEASE_SAFELY(_objectMappings);
-}
-
-
+#pragma mark -
+#pragma mark Public
 
 /**
  * 根据URL get或者create Object
  */
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)objectForURL:(NSString*)URL {
-    return [self objectForURL:URL query:nil pattern:nil];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)objectForURL:(NSString*)URL query:(NSDictionary*)query {
-    return [self objectForURL:URL query:query pattern:nil];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)objectForURL: (NSString*)URL
              query: (NSDictionary*)query
            pattern: (TTURLNavigatorPattern**)outPattern {
@@ -483,48 +213,29 @@
 }
 
 
-
 /**
- * 获取url的present方式
+ * 检查当前的URLMap中是否有跟调用URL匹配的Pattern
+ * 如果有，返回； 如果没有，返回默认Pattern
  */
-- (TTNavigationMode)navigationModeForURL:(NSString*)URL {
-    NSURL* theURL = [NSURL URLWithString:URL];
-    if (![self isAppURL:theURL]) {
-        TTURLNavigatorPattern* pattern = [self matchObjectPattern:theURL];
-        if (pattern) {
-            return pattern.navigationMode;
+- (TTURLNavigatorPattern*)matchObjectPattern:(NSURL*)URL {
+    //将pattern根据url长度（path数＋query数）进行排序
+    if (_invalidPatterns) {
+        [_objectPatterns sortUsingSelector:@selector(compareSpecificity:)];
+        _invalidPatterns = NO;
+    }
+    
+    for (TTURLNavigatorPattern* pattern in _objectPatterns) {
+        if ([pattern matchURL:URL]) {
+            return pattern;
         }
     }
-    return TTNavigationModeExternal;
+    
+    return _defaultObjectPattern;
 }
 
 
-/**
- * 获取url的动画
- */
-- (NSInteger)transitionForURL:(NSString*)URL {
-    TTURLNavigatorPattern* pattern = [self matchObjectPattern:[NSURL URLWithString:URL]];
-    return pattern.transition;
-}
-
-
-
-/**
- * 判断当前map 是否支持scheme
- */
-- (BOOL)isSchemeSupported:(NSString*)scheme {
-    return nil != scheme && !![_schemes objectForKey:scheme];
-}
-
-
-
-/**
- * 判断URL是不是一个APP外部打开的URL
- */
-- (BOOL)isAppURL:(NSURL*)URL {
-    return ([[UIApplication sharedApplication] canOpenURL:URL]
-              && ![self isSchemeSupported:URL.scheme]
-              && ![self isWebURL:URL]);
+-(TTURLNavigatorPattern *)defaultObjectPattern{
+    return _defaultObjectPattern;
 }
 
 @end

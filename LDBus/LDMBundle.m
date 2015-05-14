@@ -166,7 +166,7 @@
 -(TTURLMap *)getURLMapFromConfigObj{
     if(_configurationItem == nil) return nil;
     TTURLMap *map = [[TTURLMap alloc] init];
-    [map from:@"*" toViewController:[TTWebController class] withWebURL:nil];
+    [map from:@"*" toViewController:[TTWebController class] navigationMode:TTNavigationModeCreate withWebURL:nil];
     if(_configurationItem.urlViewCtrlConfigurationList && _configurationItem.urlViewCtrlConfigurationList.count>0){
         //设置bundle URLMap的scheme
         NSString *bundleScheme = _configurationItem.bundleName;
@@ -230,29 +230,29 @@
     switch (type) {
         case PatternShare:
             if([parent isEqualToString:@""]){
-                [map from:URL toSharedViewController:[NSClassFromString(ctrlClass) class] withWebURL:webURL];
+                [map from:URL toViewController:[NSClassFromString(ctrlClass) class] navigationMode:TTNavigationModeShare withWebURL:webURL];
             } else {
-                [map from:URL parent:parent toSharedViewController:[NSClassFromString(ctrlClass) class] withWebURL:webURL];
+                [map from:URL parent:parent toViewController:[NSClassFromString(ctrlClass) class] navigationMode:TTNavigationModeShare  withWebURL:webURL];
             }
             break;
             
         case PatternPush:
             if([parent isEqualToString:@""]){
-                [map from:URL toViewController:[NSClassFromString(ctrlClass) class] withWebURL:webURL];
+                [map from:URL toViewController:[NSClassFromString(ctrlClass) class] navigationMode:TTNavigationModeCreate withWebURL:webURL];
             } else {
-                [map from:URL parent:parent toViewController:[NSClassFromString(ctrlClass) class] selector:nil transition:0 withWebURL:webURL];
+                [map from:URL parent:parent toViewController:[NSClassFromString(ctrlClass) class] navigationMode:TTNavigationModeCreate withWebURL:webURL];
             }
             break;
             
         case PatternModal:
             if([parent isEqualToString:@""]){
-                [map from:URL toModalViewController:[NSClassFromString(ctrlClass) class] withWebURL:webURL];
+                [map from:URL toViewController:[NSClassFromString(ctrlClass) class] navigationMode:TTNavigationModeModal withWebURL:webURL];
             } else {
-                [map from:URL parent:parent toModalViewController:[NSClassFromString(ctrlClass) class] selector:nil transition:0 withWebURL:webURL];
+                [map from:URL parent:parent toViewController:[NSClassFromString(ctrlClass) class] navigationMode:TTNavigationModeModal withWebURL:webURL];
             }
             break;
         case PatternPop:
-            [map from:URL toPopoverViewController:[NSClassFromString(ctrlClass) class] withWebURL:webURL];
+            [map from:URL toViewController:[NSClassFromString(ctrlClass) class] navigationMode:TTNavigationModePopover withWebURL:webURL];
             break;
         default:
             break;

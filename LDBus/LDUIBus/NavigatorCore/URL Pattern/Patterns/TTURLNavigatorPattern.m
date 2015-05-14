@@ -29,6 +29,7 @@ static NSString* kUniversalURLPattern = @"*";
 @synthesize transition      = _transition;
 @synthesize argumentCount   = _argumentCount;
 
+#pragma mark - initial method
 /**
  * 初始化
  */

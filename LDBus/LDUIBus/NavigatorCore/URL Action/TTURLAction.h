@@ -45,24 +45,12 @@
 @property (nonatomic, assign) UIViewAnimationTransition transition;
 @property (nonatomic, assign) BOOL          isDirectDeal;
 
-/**
- * Create an autoreleased TTURLAction object.
- */
-+ (id)action;
 
 /**
  * Create an autoreleased TTURLAction object with a URL path.
  */
 + (id)actionWithURLPath:(NSString*)urlPath;
 
-/**
- * Initialize a TTURLAction object with a URL path.
- *
- * Designated initializer.
- */
-- (id)initWithURLPath:(NSString*)urlPath;
-
-- (id)init;
 
 /**
  * @default nil
@@ -98,6 +86,10 @@
  * @default nil
  */
 - (TTURLAction*)applySourceButton:(UIBarButtonItem*)sourceButton;
+
+/**
+ * @default nil
+ */
 - (TTURLAction*)applySourceViewController:(UIViewController*)sourceViewController;
 
 /**

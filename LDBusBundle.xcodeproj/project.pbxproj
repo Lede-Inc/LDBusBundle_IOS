@@ -683,7 +683,7 @@
 					};
 					62E8B8941A39A75A001993A9 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = 65CYDTWQA5;
+						DevelopmentTeam = 35B2KE884X;
 					};
 					62E8B89E1A39A75A001993A9 = {
 						CreatedOnToolsVersion = 6.1;
@@ -1041,7 +1041,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "dfd6e7ee-c520-4649-af7c-d385a859b669";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1069,7 +1069,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "dfd6e7ee-c520-4649-af7c-d385a859b669";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
