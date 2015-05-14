@@ -44,6 +44,17 @@
 
 
 /**
+ * 去掉scheme的URL, 由于当前匹配scheme不进行匹配，
+ */
+-(NSString *)urlWithoutScheme:(NSString *)urlString{
+    NSURL *URL = [NSURL URLWithString:urlString];
+    NSString *scheme = URL.scheme;
+    NSString *urlNoScheme = [urlString substringFromIndex:scheme.length+3];
+    return urlNoScheme;
+}
+
+
+/**
  * 解析URL携带的Pattern信息到Pattern对象中
  */
 - (void)addObjectPattern: (TTURLNavigatorPattern*)pattern
@@ -87,7 +98,9 @@
     if (nil == _objectMappings) {
         _objectMappings = TTCreateNonRetainingDictionary();
     }
-    [_objectMappings setObject:object forKey:URL];
+    
+    //通过scheme存储ViewController
+    [_objectMappings setObject:object forKey:[self urlWithoutScheme:URL]];
     
     //如果初始化的ViewController，将其放到垃圾回收中
     if ([object isKindOfClass:[UIViewController class]]) {
@@ -137,7 +150,7 @@
     id object = nil;
     //如果object存在，直接返回，不用每次都创建
     if (_objectMappings) {
-        object = [_objectMappings objectForKey:URL];
+        object = [_objectMappings objectForKey:[self urlWithoutScheme:URL]];
         if (object) {
             return object;
         }
