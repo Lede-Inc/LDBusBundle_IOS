@@ -6,22 +6,20 @@
 #import "LDMNavigator.h"
 
 // UINavigator
+#import "LDMUIBusCenter.h"
 #import "TTURLAction.h"
 #import "TTURLActionResponse.h"
 #import "TTURLMap.h"
 #import "TTURLNavigatorPattern.h"
-#import "UIViewController+LDMNavigator.h"
 
-// UINavigator (private)
 #import "LDMNavigatorInternal.h"
-
-// UICommon
 #import "UIViewControllerAdditions.h"
+#import "UIViewController+LDMNavigator.h"
 
 // Core
 #import "TTUtil.h"
 #import "TTDebug.h"
-#import "LDMUIBusCenter.h"
+
 
 static LDMNavigator* gNavigator = nil;
 
@@ -32,15 +30,18 @@ static LDMNavigator* gNavigator = nil;
 @synthesize window                    = _window;
 @synthesize rootViewController        = _rootViewController;
 
+#pragma mark - 
+#pragma mark - initial method
 
 /**
  * 初始化navigator
  */
 - (id)init {
-   self = [super init];
-   if (self) {
-   }
-  return self;
+    self = [super init];
+    if (self) {
+        
+    }
+    return self;
 }
 
 
@@ -67,96 +68,35 @@ static LDMNavigator* gNavigator = nil;
 }
 
 
-
-#pragma mark -
-#pragma mark Private
-
-
 /**
- * 获得当前可见的viewController
- * 如果当前viewController是一个UITabBarController，则返回当前选中tab的Viewcontroller（如果没有选择，返回第一个tab）
- * 如果当前viewController是一个UINavigationController,则返回当前navigation的topViewController
- * 如果当前viewController包含ModalViewController， 则嵌套返回最前面的ModalViewController
- *
- * @private
+ * 返回当前的window
  */
-+ (UIViewController*)frontViewControllerForController:(UIViewController*)controller {
-  if ([controller isKindOfClass:[UITabBarController class]]) {
-    UITabBarController* tabBarController = (UITabBarController*)controller;
-
-    if (tabBarController.selectedViewController) {
-      controller = tabBarController.selectedViewController;
-
-    } else {
-      controller = [tabBarController.viewControllers objectAtIndex:0];
+- (UIWindow*)window {
+    if (nil == _window) {
+        NSAssert(NO, @"window is not initial");
     }
-
-  } else if ([controller isKindOfClass:[UINavigationController class]]) {
-    UINavigationController* navController = (UINavigationController*)controller;
-    controller = navController.topViewController;
-  }
- 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
-  if (controller.modalViewController) {
-    return [LDMNavigator frontViewControllerForController:controller.modalViewController];
-  }
-#else
-    if(controller.presentedViewController){
-        return [LDMNavigator frontViewControllerForController:controller.presentedViewController];
-    }
-#endif
-  else {
-    return controller;
-  }
+    return _window;
 }
 
 
-
-/**
- * 返回当前viewController的Navigation导航器
- * tip: 假设了TabBarController的每个tab均包含了一个Navigation导航器
- * 如果rootViewController是tab导航，则返回当前选中tab的Navigation
- * 如果rootViewController是Naviagtion导航，则直接返回；其他导航否则返回nil
- *
- * @private
- */
-- (UINavigationController*)frontNavigationController {
-  if ([_rootViewController isKindOfClass:[UITabBarController class]]) {
-    UITabBarController* tabBarController = (UITabBarController*)_rootViewController;
-
-    if (tabBarController.selectedViewController) {
-      return (UINavigationController*)tabBarController.selectedViewController;
-
-    } else {
-      return (UINavigationController*)[tabBarController.viewControllers objectAtIndex:0];
+-(void) setWindow:(UIWindow *)theWindow{
+    NSAssert(theWindow!=nil, @"window can't not be nil");
+    _window = theWindow;
+    if(_window.rootViewController == nil){
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIWindowDidBecomeKeyNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleWindowNotifcation) name:UIWindowDidBecomeKeyNotification object:nil];
     }
-
-  } else if ([_rootViewController isKindOfClass:[UINavigationController class]]) {
-    return (UINavigationController*)_rootViewController;
-
-  } else {
-    return nil;
-  }
 }
-
 
 /**
- * 返回当前Navigator的最前面的viewController
- * 先获取当前rootViewController的Navigation导航器，获取topviewController
- * 如果Naviation导航器不存在，则直接从rootViewController查找（目前还没有Navigation导航）
- *
- * @public
+ * 处理当初始化时，window还没有设置rootViewController，当makeKeyAndVisible时再去获取rootViewController设置
  */
-- (UIViewController*)frontViewController {
-  UINavigationController* navController = self.frontNavigationController;
-  if (navController) {
-    return [LDMNavigator frontViewControllerForController:navController];
-
-  } else {
-    return [LDMNavigator frontViewControllerForController:_rootViewController];
-  }
+-(void)handleWindowNotifcation{
+    if(_window!= nil && _window.rootViewController != nil){
+        NSLog(@">>>receive Window Notification:%@>>>>>>>>", NSStringFromClass([_window.rootViewController class]));
+        [self setRootViewController:_window.rootViewController];
+    }
 }
-
 
 
 /**
@@ -176,7 +116,8 @@ static LDMNavigator* gNavigator = nil;
     }
 }
 
-
+#pragma mark -
+#pragma mark present ViewController
 /**
  * 返回给定ViewController的parentViewController
  * 如果传入了parentURL，则返回url对应的ViewController，
@@ -188,35 +129,35 @@ static LDMNavigator* gNavigator = nil;
                              isContainer: (BOOL)isContainer
                            parentURLPath: (NSString*)parentURLPath
                         navigatorPattern: (TTURLNavigatorPattern**)pattern{
-  if (controller == _rootViewController) {
-    return nil;
-
-  } else {
-    //如果当前viewController是第一个ViewController，且不是一个容器的ViewController
-    if (nil == _rootViewController && !isContainer){
-      [self setRootViewController:[[[self navigationControllerClass] alloc] init] ];
-    }
-
-    //如果传入了一个parentURL，则通过该URL生成一个ViewController
-    if (nil != parentURLPath) {
-        TTURLAction *action = [TTURLAction actionWithURLPath:parentURLPath];
-        action.isDirectDeal = NO;
-        TTURLActionResponse *response = [LDMUIBusCenter handleURLActionRequest:action];
-        *pattern = response.navigatorPattern;
-        return response.viewController;
-    }
-    
-    //其他情况下返回当前导航体系的TopViewController作为父ViewController
-    else {
-      UIViewController* parent = self.topViewController;
-      if (parent != controller) {
-        return parent;
-
-      } else {
+    if (controller == _rootViewController) {
         return nil;
-      }
+        
+    } else {
+        //如果当前viewController是第一个ViewController，且不是一个容器的ViewController
+        if (nil == _rootViewController && !isContainer){
+            [self setRootViewController:[[[self navigationControllerClass] alloc] init] ];
+        }
+        
+        //如果传入了一个parentURL，则通过该URL生成一个ViewController
+        if (nil != parentURLPath) {
+            TTURLAction *action = [TTURLAction actionWithURLPath:parentURLPath];
+            action.isDirectDeal = NO;
+            TTURLActionResponse *response = [LDMUIBusCenter handleURLActionRequest:action];
+            *pattern = response.navigatorPattern;
+            return response.viewController;
+        }
+        
+        //其他情况下返回当前导航体系的TopViewController作为父ViewController
+        else {
+            UIViewController* parent = self.topViewController;
+            if (parent != controller) {
+                return parent;
+                
+            } else {
+                return nil;
+            }
+        }
     }
-  }
 }
 
 
@@ -230,33 +171,36 @@ static LDMNavigator* gNavigator = nil;
               parentController: (UIViewController*)parentController
                       animated: (BOOL)animated
                     transition: (NSInteger)transition {
-  controller.modalTransitionStyle = transition;
-
-  if ([controller isKindOfClass:[UINavigationController class]]) {
+    controller.modalTransitionStyle = transition;
+    
+    if ([controller isKindOfClass:[UINavigationController class]]) {
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
-    [parentController presentModalViewController: controller
-                                        animated: animated];
+        [parentController presentModalViewController: controller
+                                            animated: animated];
 #else
-      [parentController presentViewController:controller
-                                     animated:animated
-                                   completion:nil];
+        [parentController presentViewController:controller
+                                       animated:animated
+                                     completion:nil];
 #endif
-
-  } else {
-    UINavigationController* navController = [[[self navigationControllerClass] alloc] init];
-    navController.modalTransitionStyle = transition;
-    navController.modalPresentationStyle = controller.modalPresentationStyle;
-    [navController pushViewController: controller
-                             animated: NO];
+        
+    } else {
+        UINavigationController* navController = [[[self navigationControllerClass] alloc] init];
+        navController.modalTransitionStyle = transition;
+        navController.modalPresentationStyle = controller.modalPresentationStyle;
+        [navController pushViewController: controller
+                                 animated: NO];
+        dispatch_async(dispatch_get_main_queue(), ^{
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
-    [parentController presentModalViewController: navController
-                                        animated: animated];
+            [parentController presentModalViewController: navController
+                                                animated: animated];
 #else
-      [parentController presentViewController:navController
-                                     animated:animated
-                                   completion:nil];
+            [parentController presentViewController:navController
+                                           animated:animated
+                                         completion:nil];
 #endif
-  }
+        });
+        NSLog(@">>>>>>>presentViewController finished>>>>>>>>>>>>>>>>>");
+    }
 }
 
 
@@ -297,6 +241,16 @@ static LDMNavigator* gNavigator = nil;
                                             inView: sourceView
                           permittedArrowDirections: UIPopoverArrowDirectionAny
                                           animated: animated];
+    }
+}
+
+
+/**
+ * dismiss 当前Navigator导航下打开的PopoverController
+ */
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
+    if (popoverController == _popoverController) {
+        _popoverController = nil;
     }
 }
 
@@ -404,47 +358,8 @@ static LDMNavigator* gNavigator = nil;
 
 
 
-/**
- * 返回当前Window的Class
- * @protected
- */
-- (Class)windowClass {
-  return [UIWindow class];
-}
-
-
 #pragma mark -
-#pragma mark Public
--(void) setWindow:(UIWindow *)theWindow{
-    NSAssert(theWindow!=nil, @"window can't not be nil");
-    _window = theWindow;
-    if(_window.rootViewController == nil){
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIWindowDidBecomeKeyNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleWindowNotifcation) name:UIWindowDidBecomeKeyNotification object:nil];
-    }
-}
-
-/**
- * 处理当初始化时，window还没有设置rootViewController，当makeKeyAndVisible时再去获取rootViewController设置
- */
--(void)handleWindowNotifcation{
-    if(_window!= nil && _window.rootViewController != nil){
-        NSLog(@">>>receive Window Notification:%@>>>>>>>>", NSStringFromClass([_window.rootViewController class]));
-        [self setRootViewController:_window.rootViewController];
-    }
-}
-
-
-/**
- * 返回当前的window
- */
-- (UIWindow*)window {
-  if (nil == _window) {
-      NSAssert(NO, @"window is not initial");
-  }
-  return _window;
-}
-
+#pragma mark Public property
 
 /**
  * 返回当前可见的ViewController
@@ -455,26 +370,26 @@ static LDMNavigator* gNavigator = nil;
  * 如何获取最前面的viewController，不断的嵌套查询，直到最后getVisibleChildController是nil
  */
 - (UIViewController*)visibleViewController {
-  UIViewController* controller = _rootViewController;
-  while (nil != controller) {
+    UIViewController* controller = _rootViewController;
+    while (nil != controller) {
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
-    UIViewController* child = controller.modalViewController;
+        UIViewController* child = controller.modalViewController;
 #else
-    UIViewController* child = controller.presentedViewController;
+        UIViewController* child = controller.presentedViewController;
 #endif
-
-    if (nil == child) {
-      child = [self getVisibleChildController:controller];
+        
+        if (nil == child) {
+            child = [self getVisibleChildController:controller];
+        }
+        
+        if (nil != child) {
+            controller = child;
+            
+        } else {
+            return controller;
+        }
     }
-
-    if (nil != child) {
-      controller = child;
-
-    } else {
-      return controller;
-    }
-  }
-  return nil;
+    return nil;
 }
 
 
@@ -497,32 +412,32 @@ static LDMNavigator* gNavigator = nil;
  * 从root往下找，直到child为nil，返回child的父controller；
  */
 - (UIViewController*)topViewController {
-  UIViewController* controller = _rootViewController;
-  while (controller) {
-    UIViewController* child = nil;
-    if (!child || ![child canBeTopViewController]) {
+    UIViewController* controller = _rootViewController;
+    while (controller) {
+        UIViewController* child = nil;
+        if (!child || ![child canBeTopViewController]) {
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
-        child = controller.modalViewController;
+            child = controller.modalViewController;
 #else
-        child = controller.presentedViewController;
+            child = controller.presentedViewController;
 #endif
+        }
+        if (!child) {
+            child = controller.topSubcontroller;
+        }
+        if (child) {
+            if (child == _rootViewController) {
+                return child;
+                
+            } else {
+                controller = child;
+            }
+            
+        } else {
+            return controller;
+        }
     }
-    if (!child) {
-      child = controller.topSubcontroller;
-    }
-    if (child) {
-      if (child == _rootViewController) {
-        return child;
-
-      } else {
-        controller = child;
-      }
-
-    } else {
-      return controller;
-    }
-  }
-  return nil;
+    return nil;
 }
 
 
@@ -530,29 +445,103 @@ static LDMNavigator* gNavigator = nil;
  * 返回当前navigator的topViewController的URL
  */
 - (NSString*)URL {
-  return self.topViewController.navigatorURL;
+    return self.topViewController.navigatorURL;
 }
 
 
-#pragma mark -
-#pragma mark UIPopoverControllerDelegate
+
+#pragma mark - 
+#pragma mark - frontViewController Now-Not-Used
 /**
- * dismiss 当前Navigator导航下打开的PopoverController
+ * 返回当前Navigator的最前面的viewController
+ * 先获取当前rootViewController的Navigation导航器，获取topviewController
+ * 如果Naviation导航器不存在，则直接从rootViewController查找（目前还没有Navigation导航）
+ *
+ * @public
  */
-- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
-  if (popoverController == _popoverController) {
-      _popoverController = nil;
-  }
+- (UIViewController*)frontViewController {
+    UINavigationController* navController = self.frontNavigationController;
+    if (navController) {
+        return [LDMNavigator frontViewControllerForController:navController];
+        
+    } else {
+        return [LDMNavigator frontViewControllerForController:_rootViewController];
+    }
 }
 
 
+/**
+ * 返回当前viewController的Navigation导航器
+ * tip: 假设了TabBarController的每个tab均包含了一个Navigation导航器
+ * 如果rootViewController是tab导航，则返回当前选中tab的Navigation
+ * 如果rootViewController是Naviagtion导航，则直接返回；其他导航否则返回nil
+ *
+ * @private
+ */
+- (UINavigationController*)frontNavigationController {
+    if ([_rootViewController isKindOfClass:[UITabBarController class]]) {
+        UITabBarController* tabBarController = (UITabBarController*)_rootViewController;
+        
+        if (tabBarController.selectedViewController) {
+            return (UINavigationController*)tabBarController.selectedViewController;
+            
+        } else {
+            return (UINavigationController*)[tabBarController.viewControllers objectAtIndex:0];
+        }
+        
+    } else if ([_rootViewController isKindOfClass:[UINavigationController class]]) {
+        return (UINavigationController*)_rootViewController;
+        
+    } else {
+        return nil;
+    }
+}
 
+
+/**
+ * 获得当前可见的viewController
+ * 如果当前viewController是一个UITabBarController，则返回当前选中tab的Viewcontroller（如果没有选择，返回第一个tab）
+ * 如果当前viewController是一个UINavigationController,则返回当前navigation的topViewController
+ * 如果当前viewController包含ModalViewController， 则嵌套返回最前面的ModalViewController
+ *
+ * @private
+ */
++ (UIViewController*)frontViewControllerForController:(UIViewController*)controller {
+    if ([controller isKindOfClass:[UITabBarController class]]) {
+        UITabBarController* tabBarController = (UITabBarController*)controller;
+        
+        if (tabBarController.selectedViewController) {
+            controller = tabBarController.selectedViewController;
+            
+        } else {
+            controller = [tabBarController.viewControllers objectAtIndex:0];
+        }
+        
+    } else if ([controller isKindOfClass:[UINavigationController class]]) {
+        UINavigationController* navController = (UINavigationController*)controller;
+        controller = navController.topViewController;
+    }
+    
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
+    if (controller.modalViewController) {
+        return [LDMNavigator frontViewControllerForController:controller.modalViewController];
+    }
+#else
+    if(controller.presentedViewController){
+        return [LDMNavigator frontViewControllerForController:controller.presentedViewController];
+    }
+#endif
+    else {
+        return controller;
+    }
+}
 @end
 
 
 
 
-
+#pragma mark -
+#pragma mark - TTInterval
 @implementation LDMNavigator (TTInternal)
 /**
  * Present a view controller that strictly depends on the existence of the parent controller.
@@ -561,25 +550,24 @@ static LDMNavigator* gNavigator = nil;
                   parentController: (UIViewController*)parentController
                               mode: (TTNavigationMode)mode
                             action: (TTURLAction*)action {
-
-  if (mode == TTNavigationModeModal) {
-    [self presentModalController: controller
-                parentController: parentController
-                        animated: action.animated
-                      transition: action.transition];
-
-  } else if (mode == TTNavigationModePopover) {
-    [self presentPopoverController: controller
-                      sourceButton: action.sourceButton
-                        sourceView: action.sourceView
-                        sourceRect: action.sourceRect
-                          animated: action.animated];
-
-  } else {
-    [parentController addSubcontroller: controller
-                              animated: action.animated
-                            transition: action.transition];
-  }
+    if (mode == TTNavigationModeModal) {
+        [self presentModalController: controller
+                    parentController: parentController
+                            animated: action.animated
+                          transition: action.transition];
+        
+    } else if (mode == TTNavigationModePopover) {
+        [self presentPopoverController: controller
+                          sourceButton: action.sourceButton
+                            sourceView: action.sourceView
+                            sourceRect: action.sourceRect
+                              animated: action.animated];
+        
+    } else {
+        [parentController addSubcontroller: controller
+                                  animated: action.animated
+                                transition: action.transition];
+    }
 }
 
 

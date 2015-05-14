@@ -107,7 +107,7 @@
                                           @"",
                                           @"netescaipiao://food/about/complaints/10",
                                           @"",
-                                          @"netescaipiao://food/modeview/mode",
+                                          @"netescaipiao://food/modeview?param=19",
                                           @"netescaipiao://tabMovie",
                                           @"LocationModified"]];
     } else if (_page == MenuPageLunch) {

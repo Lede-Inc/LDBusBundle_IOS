@@ -18,7 +18,7 @@
 static NSMutableDictionary* gNavigatorURLs          = nil;
 static NSMutableSet*        gsNavigatorControllers  = nil;
 static NSTimer*             gsGarbageCollectorTimer = nil;
-static const NSTimeInterval kGarbageCollectionInterval = 20;
+static const NSTimeInterval kGarbageCollectionInterval = 10;
 
 
 /**
@@ -98,6 +98,7 @@ TT_FIX_CATEGORY_BUG(UIViewController_LDMNavigator)
  */
 + (void)doGarbageCollectionWithSelector:(SEL)selector controllerSet:(NSMutableSet*)controllers {
     if ([controllers count] > 0) {
+        NSLog(@">>>>>>>check current open url controllers: %ld >>>>>>>>>", controllers.count);
         TTDCONDITIONLOG(0,@"Checking %lu controllers for garbage.", (unsigned long)[controllers count]);
         NSSet* fullControllerList = [controllers copy];
         for (UIViewController* controller in fullControllerList) {
