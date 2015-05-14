@@ -10,6 +10,8 @@
 #import "TTUtil.h"
 #import "TTDebug.h"
 
+static NSMutableDictionary* gSuperControllers = nil;
+
 /**
  * Additions.
  */
@@ -31,8 +33,25 @@ TT_FIX_CATEGORY_BUG(UIViewControllerAdditions)
     UIViewController* parent = self.parentViewController;
     if (nil != parent) {
         return parent;
+    }
+    
+    else {
+        NSString* key = [NSString stringWithFormat:@"%lu", (unsigned long)self.hash];
+        return [gSuperControllers objectForKey:key];
+    }
+}
+
+- (void)setSuperController:(UIViewController*)viewController {
+    NSString* key = [NSString stringWithFormat:@"%lu", (unsigned long)self.hash];
+    if (nil != viewController) {
+        if (nil == gSuperControllers) {
+            gSuperControllers = TTCreateNonRetainingDictionary();
+        }
+        [gSuperControllers setObject:viewController forKey:key];
+        
+        //[UIViewController ttAddCommonController:self];
     } else {
-        return nil;
+        [gSuperControllers removeObjectForKey:key];
     }
 }
 
@@ -44,10 +63,12 @@ TT_FIX_CATEGORY_BUG(UIViewControllerAdditions)
 
 - (void)addSubcontroller:(UIViewController*)controller animated:(BOOL)animated
         transition:(UIViewAnimationTransition)transition {
+    //只有通过Push的controller才会进入该函数
     if (self.navigationController) {
         [self.navigationController addSubcontroller:controller
                                            animated:animated
                                          transition:transition];
+        controller.superController = self;
     }
 }
 
