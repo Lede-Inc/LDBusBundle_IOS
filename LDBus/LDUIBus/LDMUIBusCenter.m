@@ -17,7 +17,6 @@
 
 #import "TTURLAction.h"
 #import "TTURLActionResponse.h"
-#import "TTWebController.h"
 #import "TTDebug.h"
 
 #define TITLE_MESSAGEACTION @"uibus_messageaction"
@@ -30,12 +29,23 @@ static LDMUIBusCenter *uibusCenter = nil;
 @end
 
 @implementation LDMUIBusCenter
+
+
 +(LDMUIBusCenter *)uibusCenter {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         uibusCenter = [[self alloc] init];
     });
     return uibusCenter;
+}
+
+
+-(id)init {
+    self = [super init];
+    if(self){
+        _UIBusMessageQueue = [[NSMutableArray alloc] initWithCapacity:1];
+    }
+    return self;
 }
 
 
@@ -55,16 +65,6 @@ static LDMUIBusCenter *uibusCenter = nil;
         success = [center canOpenURLWithBus:url];
     }
     
-    //如果app内部无法处理，查看外部能否处理
-    /*
-    if(!success){
-        NSURL* theURL = [NSURL URLWithString:url];
-        if ([[UIApplication sharedApplication] canOpenURL:theURL]) {
-            success = YES;
-        }
-    }
-     */
-    
     return success;
 }
 
@@ -80,7 +80,6 @@ static LDMUIBusCenter *uibusCenter = nil;
     
     //如果LDMRoutes不能处理或者处理未成功，由Bus总线去处理
     if(!success){
-        //其次让注册到UI总线的bundle进行处理
         LDMUIBusCenter *center = [LDMUIBusCenter uibusCenter];
         if([center getMessageFromConnetor:action]){
             //转发消息并调用响应connetor 生成viewControll
@@ -91,36 +90,16 @@ static LDMUIBusCenter *uibusCenter = nil;
         }
     }
     
-    //如果app内部无法处理，查看是否是打开其他APP的url
-    /*
-    if(!success){
-        NSURL* theURL = [NSURL URLWithString:action.urlPath];
-        if ([[UIApplication sharedApplication] canOpenURL:theURL]) {
-            [[UIApplication sharedApplication] openURL:theURL];
-            success = YES;
-        }
-    }
-     */
-    
     return success;
 }
 
+
 +(UIViewController*)receiveURLCtrlFromUIBus:(TTURLAction *)action{
-    if(action.isDirectDeal) return nil;
-    
+    TTURLActionResponse *response = [LDMUIBusCenter handleURLActionRequest:action];
     UIViewController *ctrl = nil;
-    LDMUIBusCenter *center = [LDMUIBusCenter uibusCenter];
-    if([center getMessageFromConnetor:action]){
-        //转发消息并调用响应connetor 生成viewControll
-        BOOL success = [center forwardMessageToOtherBundles];
-        if(success && [center getURLActionResponse]){
-            ctrl = [center getURLActionResponse].viewController;
-        }
-        
-        //不管成功与否，立即重置消息队列
-        [center updateMessageQueue];
+    if(response && response.viewController != nil){
+        ctrl = response.viewController;
     }
-    
     return ctrl;
 }
 
@@ -143,15 +122,6 @@ static LDMUIBusCenter *uibusCenter = nil;
     
     return response;
 
-}
-
-
--(id)init {
-    self = [super init];
-    if(self){
-        _UIBusMessageQueue = [[NSMutableArray alloc] initWithCapacity:1];
-    }
-    return self;
 }
 
 

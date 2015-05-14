@@ -24,17 +24,14 @@
 
 //The controller that is at the root of the view controller hierarchy.
 @property (nonatomic, readwrite, assign) UIViewController* rootViewController;
-
-//The currently visible view controller.
 @property (nonatomic, readonly) UIViewController* visibleViewController;
-
-//The view controller that is currently on top of the navigation stack. 
-//忽略search display controoler，不属于导航体系的一部分
 @property (nonatomic, readonly) UIViewController* topViewController;
 @property (nonatomic, readonly)NSString *URL;
 
 
+
 + (LDMNavigator*)navigator;
+
 
 /**
  * 在parentURL下展示一个ViewController
@@ -45,13 +42,6 @@
             parentURLPath: (NSString*)parentURLPath
               withPattern: (TTURLNavigatorPattern*)pattern
                    action: (TTURLAction*)action;
-
-/**
- * Removes all view controllers from the window and releases them.
- */
-- (void)removeAllViewControllers;
-- (UIViewController*)getVisibleChildController:(UIViewController*)controller;
-
 
 
 

@@ -193,7 +193,6 @@ static LDMNavigator* gNavigator = nil;
 
   } else {
     //如果当前viewController是第一个ViewController，且不是一个容器的ViewController
-    //rootViewController从外部传入，而不要从内部生成
     if (nil == _rootViewController && !isContainer){
       [self setRootViewController:[[[self navigationControllerClass] alloc] init] ];
     }
@@ -370,13 +369,13 @@ static LDMNavigator* gNavigator = nil;
         UIViewController* topViewController = self.topViewController;
         if (controller != topViewController) {
             TTURLNavigatorPattern *parentPattern = nil;
+            parentURLPath = (parentURLPath && ![parentURLPath isEqualToString:@""])? parentURLPath:pattern.parentURL;
             UIViewController* parentController = [self parentForController: controller
                                                                isContainer: [controller canContainControllers]
                                                              parentURLPath: parentURLPath
-                                                  ? parentURLPath
-                                                                          : pattern.parentURL
                                                           navigatorPattern:&parentPattern];
             
+            //如果当前parentViewController不在topViewController
             if (nil != parentController && parentController != topViewController) {
                 BOOL didParentPresent = [self presentController: parentController
                                                parentController: nil
@@ -533,20 +532,6 @@ static LDMNavigator* gNavigator = nil;
 - (NSString*)URL {
   return self.topViewController.navigatorURL;
 }
-
-
-
-
-/**
- * 删除当前navigator栈的所有ViewController
- */
-- (void)removeAllViewControllers {
-  [_rootViewController.view removeFromSuperview];
-  _rootViewController = nil;
-}
-
-
-
 
 
 #pragma mark -

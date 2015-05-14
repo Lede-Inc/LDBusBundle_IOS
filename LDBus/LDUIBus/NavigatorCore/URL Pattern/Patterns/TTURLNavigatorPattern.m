@@ -26,7 +26,6 @@ static NSString* kUniversalURLPattern = @"*";
 @synthesize targetObject    = _targetObject;
 @synthesize navigationMode  = _navigationMode;
 @synthesize parentURL       = _parentURL;
-@synthesize transition      = _transition;
 @synthesize argumentCount   = _argumentCount;
 
 #pragma mark - initial method

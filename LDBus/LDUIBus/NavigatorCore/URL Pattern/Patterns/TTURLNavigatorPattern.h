@@ -12,7 +12,6 @@
     id                _targetObject; //url对应的object
     TTNavigationMode  _navigationMode; //导航方式
     NSString*         _parentURL;   //parenturl
-    NSInteger         _transition;  //配置的默认动画方式
     NSInteger         _argumentCount; //配置初始化selector的参数个数
 }
 
@@ -20,7 +19,6 @@
 @property (nonatomic, assign)   id                targetObject;
 @property (nonatomic, readonly) TTNavigationMode  navigationMode;
 @property (nonatomic, copy)     NSString*         parentURL;
-@property (nonatomic, assign)   NSInteger         transition;
 @property (nonatomic, assign)   NSInteger         argumentCount;
 
 @property (nonatomic, readonly) BOOL              isUniversal;

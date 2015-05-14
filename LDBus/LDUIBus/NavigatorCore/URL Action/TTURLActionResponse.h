@@ -11,9 +11,9 @@
 
 @class TTURLNavigatorPattern;
 @interface TTURLActionResponse : NSObject {
-    UIViewController *_viewController; //返回的ViewController
-    TTURLNavigatorPattern *_navigatorPattern;
-    NSString *_bundleName; //返回的bundle
+    UIViewController *_viewController;          //返回的ViewController
+    TTURLNavigatorPattern *_navigatorPattern;   //返回ViewController对应的URLPattern
+    NSString *_bundleName;                      //返回ViewController所属的bundle
 }
 
 @property (retain, nonatomic) UIViewController *viewController;

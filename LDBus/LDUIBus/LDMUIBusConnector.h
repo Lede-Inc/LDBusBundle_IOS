@@ -34,13 +34,16 @@
 -(void) setBundleURLMap:(TTURLMap *)map;
 -(void) setBelongBundle:(NSString *)bundleName;
 
+
 /**
  * 从buscenter 赋值, 继承者可以重载自己加载map；
  */
 -(void) setGlobalNavigator:(LDMNavigator*) navigator;
 
+
 //处理接收的URL消息Action
 -(BOOL) dealWithURLMessageFromBus:(TTURLAction *)action;
+
 
 //处理获取ViewController的消息
 -(TTURLActionResponse *)handleURLActionRequest:(TTURLAction *)action;

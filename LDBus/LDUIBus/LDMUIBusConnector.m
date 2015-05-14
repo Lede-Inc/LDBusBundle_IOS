@@ -30,9 +30,11 @@
 
 @implementation LDMUIBusConnector
 
+
 -(void)setBundleURLMap:(TTURLMap *)map {
     _bundleMap = map;
 }
+
 
 -(void)setBelongBundle:(NSString *)bundleName {
     _bundleName = bundleName;
@@ -62,16 +64,16 @@
     
     else {
         TTURLNavigatorPattern *pattern = [_bundleMap matchObjectPattern:[NSURL URLWithString:action.urlPath]];
-        action.transition = action.transition ? action.transition : pattern.transition;
         [_navigator presentController: controller
-                                parentURLPath: action.parentURLPath
-                                  withPattern: pattern
-                                       action: action];
+                        parentURLPath: action.parentURLPath
+                          withPattern: pattern
+                               action: action];
         success = YES;
     }
     
     return success;
 }
+
 
 -(TTURLActionResponse *)handleURLActionRequest:(TTURLAction *)action {
     if (nil == action || nil == action.urlPath) {
@@ -80,7 +82,8 @@
     
     // We may need to modify the urlPath, so let's create a local copy.
     UIViewController* controller = [self viewControllerForAction:action];
-    TTURLActionResponse *actionResponse = [[TTURLActionResponse alloc] initWithViewController:controller pattern:nil sourceBundle:_bundleName];
+    TTURLNavigatorPattern *pattern = [_bundleMap matchObjectPattern:[NSURL URLWithString:action.urlPath]];
+    TTURLActionResponse *actionResponse = [[TTURLActionResponse alloc] initWithViewController:controller pattern:pattern sourceBundle:_bundleName];
     return actionResponse;
 }
 
@@ -181,6 +184,7 @@
     action.isDirectDeal = NO;
     return [LDMUIBusCenter receiveURLCtrlFromUIBus:action];
 }
+
 
 +(UIViewController *)controllerForURL:(NSString *)url query:(NSDictionary *)query{
     TTURLAction *action = [TTURLAction actionWithURLPath:url];

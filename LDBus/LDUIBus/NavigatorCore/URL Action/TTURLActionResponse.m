@@ -16,10 +16,8 @@
 
 
 - (id)init {
-    self = [self initWithViewController:nil pattern:nil sourceBundle:nil];
-    if (self) {
-    }
-    return self;
+    NSAssert(0, @"TTURLActionResponse must init with viewcontroller and pattern and bundleName");
+    return nil;
 }
 
 
