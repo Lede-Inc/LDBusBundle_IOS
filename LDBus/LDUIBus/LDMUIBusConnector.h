@@ -9,6 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+typedef enum : NSUInteger {
+    LDMConnectorPriority_HOSTLOW = 0,   //主工程HOST（使用LDRoute）
+    LDMConnectorPriority_LOW = 1,       //各个使用LDRoute的Bundle工程
+    LDMConnectorPriority_NORMAL = 2,    //使用Bus导航的Bundle工程
+    LDMConnectorPriority_HIGH = 3       //需要优先处理的Bundle工程
+}LDMConnectorPriority;
+
+
 @class LDMNavigator;
 @class TTURLMap;
 @class TTURLPattern;
@@ -58,6 +66,12 @@
 @interface LDMUIBusConnector(ToBeOverwrite)
 
 /**
+ * 返回当前Connector的优先处理级别
+ */
+-(LDMConnectorPriority)connectorPriority;
+
+
+/**
  * 接收消息，查看消息是否能够处理
  */
 -(BOOL) canOpenInBundle:(NSString *)url;
@@ -75,5 +89,12 @@
 - (BOOL)presentViewController:(UIViewController*)controller
                     navigator:(LDMNavigator*)navigator
                        action:(TTURLAction *)action;
+
+
+/**
+ * 根据URLAction同时完成生成ViewController和展示ViewController的过程
+ */
+-(BOOL) createAndPresentViewControllerForAction:(TTURLAction *)action;
+
 
 @end

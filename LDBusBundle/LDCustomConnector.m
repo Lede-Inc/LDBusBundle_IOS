@@ -13,6 +13,11 @@
 @implementation LDCustomConnector
 
 #pragma mark - overwite
+-(LDMConnectorPriority)connectorPriority {
+    return LDMConnectorPriority_HIGH;
+}
+
+
 /**
  * 如果没有自定义的拦截，可以不重载
  * 比如说一些URL没有在config中定义出来，只是口头约定，可以在这里添加

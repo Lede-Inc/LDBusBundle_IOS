@@ -13,11 +13,13 @@
 #import "LDMUIBusCenter.h"
 #import "LDMServiceBusCenter.h"
 #import "LDMMessageBusCenter.h"
+#import "LDMUIBusConnector.h"
 
 #import "LDMNavigator.h"
 
 
 static LDMContainer* container = nil;
+static NSArray *sortedBundleKeys = nil;
 
 @interface LDMContainer () {
     LDMNavigator *_mainNavigator;
@@ -100,6 +102,28 @@ static LDMContainer* container = nil;
     [self checkAllBundleDuplicateConfig];
 #endif
 }
+
+
+/**
+ * 根据connector的优先级对bundlesMap进行排序
+ */
+-(NSArray *)sortedBundleMapKeys{
+    if(sortedBundleKeys == nil){
+        sortedBundleKeys = [_bundlesMap keysSortedByValueWithOptions:NSSortStable usingComparator:^NSComparisonResult(id obj1, id obj2) {
+            LDMConnectorPriority p1 = [((LDMBundle *)obj1).uibusConnetor connectorPriority];
+            LDMConnectorPriority p2 = [((LDMBundle *)obj2).uibusConnetor connectorPriority];
+            if(p1 > p2){
+                return NSOrderedAscending;
+            } else if(p1 < p2){
+                return NSOrderedDescending;
+            } else {
+                return NSOrderedSame;
+            }
+        }];
+    }
+    return sortedBundleKeys;
+}
+
 
 /**
  * 对于保证整个app统一scheme导航的初始化

@@ -67,4 +67,11 @@
 -(LDMNavigator *)getMainNavigator;
 
 
+/**
+ * 根据bundle的UIBusConnector的优先级排序BundlesMap
+ * 返回排序后的bunldesMap的key数组
+ */
+-(NSArray *)sortedBundleMapKeys;
+
+
 @end

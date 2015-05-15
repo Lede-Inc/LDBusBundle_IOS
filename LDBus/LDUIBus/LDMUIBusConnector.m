@@ -49,29 +49,7 @@
 #pragma mark - require
 //接收URLMessage并处理：via Action
 -(BOOL) dealWithURLMessageFromBus:(TTURLAction *)action {
-    UIViewController *controller = [self viewControllerForAction:action];
-    if (controller==nil) {
-        return NO;
-    }
-    
-    BOOL success = NO;
-    //调用用户自定义继承的处理，否则调用默认的present处理
-    if ([self presentViewController:controller
-                          navigator:_navigator
-                             action:action]){
-        success = YES;
-    }
-    
-    else {
-        TTURLNavigatorPattern *pattern = [_bundleMap matchObjectPattern:[NSURL URLWithString:action.urlPath]];
-        [_navigator presentController: controller
-                        parentURLPath: action.parentURLPath
-                          withPattern: pattern
-                               action: action];
-        success = YES;
-    }
-    
-    return success;
+    return [self createAndPresentViewControllerForAction:action];
 }
 
 
@@ -208,6 +186,13 @@
 @implementation LDMUIBusConnector(ToBeOverwrite)
 
 /**
+ * 返回当前Connector的优先处理级别
+ */
+-(LDMConnectorPriority)connectorPriority {
+    return LDMConnectorPriority_NORMAL;
+}
+
+/**
  * 接收消息，查看消息是否能够处理
  * 调用TTURLMap 的urlmatch，如果返回pattern不是默认pattern，则可以处理；
  */
@@ -252,6 +237,34 @@
 }
 
 
+/**
+ * 根据URLAction同时完成生成ViewController和展示ViewController的过程
+ */
+-(BOOL) createAndPresentViewControllerForAction:(TTURLAction *)action{
+    UIViewController *controller = [self viewControllerForAction:action];
+    if (controller==nil) {
+        return NO;
+    }
+    
+    BOOL success = NO;
+    //调用用户自定义继承的处理，否则调用默认的present处理
+    if ([self presentViewController:controller
+                          navigator:_navigator
+                             action:action]){
+        success = YES;
+    }
+    
+    else {
+        TTURLNavigatorPattern *pattern = [_bundleMap matchObjectPattern:[NSURL URLWithString:action.urlPath]];
+        [_navigator presentController: controller
+                        parentURLPath: action.parentURLPath
+                          withPattern: pattern
+                               action: action];
+        success = YES;
+    }
+    
+    return success;
+}
 
 
 @end

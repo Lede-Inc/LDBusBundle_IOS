@@ -177,7 +177,7 @@ static LDMUIBusCenter *uibusCenter = nil;
     BOOL isAllCheck = NO;
     @try {
         TTURLAction *action = [[_UIBusMessageQueue lastObject] objectForKey:TITLE_MESSAGEACTION];
-        NSArray *keys = bundlesMap.allKeys;
+        NSArray *keys = [[LDMContainer container] sortedBundleMapKeys];
         int i = 0;
         for(; i < keys.count; i++){
             NSString *bundleKey = [keys objectAtIndex:i];
