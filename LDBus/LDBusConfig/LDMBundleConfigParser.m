@@ -56,7 +56,9 @@
                               bundleHost:IFNIL(attributeDict[@"host"])
                               updateURL:IFNIL(attributeDict[@"update"])
                               installLevel:IFNIL(attributeDict[@"installLevel"])
-                              connectorClass:IFNIL(attributeDict[@"connectorClass"])];
+                              connectorClass:IFNIL(attributeDict[@"connectorClass"])
+                              version:IFNIL(attributeDict[@"version"])
+                              customWebContainerClass:IFNIL(attributeDict[@"customWebContainer"])];
     }
     
     //标记是否有url_handler_list,如果存在，才开始解析ViewController

@@ -15,8 +15,9 @@
 #import "LDMBusContext.h"
 #import "LDMBundle.h"
 #import "LDMUIBusConnector.h"
+#import "LDMWebContainerProtocol.h"
 #import "TTURLMap.h"
-#import "TTWebController.h"
+#import "LDMWebContainer.h"
 
 //获取系统版本
 #define INTOSVERSION ([[[UIDevice currentDevice] systemVersion] intValue])
@@ -166,7 +167,17 @@
 -(TTURLMap *)getURLMapFromConfigObj{
     if(_configurationItem == nil) return nil;
     TTURLMap *map = [[TTURLMap alloc] init];
-    [map from:@"*" toViewController:[TTWebController class] navigationMode:TTNavigationModeCreate withWebURL:nil];
+    
+    //是否定制自定义的webContainer
+    Class webContainer = [LDMWebContainer class];
+    if(_configurationItem.customWebContainerClass && ![_configurationItem.customWebContainerClass isEqualToString:@""]){
+        Class customWebContainer = NSClassFromString(_configurationItem.customWebContainerClass);
+        if(customWebContainer && [customWebContainer conformsToProtocol:@protocol(LDMWebContainerProtocol)]){
+            webContainer = customWebContainer;
+        }
+    }
+    [map from:@"*" toViewController:webContainer navigationMode:TTNavigationModeCreate withWebURL:nil];
+    
     if(_configurationItem.urlViewCtrlConfigurationList && _configurationItem.urlViewCtrlConfigurationList.count>0){
         //设置bundle URLMap的scheme
         NSString *bundleScheme = _configurationItem.bundleName;

@@ -11,6 +11,7 @@
 		625EDB561A19ED5F000AEA3E /* tab.png in Resources */ = {isa = PBXBuildFile; fileRef = 625EDB551A19ED5F000AEA3E /* tab.png */; };
 		6262ED1A1A3A973200191FB9 /* LDCustomConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 6262ED191A3A973200191FB9 /* LDCustomConnector.m */; };
 		628412841A3C36F800600B38 /* LDBus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62E8B8951A39A75A001993A9 /* LDBus.framework */; };
+		628690781B05C57F0096FD64 /* LDMWebContainerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 628690761B05C57F0096FD64 /* LDMWebContainerProtocol.h */; };
 		62B4F9271A171BBC0056CBAB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B4F9261A171BBC0056CBAB /* main.m */; };
 		62B4F92A1A171BBC0056CBAB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B4F9291A171BBC0056CBAB /* AppDelegate.m */; };
 		62B4F9321A171BBC0056CBAB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62B4F9311A171BBC0056CBAB /* Images.xcassets */; };
@@ -90,8 +91,8 @@
 		62E8B9C81A39AA85001993A9 /* TTURLLiteral.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9871A39AA85001993A9 /* TTURLLiteral.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9C91A39AA85001993A9 /* TTURLLiteral.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9881A39AA85001993A9 /* TTURLLiteral.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		62E8B9CA1A39AA85001993A9 /* TTURLPatternText.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9891A39AA85001993A9 /* TTURLPatternText.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		62E8B9CF1A39AA85001993A9 /* TTWebController.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B98F1A39AA85001993A9 /* TTWebController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		62E8B9D01A39AA85001993A9 /* TTWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9901A39AA85001993A9 /* TTWebController.m */; };
+		62E8B9CF1A39AA85001993A9 /* LDMWebContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B98F1A39AA85001993A9 /* LDMWebContainer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		62E8B9D01A39AA85001993A9 /* LDMWebContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9901A39AA85001993A9 /* LDMWebContainer.m */; };
 		62E8B9D91A39AB16001993A9 /* TTURLArguments.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E8B9D71A39AB16001993A9 /* TTURLArguments.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		62E8B9DA1A39AB16001993A9 /* TTURLArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E8B9D81A39AB16001993A9 /* TTURLArguments.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
@@ -132,6 +133,7 @@
 		625EDB551A19ED5F000AEA3E /* tab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tab.png; path = LDBusBundle/tab.png; sourceTree = "<group>"; };
 		6262ED181A3A973200191FB9 /* LDCustomConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDCustomConnector.h; sourceTree = "<group>"; };
 		6262ED191A3A973200191FB9 /* LDCustomConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDCustomConnector.m; sourceTree = "<group>"; };
+		628690761B05C57F0096FD64 /* LDMWebContainerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDMWebContainerProtocol.h; sourceTree = "<group>"; };
 		62B4F9211A171BBC0056CBAB /* LDBusBundle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LDBusBundle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62B4F9251A171BBC0056CBAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62B4F9261A171BBC0056CBAB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -225,8 +227,8 @@
 		62E8B9871A39AA85001993A9 /* TTURLLiteral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLLiteral.h; path = "../URL Pattern Text/TTURLLiteral.h"; sourceTree = "<group>"; };
 		62E8B9881A39AA85001993A9 /* TTURLLiteral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTURLLiteral.m; path = "../URL Pattern Text/TTURLLiteral.m"; sourceTree = "<group>"; };
 		62E8B9891A39AA85001993A9 /* TTURLPatternText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLPatternText.h; path = "../URL Pattern Text/TTURLPatternText.h"; sourceTree = "<group>"; };
-		62E8B98F1A39AA85001993A9 /* TTWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTWebController.h; sourceTree = "<group>"; };
-		62E8B9901A39AA85001993A9 /* TTWebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTWebController.m; sourceTree = "<group>"; };
+		62E8B98F1A39AA85001993A9 /* LDMWebContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDMWebContainer.h; sourceTree = "<group>"; };
+		62E8B9901A39AA85001993A9 /* LDMWebContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDMWebContainer.m; sourceTree = "<group>"; };
 		62E8B9D71A39AB16001993A9 /* TTURLArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTURLArguments.h; sourceTree = "<group>"; };
 		62E8B9D81A39AB16001993A9 /* TTURLArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLArguments.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -440,7 +442,7 @@
 				62D28C3C1A52903C00CE1C2E /* LDMNavigator.m */,
 				62D28C3D1A52903C00CE1C2E /* LDMNavigatorInternal.h */,
 				62E8B95A1A39AA85001993A9 /* NavigatorCore */,
-				62E8B98A1A39AA85001993A9 /* NavigatorUI */,
+				62E8B98A1A39AA85001993A9 /* WebContainer */,
 			);
 			path = LDUIBus;
 			sourceTree = "<group>";
@@ -531,12 +533,14 @@
 			path = "URL Argument Type";
 			sourceTree = "<group>";
 		};
-		62E8B98A1A39AA85001993A9 /* NavigatorUI */ = {
+		62E8B98A1A39AA85001993A9 /* WebContainer */ = {
 			isa = PBXGroup;
 			children = (
-				62E8B98F1A39AA85001993A9 /* TTWebController.h */,
-				62E8B9901A39AA85001993A9 /* TTWebController.m */,
+				628690761B05C57F0096FD64 /* LDMWebContainerProtocol.h */,
+				62E8B98F1A39AA85001993A9 /* LDMWebContainer.h */,
+				62E8B9901A39AA85001993A9 /* LDMWebContainer.m */,
 			);
+			name = WebContainer;
 			path = NavigatorUI;
 			sourceTree = "<group>";
 		};
@@ -553,7 +557,8 @@
 				62E8B9991A39AA85001993A9 /* LDMContainer.h in Headers */,
 				62E8B99B1A39AA85001993A9 /* LDMBusContext.h in Headers */,
 				62E8B9BA1A39AA85001993A9 /* TTURLAction.h in Headers */,
-				62E8B9CF1A39AA85001993A9 /* TTWebController.h in Headers */,
+				62E8B9CF1A39AA85001993A9 /* LDMWebContainer.h in Headers */,
+				628690781B05C57F0096FD64 /* LDMWebContainerProtocol.h in Headers */,
 				62E8B9A31A39AA85001993A9 /* LDMUIBusConnector.h in Headers */,
 				62DE31F01A483879008FEFEF /* LDMServiceConfigurationItem.h in Headers */,
 				62E8B9971A39AA85001993A9 /* LDMBundle.h in Headers */,
@@ -802,7 +807,7 @@
 				62E8B99E1A39AA85001993A9 /* LDMMessageBusCenter.m in Sources */,
 				62E8B9C91A39AA85001993A9 /* TTURLLiteral.m in Sources */,
 				62E8B9DA1A39AB16001993A9 /* TTURLArguments.m in Sources */,
-				62E8B9D01A39AA85001993A9 /* TTWebController.m in Sources */,
+				62E8B9D01A39AA85001993A9 /* LDMWebContainer.m in Sources */,
 				62DF03051A4BB69000EDBE8B /* LDMRoutes.m in Sources */,
 				62E8B9C71A39AA85001993A9 /* TTURLWildcard.m in Sources */,
 				62E8B9AE1A39AA85001993A9 /* NSStringAdditions.m in Sources */,

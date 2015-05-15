@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "LDMBusWebControllerProtocol.h"
-#import "TTWebController.h"
+#import "LDMWebContainer.h"
 
-@interface LDMPopWebViewController : TTWebController <LDMBusWebControllerProtocol>
+@interface LDMPopWebViewController : LDMWebContainer <LDMBusWebControllerProtocol>
 
 @end

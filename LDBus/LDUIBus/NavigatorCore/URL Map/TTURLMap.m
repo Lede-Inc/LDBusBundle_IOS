@@ -170,13 +170,13 @@
             
             //放置到query对象中
             if(query){
-               mutquery = [NSMutableDictionary dictionaryWithDictionary:query];
+                mutquery = [NSMutableDictionary dictionaryWithDictionary:query];
             } else {
                 mutquery = [[[NSMutableDictionary alloc] initWithCapacity:1] autorelease];
             }
-            if(![mutquery objectForKey:@"_ttdefault_url_"] && pattern.webURL){
+            if(![mutquery objectForKey:@"_ttdegrade_url_"] && pattern.webURL){
                 NSLog(@"actWebURL>>>>%@", actWebURL);
-                [mutquery setObject:actWebURL  forKey:@"_ttdefault_url_"];
+                [mutquery setObject:actWebURL  forKey:@"_ttdegrade_url_"];
             }
             pattern = _defaultObjectPattern;
         }

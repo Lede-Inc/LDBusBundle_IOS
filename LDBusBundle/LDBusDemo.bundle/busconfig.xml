@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<bundle name="LDBusDemo" connectorClass="LDCustomConnector">
+<bundle name="LDBusDemo" connectorClass="LDCustomConnector" version="0.1.11" customWebContainer="LDMPopWebViewController">
     <url_handler_list>
         <!--个人账户首页
          netease://mainTab1

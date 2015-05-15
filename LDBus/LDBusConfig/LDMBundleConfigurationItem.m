@@ -18,6 +18,8 @@
 @synthesize updateURL = _updateURL;
 @synthesize installLevel = _installLevel;
 @synthesize connectorClass = _connectorClass;
+@synthesize version = _version;
+@synthesize customWebContainerClass = _customWebContainerClass;
 
 @synthesize urlViewCtrlConfigurationList = _urlViewCtrlConfigurationList;
 @synthesize serviceConfigurationList = _serviceConfigurationList;
@@ -43,7 +45,9 @@
                           bundleHost:(NSString *) theBundleWebHost
                            updateURL:(NSString *) theUpdateURL
                         installLevel:(NSString *) theInstallLevel
-                      connectorClass:(NSString *) theConnetorClass;{
+                      connectorClass:(NSString *) theConnetorClass
+                             version:(NSString *) theVersion
+             customWebContainerClass:(NSString *) theCustomWebContainerClass{
     self = [super init];
     if(self){
         _bundleName = theBundleName;
@@ -54,6 +58,8 @@
         _updateURL = theUpdateURL;
         _installLevel = theInstallLevel;
         _connectorClass = theConnetorClass;
+        _version = theVersion;
+        _customWebContainerClass = theCustomWebContainerClass;
         
         _urlViewCtrlConfigurationList = nil;
         _serviceConfigurationList = nil;
