@@ -12,6 +12,7 @@
 		6262ED1A1A3A973200191FB9 /* LDCustomConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 6262ED191A3A973200191FB9 /* LDCustomConnector.m */; };
 		628412841A3C36F800600B38 /* LDBus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62E8B8951A39A75A001993A9 /* LDBus.framework */; };
 		628690781B05C57F0096FD64 /* LDMWebContainerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 628690761B05C57F0096FD64 /* LDMWebContainerProtocol.h */; };
+		6286907B1B05CF090096FD64 /* LDMBMovieFilm.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6286907A1B05CF090096FD64 /* LDMBMovieFilm.bundle */; };
 		62B4F9271A171BBC0056CBAB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B4F9261A171BBC0056CBAB /* main.m */; };
 		62B4F92A1A171BBC0056CBAB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B4F9291A171BBC0056CBAB /* AppDelegate.m */; };
 		62B4F9321A171BBC0056CBAB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62B4F9311A171BBC0056CBAB /* Images.xcassets */; };
@@ -134,6 +135,7 @@
 		6262ED181A3A973200191FB9 /* LDCustomConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDCustomConnector.h; sourceTree = "<group>"; };
 		6262ED191A3A973200191FB9 /* LDCustomConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDCustomConnector.m; sourceTree = "<group>"; };
 		628690761B05C57F0096FD64 /* LDMWebContainerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDMWebContainerProtocol.h; sourceTree = "<group>"; };
+		6286907A1B05CF090096FD64 /* LDMBMovieFilm.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LDMBMovieFilm.bundle; sourceTree = "<group>"; };
 		62B4F9211A171BBC0056CBAB /* LDBusBundle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LDBusBundle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62B4F9251A171BBC0056CBAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62B4F9261A171BBC0056CBAB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 		62B4F9231A171BBC0056CBAB /* LDBusBundle */ = {
 			isa = PBXGroup;
 			children = (
+				6286907A1B05CF090096FD64 /* LDMBMovieFilm.bundle */,
 				62D1F52E1A36D58C0076ACA7 /* LDBusDemo.bundle */,
 				62B4F9281A171BBC0056CBAB /* AppDelegate.h */,
 				62B4F9291A171BBC0056CBAB /* AppDelegate.m */,
@@ -726,6 +729,7 @@
 				62D539B71A1B27790088FFF4 /* framework.sh in Resources */,
 				62D1F52F1A36D58C0076ACA7 /* LDBusDemo.bundle in Resources */,
 				62DD8F081A4A96B300E24C77 /* LICENSE in Resources */,
+				6286907B1B05CF090096FD64 /* LDMBMovieFilm.bundle in Resources */,
 				62B4F9321A171BBC0056CBAB /* Images.xcassets in Resources */,
 				625EDB561A19ED5F000AEA3E /* tab.png in Resources */,
 				62DE31F91A483F6B008FEFEF /* LDBusDemo_bundle.plist in Resources */,
