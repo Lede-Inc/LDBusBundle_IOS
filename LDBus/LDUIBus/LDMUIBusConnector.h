@@ -33,8 +33,10 @@ typedef enum : NSUInteger {
  *    2)如果同构bundle，可以直接调用总线提供的方法去完成初始化
  */
 @interface LDMUIBusConnector : NSObject{
-    
+    LDMNavigator *_navigator;
 }
+
+@property(nonatomic, readonly)LDMNavigator *navigator;
 
 /**
  * 从buscenter 赋值, 继承者可以重载自己加载map；

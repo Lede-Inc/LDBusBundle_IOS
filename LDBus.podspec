@@ -27,7 +27,7 @@ Pod::Spec.new do |s|
     end
 
     s.subspec 'non-arc' do |sn|
-        sn.public_header_files = 'LDBus/LDUIBus/LDMNavigator.h', 'LDBus/LDUIBus/NavigatorCore/URL\ Action/TTURLAction.h','LDBus/LDUIBus/NavigatorUI/TTWebController.h'
+        sn.public_header_files = 'LDBus/LDUIBus/LDMNavigator.h', 'LDBus/LDUIBus/NavigatorCore/URL\ Action/TTURLAction.h'
         sn.source_files = 'LDBus/LDUIBus/NavigatorCore/**/*.{h,m}', 'LDBus/LDUIBus/NavigatorUI/**/*.{h,m}'
         sn.requires_arc = false
     end

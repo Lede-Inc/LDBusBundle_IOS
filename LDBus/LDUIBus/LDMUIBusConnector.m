@@ -22,14 +22,13 @@
 
 @interface LDMUIBusConnector() {
     TTURLMap *_bundleMap;
-    LDMNavigator *_navigator;
     NSString *_bundleName;
 }
 
 @end
 
 @implementation LDMUIBusConnector
-
+@synthesize navigator = _navigator;
 
 -(void)setBundleURLMap:(TTURLMap *)map {
     _bundleMap = map;
