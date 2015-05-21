@@ -33,11 +33,26 @@ TT_FIX_CATEGORY_BUG(UITabBarControllerAdditions)
 - (void)addSubcontroller:(UIViewController*)controller
                 animated:(BOOL)animated
               transition:(UIViewAnimationTransition)transition {
-    self.selectedViewController = controller;
+    [self updateSelectController:controller];
 }
 
 
 - (void)bringControllerToFront:(UIViewController*)controller animated:(BOOL)animated {
-    self.selectedViewController = controller;
+    [self updateSelectController:controller];
 }
+
+
+- (void)updateSelectController:(UIViewController *)selectedViewController{
+    if(self.delegate && [self.delegate respondsToSelector:@selector(tabBarController:shouldSelectViewController:)]){
+        [self.delegate tabBarController:self shouldSelectViewController:selectedViewController];
+    }
+
+    self.selectedViewController = selectedViewController;
+    
+    if(self.delegate && [self.delegate respondsToSelector:@selector(tabBarController:didSelectViewController:)]){
+        [self.delegate tabBarController:self didSelectViewController:selectedViewController];
+    }
+}
+
+
 @end
