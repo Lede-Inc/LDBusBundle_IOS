@@ -150,8 +150,9 @@
     
     //解析query
     if (URL.query) {
+        _qKeys = [URL.query queryKeysSortByFIFO:NSUTF8StringEncoding];
         NSDictionary* query = [URL.query queryContentsUsingEncoding:NSUTF8StringEncoding];
-        for (NSString* name in [query keyEnumerator]) {
+        for (NSString* name in _qKeys) {
             NSString* value = [[query objectForKey:name] objectAtIndex:0];
             [self parseParameter:name value:value];
         }

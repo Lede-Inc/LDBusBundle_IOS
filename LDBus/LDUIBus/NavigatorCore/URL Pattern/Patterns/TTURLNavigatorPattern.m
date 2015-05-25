@@ -138,7 +138,8 @@ static NSString* kUniversalURLPattern = @"*";
         }
     }
     
-    for (id<TTURLPatternText> pattern in [_query objectEnumerator]) {
+    for (NSString *qkey in _qKeys){
+        id<TTURLPatternText> pattern = [_query objectForKey:qkey];
         if ([pattern isKindOfClass:[TTURLWildcard class]]) {
             TTURLWildcard* wildcard = (TTURLWildcard*)pattern;
             if (wildcard.name) {
@@ -198,7 +199,8 @@ static NSString* kUniversalURLPattern = @"*";
             [self analyzeArgument:pattern method:method argNames:argNames];
         }
         
-        for (id<TTURLPatternText> pattern in [_query objectEnumerator]) {
+        for (NSString *qkey in _qKeys){
+            id<TTURLPatternText> pattern = [_query objectForKey:qkey];
             [self analyzeArgument:pattern method:method argNames:argNames];
         }
         

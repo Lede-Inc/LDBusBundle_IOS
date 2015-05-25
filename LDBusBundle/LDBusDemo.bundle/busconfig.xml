@@ -16,6 +16,7 @@
             <URLPattern name="popover/(initWithFood:)" type="pop"/>
             <URLPattern name="modeview" webquery="param=(initWithFood:)" type="modal"/>
             <URLPattern name="about/(initWithUs:)/(others:)" parent="menu?menuID=5" type="push"/>
+            <URLPattern name="about" webquery="licenseNo=(initWithLicenseNo:)&amp;userId=(userId:)&amp;picUrl=(picUrl:)"/>
         </ViewController>
     </url_handler_list>
     <service_list>

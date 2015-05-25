@@ -14,6 +14,26 @@ TT_FIX_CATEGORY_BUG(NSStringAdditions)
 
 @implementation NSString (TTAdditions)
 
+-(NSArray *)queryKeysSortByFIFO:(NSStringEncoding)encoding{
+    NSMutableArray *mArray = [NSMutableArray array];
+    NSCharacterSet* delimiterSet = [NSCharacterSet characterSetWithCharactersInString:@"&;"];
+    NSScanner* scanner = [[[NSScanner alloc] initWithString:self] autorelease];
+    while (![scanner isAtEnd]) {
+        NSString* pairString = nil;
+        [scanner scanUpToCharactersFromSet:delimiterSet intoString:&pairString];
+        [scanner scanCharactersFromSet:delimiterSet intoString:NULL];
+        NSArray* kvPair = [pairString componentsSeparatedByString:@"="];
+        if (kvPair.count == 1 || kvPair.count == 2) {
+            NSString* key = [[kvPair objectAtIndex:0]
+                             stringByReplacingPercentEscapesUsingEncoding:encoding];
+            [mArray addObject:key];
+        }
+    }
+    
+    return [NSArray arrayWithArray:mArray];
+}
+
+
 - (NSDictionary*)queryContentsUsingEncoding:(NSStringEncoding)encoding {
     NSCharacterSet* delimiterSet = [NSCharacterSet characterSetWithCharactersInString:@"&;"];
     NSMutableDictionary* pairs = [NSMutableDictionary dictionary];

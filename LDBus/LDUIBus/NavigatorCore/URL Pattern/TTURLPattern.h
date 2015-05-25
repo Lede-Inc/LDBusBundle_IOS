@@ -20,6 +20,7 @@
     NSString*             _scheme;
     NSMutableArray*       _path;  //用来存储path选项
     NSMutableDictionary*  _query; //用来存储query选项
+    NSArray*              _qKeys; //用来存储query的key的顺序
     id<TTURLPatternText>  _fragment; 
     NSInteger             _specificity;
     SEL                   _selector;

@@ -7,6 +7,12 @@
 #import <Foundation/Foundation.h>
 
 @interface NSString (TTAdditions)
+
+/**
+ * Parses a URL query-key string into NSArray
+ */
+-(NSArray *)queryKeysSortByFIFO:(NSStringEncoding)encoding;
+
 /**
  * Parses a URL query string into a dictionary where the values are arrays.
  */
