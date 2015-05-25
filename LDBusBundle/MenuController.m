@@ -107,7 +107,7 @@
                                           @"",
                                           @"netescaipiao://food/about/complaints/10",
                                           @"",
-                                          @"netescaipiao://food/modeview?param=19",
+                                          @"netescaipiao://food/modeview?param=%e4%b8%ad%e6%96%87%e4%b8%ad%e6%96%87",
                                           @"netescaipiao://tabMovie",
                                           @"LocationModified"]];
     } else if (_page == MenuPageLunch) {
@@ -162,7 +162,10 @@
             } else if(indexPath.row == 9){
                 NSNotification *notification = [NSNotification notificationWithName:url object:@"i am a object" userInfo:@{@"userInfo":@"i am form userinfo"}];
                 [LDMBusContext postNotification:notification];
-            }else {
+            }else if(indexPath.row == 7){
+                NSLog(@"url==%@", url);
+                [LDMBusContext openURL:url];
+            }else{
                 [LDMBusContext openURL:url];
             }
         } else {
