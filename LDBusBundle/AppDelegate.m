@@ -9,6 +9,7 @@
 #import "LDMBusContext.h"
 #import "LDLoginService.h"
 #import "UIViewControllerAdditions.h"
+#import "LDMPopWebViewController.h"
 
 @interface MyTabController : UITabBarController
 
@@ -66,10 +67,11 @@
     
     
     //注册特殊scheme的web处理容器
+    NSString *handleClassString = NSStringFromClass([LDMPopWebViewController class]);
     //默认通过modal方式打开
     [LDMBusContext registerSpecialScheme:@"http" addRoutes:@"*" handleController:@"LDMPopWebViewController"];
     //push方式打开
-    [LDMBusContext registerSpecialScheme:@"https" addRoutes:@"*" handleController:@"LDMPopWebViewController" isModal:NO];
+    [LDMBusContext registerSpecialScheme:@"https" addRoutes:@"*" handleController:handleClassString isModal:NO];
     [LDMBusContext registerSpecialScheme:@"file" addRoutes:@"*" handleController:@"LDMPopWebViewController"];
     
     

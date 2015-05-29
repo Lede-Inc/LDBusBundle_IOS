@@ -20,7 +20,7 @@
 
 @property (nonatomic, strong) NSString *pattern; //匹配Pattern
 @property (nonatomic, assign) NSUInteger priority; //pattern的处理优先级
-@property (nonatomic, assign) NSString *webHandlerClassString;
+@property (nonatomic, strong) NSString *webHandlerClassString;
 @property (nonatomic, strong) NSArray *patternPathComponents;
 @property (nonatomic, assign) BOOL isModal;
 
