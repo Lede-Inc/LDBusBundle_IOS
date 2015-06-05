@@ -100,7 +100,7 @@
     }
     
     //通过scheme存储ViewController
-    [_objectMappings setObject:object forKey:[self urlWithoutScheme:URL]];
+    [_objectMappings setObject:[object retain] forKey:[self urlWithoutScheme:URL]];
     
     //如果初始化的ViewController，将其放到垃圾回收中
     if ([object isKindOfClass:[UIViewController class]]) {
