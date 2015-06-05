@@ -35,17 +35,18 @@ TT_FIX_CATEGORY_BUG(UINavigationControllerAdditions)
 
 
 - (void)bringControllerToFront:(UIViewController*)controller animated:(BOOL)animated {
-    for(NSInteger len = self.viewControllers.count-1; len >= 0; len--){
-        UIViewController *tmpCtrl = self.viewControllers[len];
-        if(tmpCtrl.presentedViewController != nil){
-            [tmpCtrl dismissViewControllerAnimated:NO completion:nil];
-        }
-        if(tmpCtrl == controller){
-            break;
-        }
-    }
     if ([self.viewControllers indexOfObject:controller] != NSNotFound
         && controller != self.topViewController) {
+        //防止navigationController中有controller有presentedviewController造成dismiss有动画执行导致bug
+        for(NSInteger len = self.viewControllers.count-1; len >= 0; len--){
+            UIViewController *tmpCtrl = self.viewControllers[len];
+            if(tmpCtrl.presentedViewController != nil){
+                [tmpCtrl dismissViewControllerAnimated:NO completion:nil];
+            }
+            if(tmpCtrl == controller){
+                break;
+            }
+        }
         [self popToViewController:controller animated:animated];
     }
 }
