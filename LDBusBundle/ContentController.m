@@ -1,4 +1,5 @@
 #import "ContentController.h"
+#import "LDMBusContext.h"
 
 @implementation ContentController
 
@@ -89,7 +90,7 @@
 
 
 -(void) dismiss {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [LDMBusContext openURL:@"netescaipiao://menu?menuID=5"];
 }
 
 
