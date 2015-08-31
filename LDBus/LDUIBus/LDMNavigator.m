@@ -82,21 +82,24 @@ static LDMNavigator* gNavigator = nil;
 -(void) setWindow:(UIWindow *)theWindow{
     NSAssert(theWindow!=nil, @"window can't not be nil");
     _window = theWindow;
-    if(_window.rootViewController == nil){
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIWindowDidBecomeKeyNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleWindowNotifcation) name:UIWindowDidBecomeKeyNotification object:nil];
+
+    //window只能设置一次，设置时监听当前window的rootViewControlelr的变化
+    if(_window != nil){
+        [_window addObserver:self forKeyPath:@"rootViewController" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:nil];
     }
 }
 
 /**
- * 处理当初始化时，window还没有设置rootViewController，当makeKeyAndVisible时再去获取rootViewController设置
+ * 当监听到RootViewController变化时，取最新的值进行判断和设置navigator.window新的rootViewController
  */
--(void)handleWindowNotifcation{
-    if(_window!= nil && _window.rootViewController != nil){
-        NSLog(@">>>receive Window Notification:%@>>>>>>>>", NSStringFromClass([_window.rootViewController class]));
-        [self setRootViewController:_window.rootViewController];
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    if(object == _window && [keyPath isEqualToString:@"rootViewController"]){
+        id newRootViewController = change[@"new"];
+        NSLog(@">>>new rootViewController %@ be setted>>>>>>>>", NSStringFromClass([newRootViewController class]));
+        [self setRootViewController:newRootViewController];
     }
 }
+
 
 
 /**
@@ -107,12 +110,9 @@ static LDMNavigator* gNavigator = nil;
     if (controller != _rootViewController) {
         NSLog(@"<<<<<<<<rootViewController_changed>>>>>>>>>>>");
         _rootViewController = controller;
-        
-        [self.window setRootViewController:_rootViewController];
-        [self.window addSubview:_rootViewController.view];
-        
+
         //当setroot的时候，显示window
-        [self.window makeKeyAndVisible];
+        [_window makeKeyAndVisible];
     }
 }
 
@@ -135,7 +135,7 @@ static LDMNavigator* gNavigator = nil;
     } else {
         //如果当前viewController是第一个ViewController，且不是一个容器的ViewController
         if (nil == _rootViewController && !isContainer){
-            [self setRootViewController:[[[self navigationControllerClass] alloc] init] ];
+            _window.rootViewController = [[[self navigationControllerClass] alloc] init];
         }
         
         //如果传入了一个parentURL，则通过该URL生成一个ViewController
@@ -269,8 +269,7 @@ static LDMNavigator* gNavigator = nil;
     BOOL didPresentNewController = YES;
     
     if (nil == _rootViewController) {
-        [self setRootViewController:controller];
-        
+        _window.rootViewController = controller;
     }
     
     //展示一个已经存在的ViewController
