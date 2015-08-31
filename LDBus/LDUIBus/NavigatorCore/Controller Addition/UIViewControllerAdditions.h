@@ -18,7 +18,7 @@
 
 /**
  * 返回当前ViewController是否能够Present Modal controllers
- * @default YES; 
+ * @default YES;
  */
 @property (nonatomic, readonly) BOOL canBeTopViewController;
 
@@ -30,7 +30,7 @@
  * custom UIViewController subclasses the chance to tell Navigator how to follow the hierarchy
  * of view controllers.
  */
-@property (nonatomic, readonly) UIViewController* superController;
+@property (nonatomic, readonly) UIViewController *superController;
 
 
 /**
@@ -40,7 +40,7 @@
  * view controller of a navigation controller.  This property offers custom UIViewController
  * subclasses the chance to tell Navigator how to follow the hierarchy of view controllers.
  */
-- (UIViewController*)topSubcontroller;
+- (UIViewController *)topSubcontroller;
 
 
 /**
@@ -50,8 +50,9 @@
  * UIViewController categories and subclasses should implement to display the controller
  * in a manner specific to them.
  */
-- (void)addSubcontroller:(UIViewController*)controller animated:(BOOL)animated
-        transition:(UIViewAnimationTransition)transition;
+- (void)addSubcontroller:(UIViewController *)controller
+                animated:(BOOL)animated
+              transition:(UIViewAnimationTransition)transition;
 
 
 /**
@@ -61,5 +62,5 @@
  * The default does nothing -- UIViewController categories and subclasses should implement
  * to display the controller in a manner specific to them.
  */
-- (void)bringControllerToFront:(UIViewController*)controller animated:(BOOL)animated;
+- (void)bringControllerToFront:(UIViewController *)controller animated:(BOOL)animated;
 @end

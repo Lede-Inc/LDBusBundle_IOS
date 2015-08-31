@@ -13,11 +13,12 @@
 @synthesize protocolString = _protocolString;
 @synthesize classString = _classString;
 
--(id) initWithServiceConfigurationItem:(NSString *)theServiceName
+- (id)initWithServiceConfigurationItem:(NSString *)theServiceName
                               protocol:(NSString *)theProtocolString
-                                 class:(NSString *)theClassString {
+                                 class:(NSString *)theClassString
+{
     self = [super init];
-    if(self){
+    if (self) {
         _serviceName = theServiceName;
         _protocolString = theProtocolString;
         _classString = theClassString;

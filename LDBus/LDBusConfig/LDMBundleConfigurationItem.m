@@ -26,30 +26,34 @@
 @synthesize postMessageConfigurationList = _postMessageConfigurationList;
 @synthesize receiveMessageConfigurationList = _receiveMessageConfigurationList;
 
-+ (BOOL)isURLConfigurationSame:(id)arg1 toItem:(id)arg2{
++ (BOOL)isURLConfigurationSame:(id)arg1 toItem:(id)arg2
+{
     return YES;
 }
 
-+ (BOOL)checkDuplicateBetweenItem:(id)arg1 andItem:(id)arg2{
++ (BOOL)checkDuplicateBetweenItem:(id)arg1 andItem:(id)arg2
+{
     return NO;
 }
 
-- (BOOL)checkDuplicateMyself {
+- (BOOL)checkDuplicateMyself
+{
     return YES;
 }
 
--(id)initWithBundleConfigurationItem:(NSString *)theBundleName
-                              isMain:(BOOL) theIsMainBundle
-                     hasFirstEnterVC:(BOOL) theHasFirstEnterVC
-                      hasBundleImage:(BOOL) theHasBundleImage
-                          bundleHost:(NSString *) theBundleWebHost
-                           updateURL:(NSString *) theUpdateURL
-                        installLevel:(NSString *) theInstallLevel
-                      connectorClass:(NSString *) theConnetorClass
-                             version:(NSString *) theVersion
-             customWebContainerClass:(NSString *) theCustomWebContainerClass{
+- (id)initWithBundleConfigurationItem:(NSString *)theBundleName
+                               isMain:(BOOL)theIsMainBundle
+                      hasFirstEnterVC:(BOOL)theHasFirstEnterVC
+                       hasBundleImage:(BOOL)theHasBundleImage
+                           bundleHost:(NSString *)theBundleWebHost
+                            updateURL:(NSString *)theUpdateURL
+                         installLevel:(NSString *)theInstallLevel
+                       connectorClass:(NSString *)theConnetorClass
+                              version:(NSString *)theVersion
+              customWebContainerClass:(NSString *)theCustomWebContainerClass
+{
     self = [super init];
-    if(self){
+    if (self) {
         _bundleName = theBundleName;
         _isMainbundle = theIsMainBundle;
         _hasFirstEnterVC = theHasFirstEnterVC;
@@ -60,7 +64,7 @@
         _connectorClass = theConnetorClass;
         _version = theVersion;
         _customWebContainerClass = theCustomWebContainerClass;
-        
+
         _urlViewCtrlConfigurationList = nil;
         _serviceConfigurationList = nil;
         _postMessageConfigurationList = nil;

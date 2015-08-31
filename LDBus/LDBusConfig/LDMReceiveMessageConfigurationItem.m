@@ -14,16 +14,17 @@
 @synthesize receiveObjectString = _receiveObjectString;
 
 
--(id) initWithReceiveMessageConfigurationItem:(NSString *)theMessageName
+- (id)initWithReceiveMessageConfigurationItem:(NSString *)theMessageName
                                          code:(NSString *)theMessageCode
-                                receiveObject:(NSString *)theReceiveObjectString {
+                                receiveObject:(NSString *)theReceiveObjectString
+{
     self = [super init];
-    if(self){
+    if (self) {
         _messageName = theMessageName;
         _messageCode = theMessageCode;
         _receiveObjectString = theReceiveObjectString;
     }
-    
+
     return self;
 }
 

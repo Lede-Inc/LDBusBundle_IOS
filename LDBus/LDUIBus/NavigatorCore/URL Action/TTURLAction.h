@@ -20,82 +20,82 @@
  * For the default values, see the apply method documentation below.
  */
 @interface TTURLAction : NSObject {
-    NSString*     _urlPath;
-    NSString*     _parentURLPath;
-    NSDictionary* _query;
-    BOOL          _animated;
-    
-    CGRect        _sourceRect;
-    UIView*       _sourceView;
-    UIBarButtonItem* _sourceButton;
-    UIViewController* _sourceViewController;
-    
+    NSString *_urlPath;
+    NSString *_parentURLPath;
+    NSDictionary *_query;
+    BOOL _animated;
+
+    CGRect _sourceRect;
+    UIView *_sourceView;
+    UIBarButtonItem *_sourceButton;
+    UIViewController *_sourceViewController;
+
     UIViewAnimationTransition _transition;
-    BOOL          _isDirectDeal; //是否直接展示URL
+    BOOL _isDirectDeal;  //是否直接展示URL
 }
 
-@property (nonatomic, copy)   NSString*     urlPath;
-@property (nonatomic, copy)   NSString*     parentURLPath;
-@property (nonatomic, copy)   NSDictionary* query;
-@property (nonatomic, assign) BOOL          animated;
-@property (nonatomic, assign) CGRect        sourceRect;
-@property (nonatomic, retain) UIView*       sourceView;
-@property (nonatomic, retain) UIBarButtonItem* sourceButton;
-@property (nonatomic, retain) UIViewController* sourceViewController;
+@property (nonatomic, copy) NSString *urlPath;
+@property (nonatomic, copy) NSString *parentURLPath;
+@property (nonatomic, copy) NSDictionary *query;
+@property (nonatomic, assign) BOOL animated;
+@property (nonatomic, assign) CGRect sourceRect;
+@property (nonatomic, retain) UIView *sourceView;
+@property (nonatomic, retain) UIBarButtonItem *sourceButton;
+@property (nonatomic, retain) UIViewController *sourceViewController;
 @property (nonatomic, assign) UIViewAnimationTransition transition;
-@property (nonatomic, assign) BOOL          isDirectDeal;
+@property (nonatomic, assign) BOOL isDirectDeal;
 
 
 /**
  * Create an autoreleased TTURLAction object with a URL path.
  */
-+ (id)actionWithURLPath:(NSString*)urlPath;
++ (id)actionWithURLPath:(NSString *)urlPath;
 
 
 /**
  * @default nil
  */
-- (TTURLAction*)applyParentURLPath:(NSString*)parentURLPath;
+- (TTURLAction *)applyParentURLPath:(NSString *)parentURLPath;
 
 /**
  * @default nil
  */
-- (TTURLAction*)applyQuery:(NSDictionary*)query;
+- (TTURLAction *)applyQuery:(NSDictionary *)query;
 
 /**
  * @default NO
  */
-- (TTURLAction*)applyAnimated:(BOOL)animated;
+- (TTURLAction *)applyAnimated:(BOOL)animated;
 
 /**
  * @default NO
  */
-- (TTURLAction*)applyIfNeedPresent:(BOOL)ifNeedPresent;
+- (TTURLAction *)applyIfNeedPresent:(BOOL)ifNeedPresent;
 
 /**
  * @default CGRectZero
  */
-- (TTURLAction*)applySourceRect:(CGRect)sourceRect;
+- (TTURLAction *)applySourceRect:(CGRect)sourceRect;
 
 /**
  * @default nil
  */
-- (TTURLAction*)applySourceView:(UIView*)sourceView;
+- (TTURLAction *)applySourceView:(UIView *)sourceView;
 
 /**
  * @default nil
  */
-- (TTURLAction*)applySourceButton:(UIBarButtonItem*)sourceButton;
+- (TTURLAction *)applySourceButton:(UIBarButtonItem *)sourceButton;
 
 /**
  * @default nil
  */
-- (TTURLAction*)applySourceViewController:(UIViewController*)sourceViewController;
+- (TTURLAction *)applySourceViewController:(UIViewController *)sourceViewController;
 
 /**
  * @default UIViewAnimationTransitionNone
  */
-- (TTURLAction*)applyTransition:(UIViewAnimationTransition)transition;
+- (TTURLAction *)applyTransition:(UIViewAnimationTransition)transition;
 
 
 @end

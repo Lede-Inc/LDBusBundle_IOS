@@ -4,7 +4,6 @@
 //
 
 
-
 #import "UIViewControllerAdditions.h"
 
 #import "TTUtil.h"
@@ -17,35 +16,40 @@
 TT_FIX_CATEGORY_BUG(UIViewControllerAdditions)
 @implementation UIViewController (TTCategory)
 
-- (BOOL)canContainControllers {
+- (BOOL)canContainControllers
+{
     return NO;
 }
 
 
-- (BOOL)canBeTopViewController {
+- (BOOL)canBeTopViewController
+{
     return YES;
 }
 
 
 //打开一个viewController的parentViewController， 如果没有则返回nil
-- (UIViewController*)superController {
-    UIViewController* parent = self.parentViewController;
+- (UIViewController *)superController
+{
+    UIViewController *parent = self.parentViewController;
     if (nil != parent) {
         return parent;
-    }
-    else {
+    } else {
         return nil;
     }
 }
 
 
-- (UIViewController*)topSubcontroller {
+- (UIViewController *)topSubcontroller
+{
     return nil;
 }
 
 
-- (void)addSubcontroller:(UIViewController*)controller animated:(BOOL)animated
-        transition:(UIViewAnimationTransition)transition {
+- (void)addSubcontroller:(UIViewController *)controller
+                animated:(BOOL)animated
+              transition:(UIViewAnimationTransition)transition
+{
     //只有通过Push的controller才会进入该函数
     if (self.navigationController) {
         [self.navigationController addSubcontroller:controller
@@ -55,7 +59,8 @@ TT_FIX_CATEGORY_BUG(UIViewControllerAdditions)
 }
 
 
-- (void)bringControllerToFront:(UIViewController*)controller animated:(BOOL)animated {
+- (void)bringControllerToFront:(UIViewController *)controller animated:(BOOL)animated
+{
 }
 
 @end

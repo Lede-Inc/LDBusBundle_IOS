@@ -15,41 +15,47 @@ TT_FIX_CATEGORY_BUG(UITabBarControllerAdditions)
 @implementation UITabBarController (TTCategory)
 
 
-- (BOOL)canContainControllers {
+- (BOOL)canContainControllers
+{
     return YES;
 }
 
 
-- (UIViewController*)topSubcontroller {
+- (UIViewController *)topSubcontroller
+{
     if (self.tabBar.selectedItem == self.moreNavigationController.tabBarItem) {
         return self.moreNavigationController;
-    }
-    else {
+    } else {
         return self.selectedViewController;
     }
 }
 
 
-- (void)addSubcontroller:(UIViewController*)controller
+- (void)addSubcontroller:(UIViewController *)controller
                 animated:(BOOL)animated
-              transition:(UIViewAnimationTransition)transition {
+              transition:(UIViewAnimationTransition)transition
+{
     [self updateSelectController:controller];
 }
 
 
-- (void)bringControllerToFront:(UIViewController*)controller animated:(BOOL)animated {
+- (void)bringControllerToFront:(UIViewController *)controller animated:(BOOL)animated
+{
     [self updateSelectController:controller];
 }
 
 
-- (void)updateSelectController:(UIViewController *)selectedViewController{
-    if(self.delegate && [self.delegate respondsToSelector:@selector(tabBarController:shouldSelectViewController:)]){
+- (void)updateSelectController:(UIViewController *)selectedViewController
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(tabBarController:
+                                                               shouldSelectViewController:)]) {
         [self.delegate tabBarController:self shouldSelectViewController:selectedViewController];
     }
 
     self.selectedViewController = selectedViewController;
-    
-    if(self.delegate && [self.delegate respondsToSelector:@selector(tabBarController:didSelectViewController:)]){
+
+    if (self.delegate &&
+        [self.delegate respondsToSelector:@selector(tabBarController:didSelectViewController:)]) {
         [self.delegate tabBarController:self didSelectViewController:selectedViewController];
     }
 }

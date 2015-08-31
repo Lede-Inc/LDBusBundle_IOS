@@ -10,13 +10,15 @@
 @synthesize name = _name;
 
 
-- (void)dealloc {
+- (void)dealloc
+{
     TT_RELEASE_SAFELY(_name);
     [super dealloc];
 }
 
 
-- (BOOL)match:(NSString*)text {
+- (BOOL)match:(NSString *)text
+{
     return [text isEqualToString:_name];
 }
 

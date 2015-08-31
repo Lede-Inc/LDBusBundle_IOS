@@ -14,31 +14,30 @@
  * 用来记录URL消息的pattern对象
  */
 @interface TTURLPattern : NSObject {
-    NSString*             _URL;     //urlpattern
-    NSString*             _webURL;  //urlpattern对应的html5页面地址
-    
-    NSString*             _scheme;
-    NSMutableArray*       _path;  //用来存储path选项
-    NSMutableDictionary*  _query; //用来存储query选项
-    NSArray*              _qKeys; //用来存储query的key的顺序
-    id<TTURLPatternText>  _fragment; 
-    NSInteger             _specificity;
-    SEL                   _selector;
+    NSString *_URL;  // urlpattern
+    NSString *_webURL;  // urlpattern对应的html5页面地址
+
+    NSString *_scheme;
+    NSMutableArray *_path;        //用来存储path选项
+    NSMutableDictionary *_query;  //用来存储query选项
+    NSArray *_qKeys;              //用来存储query的key的顺序
+    id<TTURLPatternText> _fragment;
+    NSInteger _specificity;
+    SEL _selector;
 }
 
-@property (nonatomic, copy)     NSString* URL;
-@property (nonatomic, copy)     NSString* webURL;
-@property (nonatomic, readonly) NSString* scheme;
+@property (nonatomic, copy) NSString *URL;
+@property (nonatomic, copy) NSString *webURL;
+@property (nonatomic, readonly) NSString *scheme;
 @property (nonatomic, readonly) NSInteger specificity;
-@property (nonatomic, readonly) Class     classForInvocation;
-@property (nonatomic)           SEL       selector;
+@property (nonatomic, readonly) Class classForInvocation;
+@property (nonatomic) SEL selector;
 
 /**
  * 给pattern设置对应的init selector
  */
 - (void)setSelectorIfPossible:(SEL)selector;
-- (void)setSelectorWithNames:(NSArray*)names;
-
+- (void)setSelectorWithNames:(NSArray *)names;
 
 
 /**

@@ -10,7 +10,6 @@
 #import "LDMUIBusConnector.h"
 
 @interface LDCustomConnector : LDMUIBusConnector {
-    
 }
 
 @end

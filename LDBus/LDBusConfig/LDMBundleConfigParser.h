@@ -11,9 +11,9 @@
  * 解析各个framework bundle中的配置文件
  */
 @class LDMBundleConfigurationItem;
-@interface LDMBundleConfigParser : NSObject <NSXMLParserDelegate>{
+@interface LDMBundleConfigParser : NSObject <NSXMLParserDelegate> {
 }
 
-@property (nonatomic, readonly, strong) LDMBundleConfigurationItem* configurationItem;
+@property (nonatomic, readonly, strong) LDMBundleConfigurationItem *configurationItem;
 
 @end

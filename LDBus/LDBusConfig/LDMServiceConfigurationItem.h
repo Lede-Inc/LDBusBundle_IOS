@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 /**
- * @class LDMServiceConfigurationItem 
+ * @class LDMServiceConfigurationItem
  * 存储一个Service配置选项
  */
 @interface LDMServiceConfigurationItem : NSObject {
@@ -18,12 +18,12 @@
     NSString *_classString;
 }
 
-@property (readonly, nonatomic)NSString *serviceName;
-@property (readonly, nonatomic)NSString *protocolString;
-@property (readonly, nonatomic)NSString *classString;
+@property (readonly, nonatomic) NSString *serviceName;
+@property (readonly, nonatomic) NSString *protocolString;
+@property (readonly, nonatomic) NSString *classString;
 
--(id)initWithServiceConfigurationItem:(NSString *)theServiceName
-                             protocol:(NSString *)theProtocolString
-                                class:(NSString *)theClassString;
+- (id)initWithServiceConfigurationItem:(NSString *)theServiceName
+                              protocol:(NSString *)theProtocolString
+                                 class:(NSString *)theClassString;
 
 @end

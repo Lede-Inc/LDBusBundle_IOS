@@ -15,18 +15,19 @@
 @synthesize bundleName = _bundleName;
 
 
-- (id)init {
+- (id)init
+{
     NSAssert(0, @"TTURLActionResponse must init with viewcontroller and pattern and bundleName");
     return nil;
 }
 
 
-
--(id) initWithViewController:(UIViewController *)theViewController
+- (id)initWithViewController:(UIViewController *)theViewController
                      pattern:(TTURLNavigatorPattern *)theNavigatorPattern
-                sourceBundle:(NSString *)theBundleName {
+                sourceBundle:(NSString *)theBundleName
+{
     self = [super init];
-    if(self){
+    if (self) {
         self.viewController = theViewController;
         self.navigatorPattern = theNavigatorPattern;
         self.bundleName = theBundleName;
@@ -35,11 +36,12 @@
 }
 
 
-- (void)dealloc {
+- (void)dealloc
+{
     TT_RELEASE_SAFELY(_viewController);
     TT_RELEASE_SAFELY(_navigatorPattern);
     TT_RELEASE_SAFELY(_bundleName);
-    
+
     [super dealloc];
 }
 

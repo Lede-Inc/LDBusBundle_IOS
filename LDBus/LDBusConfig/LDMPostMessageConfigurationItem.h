@@ -18,10 +18,10 @@
     NSString *_messageCode;
 }
 
-@property (readonly,nonatomic) NSString *messageName;
-@property (readonly,nonatomic) NSString *messageCode;
+@property (readonly, nonatomic) NSString *messageName;
+@property (readonly, nonatomic) NSString *messageCode;
 
--(id)initWithPostMessageConfigurationItem:(NSString *) theMessageName
-                                     code:(NSString *) theMessageCode;
+- (id)initWithPostMessageConfigurationItem:(NSString *)theMessageName
+                                      code:(NSString *)theMessageCode;
 
 @end

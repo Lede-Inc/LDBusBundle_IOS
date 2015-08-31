@@ -18,10 +18,10 @@
 
 @interface LDMNavigator (TTInternal)
 
-- (void)presentDependantController: (UIViewController*)controller
-                  parentController: (UIViewController*)parentController
-                              mode: (TTNavigationMode)mode
-                            action: (TTURLAction*)action;
+- (void)presentDependantController:(UIViewController *)controller
+                  parentController:(UIViewController *)parentController
+                              mode:(TTNavigationMode)mode
+                            action:(TTURLAction *)action;
 - (Class)navigationControllerClass;
 
 @end

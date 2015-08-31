@@ -10,13 +10,13 @@
 #import "LDMURLViewCtrlPatternConfigurationItem.h"
 
 @interface LDMURLViewCtrlConfigurationItem : NSObject {
-    NSString *_viewCtrlName;                //所属的ViewController的名称
-    NSString *_viewCtrlClass;               //所属的ViewController的类名称
-    NSString *_viewCtrlWebPath;             //所属的ViewController不存在时，替代的url
-    NSString *_viewCtrlWebQuery;            //默认pattern的query选项
-    PatternType _viewCtrlDefaultType;       //viewController的打开方式
-    NSString *_viewCtrlDefaultParent;       //打开viewController的父controller,通过URL配置
-    NSMutableArray *_urlViewCtrlPatternConfigurationList;          //viewController配置的pattern数组
+    NSString *_viewCtrlName;      //所属的ViewController的名称
+    NSString *_viewCtrlClass;     //所属的ViewController的类名称
+    NSString *_viewCtrlWebPath;   //所属的ViewController不存在时，替代的url
+    NSString *_viewCtrlWebQuery;  //默认pattern的query选项
+    PatternType _viewCtrlDefaultType;  // viewController的打开方式
+    NSString *_viewCtrlDefaultParent;  //打开viewController的父controller,通过URL配置
+    NSMutableArray *_urlViewCtrlPatternConfigurationList;  // viewController配置的pattern数组
 }
 
 
@@ -28,12 +28,12 @@
 @property (readonly, nonatomic) NSString *viewCtrlDefaultParent;
 @property (readwrite, nonatomic) NSMutableArray *urlViewCtrlPatternConfigurationList;
 
--(id)initWithURLViewCtrlConfigurationItem:(NSString *)theViewCtrlName
-                                    class:(NSString *)theViewCtrlClass
-                                  webPath:(NSString *)theViewCtrlWebPath
-                                 webQuery:(NSString *)theViewCtrlWebQuery
-                                   parent:(NSString *) theViewCtrlDefaultParent
-                                     type:(PatternType) theViewCtrlDefaultType;
+- (id)initWithURLViewCtrlConfigurationItem:(NSString *)theViewCtrlName
+                                     class:(NSString *)theViewCtrlClass
+                                   webPath:(NSString *)theViewCtrlWebPath
+                                  webQuery:(NSString *)theViewCtrlWebQuery
+                                    parent:(NSString *)theViewCtrlDefaultParent
+                                      type:(PatternType)theViewCtrlDefaultType;
 
 
 @end

@@ -18,14 +18,15 @@
 @synthesize urlViewCtrlPatternConfigurationList = _urlViewCtrlPatternConfigurationList;
 
 
--(id)initWithURLViewCtrlConfigurationItem:(NSString *)theViewCtrlName
-                                    class:(NSString *)theViewCtrlClass
-                                  webPath:(NSString *)theViewCtrlWebPath
-                                 webQuery:(NSString *)theViewCtrlWebQuery
-                                   parent:(NSString *)theViewCtrlDefaultParent
-                                     type:(PatternType)theViewCtrlDefaultType{
+- (id)initWithURLViewCtrlConfigurationItem:(NSString *)theViewCtrlName
+                                     class:(NSString *)theViewCtrlClass
+                                   webPath:(NSString *)theViewCtrlWebPath
+                                  webQuery:(NSString *)theViewCtrlWebQuery
+                                    parent:(NSString *)theViewCtrlDefaultParent
+                                      type:(PatternType)theViewCtrlDefaultType
+{
     self = [super init];
-    if(self){
+    if (self) {
         _viewCtrlName = theViewCtrlName;
         _viewCtrlClass = theViewCtrlClass;
         _viewCtrlWebPath = theViewCtrlWebPath;

@@ -14,49 +14,51 @@ TT_FIX_CATEGORY_BUG(NSStringAdditions)
 
 @implementation NSString (TTAdditions)
 
--(NSArray *)queryKeysSortByFIFO:(NSStringEncoding)encoding{
+- (NSArray *)queryKeysSortByFIFO:(NSStringEncoding)encoding
+{
     NSMutableArray *mArray = [NSMutableArray array];
-    NSCharacterSet* delimiterSet = [NSCharacterSet characterSetWithCharactersInString:@"&;"];
-    NSScanner* scanner = [[[NSScanner alloc] initWithString:self] autorelease];
+    NSCharacterSet *delimiterSet = [NSCharacterSet characterSetWithCharactersInString:@"&;"];
+    NSScanner *scanner = [[[NSScanner alloc] initWithString:self] autorelease];
     while (![scanner isAtEnd]) {
-        NSString* pairString = nil;
+        NSString *pairString = nil;
         [scanner scanUpToCharactersFromSet:delimiterSet intoString:&pairString];
         [scanner scanCharactersFromSet:delimiterSet intoString:NULL];
-        NSArray* kvPair = [pairString componentsSeparatedByString:@"="];
+        NSArray *kvPair = [pairString componentsSeparatedByString:@"="];
         if (kvPair.count == 1 || kvPair.count == 2) {
-            NSString* key = [[kvPair objectAtIndex:0]
-                             stringByReplacingPercentEscapesUsingEncoding:encoding];
+            NSString *key =
+                [[kvPair objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:encoding];
             [mArray addObject:key];
         }
     }
-    
+
     return [NSArray arrayWithArray:mArray];
 }
 
 
-- (NSDictionary*)queryContentsUsingEncoding:(NSStringEncoding)encoding {
-    NSCharacterSet* delimiterSet = [NSCharacterSet characterSetWithCharactersInString:@"&;"];
-    NSMutableDictionary* pairs = [NSMutableDictionary dictionary];
-    NSScanner* scanner = [[[NSScanner alloc] initWithString:self] autorelease];
+- (NSDictionary *)queryContentsUsingEncoding:(NSStringEncoding)encoding
+{
+    NSCharacterSet *delimiterSet = [NSCharacterSet characterSetWithCharactersInString:@"&;"];
+    NSMutableDictionary *pairs = [NSMutableDictionary dictionary];
+    NSScanner *scanner = [[[NSScanner alloc] initWithString:self] autorelease];
     while (![scanner isAtEnd]) {
-        NSString* pairString = nil;
+        NSString *pairString = nil;
         [scanner scanUpToCharactersFromSet:delimiterSet intoString:&pairString];
         [scanner scanCharactersFromSet:delimiterSet intoString:NULL];
-        NSArray* kvPair = [pairString componentsSeparatedByString:@"="];
+        NSArray *kvPair = [pairString componentsSeparatedByString:@"="];
         if (kvPair.count == 1 || kvPair.count == 2) {
-            NSString* key = [[kvPair objectAtIndex:0]
-                             stringByReplacingPercentEscapesUsingEncoding:encoding];
-            NSMutableArray* values = [pairs objectForKey:key];
+            NSString *key =
+                [[kvPair objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:encoding];
+            NSMutableArray *values = [pairs objectForKey:key];
             if (nil == values) {
                 values = [NSMutableArray array];
                 [pairs setObject:values forKey:key];
             }
             if (kvPair.count == 1) {
                 [values addObject:[NSNull null]];
-                
+
             } else if (kvPair.count == 2) {
-                NSString* value = [[kvPair objectAtIndex:1]
-                                   stringByReplacingPercentEscapesUsingEncoding:encoding];
+                NSString *value = [[kvPair objectAtIndex:1]
+                    stringByReplacingPercentEscapesUsingEncoding:encoding];
                 [values addObject:value];
             }
         }

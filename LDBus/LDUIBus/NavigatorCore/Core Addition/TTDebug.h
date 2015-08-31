@@ -21,52 +21,55 @@
  * The default maximum log level is TTLOGLEVEL_WARNING.
  */
 
-#define TTLOGLEVEL_INFO     5
-#define TTLOGLEVEL_WARNING  3
-#define TTLOGLEVEL_ERROR    1
+#define TTLOGLEVEL_INFO 5
+#define TTLOGLEVEL_WARNING 3
+#define TTLOGLEVEL_ERROR 1
 
 #ifndef TTMAXLOGLEVEL
-    #ifdef DEBUG
-        #define TTMAXLOGLEVEL TTLOGLEVEL_INFO
-    #else
-        #define TTMAXLOGLEVEL TTLOGLEVEL_ERROR
-    #endif
+#ifdef DEBUG
+#define TTMAXLOGLEVEL TTLOGLEVEL_INFO
+#else
+#define TTMAXLOGLEVEL TTLOGLEVEL_ERROR
+#endif
 #endif
 
 
 // The general purpose logger. This ignores logging levels.
 #ifdef DEBUG
-  #define TTDPRINT(xx, ...)  NSLog(@"%s(%d): " xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#define TTDPRINT(xx, ...) NSLog(@"%s(%d): " xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
 #else
-  #define TTDPRINT(xx, ...)  ((void)0)
-#endif // #ifdef DEBUG
+#define TTDPRINT(xx, ...) ((void)0)
+#endif  // #ifdef DEBUG
 
 
 // Log-level based logging macros.
 #if TTLOGLEVEL_ERROR <= TTMAXLOGLEVEL
-  #define TTDERROR(xx, ...)  TTDPRINT(xx, ##__VA_ARGS__)
+#define TTDERROR(xx, ...) TTDPRINT(xx, ##__VA_ARGS__)
 #else
-  #define TTDERROR(xx, ...)  ((void)0)
-#endif // #if TTLOGLEVEL_ERROR <= TTMAXLOGLEVEL
+#define TTDERROR(xx, ...) ((void)0)
+#endif  // #if TTLOGLEVEL_ERROR <= TTMAXLOGLEVEL
 
 #if TTLOGLEVEL_WARNING <= TTMAXLOGLEVEL
-  #define TTDWARNING(xx, ...)  TTDPRINT(xx, ##__VA_ARGS__)
+#define TTDWARNING(xx, ...) TTDPRINT(xx, ##__VA_ARGS__)
 #else
-  #define TTDWARNING(xx, ...)  ((void)0)
-#endif // #if TTLOGLEVEL_WARNING <= TTMAXLOGLEVEL
+#define TTDWARNING(xx, ...) ((void)0)
+#endif  // #if TTLOGLEVEL_WARNING <= TTMAXLOGLEVEL
 
 #if TTLOGLEVEL_INFO <= TTMAXLOGLEVEL
-  #define TTDINFO(xx, ...)  TTDPRINT(xx, ##__VA_ARGS__)
+#define TTDINFO(xx, ...) TTDPRINT(xx, ##__VA_ARGS__)
 #else
-  #define TTDINFO(xx, ...)  ((void)0)
-#endif // #if TTLOGLEVEL_INFO <= TTMAXLOGLEVEL
+#define TTDINFO(xx, ...) ((void)0)
+#endif  // #if TTLOGLEVEL_INFO <= TTMAXLOGLEVEL
 
 
 #ifdef DEBUG
-  #define TTDCONDITIONLOG(condition, xx, ...) { if ((condition)) { \
-                                                  TTDPRINT(xx, ##__VA_ARGS__); \
-                                                } \
-                                              } ((void)0)
+#define TTDCONDITIONLOG(condition, xx, ...)                                                        \
+    {                                                                                              \
+        if ((condition)) {                                                                         \
+            TTDPRINT(xx, ##__VA_ARGS__);                                                           \
+        }                                                                                          \
+    }                                                                                              \
+    ((void)0)
 #else
-  #define TTDCONDITIONLOG(condition, xx, ...) ((void)0)
-#endif // #ifdef DEBUG
+#define TTDCONDITIONLOG(condition, xx, ...) ((void)0)
+#endif  // #ifdef DEBUG

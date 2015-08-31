@@ -18,24 +18,24 @@
 /**
  * The default initializer sent to view controllers opened through Navigator.
  */
-- (id)initWithNavigatorURL:(NSURL*)URL query:(NSDictionary*)query;
+- (id)initWithNavigatorURL:(NSURL *)URL query:(NSDictionary *)query;
 
 
 /**
  * 当前正在展示ViewController的URL
  */
-@property (nonatomic, readonly) NSString* navigatorURL;
+@property (nonatomic, readonly) NSString *navigatorURL;
 
 
 /**
  * The URL that was used to load this controller through Navigator.
  * 这个是参加Navigator导航生成ViewController的最原始的URL，不允许改变
  */
-@property (nonatomic, copy) NSString* originalNavigatorURL;
+@property (nonatomic, copy) NSString *originalNavigatorURL;
 
 
 /**
  * 向导航器中的垃圾箱中添加Controller
  */
-+ (void)ttAddNavigatorController:(UIViewController*)controller;
++ (void)ttAddNavigatorController:(UIViewController *)controller;
 @end

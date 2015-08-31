@@ -10,14 +10,14 @@
 
 
 @interface LDMWebContainer : UIViewController <UIWebViewDelegate, LDMWebContainerProtocol> {
-@protected
-    UIWebView*        _webView;
+  @protected
+    UIWebView *_webView;
 }
 
 /**
  * 打开URL
  */
-- (void)openURL:(NSURL*)URL;
+- (void)openURL:(NSURL *)URL;
 
 
 @end

@@ -4,7 +4,6 @@
 //
 
 
-
 #import <Foundation/Foundation.h>
 
 
@@ -14,19 +13,22 @@
  * categories and no classes.
  * See http://developer.apple.com/library/mac/#qa/qa2006/qa1490.html for more info.
  */
-#define TT_FIX_CATEGORY_BUG(name) @interface TT_FIX_CATEGORY_BUG_##name:NSObject @end \
-@implementation TT_FIX_CATEGORY_BUG_##name @end
-
+#define TT_FIX_CATEGORY_BUG(name)                                                                  \
+    @interface TT_FIX_CATEGORY_BUG_                                                                \
+    ##name : NSObject @end @implementation TT_FIX_CATEGORY_BUG_##name @end
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Safe releases
-#define TT_RELEASE_SAFELY(__POINTER) { [__POINTER release]; __POINTER = nil; }
+#define TT_RELEASE_SAFELY(__POINTER)                                                               \
+    {                                                                                              \
+        [__POINTER release];                                                                       \
+        __POINTER = nil;                                                                           \
+    }
 
 /**
  * Creates a mutable dictionary which does not retain references to the values it contains.
  *
  * Typically used with dictionaries of delegates.
  */
-NSMutableDictionary* TTCreateNonRetainingDictionary();
-
+NSMutableDictionary *TTCreateNonRetainingDictionary();

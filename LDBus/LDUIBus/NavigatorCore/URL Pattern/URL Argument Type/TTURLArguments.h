@@ -16,5 +16,4 @@ typedef enum {
 } TTURLArgumentType;
 
 TTURLArgumentType TTConvertArgumentType(char argType);
-TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* propertyName);
-
+TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString *propertyName);

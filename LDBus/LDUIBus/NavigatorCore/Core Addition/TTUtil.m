@@ -7,15 +7,21 @@
 #import <objc/runtime.h>
 
 // No-ops for non-retaining objects.
-static const void* TTRetainNoOp(CFAllocatorRef allocator, const void *value) { return value; }
-static void TTReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
+static const void *TTRetainNoOp(CFAllocatorRef allocator, const void *value)
+{
+    return value;
+}
+static void TTReleaseNoOp(CFAllocatorRef allocator, const void *value)
+{
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-NSMutableDictionary* TTCreateNonRetainingDictionary() {
-  CFDictionaryKeyCallBacks keyCallbacks = kCFTypeDictionaryKeyCallBacks;
-  CFDictionaryValueCallBacks callbacks = kCFTypeDictionaryValueCallBacks;
-  callbacks.retain = TTRetainNoOp;
-  callbacks.release = TTReleaseNoOp;
-  return (NSMutableDictionary*)CFDictionaryCreateMutable(nil, 0, &keyCallbacks, &callbacks);
+NSMutableDictionary *TTCreateNonRetainingDictionary()
+{
+    CFDictionaryKeyCallBacks keyCallbacks = kCFTypeDictionaryKeyCallBacks;
+    CFDictionaryValueCallBacks callbacks = kCFTypeDictionaryValueCallBacks;
+    callbacks.retain = TTRetainNoOp;
+    callbacks.release = TTReleaseNoOp;
+    return (NSMutableDictionary *)CFDictionaryCreateMutable(nil, 0, &keyCallbacks, &callbacks);
 }

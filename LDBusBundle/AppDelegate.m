@@ -17,20 +17,22 @@
 
 @implementation MyTabController
 //如果没有定义Selector，则默认调用init的方法去启动程序应用
--(void) viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    [self setTabURLs:@[@"netescaipiao://menu?menuID=1", @"netescaipiao://menu?menuID=5"]];
+    [self setTabURLs:@[ @"netescaipiao://menu?menuID=1", @"netescaipiao://menu?menuID=5" ]];
 }
 
 
-- (void)setTabURLs:(NSArray*)URLs {
-    NSMutableArray* controllers = [NSMutableArray array];
-    for (NSString* URL in URLs) {
-        UIViewController* controller = [LDMBusContext controllerForURL:URL];
+- (void)setTabURLs:(NSArray *)URLs
+{
+    NSMutableArray *controllers = [NSMutableArray array];
+    for (NSString *URL in URLs) {
+        UIViewController *controller = [LDMBusContext controllerForURL:URL];
         if (controller) {
-            UIViewController* tabController = [self rootControllerForController:controller];
-            tabController.tabBarItem.title =URL;
+            UIViewController *tabController = [self rootControllerForController:controller];
+            tabController.tabBarItem.title = URL;
             [controllers addObject:tabController];
         }
     }
@@ -38,12 +40,13 @@
 }
 
 
-- (UIViewController*)rootControllerForController:(UIViewController*)controller {
+- (UIViewController *)rootControllerForController:(UIViewController *)controller
+{
     if ([controller canContainControllers]) {
         return controller;
-        
+
     } else {
-        UINavigationController* navController = [[UINavigationController alloc] init];
+        UINavigationController *navController = [[UINavigationController alloc] init];
         [navController pushViewController:controller animated:NO];
         return navController;
     }
@@ -60,25 +63,34 @@
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application
+    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    //bus容器初始化
+    // bus容器初始化
     [LDMBusContext initialBundleContainerWithWindow:self.window andRootViewController:nil];
-    
-    
+
+
     //注册特殊scheme的web处理容器
     NSString *handleClassString = NSStringFromClass([LDMPopWebViewController class]);
     //默认通过modal方式打开
-    [LDMBusContext registerSpecialScheme:@"http" addRoutes:@"*" handleController:@"LDMPopWebViewController"];
-    //push方式打开
-    [LDMBusContext registerSpecialScheme:@"https" addRoutes:@"*" handleController:handleClassString isModal:NO];
-    [LDMBusContext registerSpecialScheme:@"file" addRoutes:@"*" handleController:@"LDMPopWebViewController"];
-    
-    
+    [LDMBusContext registerSpecialScheme:@"http"
+                               addRoutes:@"*"
+                        handleController:@"LDMPopWebViewController"];
+    // push方式打开
+    [LDMBusContext registerSpecialScheme:@"https"
+                               addRoutes:@"*"
+                        handleController:handleClassString
+                                 isModal:NO];
+    [LDMBusContext registerSpecialScheme:@"file"
+                               addRoutes:@"*"
+                        handleController:@"LDMPopWebViewController"];
+
+
     //打开一个初始ViewController
     NSString *url = @"netescaipiao163://mainTab1";
     UIViewController *rootViewController = [LDMBusContext controllerForURL:url];
-    if(rootViewController){
+    if (rootViewController) {
         self.window.rootViewController = rootViewController;
     }
     [self.window makeKeyAndVisible];
@@ -86,32 +98,47 @@
 }
 
 
-- (BOOL)application:(UIApplication*)application handleOpenURL:(NSURL*)URL {
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)URL
+{
     return YES;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void)applicationWillResignActive:(UIApplication *)application {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+- (void)applicationWillResignActive:(UIApplication *)application
+{
+    // Sent when the application is about to move from active to inactive state. This can occur for
+    // certain types of temporary interruptions (such as an incoming phone call or SMS message) or
+    // when the user quits the application and it begins the transition to the background state.
+    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame
+    // rates. Games should use this method to pause the game.
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+- (void)applicationDidEnterBackground:(UIApplication *)application
+{
+    // Use this method to release shared resources, save user data, invalidate timers, and store
+    // enough application state information to restore your application to its current state in case
+    // it is terminated later.
+    // If your application supports background execution, this method is called instead of
+    // applicationWillTerminate: when the user quits.
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
+    // Called as part of the transition from the background to the inactive state; here you can undo
+    // many of the changes made on entering the background.
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    // Restart any tasks that were paused (or not yet started) while the application was inactive.
+    // If the application was previously in the background, optionally refresh the user interface.
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+- (void)applicationWillTerminate:(UIApplication *)application
+{
+    // Called when the application is about to terminate. Save data if appropriate. See also
+    // applicationDidEnterBackground:.
 }
 
 @end

@@ -12,16 +12,16 @@
 @synthesize messageName = _messageName;
 @synthesize messageCode = _messageCode;
 
--(id) initWithPostMessageConfigurationItem:(NSString *)theMessageName
-                                      code:(NSString *)theMessageCode {
+- (id)initWithPostMessageConfigurationItem:(NSString *)theMessageName
+                                      code:(NSString *)theMessageCode
+{
     self = [super init];
-    if(self){
+    if (self) {
         _messageName = theMessageName;
         _messageCode = theMessageCode;
     }
-    
+
     return self;
 }
 
 @end
-

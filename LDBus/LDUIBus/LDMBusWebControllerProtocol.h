@@ -12,6 +12,6 @@
 /**
  * 处理从bus总线来的url
  */
--(BOOL)handleURLFromUIBus:(NSURL *)url;
+- (BOOL)handleURLFromUIBus:(NSURL *)url;
 
 @end

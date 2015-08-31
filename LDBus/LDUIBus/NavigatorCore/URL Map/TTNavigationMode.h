@@ -5,10 +5,10 @@
 
 
 typedef enum {
-  TTNavigationModeNone,
-  TTNavigationModeCreate,            // a new view controller is created each time
-  TTNavigationModeShare,             // a new view controller is created, cached and re-used
-  TTNavigationModeModal,             // a new view controller is created and presented modally
-  TTNavigationModePopover,           // a new view controller is created and presented in a popover
-  TTNavigationModeExternal,          // an external app will be opened
+    TTNavigationModeNone,
+    TTNavigationModeCreate,    // a new view controller is created each time
+    TTNavigationModeShare,     // a new view controller is created, cached and re-used
+    TTNavigationModeModal,     // a new view controller is created and presented modally
+    TTNavigationModePopover,   // a new view controller is created and presented in a popover
+    TTNavigationModeExternal,  // an external app will be opened
 } TTNavigationMode;

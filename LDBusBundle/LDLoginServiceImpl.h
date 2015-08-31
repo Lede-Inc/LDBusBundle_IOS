@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "LDLoginService.h"
 
-@interface LDLoginServiceImpl : NSObject<LDLoginService>
+@interface LDLoginServiceImpl : NSObject <LDLoginService>
 
 @end

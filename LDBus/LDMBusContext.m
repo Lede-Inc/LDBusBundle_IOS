@@ -11,19 +11,22 @@
 
 @implementation LDMBusContext
 
-+(void)initialBundleContainerWithWindow:(UIWindow *)window andRootViewController:(UIViewController *)rootViewController{
++ (void)initialBundleContainerWithWindow:(UIWindow *)window
+                   andRootViewController:(UIViewController *)rootViewController
+{
     //初始化容器和window
     [[LDMContainer container] setNavigatorRootWindow:window];
-    
+
     [LDMBusContext initialBundleContainerWithRootViewController:rootViewController];
 }
 
-+(void)initialBundleContainerWithRootViewController:(UIViewController *)rootViewController {
++ (void)initialBundleContainerWithRootViewController:(UIViewController *)rootViewController
+{
     //先初始化容器
     [[LDMContainer container] preloadConfig];
-    
+
     //在设置rootViewController
-    if(rootViewController){
+    if (rootViewController) {
         [[LDMContainer container] setNavigatorRootViewController:rootViewController];
     }
 }

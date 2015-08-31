@@ -8,6 +8,6 @@
 
 @protocol LDLoginService <NSObject>
 //测试实例方法
--(void)autologin;
+- (void)autologin;
 
 @end

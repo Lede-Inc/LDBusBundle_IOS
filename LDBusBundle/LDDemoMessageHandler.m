@@ -11,12 +11,18 @@
 
 @implementation LDDemoMessageHandler
 
--(void)didReceiveMessageNotification:(NSNotification *)notification {
-    if([notification.name isEqualToString:@"LocationModified"]){
+- (void)didReceiveMessageNotification:(NSNotification *)notification
+{
+    if ([notification.name isEqualToString:@"LocationModified"]) {
         id object = notification.object;
         NSDictionary *dic_userInfo = notification.userInfo;
-        NSString *message =[NSString stringWithFormat:@"message excute....: %@, %@", object, [dic_userInfo objectForKey:@"userInfo"]];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"消息总线" message:message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        NSString *message = [NSString stringWithFormat:@"message excute....: %@, %@", object,
+                                                       [dic_userInfo objectForKey:@"userInfo"]];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"消息总线"
+                                                        message:message
+                                                       delegate:self
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil, nil];
         [alert show];
     }
 }

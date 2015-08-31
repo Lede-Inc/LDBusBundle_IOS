@@ -12,13 +12,12 @@
 static NSMutableDictionary *routeControllersMap = nil;
 
 /**
- * @class LDMRoutes 
+ * @class LDMRoutes
  * 管理某个scheme下的routePattern
  * 注意此类主要用来管理WebURL，所以对于routePattern的handler限定为
  * 遵守指定协议LDMBusWebControllerProtocol的web容器
  */
 @interface LDMRoutes : NSObject {
-    
 }
 
 /**
@@ -31,14 +30,16 @@ static NSMutableDictionary *routeControllersMap = nil;
  * 给指定scheme管理器中添加routePattern
  * 每个routePattern制定一个遵守指定协议的webController
  */
-- (void)addRoute:(NSString *)routePattern webHandler:(NSString *)webControllerClassString isModal:(BOOL)isModal;
+- (void)addRoute:(NSString *)routePattern
+      webHandler:(NSString *)webControllerClassString
+         isModal:(BOOL)isModal;
 
 
 /**
  * 查看特殊Scheme管理器是否能够处理URL
  */
 + (BOOL)canRouteURL:(NSURL *)URL;
-- (BOOL)canRouteURL:(NSURL *)URL; // instance method
+- (BOOL)canRouteURL:(NSURL *)URL;  // instance method
 
 
 /**

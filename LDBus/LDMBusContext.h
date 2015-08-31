@@ -15,13 +15,11 @@
  * 初始化bundleContainer，管理各个bundle的容器
  * 如果自行决定rootViewController,  则传入self.rootViewController， 否则传入nil
  */
-+(void)initialBundleContainerWithWindow:(UIWindow *)window andRootViewController:(UIViewController *)rootViewController;
-+(void)initialBundleContainerWithRootViewController:(UIViewController *)rootViewController;
++ (void)initialBundleContainerWithWindow:(UIWindow *)window
+                   andRootViewController:(UIViewController *)rootViewController;
++ (void)initialBundleContainerWithRootViewController:(UIViewController *)rootViewController;
 
 @end
-
-
-
 
 
 /**
@@ -37,22 +35,20 @@
  * @param handleControllerClassString 为指定打开webURL的容器的类
  * @default webController打开方式默认是为Modal，如果需要Push，调用下一个接口；
  */
-+(void)registerSpecialScheme:(NSString *)scheme
-                   addRoutes:(NSString *)routePattern
-            handleController:(NSString *)handleControllerClassString;
++ (void)registerSpecialScheme:(NSString *)scheme
+                    addRoutes:(NSString *)routePattern
+             handleController:(NSString *)handleControllerClassString;
 
 
 /**
  * 设置以非Modal的方式打开web Controller
  */
-+(void)registerSpecialScheme:(NSString *)scheme
-                   addRoutes:(NSString *)routePattern
-            handleController:(NSString *)handleControllerClassString
-                     isModal:(BOOL)isModal;
++ (void)registerSpecialScheme:(NSString *)scheme
+                    addRoutes:(NSString *)routePattern
+             handleController:(NSString *)handleControllerClassString
+                      isModal:(BOOL)isModal;
 
 @end
-
-
 
 
 /**
@@ -63,33 +59,30 @@
 /**
  * 向当前bundle的connector 发送action消息
  */
-+(BOOL)openURLWithAction:(TTURLAction *)action;
++ (BOOL)openURLWithAction:(TTURLAction *)action;
 
 /**
  * 向当前bundle的Connetor 发送URL消息
  */
-+(BOOL)openURL:(NSString *)url;
++ (BOOL)openURL:(NSString *)url;
 
 /**
  * 向当前bundle的connector 发送url和query组装消息
  */
-+(BOOL)openURL:(NSString *)url query:(NSDictionary *)query;
++ (BOOL)openURL:(NSString *)url query:(NSDictionary *)query;
 
 /**
  * 向当前bundle的connetor 申请某个url对应的ctrl；
  */
-+(UIViewController *)controllerForURL:(NSString *)url;
-+(UIViewController *)controllerForURL:(NSString *)url query:(NSDictionary *)query;
++ (UIViewController *)controllerForURL:(NSString *)url;
++ (UIViewController *)controllerForURL:(NSString *)url query:(NSDictionary *)query;
 
 /**
  * 向UIBus请求当前是否能够处理该URL
  */
-+(BOOL)canOpenURL:(NSString *)url;
++ (BOOL)canOpenURL:(NSString *)url;
 
 @end
-
-
-
 
 
 /**
@@ -101,12 +94,9 @@
 /**
  * 从服务总线获取服务的实例
  */
-+(id)getService:(NSString *)serviceName;
++ (id)getService:(NSString *)serviceName;
 
 @end
-
-
-
 
 
 /**
@@ -117,13 +107,10 @@
 /**
  * 向消息总线的所有观察者发送消息
  */
-+(void)postMessage:(NSString *)message;
-+(void)postMessage:(NSString *) message object:(id) object;
-+(void)postMessage:(NSString *)message userInfo:(NSDictionary *)aUserInfo;
-+(void)postNotification:(NSNotification *)notification;
++ (void)postMessage:(NSString *)message;
++ (void)postMessage:(NSString *)message object:(id)object;
++ (void)postMessage:(NSString *)message userInfo:(NSDictionary *)aUserInfo;
++ (void)postNotification:(NSNotification *)notification;
 
 
 @end
-
-
-

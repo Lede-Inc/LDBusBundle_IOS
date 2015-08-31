@@ -12,14 +12,14 @@
 @class TTURLNavigatorPattern;
 
 @interface TTURLMap : NSObject {
-    NSMutableDictionary*    _objectMappings; //存储通过URL初始化的Object
-    NSMutableArray*         _objectPatterns; //存储URLPattern
-    NSMutableArray*         _fragmentPatterns; //存储带fragement的URLPattern
-    NSMutableDictionary*    _schemes;  //存储支持的scheme
-    
+    NSMutableDictionary *_objectMappings;  //存储通过URL初始化的Object
+    NSMutableArray *_objectPatterns;       //存储URLPattern
+    NSMutableArray *_fragmentPatterns;     //存储带fragement的URLPattern
+    NSMutableDictionary *_schemes;         //存储支持的scheme
+
     //当找不到匹配时的URLPattern，一般配置一个WebViewController
-    TTURLNavigatorPattern*  _defaultObjectPattern;
-    BOOL                    _invalidPatterns; //是否有不合法的Pattern
+    TTURLNavigatorPattern *_defaultObjectPattern;
+    BOOL _invalidPatterns;  //是否有不合法的Pattern
 }
 
 
@@ -34,8 +34,15 @@
  * selector will be called with arguments extracted from the URL, and the view controller that
  * you return will be the one that is presented.
  */
-- (void)from:(NSString*)URL toViewController:(id)target navigationMode:(TTNavigationMode)mode withWebURL:(NSString *)webURL;
-- (void)from:(NSString*)URL parent:(NSString*)parentURL toViewController:(id)target navigationMode:(TTNavigationMode)mode withWebURL:(NSString *)webURL;
+- (void)from:(NSString *)URL
+    toViewController:(id)target
+      navigationMode:(TTNavigationMode)mode
+          withWebURL:(NSString *)webURL;
+- (void)from:(NSString *)URL
+              parent:(NSString *)parentURL
+    toViewController:(id)target
+      navigationMode:(TTNavigationMode)mode
+          withWebURL:(NSString *)webURL;
 
 
 /**
@@ -44,15 +51,16 @@
  * Object mappings are checked first, and if no object is bound to the URL then pattern
  * matching is used to create a new object.
  */
-- (id)objectForURL:(NSString*)URL query:(NSDictionary*)query
-      pattern:(TTURLNavigatorPattern**)pattern;
-- (id)dispatchURL:(NSString*)URL toTarget:(id)target query:(NSDictionary*)query;
+- (id)objectForURL:(NSString *)URL
+             query:(NSDictionary *)query
+           pattern:(TTURLNavigatorPattern **)pattern;
+- (id)dispatchURL:(NSString *)URL toTarget:(id)target query:(NSDictionary *)query;
 
 
 /**
  * 根据url获取匹配的pattern
  */
-- (TTURLNavigatorPattern*)matchObjectPattern:(NSURL*)URL;
--(TTURLNavigatorPattern *)defaultObjectPattern;
+- (TTURLNavigatorPattern *)matchObjectPattern:(NSURL *)URL;
+- (TTURLNavigatorPattern *)defaultObjectPattern;
 
 @end

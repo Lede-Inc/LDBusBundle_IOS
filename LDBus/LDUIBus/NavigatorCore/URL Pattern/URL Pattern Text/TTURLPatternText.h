@@ -7,5 +7,5 @@
 
 @protocol TTURLPatternText <NSObject>
 @required
-- (BOOL)match:(NSString*)text;
+- (BOOL)match:(NSString *)text;
 @end

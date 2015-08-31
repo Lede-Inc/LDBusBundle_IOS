@@ -11,16 +11,16 @@
 
 @class TTURLNavigatorPattern;
 @interface TTURLActionResponse : NSObject {
-    UIViewController *_viewController;          //返回的ViewController
-    TTURLNavigatorPattern *_navigatorPattern;   //返回ViewController对应的URLPattern
-    NSString *_bundleName;                      //返回ViewController所属的bundle
+    UIViewController *_viewController;         //返回的ViewController
+    TTURLNavigatorPattern *_navigatorPattern;  //返回ViewController对应的URLPattern
+    NSString *_bundleName;                     //返回ViewController所属的bundle
 }
 
 @property (retain, nonatomic) UIViewController *viewController;
 @property (retain, nonatomic) TTURLNavigatorPattern *navigatorPattern;
 @property (retain, nonatomic) NSString *bundleName;
 
-- (id)initWithViewController: (UIViewController *)theViewController
+- (id)initWithViewController:(UIViewController *)theViewController
                      pattern:(TTURLNavigatorPattern *)theNavigatorPattern
                 sourceBundle:(NSString *)theBundleName;
 

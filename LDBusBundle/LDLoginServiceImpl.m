@@ -9,9 +9,15 @@
 #import "LDLoginServiceImpl.h"
 
 @implementation LDLoginServiceImpl
--(void)autologin {
+- (void)autologin
+{
     NSLog(@"I am busy with auto loging.....");
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"服务总线" message:@"我是LoginService的提供的服务，已经完成自动登录" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    UIAlertView *alert = [[UIAlertView alloc]
+            initWithTitle:@"服务总线"
+                  message:@"我是LoginService的提供的服务，已经完成自动登录"
+                 delegate:self
+        cancelButtonTitle:@"确定"
+        otherButtonTitles:nil, nil];
     [alert show];
 }
 

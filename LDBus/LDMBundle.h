@@ -16,19 +16,19 @@
 @class LDMBundleConfigurationItem;
 @class LDMUIBusConnector;
 @interface LDMBundle : NSObject {
-    //bundle config解析对象
-    LDMBundleConfigurationItem* _configurationItem;
-    
-    //bundle的UIBus connetor
+    // bundle config解析对象
+    LDMBundleConfigurationItem *_configurationItem;
+
+    // bundle的UIBus connetor
     //如果自定义connector，必须继承busconnetor并遵循busconnetor的服务协议；
     LDMUIBusConnector *_uibusConnetor;
     LDMNavigator *_navigator;
     NSString *_scheme;
 }
 
-@property (readonly,nonatomic) NSString *bundleName;
+@property (readonly, nonatomic) NSString *bundleName;
 @property (readonly) LDMUIBusConnector *uibusConnetor;
-@property (readonly,nonatomic) LDMBundleConfigurationItem *configurationItem;
+@property (readonly, nonatomic) LDMBundleConfigurationItem *configurationItem;
 @property (readonly) NSString *scheme;
 
 
@@ -36,9 +36,9 @@
  * 根据bundle下载的指定位置初始化Bundle，
  *   关于Bus的配置：指定位置是一个以.bundle为扩展名的资源bundle，里面只有配置文件
  */
--(id) initBundleBusConfigWithPath:(NSString *)path;
--(void)setBundleNavigator:(LDMNavigator *)navigator;
--(void)setBundleScheme:(NSString *)scheme;
+- (id)initBundleBusConfigWithPath:(NSString *)path;
+- (void)setBundleNavigator:(LDMNavigator *)navigator;
+- (void)setBundleScheme:(NSString *)scheme;
 
 
 /**
@@ -46,31 +46,31 @@
  * 如果bundle配置文件指定connetorClass，则初始化一个指定的connetor给
  * 否则初始化一个默认的connetor给bundle
  */
--(BOOL) setUIBusConnectorToBundle;
+- (BOOL)setUIBusConnectorToBundle;
 
 
 /**
  * 从config中获取bundle服务配置项列表
  */
--(NSArray* ) getServiceConfigurationList;
+- (NSArray *)getServiceConfigurationList;
 
 
 /**
  * 从config中获取bundle发送消息配置项列表
  */
--(NSArray *) getPostMessageConfigurationList;
+- (NSArray *)getPostMessageConfigurationList;
 
 
 /**
  * 从config中获取bundle接受消息配置项列表
  */
--(NSArray *) getReceiveMessageConfigurationList;
+- (NSArray *)getReceiveMessageConfigurationList;
 
 
 /**
  * 和容器内的其他bundle进行比较，是否有重复的URLPattern
  */
--(void) checkDuplicateURLPattern:(LDMBundle *)aBundle;
+- (void)checkDuplicateURLPattern:(LDMBundle *)aBundle;
 
 
 @end

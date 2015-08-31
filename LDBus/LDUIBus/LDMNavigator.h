@@ -15,22 +15,21 @@
  * A URL-based navigation system.
  */
 @interface LDMNavigator : NSObject <UIPopoverControllerDelegate> {
-    UIWindow*                   _window;
-    id                          _popoverController;
+    UIWindow *_window;
+    id _popoverController;
 }
 
-//The window that contains the view controller hierarchy
-@property (nonatomic, retain) UIWindow* window;
+// The window that contains the view controller hierarchy
+@property (nonatomic, retain) UIWindow *window;
 
-//The controller that is at the root of the view controller hierarchy.
-@property (nonatomic, readwrite, assign) UIViewController* rootViewController;
-@property (nonatomic, readonly) UIViewController* visibleViewController;
-@property (nonatomic, readonly) UIViewController* topViewController;
-@property (nonatomic, readonly)NSString *URL;
+// The controller that is at the root of the view controller hierarchy.
+@property (nonatomic, readwrite, assign) UIViewController *rootViewController;
+@property (nonatomic, readonly) UIViewController *visibleViewController;
+@property (nonatomic, readonly) UIViewController *topViewController;
+@property (nonatomic, readonly) NSString *URL;
 
 
-
-+ (LDMNavigator*)navigator;
++ (LDMNavigator *)navigator;
 
 
 /**
@@ -38,11 +37,10 @@
  *
  * @public
  */
-- (BOOL)presentController: (UIViewController*)controller
-            parentURLPath: (NSString*)parentURLPath
-              withPattern: (TTURLNavigatorPattern*)pattern
-                   action: (TTURLAction*)action;
-
+- (BOOL)presentController:(UIViewController *)controller
+            parentURLPath:(NSString *)parentURLPath
+              withPattern:(TTURLNavigatorPattern *)pattern
+                   action:(TTURLAction *)action;
 
 
 @end

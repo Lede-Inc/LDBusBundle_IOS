@@ -15,53 +15,51 @@
  */
 
 @interface LDMMessageBusCenter : NSObject {
-    NSMutableDictionary *_messageReceiveItemList; //是指消息中心接收notification的Object
-    NSMutableDictionary *_listeningNotifications; //是指消息中心监控的Notification
+    NSMutableDictionary *_messageReceiveItemList;  //是指消息中心接收notification的Object
+    NSMutableDictionary *_listeningNotifications;  //是指消息中心监控的Notification
 }
 
 
-+(LDMMessageBusCenter *) messagebusCenter;
++ (LDMMessageBusCenter *)messagebusCenter;
 
 
 /**
  * 根据MessageName获取MessageCode
  * 从监听notification中获取
  */
--(NSString *)messageCodeForName:(NSString *)messageName;
+- (NSString *)messageCodeForName:(NSString *)messageName;
 
 
 /**
  * 当收到notification时，检测notification是否注册
  * 然后将Notification转发给所有的监听者
  */
--(void) didReceiveMessageNotification:(NSNotification *)notification;
+- (void)didReceiveMessageNotification:(NSNotification *)notification;
 
 
 /**
  * 注册notification监听者
  */
--(void) regitsterMessageReceivers:(NSArray *)receiveMessageConfigurationList;
-
+- (void)regitsterMessageReceivers:(NSArray *)receiveMessageConfigurationList;
 
 
 /**
  * 向消息总线中注册监听的notification
  */
--(void)registerListeningNotificationBatchly: (NSArray*)postMessageConfigurationList;
--(void)registerListeningNotification: (NSString *)postMessageName code:(NSString *)postMessageCode;
+- (void)registerListeningNotificationBatchly:(NSArray *)postMessageConfigurationList;
+- (void)registerListeningNotification:(NSString *)postMessageName code:(NSString *)postMessageCode;
 
 
 /**
  * 批量注销监听的notification
  */
--(void) unRegisterListeningNotificationBatchly:(NSArray *)postMessageNames;
+- (void)unRegisterListeningNotificationBatchly:(NSArray *)postMessageNames;
 
 
 /**
  * 按postMessageNames注销监听
  */
--(void) unRegisterListeningNotification:(NSString *) postMessageName;
-
+- (void)unRegisterListeningNotification:(NSString *)postMessageName;
 
 
 @end

@@ -10,7 +10,7 @@
  * @class 生成一个普通的url pattern选项，区别于带行参的参数
  */
 @interface TTURLLiteral : NSObject <TTURLPatternText> {
-    NSString* _name;
+    NSString *_name;
 }
-@property (nonatomic, copy) NSString* name;
+@property (nonatomic, copy) NSString *name;
 @end

@@ -20,6 +20,6 @@
  * 定制webContainer初始化接口
  * 可以从query对象中通过TTDEGRADE_URL作为Key获取降级urlString
  */
--(id) initWithNavigatorURL:(NSURL *)URL query:(NSDictionary *)query;
+- (id)initWithNavigatorURL:(NSURL *)URL query:(NSDictionary *)query;
 
 @end

@@ -32,46 +32,46 @@
     NSString *_mainScheme;
 }
 
-@property (nonatomic, readonly)NSMutableDictionary *bundlesMap;
+@property (nonatomic, readonly) NSMutableDictionary *bundlesMap;
 
 /**
  * 获取各个bus的调度中心
  */
-+(LDMContainer*) container;
++ (LDMContainer *)container;
 
 /**
  * 由调用者设置window；
  */
--(void)setNavigatorRootWindow:(UIWindow *)window;
+- (void)setNavigatorRootWindow:(UIWindow *)window;
 
 /**
  * bus center preload config
  * private: 每个bundle一个scheme
  */
--(void) preloadConfig;
+- (void)preloadConfig;
 
 
 /**
  * 对于保证整个app统一scheme导航的初始化
  */
--(void) preloadConfigWithScheme:(NSString *)scheme;
+- (void)preloadConfigWithScheme:(NSString *)scheme;
 
 /**
  * 设置当前navigator的rootViewController
  */
--(BOOL) setNavigatorRootViewController:(UIViewController *)theRoot;
+- (BOOL)setNavigatorRootViewController:(UIViewController *)theRoot;
 
 /**
  * 从bundle容器中获取全局导航管理器navigator
  */
--(LDMNavigator *)getMainNavigator;
+- (LDMNavigator *)getMainNavigator;
 
 
 /**
  * 根据bundle的UIBusConnector的优先级排序BundlesMap
  * 返回排序后的bunldesMap的key数组
  */
--(NSArray *)sortedBundleMapKeys;
+- (NSArray *)sortedBundleMapKeys;
 
 
 @end

@@ -11,12 +11,11 @@
 /**
  * Parses a URL query-key string into NSArray
  */
--(NSArray *)queryKeysSortByFIFO:(NSStringEncoding)encoding;
+- (NSArray *)queryKeysSortByFIFO:(NSStringEncoding)encoding;
 
 /**
  * Parses a URL query string into a dictionary where the values are arrays.
  */
-- (NSDictionary*)queryContentsUsingEncoding:(NSStringEncoding)encoding;
+- (NSDictionary *)queryContentsUsingEncoding:(NSStringEncoding)encoding;
 
 @end
-

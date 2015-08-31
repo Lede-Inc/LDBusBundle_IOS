@@ -22,8 +22,8 @@
 @property (readonly, nonatomic) NSString *messageName;
 @property (readonly, nonatomic) NSString *receiveObjectString;
 
--(id)initWithReceiveMessageConfigurationItem:(NSString *) theMessageName
-                                        code:(NSString *) theMessageCode
-                               receiveObject:(NSString *) theReceiveObjectString;
+- (id)initWithReceiveMessageConfigurationItem:(NSString *)theMessageName
+                                         code:(NSString *)theMessageCode
+                                receiveObject:(NSString *)theReceiveObjectString;
 
 @end

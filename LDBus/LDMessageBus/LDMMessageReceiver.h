@@ -11,7 +11,7 @@
 /**
  * 所有消息的订阅者（接收消息的object）必须实现这个protocol
  */
-@protocol  LDMMessageReceiver <NSObject>
+@protocol LDMMessageReceiver <NSObject>
 @required
--(void)didReceiveMessageNotification:(NSNotification *)notification;
+- (void)didReceiveMessageNotification:(NSNotification *)notification;
 @end

@@ -15,13 +15,14 @@
 @synthesize patternType = _patternType;
 @synthesize patternParent = _patternParent;
 
--(id)initWithURLViewCtrlPatternConfigurationItem:(NSString *)thePatternWebPath
-                                           query:(NSString *)thePatternWebQuery
-                                       fragement:(NSString *)thePatternWebFrage
-                                            type:(PatternType)thePatternType
-                                          parent:(NSString *)thePatternParent{
+- (id)initWithURLViewCtrlPatternConfigurationItem:(NSString *)thePatternWebPath
+                                            query:(NSString *)thePatternWebQuery
+                                        fragement:(NSString *)thePatternWebFrage
+                                             type:(PatternType)thePatternType
+                                           parent:(NSString *)thePatternParent
+{
     self = [super init];
-    if(self){
+    if (self) {
         _patternWebPath = thePatternWebPath;
         _patternWebQuery = thePatternWebQuery;
         _patternWebFrage = thePatternWebFrage;
