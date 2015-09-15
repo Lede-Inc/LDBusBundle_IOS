@@ -221,7 +221,7 @@ Connector的扩展需要继承Bus提供LDMUIBusConnector，然后在其基础上
 		    } else {
         		NSURL *URL = [NSURL URLWithString:url];
 		        //短链接通过JLRoute判断
-        		if ([[LotteryApplication sharedApplication] isInAppUrl:URL]) {
+        		if ([[XXX sharedApplication] isInAppUrl:URL]) {
 		            return [JLRoutes canRouteURL:URL];
         		}
         
@@ -251,12 +251,7 @@ Connector的扩展需要继承Bus提供LDMUIBusConnector，然后在其基础上
 	        	}
         
     	    	//需要登录，保存URL,登录成功后重新调用
-        		else if([[LotteryApplication sharedApplication] isNeedLogin:URL]){
-            		_loginPendingUrl = URL.absoluteString;
-            		LoginController *controller = [LoginController getControllerInstance];
-            		controller.delegate = self;
-            		UINavigationController *navController = 					[[UINavigationController alloc] initWithRootViewController:controller];
-           		 	[self.navigator.topViewController presentModalViewController:navController animated:YES];
+        		else if([[XXX sharedApplication] isNeedLogin:URL]){
             		return YES;
         		}
         
